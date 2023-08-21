@@ -158,7 +158,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 user.put("email",email);
                                 user.put("branch",branchs);
                                 user.put("password",password);
-                                user.put("premium","8");
+                                user.put("userType","8");
                                 user.put("detailsGiven","0");
 
 
@@ -167,7 +167,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 users.put("userId",userID);
                                 users.put("premium","8");
                                 users.put("branch",branchs);
-                                users.put("purl","https://firebasestorage.googleapis.com/v0/b/tesla-members-record.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=507e6418-5807-4439-b148-9015755a2213");
+                                users.put("purl","");
                                 users.put("shortBio","");
                                 users.put("location","");
                                 users.put("hobbies","");

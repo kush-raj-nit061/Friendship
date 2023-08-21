@@ -63,7 +63,7 @@ public class test extends AppCompatActivity {
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(test.this, SignUpActivity.class);
+                Intent i = new Intent(test.this, ProfileActivity.class);
                 startActivity(i);
             }
         });
@@ -140,7 +140,7 @@ public class test extends AppCompatActivity {
                                                                         MainActivity.class);
                                                                 Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                                                 startActivity(intent);
-                                                                finish();
+//                                                                finish();
 
 
 
@@ -149,7 +149,7 @@ public class test extends AppCompatActivity {
                                                                     Intent intent
                                                                             = new Intent(test.this,BasicDetailsActivity.class);
                                                                     startActivity(intent);
-                                                                    finish();
+//                                                                    finish();
 
                                                                 }
 

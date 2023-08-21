@@ -80,6 +80,9 @@ public class BasicDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Map<String,Object> users = new HashMap<>();
+                if(purl.isEmpty()){
+                    purl = "https://firebasestorage.googleapis.com/v0/b/tesla-members-record.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=507e6418-5807-4439-b148-9015755a2213";
+                }
                 users.put("purl",purl);
                 users.put("shortBio",etShortDetails.getText().toString());
                 users.put("location",etLocation.getText().toString());
@@ -137,7 +140,7 @@ public class BasicDetailsActivity extends AppCompatActivity {
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri =data.getData();
-                purl = String.valueOf(imageUri);
+
 //                imgButton.setImageURI(imageUri);
 //                progressBar.setVisibility(View.VISIBLE);
 
@@ -155,9 +158,12 @@ public class BasicDetailsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+
+
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        purl = String.valueOf(uri);
 
                         Picasso.get().load(uri).into(ivProfile);
 //                        progressBar.setVisibility(View.GONE);

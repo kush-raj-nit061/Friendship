@@ -44,6 +44,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -52,12 +55,13 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     String userID;
+    String purl;
+
 
 
     StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"+fAuth.getCurrentUser().getUid()+"profile.jpg");
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("record/Agency/"+fAuth.getCurrentUser().getUid());
-    DatabaseReference mRef=database.getReference("url");
+    DatabaseReference myRef = database.getReference("students");
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
     @Override
@@ -69,46 +73,20 @@ public class ProfileActivity extends AppCompatActivity {
         ivProfile = findViewById(R.id.ivEditProfile);
         userID = fAuth.getCurrentUser().getUid();
 
-
-
         fStore.collection("users").document(userID)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-//                            String name = document.getString("fName");
-//                            String email = document.getString("email");
-//                            String num = document.getString("phone");
-//                            String loc = document.getString("location");
 
-
-//                            tvProfileN.setText(name);
-//                            tvProfileEmail.setText(email);
-//                            tvNum.setText(num);
-//                            tvEmails.setText(email);
-//                            tvLocation.setText(loc);
-//                            location.setText(loc);
-
-//                            tvEmail.setText(email);
-//                            textView.setText(name);
-//                            progressBar.setVisibility(View.VISIBLE);
                             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-
-
                                     Picasso.get().load(uri).into(imgButton);
-
-//                                    Picasso.get().load(uri).into(ivPlace);
-//                                    progressBar.setVisibility(View.GONE);
-
-
 
                                 }
                             });
-
-
                         }
                     } else {
                         // Handle the error
@@ -116,6 +94,9 @@ public class ProfileActivity extends AppCompatActivity {
                         // Log or display an error message
                     }
                 });
+
+
+
 
 
 
@@ -133,6 +114,8 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent openGallInt= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGallInt,1000);
+
+
             }
         });
     }
@@ -159,9 +142,17 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        purl = String.valueOf(uri);
+                        Map<String,Object> users = new HashMap<>();
+                        users.put("purl",purl);
+
+                        if(purl!=null){
+                            myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                        }
 
                         Picasso.get().load(uri).into(imgButton);
 //                        progressBar.setVisibility(View.GONE);
