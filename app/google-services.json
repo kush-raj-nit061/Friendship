@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "447626426712",
+    "firebase_url": "https://tesla-members-record-default-rtdb.firebaseio.com",
+    "project_id": "tesla-members-record",
+    "storage_bucket": "tesla-members-record.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447626426712:android:4437c41edb6c73d7c0cd2d",
+        "android_client_info": {
+          "package_name": "com.example.friendship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447626426712-1vr72h5dadi0vnmd4qvhtr0eh0vooerv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkIbzQ2mcZDHhnesYJlUSKfg61Ajv6pAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447626426712-1vr72h5dadi0vnmd4qvhtr0eh0vooerv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
