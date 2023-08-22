@@ -1,8 +1,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="@color/qiscus_red" />
+    <solid android:color="@color/qiscus_white_grey" />
     <corners android:radius="1dp"/>
     <stroke
         android:width="4dp"
-        android:color="#FFD700" />
+        android:color="@color/blue" />
 </shape>

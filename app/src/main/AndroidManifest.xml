@@ -24,14 +24,23 @@
         android:theme="@style/Theme.Friendship"
         tools:targetApi="31">
         <activity
+            android:name=".BasicDetails.DetailsActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".BasicDetails.DetailsActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".BasicDetails.DetailsActivity1"
+            android:exported="false" />
+        <activity
             android:name=".BasicDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".testing"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".test"
             android:exported="true">

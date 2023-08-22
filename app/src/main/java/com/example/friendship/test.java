@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.Button;
 
+import com.example.friendship.BasicDetails.DetailsActivity1;
+import com.example.friendship.BasicDetails.DetailsActivity2;
 import com.example.friendship.MainActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.ActionCodeSettings;
@@ -215,7 +217,7 @@ public class test extends AppCompatActivity {
                                 if(detailsGiven.equals("1")){
                                     Intent intent
                                             = new Intent(test.this,
-                                            MainActivity.class);
+                                            DetailsActivity1.class);
                                     Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                     startActivity(intent);
                                     finish();
