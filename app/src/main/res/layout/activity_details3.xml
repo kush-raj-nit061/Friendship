@@ -97,7 +97,7 @@
                 android:id="@+id/tvSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="-10dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/coffeesugar"
                 android:gravity="right"
@@ -458,24 +458,26 @@
                 android:layout_toEndOf="@+id/froglayout">
 
                 <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/tvPrevious"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/previous"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"/>
+
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/tvNext"
-                    android:layout_width="250dp"
-                    android:layout_height="80dp"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
                     app:lottie_autoPlay="true"
                     app:lottie_rawRes="@raw/next"
                     app:lottie_loop="true"
-                    app:lottie_speed="1"
-                    android:scaleType="centerCrop"
-                    android:layout_marginEnd="-25dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@color/purple_700"
-                    android:fontFamily="@font/poppins"
-
-                    android:gravity="end"
-
-
-                    />
+                    app:lottie_speed="1"/>
 
             </LinearLayout>
 

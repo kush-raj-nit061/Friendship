@@ -41,7 +41,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="Hurray,You are Now ready Set your profile picture"
+                    android:text="Your account is now ready set your profile picture:"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
 
@@ -78,7 +78,7 @@
                             android:layout_height="225dp"
                             android:scaleType="centerCrop"
                             android:padding="20dp"
-                            app:srcCompat="@drawable/ic_study" />
+                            />
 
 
 
@@ -124,24 +124,26 @@
                 android:layout_toEndOf="@+id/froglayout">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/tvNext"
-                    android:layout_width="250dp"
-                    android:layout_height="80dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/start"
-                    app:lottie_loop="true"
-                    app:lottie_speed="1"
+                    android:id="@+id/tvPrevious"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"
                     android:scaleType="centerCrop"
-                    android:layout_marginEnd="-25dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@color/purple_700"
-                    android:fontFamily="@font/poppins"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/previous"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"/>
 
-                    android:gravity="center"
-
-
-                    />
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/tvNext"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/next"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"/>
 
             </LinearLayout>
 

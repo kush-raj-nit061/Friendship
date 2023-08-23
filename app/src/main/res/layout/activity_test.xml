@@ -118,7 +118,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ven"
+
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toBottomOf="@+id/avatar"
                 app:layout_constraintStart_toStartOf="parent"

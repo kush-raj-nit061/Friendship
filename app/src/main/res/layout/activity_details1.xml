@@ -138,7 +138,7 @@
 
 
             <EditText
-                android:id="@+id/edt_search"
+                android:id="@+id/etShortDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -226,7 +226,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
@@ -251,48 +250,24 @@
             </RelativeLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/froglayout"
-                android:layout_gravity="end"
-                android:gravity="end"
-                android:layout_marginBottom="10dp"
-                android:background="#ffba60"
-                android:layout_toEndOf="@+id/froglayout">
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/tvNext"
-                    android:layout_width="250dp"
-                    android:layout_height="80dp"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
                     app:lottie_autoPlay="true"
                     app:lottie_rawRes="@raw/next"
                     app:lottie_loop="true"
-                    app:lottie_speed="1"
-                    android:scaleType="centerCrop"
-                    android:layout_marginEnd="-25dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@color/purple_700"
-                    android:fontFamily="@font/poppins"
-                    android:gravity="end"
-
-
-                    />
-
+                    app:lottie_speed="1"/>
             </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
