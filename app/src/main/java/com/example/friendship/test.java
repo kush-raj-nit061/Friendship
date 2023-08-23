@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.friendship.BasicDetails.DetailsActivity1;
 import com.example.friendship.BasicDetails.DetailsActivity2;
+import com.example.friendship.BasicDetails.DetailsActivity5;
 import com.example.friendship.MainActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.ActionCodeSettings;

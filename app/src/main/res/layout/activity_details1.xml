@@ -8,6 +8,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".BasicDetails.DetailsActivity1"
     >
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,8 +19,78 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffba60"
+            android:layout_marginTop="-15dp"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="#ffba60"
+                android:id="@+id/froglayout"
+
+                >
+
+
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/frog1"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:visibility="visible"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/frog"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+                    android:layout_weight="1"
+                    android:contentDescription="@string/imageAccess" />
+
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/frog2"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"                    android:visibility="visible"
+
+                    app:lottie_autoPlay="false"
+                    app:lottie_rawRes="@raw/frog"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+                    android:layout_weight="1"
+
+                    android:contentDescription="@string/imageAccess" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/frog3"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"                    android:visibility="visible"
+                    android:layout_weight="1"
+                    app:lottie_autoPlay="false"
+                    app:lottie_rawRes="@raw/frog"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+
+                    android:contentDescription="@string/imageAccess" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/frog4"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"                    android:visibility="visible"
+                    app:lottie_autoPlay="false"
+                    app:lottie_rawRes="@raw/frog"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+
+                    android:layout_weight="1"
+
+                    android:contentDescription="@string/imageAccess" />
+
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -26,8 +98,9 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/bariol_regular"
-                android:text="You are 3 steps away"
+                android:text="You are 4 steps away to setup your profile"
                 android:layout_gravity="center"
+                android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
 
@@ -178,107 +251,6 @@
             </RelativeLayout>
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/fab_margin"
-
-                    >
-
-
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-
-                        android:layout_weight="1"
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-
-                        android:layout_weight="1"
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-
-                        android:layout_weight="1"
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/fab_margin"
-                    android:id="@+id/froglayout"
-
-                    >
-
-
-
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/frog1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="visible"
-                        android:scaleType="centerCrop"
-
-                        android:layout_weight="1"
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/frog2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        android:scaleType="centerCrop"
-
-                        android:layout_weight="1"
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-                    <pl.droidsonroids.gif.GifImageView
-                        android:id="@+id/frog3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        android:scaleType="centerCrop"
-                        android:layout_weight="1"
-
-                        android:src="@drawable/frog"
-                        android:contentDescription="@string/imageAccess" />
-
-
-                </LinearLayout>
-
-
-
-
-
-
-
-            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -287,22 +259,25 @@
                 android:layout_gravity="end"
                 android:gravity="end"
                 android:layout_marginBottom="10dp"
-                android:background="#FFF8B858"
+                android:background="#ffba60"
                 android:layout_toEndOf="@+id/froglayout">
 
-                <pl.droidsonroids.gif.GifImageView
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/tvNext"
                     android:layout_width="250dp"
                     android:layout_height="80dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/next"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
                     android:scaleType="centerCrop"
                     android:layout_marginEnd="-25dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/purple_700"
                     android:fontFamily="@font/poppins"
-
                     android:gravity="end"
-                    android:src="@drawable/next"
+
 
                     />
 

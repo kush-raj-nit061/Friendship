@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.R;
 
 import java.text.DateFormat;
@@ -26,8 +27,8 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
 
     ImageView tvCal;
     EditText etCal;
-    GifImageView frog1,frog2,frog3;
-    GifImageView tvNext;
+    LottieAnimationView frog1,frog2,frog3;
+    LottieAnimationView tvNext;
 
 
 
@@ -45,12 +46,13 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
 
         Handler handler = new Handler();
 
+
         handler.postDelayed(new Runnable() {
             public void run() {
 
 
-                frog1.setVisibility(View.INVISIBLE);
                 frog2.setVisibility(View.VISIBLE);
+                frog2.playAnimation();
                 handler.postDelayed(new Runnable() {
                     public void run() {
 

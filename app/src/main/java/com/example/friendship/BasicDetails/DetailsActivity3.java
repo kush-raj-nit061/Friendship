@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.MainActivity;
 import com.example.friendship.R;
 
@@ -23,9 +24,10 @@ import pl.droidsonroids.gif.GifImageView;
 public class DetailsActivity3 extends AppCompatActivity {
 
     Spinner spinner ;
-    String yearSelected;
-    GifImageView frog1,frog2,frog3;
+    String foodSelected;
+    LottieAnimationView frog1,frog2,frog3,frog4;
     TextView tvSkip;
+    LottieAnimationView tvNext;
 
 
     @SuppressLint("MissingInflatedId")
@@ -36,14 +38,15 @@ public class DetailsActivity3 extends AppCompatActivity {
         frog1 = findViewById(R.id.frog1);
         frog2= findViewById(R.id.frog2);
         frog3 = findViewById(R.id.frog3);
+        frog4 = findViewById(R.id.frog4);
         tvSkip = findViewById(R.id.tvSkip);
+        tvNext = findViewById(R.id.tvNext);
 
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                yearSelected =parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(),"selected"+yearSelected,Toast.LENGTH_SHORT).show();
+                foodSelected =parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -66,30 +69,30 @@ public class DetailsActivity3 extends AppCompatActivity {
         spinner.setAdapter(adapter);
         Handler handler = new Handler();
 
+
         handler.postDelayed(new Runnable() {
             public void run() {
 
 
-                frog1.setVisibility(View.INVISIBLE);
                 frog2.setVisibility(View.VISIBLE);
+                frog2.playAnimation();
                 handler.postDelayed(new Runnable() {
                     public void run() {
 
-                        frog2.setVisibility(View.VISIBLE);
-
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-
-                                frog2.setVisibility(View.INVISIBLE);
-                                frog3.setVisibility(View.VISIBLE);
-                            }
-                        }, 0);
-
+                        frog3.playAnimation();
                     }
                 }, 3000);
 
             }
         }, 3000);
+
+        tvNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+                startActivity(i);
+            }
+        });
 
 
         tvSkip.setOnClickListener(new View.OnClickListener() {

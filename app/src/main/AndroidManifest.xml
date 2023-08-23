@@ -24,6 +24,12 @@
         android:theme="@style/Theme.Friendship"
         tools:targetApi="31">
         <activity
+            android:name=".BasicDetails.DetailsActivity5"
+            android:exported="false" />
+        <activity
+            android:name=".BasicDetails.DetailsActivity4"
+            android:exported="false" />
+        <activity
             android:name=".BasicDetails.DetailsActivity3"
             android:exported="false" />
         <activity

@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.R;
 
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity1 extends AppCompatActivity {
 
-    GifImageView frog1,frog2,frog3;
-    GifImageView tvNext;
+    LottieAnimationView frog1,frog2,frog3;
+    LottieAnimationView tvNext;
     Spinner spinner ;
     String yearSelected;
 
@@ -36,6 +37,28 @@ public class DetailsActivity1 extends AppCompatActivity {
         frog3 = findViewById(R.id.frog3);
         tvNext = findViewById(R.id.tvNext);
         spinner = findViewById(R.id.spinner);
+
+        Handler handler = new Handler();
+
+
+        handler.postDelayed(new Runnable() {
+            public void run() {
+
+
+                frog2.setVisibility(View.VISIBLE);
+
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        frog2.setVisibility(View.VISIBLE);
+                    }
+                }, 3000);
+
+            }
+        }, 3000);
+
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
