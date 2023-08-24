@@ -2,10 +2,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="2dp"
-
-
+    android:background="#04365F"
+    android:backgroundTint="#04365F"
+    android:layout_marginTop="5dp"
     android:elevation="15dp">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+
+        />
+
 
 
 
@@ -13,9 +23,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
 
-        android:padding="16dp">
+        android:paddingStart="10dp"
+
+
+        >
+
+
+
 
 
 
@@ -27,7 +42,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:elevation="12dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:id="@+id/imageView"
             app:cardCornerRadius="40dp"
             android:layout_alignParentStart="true"
@@ -63,37 +78,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#622a0f"
+            android:textColor="#2384F5"
 
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="-20dp"
+            android:layout_marginTop="-10dp"
             android:layout_toEndOf="@id/imageView"
             android:layout_alignTop="@id/imageView"
-            android:text="@string/author"/>
-        <pl.droidsonroids.gif.GifImageView
+            android:text="wordsmith"/>
+
+
+        <TextView
+            android:id="@+id/shortBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="130dp"
+            android:paddingStart="8dp"
+            android:layout_marginStart="-3dp"
+            android:paddingEnd="8dp"
+            android:layout_marginTop="17dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/futura_medium"
+            android:textAlignment="center"
+
+            android:textColor="#A6D7FF"
+            android:layout_toEndOf="@id/imageView"
+            android:layout_below="@id/textView1"
+            android:text="gsuyguxyfafucsxauxcscxcxsuafufs"/>
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/crown"
             android:layout_width="60dp"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/vip"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
             android:layout_height="60dp"
             android:layout_toEndOf="@id/imageView"
             android:layout_alignTop="@id/imageView"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
-            android:layout_marginTop="-30dp"
-            android:src="@drawable/crown"/>
-
-        <TextView
-            android:id="@+id/shortBio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-
-            android:textColor="#787276"
-            android:layout_toEndOf="@id/imageView"
-            android:layout_below="@id/textView1"
-            android:text=""/>
+            android:layout_marginTop="-25dp"
+            />
 
 
 
@@ -102,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/shortBio"
-            android:textColor="@color/black"
+            android:textColor="#ffbf24"
             android:layout_marginBottom="4dp"
             android:layout_alignParentStart="true"
             android:gravity="center"
@@ -115,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:textColor="@color/black"
+            android:textColor="#ffbf24"
             android:layout_toStartOf="@id/shortBio"
             android:layout_marginBottom="4dp"
             android:gravity="center"
@@ -129,10 +156,28 @@
             android:layout_alignParentStart="true"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="#ffbf24"
             android:layout_toStartOf="@id/shortBio"
             android:layout_below="@id/branch"
             android:text=""/>
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/like"
+            android:layout_width="60dp"
+            app:lottie_autoPlay="false"
+            app:lottie_rawRes="@raw/handshake"
+            app:lottie_loop="true"
+            android:visibility="visible"
+            app:lottie_speed="1"
+            android:layout_height="60dp"
+            android:layout_toEndOf="@id/year"
+            android:layout_below="@+id/shortBio"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+
+            />
 
 
     </RelativeLayout>

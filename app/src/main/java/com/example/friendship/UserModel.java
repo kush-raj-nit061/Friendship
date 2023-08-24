@@ -4,7 +4,105 @@ public class UserModel {
     UserModel(){}
 
     String purl;
+    String birthday;
+    String books;
+    String foods;
+    String qualitydislike;
+    String hobbies;
+    String location;
+    String qualitylike;
+    String travellike;
+    String userId;
 
+    public UserModel(String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
+        this.purl = purl;
+        this.birthday = birthday;
+        this.books = books;
+        this.foods = foods;
+        this.qualitydislike = qualitydislike;
+        this.hobbies = hobbies;
+        this.location = location;
+        this.qualitylike = qualitylike;
+        this.travellike = travellike;
+        this.userId = userId;
+        this.premium = premium;
+        this.name = name;
+        this.branch = branch;
+        this.year = year;
+        this.shortBio = shortBio;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBooks() {
+        return books;
+    }
+
+    public void setBooks(String books) {
+        this.books = books;
+    }
+
+    public String getFoods() {
+        return foods;
+    }
+
+    public void setFoods(String foods) {
+        this.foods = foods;
+    }
+
+    public String getQualitydislike() {
+        return qualitydislike;
+    }
+
+    public void setQualitydislike(String qualitydislike) {
+        this.qualitydislike = qualitydislike;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getQualitylike() {
+        return qualitylike;
+    }
+
+    public void setQualitylike(String qualitylike) {
+        this.qualitylike = qualitylike;
+    }
+
+    public String getTravellike() {
+        return travellike;
+    }
+
+    public void setTravellike(String travellike) {
+        this.travellike = travellike;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getPremium() {
         return premium;
@@ -16,14 +114,7 @@ public class UserModel {
 
     String premium;
 
-    public UserModel(String name, String branch, String year, String shortBio ,String purl,String premium) {
-        this.name = name;
-        this.branch = branch;
-        this.year = year;
-        this.shortBio = shortBio;
-        this.purl = purl;
-        this.premium = premium;
-    }
+
 
     public String getPurl() {
         return purl;

@@ -12,7 +12,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -31,6 +34,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -38,13 +42,16 @@ import java.util.Objects;
 public class SignUpActivity extends AppCompatActivity {
 
     public static final String TAG = "TAG";
-    private EditText emailTextView, passwordTextView,fullname,branch,inputConfirmPassword;
+    private EditText emailTextView, passwordTextView,fullname,inputConfirmPassword;
+    Spinner branch;
     private Button Btn;
     ProgressBar progressBar ;
+    String strbranchs;
     TextView buttonSignIn;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseAuth fAuth;
     DatabaseReference myRef;
+    DatabaseReference mRef = database.getReference("Connection");
 
 
 
@@ -63,23 +70,43 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         this.progressBar = findViewById(R.id.progressBarSignUp);
         progressBar.setVisibility(View.GONE);
-
-
         // taking FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
-
         // initialising all views through id defined above
         fullname       = findViewById(R.id.inputFirstName);
-        branch = findViewById(R.id.inputLastName);
+        branch = findViewById(R.id.branch);
         emailTextView        = findViewById(R.id.inputEmail);
         passwordTextView        = findViewById(R.id.inputPassword);
         inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
         Btn         = findViewById(R.id.buttonSignUp);
 
+        branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                strbranchs =parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
+        arrayList.add("Electrical Engineering");
+        arrayList.add("Computer Science and Engineering");
+        arrayList.add("Electronics and communication");
+        arrayList.add("Civil Engineering");
+        arrayList.add("Mechanical Engineering");
+        arrayList.add("Chemical Technology");
+        arrayList.add("Integrated M.S.C");
+        arrayList.add("Others");
 
 
-
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayList);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        branch.setAdapter(adapter);
         buttonSignIn= findViewById(R.id.textSignIn);
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
         email = emailTextView.getText().toString();
         password = passwordTextView.getText().toString();
         name = fullname.getText().toString();
-        branchs = branch.getText().toString();
+        branchs = strbranchs;
         confirmPass = inputConfirmPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) {

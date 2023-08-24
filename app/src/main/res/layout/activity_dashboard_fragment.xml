@@ -1,17 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:id="@+id/dashboardContainer"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
-
-    tools:context=".DashboardFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.recyclerview.widget.RecyclerView
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recPeople"/>
+        android:background="#A6D7FF"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#6C4FA2"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:paddingLeft="@dimen/horizontal_dashboard"
+                android:paddingTop="@dimen/fab_margin"
+                android:paddingRight="@dimen/horizontal_dashboard"
+
+
+                android:weightSum="100">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/announcement"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+                    android:layout_weight="60"
+                    android:contentDescription="@string/imageAccess" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/bariol_bold"
+                    android:text="Have You Found Someone lets search ?"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/horizontal_dashboard"
+                android:layout_marginTop="@dimen/normalPadding"
+
+                android:layout_marginRight="@dimen/horizontal_dashboard"
+                android:autofillHints="username"
+                android:background="@drawable/container_search"
+
+
+                android:drawablePadding="@dimen/drawable_left"
+
+                android:fontFamily="@font/bariol_regular"
+                android:gravity="center_vertical"
+
+
+                android:hint="@string/edt_search"
+                android:imeOptions="actionSearch"
+
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/normalPadding"
+                android:paddingTop="@dimen/vertical_search"
+                android:paddingRight="@dimen/normalPadding"
+
+                android:paddingBottom="@dimen/vertical_search"
+                android:singleLine="true"
+                android:textColor="?attr/colorPrimaryDark"
+
+                android:textColorHint="@color/color_hint"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:background="@null">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="80dp"
+                        android:background="@color/back_courses"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/horizontal_card"
+                        android:layout_marginBottom="@dimen/horizontal_card"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:background="#6C4FA2"
+                            android:layout_height="match_parent"
+                            android:id="@+id/recPeople"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

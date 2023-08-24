@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class DetailsActivity1 extends AppCompatActivity {
 
     LottieAnimationView frog1,frog2,frog3;
-    LottieAnimationView tvNext;
+    ImageView tvNext;
     Spinner spinner ;
     String yearSelected;
     EditText etHobbies,etShortDetails;

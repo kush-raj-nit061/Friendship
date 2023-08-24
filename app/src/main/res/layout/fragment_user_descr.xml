@@ -9,73 +9,152 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <LinearLayout
+            android:background="#BE43E8CF"
+            android:layout_height="wrap_content">
+
+            <com.github.sshadkany.shapes.RoundRectView
+                android:id="@+id/btn3a"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                tools:ignore="UselessParent">
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                app:shape_roundRect_backgroundColor="#ECF0F3"
+                app:shape_roundRect_bottomLeftRadius="12dp"
+                app:shape_roundRect_bottomRightRadius="12dp"
+                app:shape_roundRect_shadow_type="drop_shadow"
+                app:shape_roundRect_topLeftRadius="12dp"
+                app:shape_roundRect_topRightRadius="12dp"
+                tools:ignore="RtlSymmetry">
 
-                <ImageView
-                    android:id="@+id/imagegholder"
-                    android:layout_marginTop="40dp"
-                    android:layout_width="240dp"
-                    android:layout_height="228dp"
-                    android:src="@color/common_google_signin_btn_text_dark_disabled"
-                    android:contentDescription="TODO" />
+                <com.github.sshadkany.shapes.RoundRectView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    app:shape_roundRect_backgroundColor="#ECF0F3"
+                    app:shape_roundRect_bottomLeftRadius="12dp"
+                    app:shape_roundRect_bottomRightRadius="12dp"
+                    app:shape_roundRect_shadow_type="small_inner_shadow"
+                    app:shape_roundRect_topLeftRadius="12dp"
+                    app:shape_roundRect_topRightRadius="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/nameholder"
-                    android:text="Candidate Name"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="#000"/>
+                    <com.github.sshadkany.shapes.RoundRectView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        app:shape_roundRect_backgroundColor="#ECF0F3"
+                        app:shape_roundRect_bottomLeftRadius="12dp"
+                        app:shape_roundRect_bottomRightRadius="12dp"
+                        app:shape_roundRect_shadow_type="drop_shadow"
+                        app:shape_roundRect_topLeftRadius="12dp"
+                        app:shape_roundRect_topRightRadius="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/branchholder"
-                    android:text="Branch"
-                    android:textSize="25sp"
-                    android:textColor="#000"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/yearholder"
-                    android:text="Year"
-                    android:textSize="25sp"
-                    android:textColor="#000"/>
 
-            </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_margin="25dp"
+                            android:background="@color/colorWhiteSmoke"
+                            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@color/colorWhiteSmoke"
+                                android:layout_margin="5dp"
+                                >
+                                <ImageView
+                                    android:id="@+id/imagegholder"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@color/common_google_signin_btn_text_dark_disabled"
+                                    android:contentDescription="TODO" />
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+
+
+                    </com.github.sshadkany.shapes.RoundRectView>
+                </com.github.sshadkany.shapes.RoundRectView>
+            </com.github.sshadkany.shapes.RoundRectView>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/button"
+                style="@style/Widget.Neumorph.Button"
                 android:layout_width="match_parent"
-                app:cardElevation="15dp"
-                android:background="@color/colorWhiteSmoke"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn3a"
+                android:layout_marginBottom="5dp"
+                android:drawablePadding="8dp"
+                android:text=""
+                android:textColor="#8246D6"
+                android:paddingTop="10dp"
+                android:textSize="20dp"
+
+
+                />
+
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/card1"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardElevation="10dp"
+                android:background="@color/blue"
+                app:cardCornerRadius="5dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                android:layout_below="@+id/button"
+                tools:ignore="MissingConstraints">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@color/colorWhiteSmoke"
                     android:layout_margin="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/nameholder"
+                        android:text="Candidate Name"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/branchholder"
+                        android:text="Branch"
+                        android:textSize="25sp"
+                        android:layout_gravity="center"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/yearholder"
+                        android:text="Year"
+                        android:layout_gravity="center"
+                        android:textSize="25sp"
+                        android:textColor="#000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="About them"
+                        android:paddingLeft="5dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="#622a0f"/>
@@ -84,7 +163,6 @@
                         android:id="@+id/shortbioholder"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="I am a disco dancer uuu"
                         android:layout_marginTop="5dp"
                         android:textSize="16sp"
                         android:textColor="#622a0f"/>
@@ -98,30 +176,33 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
                             android:text="All Details"
+                            android:textColor="#622a0f"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#622a0f"/>
+                            android:textStyle="bold" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_marginTop="5dp"
                             android:layout_height="wrap_content"
                             >
+
                             <TextView
+                                android:id="@+id/hobbies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="HOBBIES:"
-                                android:id="@+id/hobbies"
-                                android:textStyle="bold"
                                 android:layout_alignParentStart="true"
                                 android:layout_marginTop="5dp"
+                                android:paddingStart="5dp"
+                                android:text="HOBBIES:"
+                                android:textColor="#622a0f"
                                 android:textSize="12sp"
-                                android:textColor="#622a0f"/>
+                                android:textStyle="bold" />
                             <TextView
+                                android:id="@+id/tvhobbies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="chess"
                                 android:layout_marginStart="5dp"
                                 android:textStyle="bold"
                                 android:layout_toRightOf="@+id/hobbies"
@@ -147,48 +228,244 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/connected"
+                        android:id="@+id/privatea"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:visibility="invisible"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Personal Details"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#622a0f"/>
-
-                        <RelativeLayout
+                        <LinearLayout
+                            android:id="@+id/connected"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
                             android:layout_height="wrap_content"
-                            >
+                            android:layout_marginTop="30dp"
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Birthday:"
-                                android:id="@+id/birthday"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
+                                android:paddingStart="5dp"
+                                android:text="Personal Details"
+                                android:textColor="#622a0f"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
                                 android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/birthday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Birthday:"
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvbirthday"
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/birthday"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:textColor="#5D1D6B"/>
+
+
+                            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="05/12/2004"
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/birthday"
+                                android:paddingStart="5dp"
+                                android:text="Favourites"
+                                android:textColor="#622a0f"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
                                 android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/qualiylike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Qualities like: "
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvqualitylike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/qualiylike"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:textColor="#5D1D6B"/>
 
 
-                        </RelativeLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/qualitydislike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Quality dislike:"
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvqualitydislike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/qualitydislike"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:textColor="#5D1D6B"/>
+
+
+                            </RelativeLayout>
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/foods"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Foods:"
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvfoods"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/foods"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:textColor="#5D1D6B"/>
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/books"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Books:"
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvbooks"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_toRightOf="@+id/books"
+                                    android:textColor="#5D1D6B"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <TextView
+                                    android:id="@+id/travelling"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="5dp"
+                                    android:paddingStart="5dp"
+                                    android:text="Place Like:"
+                                    android:textColor="#622a0f"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvtravellike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold"
+                                    android:layout_toRightOf="@+id/travelling"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:textColor="#5D1D6B"/>
+
+
+                            </RelativeLayout>
 
 
 
@@ -196,180 +473,14 @@
 
 
 
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-                    <LinearLayout
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Favourites"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="#622a0f"/>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Qualities like: "
-                                android:id="@+id/qualiylike"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/qualiylike"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Quality dislike:"
-                                android:id="@+id/qualitydislike"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/qualitydislike"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
-
-
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Foods:"
-                                android:id="@+id/foods"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="05/12/2004"
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/foods"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Books:"
-                                android:id="@+id/books"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="05/12/2004"
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/books"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Travelling Place:"
-                                android:id="@+id/travelling"
-                                android:textStyle="bold"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#622a0f"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="05/12/2004"
-                                android:layout_marginStart="5dp"
-                                android:textStyle="bold"
-                                android:layout_toRightOf="@+id/travelling"
-                                android:layout_marginTop="5dp"
-                                android:textSize="12sp"
-                                android:textColor="#5D1D6B"/>
-
-
-                        </RelativeLayout>
-
-
-
-
-
-
-
-
-
-                    </LinearLayout>
 
 
 
@@ -378,12 +489,17 @@
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+
+            </soup.neumorphism.NeumorphCardView>
 
 
 
 
-        </LinearLayout>
+
+
+
+
+        </RelativeLayout>
 
 
 

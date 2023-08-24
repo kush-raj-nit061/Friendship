@@ -11,7 +11,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffba60"
+        android:background="#A6D7FF"
         >
 
 
@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffba60"
+            android:background="#A6D7FF"
             android:layout_marginTop="-15dp"
             android:orientation="vertical"
             >
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:background="#ffba60"
+                android:background="#A6D7FF"
                 android:id="@+id/froglayout"
 
                 >
@@ -129,6 +129,18 @@
 
                 android:weightSum="100">
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/announcement"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+
+                    android:layout_weight="60"
+                    android:contentDescription="@string/imageAccess" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,12 +151,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="60"
-                    android:src="@drawable/refer_icon"
-                    android:contentDescription="@string/imageAccess" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -450,34 +457,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/froglayout"
-                android:layout_gravity="end"
-                android:gravity="end"
-                android:layout_marginBottom="10dp"
-                android:background="#ffba60"
-                android:layout_toEndOf="@+id/froglayout">
+                android:layout_gravity="right"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:paddingHorizontal="30dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/tvPrevious"
-                    android:layout_width="0dp"
-                    android:layout_height="88dp"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/previous"
-                    app:lottie_loop="true"
-                    app:lottie_speed="1"/>
+                    <ImageView
+                        android:id="@+id/tvPrevious"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/prev"/>
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/tvNext"
-                    android:layout_width="0dp"
-                    android:layout_height="88dp"
-                    android:scaleType="centerCrop"
-                    android:layout_weight="1"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/next"
-                    app:lottie_loop="true"
-                    app:lottie_speed="1"/>
+                    <ImageView
+                        android:id="@+id/tvNext"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/next"/>
+
+
+                </RelativeLayout>
+
+
 
             </LinearLayout>
 

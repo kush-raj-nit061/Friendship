@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -30,7 +31,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity4 extends AppCompatActivity {
 
-    LottieAnimationView tvNext,tvPrevious;
+    ImageView tvNext,tvPrevious;
     String strQualityLike,strQualityDislike;
     EditText etQualityLike,etQualityDislike;
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;

@@ -43,7 +43,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity5 extends AppCompatActivity {
 
-    LottieAnimationView tvNext,tvPrevious;
+    ImageView tvNext,tvPrevious;
     String purl;
     ImageView imgButton,ivProfile;
     LottieAnimationView lottieAnimationView ;

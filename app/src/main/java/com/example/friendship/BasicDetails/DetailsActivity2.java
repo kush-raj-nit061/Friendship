@@ -39,7 +39,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     ImageView tvCal;
     EditText etCal,etBirthPlace;
     LottieAnimationView frog1,frog2,frog3;
-    LottieAnimationView tvNext,tvPrevious;
+    ImageView tvNext,tvPrevious;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
@@ -54,7 +54,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details2);
-        tvPrevious = findViewById(R.id.tvPrevious);
+        tvPrevious = findViewById(R.id.tvprevious);
         tvCal = findViewById(R.id.calender);
         etBirthPlace = findViewById(R.id.etBirthPlace);
         etCal = findViewById(R.id.etCal);

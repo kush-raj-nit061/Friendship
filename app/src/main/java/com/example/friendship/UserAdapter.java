@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -38,27 +40,30 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.gifLove.setVisibility(View.GONE);
-        holder.shortBio.setOnClickListener(new View.OnClickListener() {
+        holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Handler handler = new Handler();
-                holder.gifLove.setVisibility(View.VISIBLE);
+                holder.like.playAnimation();
 
                 handler.postDelayed(new Runnable() {
                     public void run() {
+                        Toast.makeText(v.getContext(), "You Liked: "+model.getName(), Toast.LENGTH_SHORT).show();
+                        holder.like.pauseAnimation();
 
-                        holder.gifLove.setVisibility(View.GONE);
                     }
-                }, 7050);
+                }, 3500);
 
             }
         });
+
+
         holder.profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity appCompatActivity = (AppCompatActivity) v.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new UserDescrFragment(model.getName(),model.getBranch(),model.getYear(),model.getShortBio(),model.getPurl())).addToBackStack(null).commit();
+                        new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear(),model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday(),model.getQualitylike(),model.getQualitydislike(),model.getFoods(),model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
             }
         });
 
@@ -77,7 +82,9 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         TextView name;
         TextView branch;
         TextView year;
-        GifImageView gifImageView,gifLove;
+        TextView btnlike;
+        LottieAnimationView gifImageView,like;
+        GifImageView gifLove;
 
 
 
@@ -91,6 +98,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             year = itemView.findViewById(R.id.year);
             gifImageView =itemView.findViewById(R.id.crown);
             gifLove = itemView.findViewById(R.id.gifLove);
+            like = itemView.findViewById(R.id.like);
         }
     }
 }

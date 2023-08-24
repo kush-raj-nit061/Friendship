@@ -66,7 +66,7 @@ public class test extends AppCompatActivity {
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(test.this, ProfileActivity.class);
+                Intent i = new Intent(test.this, SignUpActivity.class);
                 startActivity(i);
             }
         });
@@ -150,7 +150,7 @@ public class test extends AppCompatActivity {
                                                             }else{
                                                                 if(mAuth.getCurrentUser().isEmailVerified()){
                                                                     Intent intent
-                                                                            = new Intent(test.this,BasicDetailsActivity.class);
+                                                                            = new Intent(test.this,DetailsActivity1.class);
                                                                     startActivity(intent);
 //                                                                    finish();
 
@@ -223,12 +223,10 @@ public class test extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
 
-
-
                                 }else{
                                     if(mAuth.getCurrentUser().isEmailVerified()){
                                         Intent intent
-                                                = new Intent(test.this,BasicDetailsActivity.class);
+                                                = new Intent(test.this,DetailsActivity1.class);
                                         startActivity(intent);
                                         finish();
 
