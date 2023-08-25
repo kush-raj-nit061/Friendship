@@ -91,6 +91,8 @@ public class UserDescrFragment extends Fragment {
                         try {
                             if(snapshot.getValue().equals("0")){
                                 button.setText("Align");
+                                card1.setVisibility(View.INVISIBLE);
+                                privatebutton.setVisibility(View.INVISIBLE);
 
                             } else if (snapshot.getValue().equals("1")) {
                                 button.setText("Requested");
@@ -109,7 +111,7 @@ public class UserDescrFragment extends Fragment {
 
                         }
                     } else {
-
+                        button.setText("Align");
                     }
                 } catch (Exception e) {
 
@@ -151,13 +153,16 @@ public class UserDescrFragment extends Fragment {
                         int i = 0;
                         for(DataSnapshot snapshot: task.getResult().getChildren()){
                             i=1;
+                            Toast.makeText(getContext(),snapshot.getKey().toString(),Toast.LENGTH_SHORT).show();
 
 
                             if (snapshot.getKey().toString().trim().equals(userId)){
 
+
+
                                 Map<String,Object> map = new HashMap<>();
                                 if(snapshot.getValue().equals("0")){
-                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
                                     card1.setVisibility(View.VISIBLE);
                                     privatebutton.setVisibility(View.INVISIBLE);
                                     button.setText("Requested");
@@ -165,16 +170,16 @@ public class UserDescrFragment extends Fragment {
                                     myRef.child(fAuth.getUid()).updateChildren(map);
                                     break;
                                 } else if (snapshot.getValue().equals("1")) {
-                                    button.setText("Diverge");
-                                    card1.setVisibility(View.VISIBLE);
-                                    privatebutton.setVisibility(View.VISIBLE);
+                                    button.setText("Align");
+                                    card1.setVisibility(View.INVISIBLE);
+                                    privatebutton.setVisibility(View.INVISIBLE);
                                     map.put(userId,"0");
                                     myRef.child(fAuth.getUid()).updateChildren(map);
                                     break;
                                 }else{
                                     card1.setVisibility(View.INVISIBLE);
                                     privatebutton.setVisibility(View.INVISIBLE);
-                                    button.setText("Align");
+                                    button.setText("Diverge");
                                     map.put(userId,"0");
                                     myRef.child(fAuth.getUid()).updateChildren(map);
                                     break;
@@ -184,12 +189,13 @@ public class UserDescrFragment extends Fragment {
                             }else{
                                 card1.setVisibility(View.VISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
+                                i=1;
 
                                 button.setText("Requested");
                                 Map<String,Object> map = new HashMap<>();
                                 map.put(userId,"1");
                                 myRef.child(fAuth.getUid()).updateChildren(map);
-                                break;
+
                             }
                         }
 

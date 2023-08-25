@@ -2,14 +2,21 @@ package com.example.friendship;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.sshadkany.shapes.CircleView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,49 +30,57 @@ import java.util.Map;
 
 public class Testing1 extends AppCompatActivity {
 
-    EditText etid,etval;
-    Button btn;
-
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Connection");
+    private boolean isOpen = false ;
+    private ConstraintSet layout1,layout2;
+    private ConstraintLayout constraintLayout;
+    private CircleView imageViewPhoto;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_testing1);
-        etid=findViewById(R.id.etid);
-        etval=findViewById(R.id.etVal);
-        btn = findViewById(R.id.button2);
+        setContentView(R.layout.activity_testing);
 
+        // changing the status bar color to transparent
 
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        layout1 = new ConstraintSet();
+        layout2 = new ConstraintSet();
+        imageViewPhoto = findViewById(R.id.photo);
+        constraintLayout = findViewById(R.id.constraint_layout);
+        layout2.clone(this,R.layout.activity_testing1);
+        layout1.clone(constraintLayout);
 
+        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Map<String,Object> map = new HashMap<>();
-                map.put(etid.getText().toString(),etval.getText().toString());
-                myRef.child(String.valueOf(fAuth.getUid())).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(),etid.getText().toString(),Toast.LENGTH_LONG).show();
-                        Toast.makeText(getApplicationContext(),"Data Saved",Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),"Check your network connection",Toast.LENGTH_LONG).show();
 
-                    }
-                });
+                if (!isOpen) {
+                    TransitionManager.beginDelayedTransition(constraintLayout);
+                    layout2.applyTo(constraintLayout);
+                    isOpen = !isOpen ;
+                }
+
+                else {
+
+                    TransitionManager.beginDelayedTransition(constraintLayout);
+                    layout1.applyTo(constraintLayout);
+                    isOpen = !isOpen ;
+
+                }
+
+
+
+
+
 
             }
         });
+
+
 
 
     }
