@@ -63,7 +63,10 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             public void onClick(View v) {
                 AppCompatActivity appCompatActivity = (AppCompatActivity) v.getContext();
                 appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear(),model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday(),model.getQualitylike(),model.getQualitydislike(),model.getFoods(),model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
+                        new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear()
+                                ,model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday()
+                                ,model.getQualitylike(),model.getQualitydislike(),model.getFoods()
+                                ,model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
             }
         });
 

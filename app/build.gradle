@@ -6,7 +6,6 @@ plugins {
 android {
     namespace 'com.example.friendship'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.example.friendship"
         minSdk 21

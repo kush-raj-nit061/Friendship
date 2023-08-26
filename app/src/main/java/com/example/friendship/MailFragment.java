@@ -11,15 +11,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.friendship.BasicDetails.UsersFragment;
 import com.example.friendship.Model.Chatlist;
 
 import com.example.friendship.Model.User;
@@ -43,6 +48,8 @@ public class MailFragment extends Fragment {
     public MailFragment(){}
 
     private boolean isOpen = false;
+    FragmentManager manager;
+    FragmentTransaction transaction = null;
     private ConstraintSet layout1, layout2;
     private ConstraintLayout constraintLayout;
     private CircleView imageViewPhoto;
@@ -86,6 +93,22 @@ public class MailFragment extends Fragment {
         constraintLayout = view.findViewById(R.id.constraint_layout);
         layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
+        TextView tvReq = view.findViewById(R.id.tvReq);
+        tvReq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment;
+                Toast.makeText(getContext(),"enter",Toast.LENGTH_SHORT).show();
+
+                AppCompatActivity appCompatActivity = (AppCompatActivity) v.getContext();
+                FragmentTransaction transaction = appCompatActivity.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainer, new UsersFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+            }
+        });
 
         imageViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override

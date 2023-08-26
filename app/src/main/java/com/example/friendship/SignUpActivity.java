@@ -173,11 +173,16 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 myRef = database.getReference("students");
 
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
-
-
-
-
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("id", userID);
+                                hashMap.put("username", name);
+                                hashMap.put("imageURL", "default");
+                                hashMap.put("status", "offline");
+                                hashMap.put("bio", "");
+                                hashMap.put("search", name.toLowerCase());
+                                reference.setValue(hashMap);
 
                                 DocumentReference documentReference = fStore.collection("users").document(userID);
                                 Map<String,Object> user = new HashMap<>();

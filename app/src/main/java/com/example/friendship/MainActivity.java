@@ -19,6 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wwdablu.soumya.lottiebottomnav.FontBuilder;
 import com.wwdablu.soumya.lottiebottomnav.FontItem;
 import com.wwdablu.soumya.lottiebottomnav.ILottieBottomNavCallback;
@@ -27,12 +31,15 @@ import com.wwdablu.soumya.lottiebottomnav.MenuItem;
 import com.wwdablu.soumya.lottiebottomnav.MenuItemBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
     LottieBottomNav bottomNav;
     boolean doubleBackToExitPressedOnce = false;
     ArrayList<MenuItem> list;
+    DatabaseReference reference;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +158,28 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     public void onAnimationCancel(int index, MenuItem menuItem) {
 
     }
+    private void status(String status){
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(fAuth.getUid());
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        reference.updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
+
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {

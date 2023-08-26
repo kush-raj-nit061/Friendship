@@ -3,6 +3,15 @@ package com.example.friendship;
 public class UserModel {
     UserModel(){}
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    String status;
     String purl;
     String birthday;
     String books;
@@ -14,7 +23,8 @@ public class UserModel {
     String travellike;
     String userId;
 
-    public UserModel(String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
+    public UserModel(String status, String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
+        this.status = status;
         this.purl = purl;
         this.birthday = birthday;
         this.books = books;

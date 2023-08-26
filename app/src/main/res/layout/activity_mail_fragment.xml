@@ -6,11 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#C10E0E0E"
     tools:context=".MailFragment">
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+
+        android:padding="@dimen/padding_10_dp"
+        android:background="#3B1544"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/MenuStyle">
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:layout_marginLeft="@dimen/margin_10_dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_10_dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textSize="30sp"
+            android:text="CHATS"/>
+
+
+    </Toolbar>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
         android:background="#C10E0E0E"
         android:id="@+id/constraint_layout">
 
@@ -68,9 +97,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="Friends"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toEndOf="@+id/photo"
@@ -91,11 +122,13 @@
             app:layout_constraintTop_toBottomOf="@+id/cover" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvReq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:layout_marginTop="8dp"
             android:text="Requested"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,6 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="-40dp"
 
 
 

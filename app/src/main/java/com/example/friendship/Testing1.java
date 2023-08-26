@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,8 +16,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.friendship.BasicDetails.UsersFragment;
 import com.github.sshadkany.shapes.CircleView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,13 +37,17 @@ public class Testing1 extends AppCompatActivity {
     private boolean isOpen = false ;
     private ConstraintSet layout1,layout2;
     private ConstraintLayout constraintLayout;
+
+
     private CircleView imageViewPhoto;
+    private TextView tvReq;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_testing);
+
 
         // changing the status bar color to transparent
 
@@ -84,4 +92,5 @@ public class Testing1 extends AppCompatActivity {
 
 
     }
+
 }

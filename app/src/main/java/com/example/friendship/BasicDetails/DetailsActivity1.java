@@ -46,6 +46,7 @@ public class DetailsActivity1 extends AppCompatActivity {
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("students");
+    DatabaseReference reference;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -95,6 +96,14 @@ public class DetailsActivity1 extends AppCompatActivity {
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+                Map<String,Object> data = new HashMap<>();
+                data.put("bio",etShortDetails.getText().toString());
+
+                reference.child(FirebaseAuth.getInstance().getUid()).updateChildren(data);
+
+
                 Map<String,Object> users = new HashMap<>();
                 users.put("shortBio",etShortDetails.getText().toString());
 
