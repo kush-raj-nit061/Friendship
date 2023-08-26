@@ -36,6 +36,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -60,7 +61,7 @@ public class MailFragment extends Fragment {
     private UsersAdapter userAdapter;
     private List<User> mUsers;
     FrameLayout frameLayout;
-//    TextView es_descp, es_title;
+    TextView tvNoFriends, tvNoReq;
 
     FirebaseUser fuser;
     DatabaseReference reference;
@@ -94,6 +95,48 @@ public class MailFragment extends Fragment {
         layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
         TextView tvReq = view.findViewById(R.id.tvReq);
+        tvNoReq = view.findViewById(R.id.tvNoReq);
+        tvNoFriends = view.findViewById(R.id.tvNoFriends);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        DatabaseReference dbref = database.getReference();
+        dbref.child("Chatlist").child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tvNoFriends.setText(String.valueOf((int) snapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
+
+        Query query = reference.orderByChild("status").equalTo("1");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long count = dataSnapshot.getChildrenCount();
+                tvNoReq.setText(String.valueOf(count));
+                // 'count' now holds the number of user IDs with status "1" under the specified userId node
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle potential errors here
+            }
+        });
+
+
+
+
+
+
         tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +201,7 @@ public class MailFragment extends Fragment {
                     Chatlist chatlist = snapshot.getValue(Chatlist.class);
                     usersList.add(chatlist);
                 }
+
                 if(usersList.size()==0){
 //                    frameLayout.setVisibility(View.VISIBLE);
                 }

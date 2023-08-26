@@ -84,10 +84,10 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 .build();
 
         //Menu Settings
-        fontItem = FontBuilder.create(fontItem).setTitle("Settings").build();
+        fontItem = FontBuilder.create(fontItem).setTitle("Notification").build();
         MenuItem item4 = MenuItemBuilder.createFrom(item1, fontItem)
-                .selectedLottieName("seting.json")
-                .unSelectedLottieName("seting.json")
+                .selectedLottieName("notification.json")
+                .unSelectedLottieName("notification.json")
                 .loop(true)
                 .build();
 

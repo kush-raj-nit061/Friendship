@@ -19,10 +19,22 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.userAdapterHolder> {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef = database.getReference();
 
 
     public UserAdapter(@NonNull FirebaseRecyclerOptions<UserModel> options) {
@@ -40,6 +52,19 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.gifLove.setVisibility(View.GONE);
+        dbRef.child("Likes").child(model.getUserId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.tvPopular.setText(String.valueOf(snapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +73,9 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
 
                 handler.postDelayed(new Runnable() {
                     public void run() {
+                        Map<String,Object> map  = new HashMap<>();
+                        map.put(FirebaseAuth.getInstance().getUid(),true);
+                        dbRef.child("Likes").child(model.getUserId()).child(FirebaseAuth.getInstance().getUid()).updateChildren(map);
                         Toast.makeText(v.getContext(), "You Liked: "+model.getName(), Toast.LENGTH_SHORT).show();
                         holder.like.pauseAnimation();
 
@@ -88,6 +116,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         TextView btnlike;
         LottieAnimationView gifImageView,like;
         GifImageView gifLove;
+        TextView tvPopular;
 
 
 
@@ -102,6 +131,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             gifImageView =itemView.findViewById(R.id.crown);
             gifLove = itemView.findViewById(R.id.gifLove);
             like = itemView.findViewById(R.id.like);
+            tvPopular = itemView.findViewById(R.id.tvPopular);
         }
     }
 }
