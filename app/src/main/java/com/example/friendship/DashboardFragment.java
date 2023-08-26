@@ -44,20 +44,12 @@ public class DashboardFragment extends Fragment {
 
         userAdapter=new UserAdapter(options);
         recView.setAdapter(userAdapter);
+        userAdapter.startListening();
 
 
         return view;
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        userAdapter.startListening();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        userAdapter.stopListening();
-    }
+
 
 }
 

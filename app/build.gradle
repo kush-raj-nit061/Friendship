@@ -40,6 +40,10 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.4.1'
     implementation 'com.github.sshadkany:Android_neumorphic:1.2.0'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
+
 
     implementation 'com.google.firebase:firebase-core:17.2.1'
 

@@ -1,4 +1,4 @@
-package com.example.friendship;
+package com.example.friendship.Notifications;
 
 public class Token {
     private String token;

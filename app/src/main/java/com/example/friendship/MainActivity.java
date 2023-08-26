@@ -7,10 +7,12 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
     LottieBottomNav bottomNav;
+    boolean doubleBackToExitPressedOnce = false;
     ArrayList<MenuItem> list;
 
     @Override
@@ -148,4 +151,22 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     public void onAnimationCancel(int index, MenuItem menuItem) {
 
     }
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);    }
+
 }
