@@ -71,7 +71,7 @@ public class DetailsActivity5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),purl,Toast.LENGTH_SHORT).show();
+
 
                 Map<String,Object> data = new HashMap<>();
 
