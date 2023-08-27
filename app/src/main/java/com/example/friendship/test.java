@@ -218,7 +218,7 @@ public class test extends AppCompatActivity {
                                 if(detailsGiven.equals("1")){
                                     Intent intent
                                             = new Intent(test.this,
-                                            DetailsActivity1.class);
+                                            MainActivity.class);
                                     Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                     startActivity(intent);
                                     finish();

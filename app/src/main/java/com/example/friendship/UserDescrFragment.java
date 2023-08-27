@@ -41,6 +41,8 @@ public class UserDescrFragment extends Fragment {
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
+    DatabaseReference myOwnRef = database.getReference("students");
+
 
     public  UserDescrFragment(){}
     public UserDescrFragment(String userId,String name, String branch, String year, String shortBio, String purl,String hobbies,String birthday,String qualitylike,String qualitydislike,String foods,String books,String travellike){
@@ -85,12 +87,43 @@ public class UserDescrFragment extends Fragment {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})TextView tvbooks = v.findViewById(R.id.tvbooks);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})TextView tvtravellike = v.findViewById(R.id.tvtravellike);
         Map<String,Object> objectMap = new HashMap<>();
-        objectMap.put("name",name);
+        objectMap.put("username",name);
         objectMap.put("branch",branch);
-        objectMap.put("purl",purl);
-        objectMap.put("userId",userId);
+        objectMap.put("imageURL",purl);
+        objectMap.put("id",userId);
+        objectMap.put("bio",shortBio);
+        myRef.child(fAuth.getUid()).child(userId).updateChildren(objectMap);
 
-        myRef.child(userId).child(fAuth.getUid()).updateChildren(objectMap);
+
+
+        Map<String,Object> myProfile = new HashMap<>();
+
+
+        myOwnRef.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String myName = (String) snapshot.child("name").getValue();
+                    String myBranch = (String) snapshot.child("branch").getValue();
+                    String myPurl = (String) snapshot.child("purl").getValue();
+                    String myUserId = (String) snapshot.child("userId").getValue();
+                    String myOwnBio= (String) snapshot.child("shortBio").getValue();
+
+                    myProfile.put("username",myName);
+                    myProfile.put("branch",myBranch);
+                    myProfile.put("imageURL",myPurl);
+                    myProfile.put("id",myUserId);
+                    myProfile.put("bio",myOwnBio);
+                    myRef.child(userId).child(fAuth.getUid()).updateChildren(myProfile);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         myRef.child(userId).child(fAuth.getUid().toString()).child("status").addValueEventListener(new ValueEventListener() {
             @Override
@@ -155,15 +188,13 @@ public class UserDescrFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                myRef.child(userId).child(fAuth.getUid()).child("status").addListenerForSingleValueEvent(new ValueEventListener() {
+                myRef.child(userId).child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         Map<String,Object> map = new HashMap<>();
-                        if(snapshot.exists()){
-
-                            if(snapshot.getValue().equals("0")){
+                        if(snapshot.child("status").exists()){
+                            if(snapshot.child("status").getValue().equals("0")){
                                 Toast.makeText(getContext(),"ene1",Toast.LENGTH_SHORT).show();
 //                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
                                 card1.setVisibility(View.VISIBLE);
@@ -172,7 +203,7 @@ public class UserDescrFragment extends Fragment {
                                 map.put("status","1");
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
 
-                            } else if (snapshot.getValue().equals("1")) {
+                            } else if (snapshot.child("status").getValue().equals("1")) {
                                 button.setText("Align");
                                 Toast.makeText(getContext(),"ene2",Toast.LENGTH_SHORT).show();
                                 card1.setVisibility(View.INVISIBLE);
@@ -183,7 +214,7 @@ public class UserDescrFragment extends Fragment {
                                 card1.setVisibility(View.INVISIBLE);
                                 Toast.makeText(getContext(),"ene3",Toast.LENGTH_SHORT).show();
                                 privatebutton.setVisibility(View.INVISIBLE);
-                                button.setText("Diverge");
+                                button.setText("Align");
                                 map.put("status","0");
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
                             }

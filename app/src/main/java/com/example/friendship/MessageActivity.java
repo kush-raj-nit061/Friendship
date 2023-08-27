@@ -127,8 +127,6 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Toast.makeText(getApplicationContext(), user.getUsername(),Toast.LENGTH_SHORT).show();
-//                String username = user.getUsername();
                 username.setText(user.getUsername());
                 if (user.getImageURL().equals("default")){
                     profile_image.setImageResource(R.drawable.img);

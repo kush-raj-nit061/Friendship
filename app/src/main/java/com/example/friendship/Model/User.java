@@ -8,15 +8,24 @@ public class User {
     private String status;
     private String search;
     private String bio;
+    private  String branch;
 
+    public String getBranch() {
+        return branch;
+    }
 
-    public User(String id, String username, String imageURL, String status, String search, String bio) {
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public User(String id, String username, String imageURL, String status, String search, String bio, String branch) {
         this.id = id;
         this.username = username;
         this.imageURL = imageURL;
         this.status = status;
         this.search = search;
         this.bio = bio;
+        this.branch = branch;
     }
 
     public User() {

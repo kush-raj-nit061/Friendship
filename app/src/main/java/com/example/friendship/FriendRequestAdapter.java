@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.example.friendship.Model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +34,7 @@ import java.util.Map;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class FriendRequestAdapter extends FirebaseRecyclerAdapter<UserModel,FriendRequestAdapter.userAdapterHolder> {
+public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendRequestAdapter.userAdapterHolder> {
 
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -43,19 +44,17 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<UserModel,Frie
     DatabaseReference chatRef = database.getReference("Chatlist");
 
 
-    public FriendRequestAdapter(@NonNull FirebaseRecyclerOptions<UserModel> options) {
+    public FriendRequestAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull UserModel model) {
+    protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
+        Toast.makeText(holder.profileImage.getContext(), model.getUsername(),Toast.LENGTH_SHORT).show();
 
-
-
-        holder.name.setText(model.getName());
+        holder.name.setText(model.getUsername());
         holder.branch.setText(model.getBranch());
-        Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
-
+        Glide.with(holder.profileImage.getContext()).load(model.getImageURL()).into(holder.profileImage);
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,12 +63,12 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<UserModel,Frie
                 Map<String,Object> map = new HashMap<>();
                 Map<String,Object> ch = new HashMap<>();
                 Map<String,Object> cha = new HashMap<>();
-                ch.put("id",model.getUserId());
+                ch.put("id",model.getId());
                 cha.put("id",fAuth.getUid());
                 map.put("status","2");
-                chatRef.child(fAuth.getUid()).child(model.getUserId()).updateChildren(ch);
-                chatRef.child(model.getUserId()).child(fAuth.getUid()).updateChildren(cha);
-                myRef.child(fAuth.getUid().toString()).child(model.getUserId()).updateChildren(map);
+                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
+                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
             }
         });
         holder.reject.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +78,7 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<UserModel,Frie
                 holder.accept.setVisibility(View.VISIBLE);
                 Map<String,Object> map = new HashMap<>();
                 map.put("status","0");
-                myRef.child(fAuth.getUid().toString()).child(model.getUserId()).updateChildren(map);
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
             }
         });
     }
@@ -95,7 +94,6 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<UserModel,Frie
         ImageView profileImage;
         ImageView accept,reject;
         TextView name,branch;
-
 
 
         public userAdapterHolder(@NonNull View itemView) {

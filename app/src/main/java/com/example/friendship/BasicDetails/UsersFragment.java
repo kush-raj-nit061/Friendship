@@ -105,17 +105,14 @@ public class UsersFragment extends Fragment {
         StorageReference storageReference = storage.getReference();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Connection");
-
         String userId = fAuth.getCurrentUser().getUid();
-
-
         DatabaseReference reference = database.getReference().child("Connection").child(userId);
 
         Query query = reference.orderByChild("status").equalTo("1");
 
-        FirebaseRecyclerOptions<UserModel> options =
-                new FirebaseRecyclerOptions.Builder<UserModel>()
-                        .setQuery(query, UserModel.class)
+        FirebaseRecyclerOptions<User> options =
+                new FirebaseRecyclerOptions.Builder<User>()
+                        .setQuery(query, User.class)
                         .build();
 
 
