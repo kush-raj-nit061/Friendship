@@ -97,7 +97,7 @@ public class DetailsActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+                reference = FirebaseDatabase.getInstance().getReference("Users");
                 Map<String,Object> data = new HashMap<>();
                 data.put("bio",etShortDetails.getText().toString());
 

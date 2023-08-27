@@ -84,10 +84,6 @@ public class MailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_mail_fragment, container, false);
-
-        Window w = requireActivity().getWindow();
-        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
         imageViewPhoto = view.findViewById(R.id.photo);

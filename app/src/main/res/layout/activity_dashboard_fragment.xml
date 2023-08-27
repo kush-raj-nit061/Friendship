@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linear1"
+            android:layout_marginTop="-10dp"
             android:background="@color/colorAccent"
             android:orientation="vertical"
             >
@@ -26,7 +27,7 @@
                 android:orientation="horizontal"
 
                 android:paddingLeft="@dimen/horizontal_dashboard"
-                android:paddingTop="@dimen/fab_margin"
+
                 android:paddingRight="@dimen/horizontal_dashboard"
 
 
@@ -123,6 +124,7 @@
                             android:layout_width="match_parent"
                             android:background="#6C4FA2"
                             android:layout_height="match_parent"
+                            android:layout_marginBottom="80dp"
                             android:id="@+id/recPeople"/>
 
                     </LinearLayout>

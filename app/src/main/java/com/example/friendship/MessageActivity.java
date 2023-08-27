@@ -1,5 +1,6 @@
 package com.example.friendship;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -70,13 +71,14 @@ public class MessageActivity extends AppCompatActivity {
 
     boolean notify = false;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        MRR = Typeface.createFromAsset(getAssets(), "fonts/myriadregular.ttf");
-        MR = Typeface.createFromAsset(getAssets(), "fonts/myriad.ttf");
+//        MRR = Typeface.createFromAsset(getAssets(), "fonts/myriadregular.ttf");
+//        MR = Typeface.createFromAsset(getAssets(), "fonts/myriad.ttf");
 
 
 
@@ -93,8 +95,8 @@ public class MessageActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
 
-        username.setTypeface(MR);
-        text_send.setTypeface(MRR);
+//        username.setTypeface(MR);
+//        text_send.setTypeface(MRR);
 
 
         intent = getIntent();
@@ -117,12 +119,16 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
+
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                Toast.makeText(getApplicationContext(), user.getUsername(),Toast.LENGTH_SHORT).show();
+//                String username = user.getUsername();
                 username.setText(user.getUsername());
                 if (user.getImageURL().equals("default")){
                     profile_image.setImageResource(R.drawable.img);
@@ -187,7 +193,7 @@ public class MessageActivity extends AppCompatActivity {
                 .child(fuser.getUid())
                 .child(userid);
 
-        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        chatRef.addListenerForSingleValueEvent(new  ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()){

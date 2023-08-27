@@ -2,6 +2,7 @@ package com.example.friendship;
 
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,7 +12,10 @@ import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
+import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.wwdablu.soumya.lottiebottomnav.FontBuilder;
 import com.wwdablu.soumya.lottiebottomnav.FontItem;
 import com.wwdablu.soumya.lottiebottomnav.ILottieBottomNavCallback;
@@ -40,11 +46,40 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     ArrayList<MenuItem> list;
     DatabaseReference reference;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    FlowingDrawer mDrawer;
+    ImageView iv_menu;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNav   = findViewById(R.id.bottom_nav);
+        iv_menu = findViewById(R.id.iv_Menu);
+        iv_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.openMenu(true);
+            }
+        });
+
+        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
+            @Override
+            public void onDrawerStateChange(int oldState, int newState) {
+                if (newState == ElasticDrawer.STATE_CLOSED) {
+                    Log.i("MainActivity", "Drawer STATE_CLOSED");
+                }
+            }
+
+            @Override
+            public void onDrawerSlide(float openRatio, int offsetPixels) {
+                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
+            }
+        });
+
 
         bottomNav   = findViewById(R.id.bottom_nav);
 
