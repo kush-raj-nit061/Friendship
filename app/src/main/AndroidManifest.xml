@@ -27,22 +27,14 @@
         <activity
             android:name=".Testing2"
             android:exported="true" >
-
-
         </activity>
         <activity
             android:name=".Testing1"
             android:exported="true">
-
-
-
         </activity>
         <activity
             android:name=".BasicDetails.DetailsActivity5"
             android:exported="true" >
-
-
-
         </activity>
         <activity
             android:name=".MessageActivity"

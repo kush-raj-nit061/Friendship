@@ -16,11 +16,13 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+import com.rolud.solidglowanimation.SolidGlowAnimation;
 
 public class DashboardFragment extends Fragment {
 
     RecyclerView recView;
     UserAdapter userAdapter;
+    SolidGlowAnimation animation_view_complex_view;
 
 
     public DashboardFragment() {
@@ -34,6 +36,8 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard_fragment, container, false);
         recView = (RecyclerView) view.findViewById(R.id.recPeople);
+        animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
+        animation_view_complex_view.startAnimation();
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
 
