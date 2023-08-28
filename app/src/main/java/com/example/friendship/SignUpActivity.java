@@ -211,6 +211,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 users.put("qualitydislike","");
                                 users.put("birthday","");
                                 users.put("connectionId","");
+                                users.put("likes","0");
 
 
                                 myRef.child(String.valueOf(userID)).setValue(users).addOnSuccessListener(new OnSuccessListener<Void>() {

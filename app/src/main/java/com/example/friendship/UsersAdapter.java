@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     Typeface MR,MRR;
     String theLastMessage;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef = database.getReference("students");
 
     public UsersAdapter(Context mContext, OnItemClick onItemClick, List<User> mUsers, boolean ischat){
         this.onItemClick = onItemClick;
@@ -100,9 +104,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(mContext, MessageActivity.class);
                 intent.putExtra("userid", user.getId());
                 mContext.startActivity(intent);
+
+
             }
         });
 
@@ -110,7 +117,30 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         holder.profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClick.onItemCLick(user.getId(),view);
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                dbRef.child(user.getId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                                new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear()
+                                        ,model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday()
+                                        ,model.getQualitylike(),model.getQualitydislike(),model.getFoods()
+                                        ,model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
             }
         });
     }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.friendship.BasicDetails.UsersFragment;
 import com.example.friendship.Model.Chatlist;
 
@@ -62,12 +64,14 @@ public class MailFragment extends Fragment {
     private List<User> mUsers;
     FrameLayout frameLayout;
     TextView tvNoFriends, tvNoReq;
+    ImageView imgProfile;
 
     FirebaseUser fuser;
     DatabaseReference reference;
 
     private List<Chatlist> usersList;
     static OnItemClick onItemClick;
+    String purl;
 
 
     public static MailFragment newInstance(OnItemClick click) {
@@ -93,10 +97,31 @@ public class MailFragment extends Fragment {
         TextView tvReq = view.findViewById(R.id.tvReq);
         tvNoReq = view.findViewById(R.id.tvNoReq);
         tvNoFriends = view.findViewById(R.id.tvNoFriends);
+        imgProfile = view.findViewById(R.id.imgProfile);
+
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         DatabaseReference dbref = database.getReference();
+
+
+        dbref.child("students").child(fAuth.getUid()).child("purl").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                purl = (String) snapshot.getValue();
+                Glide.with(getContext()).load(purl).into(imgProfile);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
         dbref.child("Chatlist").child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
