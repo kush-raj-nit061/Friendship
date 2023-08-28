@@ -11,16 +11,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:background="@color/bubble_left">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_celeb"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
 
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
+            android:layout_below="@id/recycler_view_celeb"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/margin_10_dp"
-            android:layout_height="match_parent" />
+            android:layout_height="300dp" />
 
         <!-- empty state -->
 

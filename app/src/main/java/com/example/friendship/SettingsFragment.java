@@ -1,5 +1,6 @@
 package com.example.friendship;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.friendship.FriendRequestAdapter;
+import com.example.friendship.Model.Celebration;
 import com.example.friendship.Model.User;
 import com.example.friendship.OnItemClick;
 import com.example.friendship.R;
@@ -47,8 +49,10 @@ import java.util.List;
 public class SettingsFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewCeleb;
 
     private NotificationAdapter userAdapter;
+    private CelebrationAdapter celebAdapter;
     static OnItemClick onItemClick;
 
     public static SettingsFragment newInstance(OnItemClick click) {
@@ -60,6 +64,7 @@ public class SettingsFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,14 +73,47 @@ public class SettingsFragment extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerViewCeleb = view.findViewById(R.id.recycler_view_celeb);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        recyclerViewCeleb.setHasFixedSize(true);
+        recyclerViewCeleb.setLayoutManager(new LinearLayoutManager(getContext()));
+        DividerItemDecoration dividerItemDecorationCeleb = new DividerItemDecoration(recyclerViewCeleb.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerViewCeleb.addItemDecoration(dividerItemDecorationCeleb);
+
+        readUsersCeleb();
+
+
         readUsers();
 
         return view;
+    }
+
+    private void readUsersCeleb() {
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Celebration");
+        String userId = fAuth.getCurrentUser().getUid();
+        DatabaseReference reference = database.getReference().child("Celebration").child(fAuth.getUid());
+
+        FirebaseRecyclerOptions<Celebration> options =
+                new FirebaseRecyclerOptions.Builder<Celebration>()
+                        .setQuery(reference, Celebration.class)
+                        .build();
+
+        celebAdapter=new CelebrationAdapter(options);
+        recyclerViewCeleb.setAdapter(celebAdapter);
+        celebAdapter.startListening();
+
+
+
     }
 
 

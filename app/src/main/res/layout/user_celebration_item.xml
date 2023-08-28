@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/CardView.Light"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,13 +41,10 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="centerCrop"
                 app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/fireworks"
-
                 android:layout_marginTop="0dp"
                 app:lottie_loop="true"
-                app:lottie_speed="1"
+                app:lottie_speed="0.6"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +55,6 @@
                 android:id="@+id/skyshot"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:scaleType="centerCrop"
                 app:lottie_autoPlay="true"
                 app:lottie_rawRes="@raw/skyshot"
                 android:layout_marginTop="0dp"
@@ -121,7 +117,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
