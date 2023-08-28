@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
-                android:background="@color/colorPrimary"
+                android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -43,7 +43,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Name of app"
+                        android:text="Friendship"
                         android:layout_marginHorizontal="16dp"
 
                         android:textSize="24sp"
@@ -130,6 +130,7 @@
                                 android:layout_marginTop="10dp"/>
                         </LinearLayout>
                         <TextView
+                            android:id="@+id/branch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
@@ -138,6 +139,7 @@
                             android:textSize="20dp"
                             android:layout_marginLeft="5dp"/>
                         <TextView
+                            android:id="@+id/year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"

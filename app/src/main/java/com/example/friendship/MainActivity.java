@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     ImageView iv_menu;
     ImageView ivDrawer;
     CardView cvProfile;
+    TextView branch,year;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -67,12 +69,17 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         iv_menu = findViewById(R.id.iv_Menu);
         cvProfile = findViewById(R.id.cvProfile);
         ivDrawer = findViewById(R.id.ivDrawer);
+        branch = findViewById(R.id.branch);
+        year = findViewById(R.id.year);
         reference2 = FirebaseDatabase.getInstance().getReference("students");
 
         reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
+                year.setText(String.valueOf(snapshot.child("year").getValue()));
+                branch.setText(String.valueOf(snapshot.child("branch").getValue()));
+
             }
 
             @Override

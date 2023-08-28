@@ -55,7 +55,10 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         dbRef.child("Likes").child(model.getUserId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String,Object> map  = new HashMap<>();
                 holder.tvPopular.setText(String.valueOf(snapshot.getChildrenCount()));
+                map.put("likes",String.valueOf(snapshot.getChildrenCount()));
+                dbRef.child("students").child(model.getUserId()).updateChildren(map);
             }
 
             @Override

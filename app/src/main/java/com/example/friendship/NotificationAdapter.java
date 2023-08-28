@@ -52,11 +52,36 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<User,Notificati
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
-        Toast.makeText(holder.profileImage.getContext(), model.getUsername(),Toast.LENGTH_SHORT).show();
+
 
         holder.name.setText(model.getUsername());
         holder.branch.setText(model.getBranch());
-        Glide.with(holder.profileImage.getContext()).load(model.getImageURL()).into(holder.profileImage);
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.accept.setVisibility(View.INVISIBLE);
+                holder.reject.setVisibility(View.VISIBLE);
+                Map<String,Object> map = new HashMap<>();
+                Map<String,Object> ch = new HashMap<>();
+                Map<String,Object> cha = new HashMap<>();
+                ch.put("id",model.getId());
+                cha.put("id",fAuth.getUid());
+                map.put("status","2");
+                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
+                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+            }
+        });
+        holder.reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.reject.setVisibility(View.INVISIBLE);
+                holder.accept.setVisibility(View.VISIBLE);
+                Map<String,Object> map = new HashMap<>();
+                map.put("status","0");
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+            }
+        });
 
     }
 
@@ -68,14 +93,15 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<User,Notificati
     }
 
     public class userAdapterHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
+        ImageView accept,reject;
         TextView name,branch;
 
 
         public userAdapterHolder(@NonNull View itemView) {
             super(itemView);
 
-            profileImage = itemView.findViewById(R.id.profile_image);
+            accept = itemView.findViewById(R.id.accept);
+            reject = itemView.findViewById(R.id.reject);
             name = itemView.findViewById(R.id.name);
             branch = itemView.findViewById(R.id.branch);
 

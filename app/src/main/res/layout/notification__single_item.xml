@@ -71,15 +71,28 @@
                     />
 
                 <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/reject"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:paddingEnd="4dp"
+                    android:src="@drawable/cross"
+                    android:visibility="visible"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="15dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <ImageView
+                    android:layout_toLeftOf="@+id/reject"
+                    android:id="@+id/accept"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:paddingEnd="4dp"
+                    android:src="@drawable/verify"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    />
             </RelativeLayout>
 
             <TextView

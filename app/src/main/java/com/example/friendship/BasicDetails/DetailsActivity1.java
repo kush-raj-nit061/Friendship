@@ -127,10 +127,10 @@ public class DetailsActivity1 extends AppCompatActivity {
         });
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("1st Year");
-        arrayList.add("2nd Year");
-        arrayList.add("3rd Year");
-        arrayList.add("4th Year");
+        arrayList.add("2020-2024");
+        arrayList.add("2021-2025");
+        arrayList.add("2022-2026");
+        arrayList.add("2023-2027");
         arrayList.add("M.Tech");
         arrayList.add("P.H.D");
         arrayList.add("Dual Degree");
