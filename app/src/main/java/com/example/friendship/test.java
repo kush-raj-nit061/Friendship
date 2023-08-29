@@ -150,7 +150,7 @@ public class test extends AppCompatActivity {
                                                             }else{
                                                                 if(mAuth.getCurrentUser().isEmailVerified()){
                                                                     Intent intent
-                                                                            = new Intent(test.this,DetailsActivity1.class);
+                                                                            = new Intent(test.this,TermsAndCondition.class);
                                                                     startActivity(intent);
 //                                                                    finish();
 
@@ -226,7 +226,7 @@ public class test extends AppCompatActivity {
                                 }else{
                                     if(mAuth.getCurrentUser().isEmailVerified()){
                                         Intent intent
-                                                = new Intent(test.this,DetailsActivity1.class);
+                                                = new Intent(test.this,TermsAndCondition.class);
                                         startActivity(intent);
                                         finish();
 

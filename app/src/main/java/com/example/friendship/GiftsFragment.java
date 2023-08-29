@@ -33,7 +33,9 @@ public class GiftsFragment extends Fragment {
 
 
         recFeatured  = view.findViewById(R.id.recFeatured);
+
         recFeatured.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recFeatured.setHasFixedSize(true);
         recFeatured.setItemAnimator(null);
 
 

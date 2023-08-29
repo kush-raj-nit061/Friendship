@@ -105,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="90dp"
                 app:cardElevation="10dp"
                 android:background="@color/blue"
                 app:cardCornerRadius="5dp"
@@ -117,6 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:layout_marginBottom="1dp"
                     android:layout_margin="5dp"
                     >
                     <TextView
@@ -438,8 +440,8 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginBottom="10dp"
                                 android:layout_height="wrap_content"
+
                                 >
 
                                 <TextView
