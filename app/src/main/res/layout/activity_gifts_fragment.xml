@@ -3,14 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".GiftsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recFeatured"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:text="Menu Gifts" />
+        android:layout_marginBottom="100dp"
+        android:layout_height="wrap_content"/>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+<!--        <com.wajahatkarim3.easyflipview.EasyFlipView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:flipOnTouch="true"-->
+<!--            app:flipEnabled="true"-->
+<!--            app:flipDuration="400"-->
+<!--            app:flipFrom="right"-->
+<!--            app:flipType="horizontal"-->
+<!--            app:autoFlipBack="false"-->
+<!--            >-->
+
+<!--            &lt;!&ndash; Back Layout Goes Here &ndash;&gt;-->
+<!--            <include layout="@layout/flip_back"/>-->
+
+<!--            &lt;!&ndash; Front Layout Goes Here &ndash;&gt;-->
+<!--            <include layout="@layout/flip_front"/>-->
+
+<!--        </com.wajahatkarim3.easyflipview.EasyFlipView>-->
+<!--    </LinearLayout>-->
 
 </FrameLayout>
