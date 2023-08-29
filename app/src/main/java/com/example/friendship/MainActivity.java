@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     ImageView iv_menu;
     ImageView ivDrawer;
     CardView cvProfile;
-    TextView branch,year;
+    TextView branch,year,name;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -71,14 +71,17 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         ivDrawer = findViewById(R.id.ivDrawer);
         branch = findViewById(R.id.branch);
         year = findViewById(R.id.year);
+        name = findViewById(R.id.drawerName);
         reference2 = FirebaseDatabase.getInstance().getReference("students");
 
         reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
+
                 year.setText(String.valueOf(snapshot.child("year").getValue()));
                 branch.setText(String.valueOf(snapshot.child("branch").getValue()));
+                name.setText(String.valueOf(snapshot.child("name").getValue()));
 
             }
 

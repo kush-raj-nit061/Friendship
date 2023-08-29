@@ -93,29 +93,41 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvSkip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-10dp"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/coffeesugar"
-                android:gravity="right"
-                android:text="Skip>>>"
-                android:layout_gravity="right"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp" />
 
-            <TextView
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/bariol_regular"
-                android:text="You are 2 steps away"
-                android:layout_gravity="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp" />
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/bariol_regular"
+                    android:text="You are 2 steps away"
+
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:id="@+id/tvSkip"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="0dp"
+
+                    android:fontFamily="@font/coffeesugar"
+
+                    android:src="@drawable/skip"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -460,10 +472,11 @@
                 android:layout_gravity="right"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp"
-                android:paddingHorizontal="30dp"
+                android:paddingHorizontal="20dp"
                 >
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginBottom="@dimen/margin_20_dp"
                     android:layout_height="match_parent">
 
                     <ImageView

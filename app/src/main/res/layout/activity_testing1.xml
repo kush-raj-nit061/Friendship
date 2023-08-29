@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".Testing1">
 
-    <ImageView
-        android:id="@+id/cover"
+    <RelativeLayout
+        android:id="@id/cover"
         android:layout_width="0dp"
         android:layout_height="350dp"
-        android:scaleType="centerCrop"
+        android:background="@drawable/messageback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/cover1"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="centerInside"
+            android:background="@drawable/messageback"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="40dp"
+            android:text=""
+            android:fontFamily="@font/bariol_bold"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:scaleY="2"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="40dp"/>
+
+
+    </RelativeLayout>
+
 
     <com.github.sshadkany.shapes.CircleView
         android:layout_width="150dp"
