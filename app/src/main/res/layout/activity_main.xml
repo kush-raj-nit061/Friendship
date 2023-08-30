@@ -92,11 +92,7 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="10dp"
                             >
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:src="@drawable/icon" />
+
 
 
                             <TextView
@@ -126,7 +122,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
-                                android:text="Vishwajeet Kumar"
+                                android:text=""
                                 android:textColor="#FFF1F1"
                                 android:textSize="25sp"
                                 android:layout_marginLeft="5dp"
@@ -272,6 +268,7 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/terms"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:backgroundTint="@color/cardview_light_background"

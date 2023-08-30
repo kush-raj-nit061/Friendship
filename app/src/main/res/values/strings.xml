@@ -36,12 +36,10 @@
     <string name="eligibility">1.1. You must be a part of  NITP family to use the App. By accessing or using the App, you represent and warrant that you meet the eligibility requirements and that all information provided is accurate and truthful.</string>
 
 
-
     <string name="dummy">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="terms">This Terms and Conditions Agreement is a legal agreement between User  and Friendship Company, governing your use of the Friendship mobile application and related services (collectively, the "App"). By accessing or using the App, you agree to be bound by the terms and conditions outlined in this Agreement. If you do not agree to these terms, please do not use the App.</string>
     <string name="que">If you have any questions or concerns about this Agreement, please contact us at:</string>
     <string name="contacts">[Contact Email]. [Company Name] [Company Address] [Company Website] [Contact Email] Date: [Current Date]</string>
-
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

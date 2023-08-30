@@ -166,7 +166,11 @@ public class UserDescrFragment extends Fragment {
         });
 
 
-        tvbirthday.setText(birthday);
+
+        if(birthday.length()>7){
+            tvbirthday.setText(birthday.substring(0,6));
+        }
+
         tvbooks.setText(books);
         tvfoods.setText(foods);
         tvhobbies.setText(hobbies);

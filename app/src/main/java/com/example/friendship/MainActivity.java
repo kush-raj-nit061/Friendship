@@ -56,14 +56,16 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
     ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile;
+    CardView cvProfile,terms;
     TextView branch,year,name;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        terms = findViewById(R.id.terms);
 
         bottomNav   = findViewById(R.id.bottom_nav);
         iv_menu = findViewById(R.id.iv_Menu);
@@ -72,7 +74,16 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         branch = findViewById(R.id.branch);
         year = findViewById(R.id.year);
         name = findViewById(R.id.drawerName);
+
         reference2 = FirebaseDatabase.getInstance().getReference("students");
+
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TermsAndConditionsActivity.class);
+                startActivity(i);
+            }
+        });
 
         reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
             @Override
             public void onDrawerStateChange(int oldState, int newState) {
