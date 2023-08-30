@@ -92,6 +92,7 @@
     <string name="im_interested">I\'m interested in </string>
     <string name="single_selection">Single Selection</string>
     <string name="multi_selection">Multi Selection</string>
+    <string name="report_user">Report User</string>
     <string-array name="interest_array">
         <item>READING</item>
         <item>WRITING</item>

@@ -1,42 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
     android:layout_height="match_parent"
+    android:background="@color/blue_grey_active"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-
-
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bubble_left">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_celeb"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/celebration"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bubble_left">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_celeb"
+                    android:layout_width="match_parent"
+                    android:background="@color/blue_grey_active"
+                    android:layout_height="300dp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/events"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recEvents"
+                    android:background="@color/blue_grey_active"
+                    android:layout_width="match_parent"
+                    android:minHeight="410dp"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/notifications"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:background="@color/blue_grey_active"
+                    android:layout_marginTop="@dimen/margin_10_dp"
+                    android:layout_marginBottom="90dp"
+                    android:layout_height="170dp" />
+
+            </RelativeLayout>
 
 
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_below="@id/recycler_view_celeb"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_10_dp"
-            android:layout_height="300dp" />
 
-        <!-- empty state -->
+
+        </LinearLayout>
 
 
 
 
-    </RelativeLayout>
 
-</FrameLayout>
+    </FrameLayout>
+
+
+
+
+
+</ScrollView>

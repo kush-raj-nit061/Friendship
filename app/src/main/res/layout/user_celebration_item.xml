@@ -43,6 +43,7 @@
                 android:layout_height="300dp"
                 app:lottie_autoPlay="true"
                 android:layout_marginTop="0dp"
+                android:scaleType="centerCrop"
                 app:lottie_loop="true"
                 app:lottie_speed="0.6"
                 app:layout_constraintDimensionRatio="H,16:9"
@@ -59,6 +60,7 @@
                 android:layout_marginTop="0dp"
                 app:lottie_loop="false"
                 app:lottie_speed="0.6"
+                android:visibility="invisible"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +111,10 @@
 
             <Button
                 android:id="@+id/arrowBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="69dp"
+                android:layout_height="69dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/arrowup"
+                android:background="@drawable/matchstick"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view" />

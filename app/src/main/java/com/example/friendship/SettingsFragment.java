@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.friendship.FriendRequestAdapter;
 import com.example.friendship.Model.Celebration;
+import com.example.friendship.Model.Events;
 import com.example.friendship.Model.User;
 import com.example.friendship.OnItemClick;
 import com.example.friendship.R;
@@ -50,10 +51,17 @@ public class SettingsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewCeleb;
+    private RecyclerView recyclerViewEvents;
 
     private NotificationAdapter userAdapter;
+    private EventsAdapter eventAdapter;
     private CelebrationAdapter celebAdapter;
     static OnItemClick onItemClick;
+    LinearLayoutManager manager1;
+    LinearLayoutManager manager2;
+    LinearLayoutManager manager3;
+
+
 
     public static SettingsFragment newInstance(OnItemClick click) {
         onItemClick = click;
@@ -74,16 +82,31 @@ public class SettingsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerViewCeleb = view.findViewById(R.id.recycler_view_celeb);
+        recyclerViewEvents = view.findViewById(R.id.recEvents);
+        manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager3 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        recyclerView.setLayoutManager(manager1);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerViewCeleb.setHasFixedSize(true);
-        recyclerViewCeleb.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewCeleb.setLayoutManager(manager2);
         DividerItemDecoration dividerItemDecorationCeleb = new DividerItemDecoration(recyclerViewCeleb.getContext(), DividerItemDecoration.VERTICAL);
         recyclerViewCeleb.addItemDecoration(dividerItemDecorationCeleb);
+
+
+        recyclerViewEvents.setHasFixedSize(true);
+        recyclerViewEvents.setLayoutManager(manager3);
+        DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerViewEvents.addItemDecoration(dividerItemDecorationCeleb);
+
+
+        readUsersEvent();
 
         readUsersCeleb();
 
@@ -92,6 +115,28 @@ public class SettingsFragment extends Fragment {
 
         return view;
     }
+
+    private void readUsersEvent(){
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String userId = fAuth.getCurrentUser().getUid();
+        DatabaseReference reference = database.getReference().child("Events");
+
+        FirebaseRecyclerOptions<Events> options =
+                new FirebaseRecyclerOptions.Builder<Events>()
+                        .setQuery(reference, Events.class)
+                        .build();
+
+        eventAdapter=new EventsAdapter(options);
+        recyclerViewEvents.setAdapter(eventAdapter);
+        eventAdapter.startListening();
+
+
+    }
+
+
 
     private void readUsersCeleb() {
 

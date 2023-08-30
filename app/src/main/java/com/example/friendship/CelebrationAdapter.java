@@ -57,13 +57,15 @@ public class CelebrationAdapter extends FirebaseRecyclerAdapter<Celebration,Cele
         holder.eventName.setText(model.getEventname());
         holder.userName.setText(model.getUsername());
 
-
+        holder.imgFire.setVisibility(View.INVISIBLE);
         holder.arrowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.imgFire.playAnimation();
+                holder.imgFire.setVisibility(View.VISIBLE);
             }
         });
+        holder.imgFire.setVisibility(View.INVISIBLE);
 
     }
 
@@ -93,8 +95,6 @@ public class CelebrationAdapter extends FirebaseRecyclerAdapter<Celebration,Cele
             arrowBtn = itemView.findViewById(R.id.arrowBtn);
             cardView = itemView.findViewById(R.id.cardView);
             img2 = itemView.findViewById(R.id.imageView2);
-
-
 
         }
     }
