@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".testing">
 
 
@@ -23,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/answer_sheet_view_bg">
+            android:background="#5BC0DD">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -31,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_margin="40dp"
-                android:alpha="0.7"
+                android:alpha="0.9"
                 android:scaleType="centerCrop"
                 android:background="@drawable/circular_image"
                 android:src="@drawable/img_1"
