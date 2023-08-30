@@ -26,21 +26,22 @@
             android:background="@color/answer_sheet_view_bg">
 
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_margin="40dp"
-                android:alpha="0.3"
-                android:scaleType="fitStart"
-
+                android:alpha="0.7"
+                android:scaleType="centerCrop"
+                android:background="@drawable/circular_image"
+                android:src="@drawable/img_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.38">
 
-            </ImageView>
+            </de.hdodenhof.circleimageview.CircleImageView>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,16 +95,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvHelper">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="true"
                     android:focusableInTouchMode="true">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kush Raj"
+                        android:textSize="25dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"/>
 
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 

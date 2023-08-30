@@ -9,6 +9,6 @@ public class testing extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_testing);
+        setContentView(R.layout.developer_item);
     }
 }

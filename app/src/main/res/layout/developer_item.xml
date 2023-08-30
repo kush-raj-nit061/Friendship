@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Testing1"
+    android:id="@+id/constraint_layout">
+
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flipOnTouch="true"
+        app:flipEnabled="true"
+        android:layout_gravity="center"
+        app:flipDuration="400"
+        app:flipFrom="bottom"
+        app:flipType="horizontal"
+        app:autoFlipBack="false"
+        >
+
+        <!-- Back Layout Goes Here -->
+        <include layout="@layout/developers_back"/>
+
+        <!-- Front Layout Goes Here -->
+        <include layout="@layout/developers_front"/>
+
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
+</LinearLayout>

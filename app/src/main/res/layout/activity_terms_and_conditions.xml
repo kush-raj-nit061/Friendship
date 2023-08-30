@@ -505,7 +505,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="310. Governing Law:"
+                            android:text="10. Governing Law:"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"

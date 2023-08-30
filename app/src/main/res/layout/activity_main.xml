@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
-                android:background="#FC896A"
+                android:background="#00FC896A"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -39,7 +39,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/baseline_menu_24"
-                        app:tint="@color/white" />
+                        app:tint="@color/black" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
