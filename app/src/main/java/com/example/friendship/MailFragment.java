@@ -105,34 +105,45 @@ public class MailFragment extends Fragment {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         DatabaseReference dbref = database.getReference();
 
+        try {
+            dbref.child("students").child(fAuth.getUid()).child("purl").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    purl = (String) snapshot.getValue();
 
-        dbref.child("students").child(fAuth.getUid()).child("purl").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                purl = (String) snapshot.getValue();
-                Glide.with(getContext()).load(purl).into(imgProfile);
-            }
+                    try {
+                        Glide.with(getContext()).load(purl).into(imgProfile);
+                    }catch (Exception e){}
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-
+                }
+            });
+        }catch (Exception e){}
 
 
-        dbref.child("Chatlist").child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tvNoFriends.setText(String.valueOf((int) snapshot.getChildrenCount()));
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+
+
+        try {
+            dbref.child("Chatlist").child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    tvNoFriends.setText(String.valueOf((int) snapshot.getChildrenCount()));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+        }catch (Exception e){}
 
 
         DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());

@@ -1,6 +1,7 @@
 package com.example.friendship;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.github.sshadkany.shapes.RoundRectView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,12 +73,54 @@ public class UserDescrFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_user_descr, container, false);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout round = v.findViewById(R.id.round);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RoundRectView roundrect = v.findViewById(R.id.roundrect);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RoundRectView roundrect1 = v.findViewById(R.id.roundrect1);
+         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView cardView = v.findViewById(R.id.card5);
         ImageView imagegholder = v.findViewById(R.id.imagegholder);
         TextView nameholder = v.findViewById(R.id.nameholder);
         TextView branchholder = v.findViewById(R.id.branchholder);
         TextView yearholder = v.findViewById(R.id.yearholder);
         NeumorphButton button = v.findViewById(R.id.button);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout privatebutton = v.findViewById(R.id.privatea);
+
+        round.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FullProfileLoader.class);
+                i.putExtra("purl",purl);
+                startActivity(i);
+            }
+        });
+        imagegholder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FullProfileLoader.class);
+                i.putExtra("purl",purl);
+                startActivity(i);
+            }
+        });cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FullProfileLoader.class);
+                i.putExtra("purl",purl);
+                startActivity(i);
+            }
+        });roundrect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FullProfileLoader.class);
+                i.putExtra("purl",purl);
+                startActivity(i);
+            }
+        });roundrect1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FullProfileLoader.class);
+                i.putExtra("purl",purl);
+                startActivity(i);
+            }
+        });
 
         NeumorphCardView card1 = v.findViewById(R.id.card1);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView shortBioholder = v.findViewById(R.id.shortbioholder);
@@ -92,84 +137,103 @@ public class UserDescrFragment extends Fragment {
         objectMap.put("imageURL",purl);
         objectMap.put("id",userId);
         objectMap.put("bio",shortBio);
-        myRef.child(fAuth.getUid()).child(userId).updateChildren(objectMap);
+        try {
+            myRef.child(fAuth.getUid()).child(userId).updateChildren(objectMap);
+        }catch(Exception e){
+
+        }
+
 
 
 
         Map<String,Object> myProfile = new HashMap<>();
 
 
-        myOwnRef.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String myName = (String) snapshot.child("name").getValue();
-                    String myBranch = (String) snapshot.child("branch").getValue();
-                    String myPurl = (String) snapshot.child("purl").getValue();
-                    String myUserId = (String) snapshot.child("userId").getValue();
-                    String myOwnBio= (String) snapshot.child("shortBio").getValue();
 
-                    myProfile.put("username",myName);
-                    myProfile.put("branch",myBranch);
-                    myProfile.put("imageURL",myPurl);
-                    myProfile.put("id",myUserId);
-                    myProfile.put("bio",myOwnBio);
-                    myRef.child(userId).child(fAuth.getUid()).updateChildren(myProfile);
+        try {
+            myOwnRef.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String myName = (String) snapshot.child("name").getValue();
+                        String myBranch = (String) snapshot.child("branch").getValue();
+                        String myPurl = (String) snapshot.child("purl").getValue();
+                        String myUserId = (String) snapshot.child("userId").getValue();
+                        String myOwnBio= (String) snapshot.child("shortBio").getValue();
+
+                        myProfile.put("username",myName);
+                        myProfile.put("branch",myBranch);
+                        myProfile.put("imageURL",myPurl);
+                        myProfile.put("id",myUserId);
+                        myProfile.put("bio",myOwnBio);
+                        try {
+                            myRef.child(userId).child(fAuth.getUid()).updateChildren(myProfile);
+                        }catch (Exception e){}
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        }catch (Exception e){}
 
-            }
-        });
+        try {
+            myRef.child(userId).child(fAuth.getUid().toString()).child("status").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    try {
+                        if (snapshot.getValue() != null) {
+                            try {
+                                if(snapshot.getValue().equals("0")){
+                                    button.setText("Align");
+                                    card1.setVisibility(View.INVISIBLE);
+                                    privatebutton.setVisibility(View.INVISIBLE);
 
-        myRef.child(userId).child(fAuth.getUid().toString()).child("status").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    if (snapshot.getValue() != null) {
-                        try {
-                            if(snapshot.getValue().equals("0")){
-                                button.setText("Align");
-                                card1.setVisibility(View.INVISIBLE);
-                                privatebutton.setVisibility(View.INVISIBLE);
+                                } else if (snapshot.getValue().equals("1")) {
+                                    button.setText("Requested");
+                                    card1.setVisibility(View.VISIBLE);
+                                    privatebutton.setVisibility(View.INVISIBLE);
 
-                            } else if (snapshot.getValue().equals("1")) {
-                                button.setText("Requested");
-                                card1.setVisibility(View.VISIBLE);
-                                privatebutton.setVisibility(View.INVISIBLE);
+                                } else if(snapshot.getValue().equals("2")){
+                                    button.setText("Diverge");
+                                    privatebutton.setVisibility(View.VISIBLE);
+                                    card1.setVisibility(View.VISIBLE);
 
-                            } else if(snapshot.getValue().equals("2")){
-                                button.setText("Diverge");
-                                privatebutton.setVisibility(View.VISIBLE);
-                                card1.setVisibility(View.VISIBLE);
+                                }
+
+                            } catch (Exception e) {
 
                             }
-
-                        } catch (Exception e) {
-
+                        } else {
+                            button.setText("Align");
                         }
-                    } else {
-                        button.setText("Align");
+                    } catch (Exception e) {
+
                     }
-                } catch (Exception e) {
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+            });
+
+
+        }catch (Exception e){}
+
+
+
+        try {
+            if(birthday.length()>7){
+                tvbirthday.setText(birthday.substring(0,6));
             }
+        }catch (Exception e){}
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-        if(birthday.length()>7){
-            tvbirthday.setText(birthday.substring(0,6));
-        }
 
         tvbooks.setText(books);
         tvfoods.setText(foods);
@@ -229,6 +293,7 @@ public class UserDescrFragment extends Fragment {
                             Toast.makeText(getContext(),"ene4",Toast.LENGTH_SHORT).show();
                             button.setText("Requested");
                             map.put("status","1");
+
                             myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
 
                         }

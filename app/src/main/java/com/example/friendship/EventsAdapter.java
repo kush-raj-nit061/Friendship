@@ -1,5 +1,8 @@
 package com.example.friendship;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -47,8 +50,10 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
     DatabaseReference chatRef = database.getReference("Chatlist");
 
 
+
     public EventsAdapter(@NonNull FirebaseRecyclerOptions<Events> options) {
         super(options);
+
     }
 
     @Override
@@ -74,6 +79,17 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
             holder.link3.setVisibility(View.VISIBLE);
             holder.link3.setText(link3);
         }
+        holder.eventpurl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context cont = v.getContext();
+                Intent i = new Intent(cont, FullProfileLoader.class);
+                i.putExtra("purl",model.getEventpurl());
+                cont.startActivity(i);
+
+            }
+        });
+
 
     }
 
@@ -101,6 +117,8 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
             month = itemView.findViewById(R.id.tvLession);
             date = itemView.findViewById(R.id.tvDate);
             description = itemView.findViewById(R.id.description);
+
+
 
 
 

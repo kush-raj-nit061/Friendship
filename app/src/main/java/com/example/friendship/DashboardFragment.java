@@ -109,7 +109,12 @@ public class DashboardFragment extends Fragment {
                         .build();
 
                 // Update your adapter with the new options
-                userAdapter.updateOptions(options);
+                try {
+                    userAdapter.updateOptions(options);
+                }catch (Exception e){
+                    Toast.makeText(getContext(),"Orientation changed",Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

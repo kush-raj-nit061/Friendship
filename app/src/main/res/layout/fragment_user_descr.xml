@@ -28,6 +28,7 @@
                 tools:ignore="RtlSymmetry">
 
                 <com.github.sshadkany.shapes.RoundRectView
+                    android:id="@+id/roundrect1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
@@ -39,6 +40,8 @@
                     app:shape_roundRect_topRightRadius="12dp">
 
                     <com.github.sshadkany.shapes.RoundRectView
+                        android:id="@+id/roundrect"
+
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
@@ -52,12 +55,15 @@
 
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/card5"
+
                             android:layout_width="match_parent"
                             android:layout_margin="25dp"
                             android:background="@color/colorWhiteSmoke"
                             android:layout_height="wrap_content">
 
                             <LinearLayout
+                                android:id="@+id/round"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"

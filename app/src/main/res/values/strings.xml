@@ -103,6 +103,9 @@
         <item>PLAYING FOOTBALL</item>
         <item>SWIMMING</item>
     </string-array>
+    <string name="title_activity_fullscreen_loader">FullscreenLoader</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>
