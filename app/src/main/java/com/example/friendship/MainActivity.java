@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
     ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy,cvAboutUs;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp;
     TextView branch,year,name;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         name = findViewById(R.id.drawerName);
         cvPrivacy = findViewById(R.id.cvPrivacy);
         cvAboutUs = findViewById(R.id.aboutus);
+        cvHelp = findViewById(R.id.help);
 
         reference2 = FirebaseDatabase.getInstance().getReference("students");
 
@@ -97,6 +99,13 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AboutUs.class);
+                startActivity(i);
+            }
+        });
+        cvHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, HelpAndSupport.class);
                 startActivity(i);
             }
         });
