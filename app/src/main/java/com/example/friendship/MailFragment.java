@@ -173,7 +173,6 @@ public class MailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment;
-                Toast.makeText(getContext(),"enter",Toast.LENGTH_SHORT).show();
 
                 AppCompatActivity appCompatActivity = (AppCompatActivity) v.getContext();
                 FragmentTransaction transaction = appCompatActivity.getSupportFragmentManager().beginTransaction();

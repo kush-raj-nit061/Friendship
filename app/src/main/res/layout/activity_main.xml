@@ -197,6 +197,7 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPrivacy"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:backgroundTint="@color/cardview_light_background"

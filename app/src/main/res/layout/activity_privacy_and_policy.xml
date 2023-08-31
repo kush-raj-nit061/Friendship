@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".PrivacyAndPolicy"
     android:layout_margin="6dp"
     app:cardCornerRadius="10dp">
 
@@ -30,7 +31,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/back"
+                    android:id="@+id/backs"
                     android:layout_width="@dimen/padding_50_dp"
                     android:layout_height="@dimen/padding_50_dp"
                     android:layout_marginTop="@dimen/margin_10_dp"
@@ -48,7 +49,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:padding="6dp"
-                    android:text="Terms &amp; Conditions"
+                    android:text="Privacy &amp; Policy"
                     android:textColor="@color/colorSecondary"
                     android:textSize="28sp"
                     android:textStyle="bold"
@@ -64,7 +65,7 @@
                     android:layout_height="38dp"
                     android:layout_marginEnd="16dp"
                     android:padding="8dp"
-                    android:src="@drawable/terms"
+                    android:src="@drawable/privacy_protect_security_icon_1320190884998801875"
                     app:layout_constraintBottom_toBottomOf="@+id/tvMainText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvMainText"
@@ -94,6 +95,7 @@
                     android:layout_marginTop="4dp"
                     android:fillViewport="true"
                     android:scrollbars="none"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view"
@@ -112,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:padding="6dp"
-                            android:text="Effective Date: [Date]"
+                            android:text="@string/privacytitle1"
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -135,7 +137,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/terms"
+                            android:text="@string/privacydesc"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +155,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="1. Eligibility"
+                            android:text="1. *Information We Collect:*"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -175,7 +177,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/eligibility"
+                            android:text="@string/infos"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +193,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="2. User Account"
+                            android:text="2. *How We Use Your Information:*"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -214,7 +216,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/userAccount"
+                            android:text="@string/infouse"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -231,7 +233,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="3. Use of the App"
+                            android:text="3 *Sharing of Your Information:*"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -254,7 +256,27 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/use"
+                            android:text="@string/infoshare"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                        </TextView>
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="16dp"
+                            android:alpha="0.8"
+                            android:ellipsize="end"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:linksClickable="true"
+                            android:autoLink="web"
+                            android:text="@string/firebaseprivacy"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -270,7 +292,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="4. Safety and Conduct"
+                            android:text="4. *Security:*"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -293,7 +315,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/safety"
+                            android:text="@string/security"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -309,7 +331,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="5. User Content:"
+                            android:text="@string/_6_changes_to_privacy_policy"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -332,13 +354,14 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/user_content"
+                            android:text="@string/change"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView9">
 
                         </TextView>
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -348,7 +371,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="6. Privacy"
+                            android:text="6. *Contact Us:*"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -371,7 +394,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/privacy"
+                            android:text="- If you have questions about this Privacy Policy, contact us at:"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -382,15 +405,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="7. Termination:"
+                            android:autoLink="email"
+                            android:linksClickable="true"
+                            android:text="@string/gmail_fr"
                             android:textColor="@color/black"
                             android:textSize="16sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_en_synonyms">
@@ -398,142 +421,6 @@
                         </TextView
                             >
 
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:ellipsize="end"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="@string/termination"
-                            android:textColor="@color/black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                        </TextView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="8. Disclaimers:"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_en_synonyms">
-
-                        </TextView
-                            >
-
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:ellipsize="end"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="@string/Disclaimer"
-                            android:textColor="@color/black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                        </TextView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="9. Limitation of Liability:"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_en_synonyms">
-
-                        </TextView
-                            >
-
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:ellipsize="end"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="@string/limitation"
-                            android:textColor="@color/black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                        </TextView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="10. Governing Law:"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_en_synonyms">
-
-                        </TextView
-                            >
-
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="16dp"
-                            android:alpha="0.8"
-                            android:ellipsize="end"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="@string/governing"
-                            android:textColor="@color/black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                        </TextView>
 
 
                         <TextView
@@ -546,7 +433,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="@string/que"
+                            android:text="Also review our Terms of use."
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -555,6 +442,25 @@
                             app:layout_constraintTop_toBottomOf="@+id/tv_bn_synonyms">
 
                         </TextView>
+                        <TextView
+                            android:id="@+id/termss"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:alpha="0.8"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:text="Terms And Conditions"
+                            android:textColor="@color/blue_active"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_en_synonyms">
+
+                        </TextView
+                            >
+
 
 
                         <TextView
@@ -571,12 +477,14 @@
                             android:lineHeight="20sp"
                             android:minHeight="60dp"
                             android:padding="12dp"
-                            android:text="@string/contacts"
+                            android:text="@string/agree"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView11">
 
                         </TextView>
+
+
 
 
                     </LinearLayout>

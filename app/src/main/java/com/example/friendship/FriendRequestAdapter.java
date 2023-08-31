@@ -50,7 +50,7 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
-        Toast.makeText(holder.profileImage.getContext(), model.getUsername(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(holder.profileImage.getContext(), "Requests Of: "+model.getUsername(),Toast.LENGTH_SHORT).show();
 
         holder.name.setText(model.getUsername());
         holder.branch.setText(model.getBranch());

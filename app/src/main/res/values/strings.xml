@@ -106,6 +106,17 @@
     <string name="title_activity_fullscreen_loader">FullscreenLoader</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="privacytitle1">When you use our services, you\'re trusting us with your information. We Understand this is a big responsibility and we work hard to protect your information.</string>
+    <string name="privacydesc">This Privacy Policy is meant to help you understand what information we collect, why we collect it, and how you can update, manage, your information.</string>
+    <string name="infos">- Personal Information: This includes your name, email address, photos, likings, unlikings, short bio and any information you choose to provide in your profile. \n- Usage Data: We collect data on how you interact with the app, such as your interactions, messages, and preferences. \n- Device Information: We don\'t take any information. - Location Information: We don\'t take any information.</string>
+    <string name="infouse">- To Create and Manage Your Account: We use your personal information to set up and maintain your Friends app account. \n- Popularity Index: Your profile information helps us suggest potential matches based on your preferences. \n- Communication: We use your information to facilitate communication between you and other users. \n- Analytics: Your usage data helps us understand how our app is being used, enabling improvements. \n- Personalization: We use your data to personalize your experience on the app.</string>
+    <string name="infoshare">Like any other popular application, Friendship uses a lot of third party SDKs to provide many functionalities. \n*We do not explicitly provide any private information to any of these third party SDK. We have made sure that all the SDKs we use in our app are legally compliant with Privacy laws across the globe, including the new GDPR implemented in EU region. The sdks included in the application and links to their privacy policies are provided below: \n\nFirebase analytics by Google</string>
+    <string name="firebaseprivacy">https://firebase.google.com/support/privacy/</string>
+    <string name="security">- We implement security measures to protect your information from unauthorized access or disclosure.</string>
+    <string name="_6_changes_to_privacy_policy">5. *Changes to Privacy Policy:*</string>
+    <string name="change">- We may update this policy from time to time. Check the Last Updated date at the beginning of the policy.</string>
+    <string name="gmail_fr">friendship@gmail.com</string>
+    <string name="agree">By using Friendship, you agree to the terms of this Privacy Policy. Please review it carefully.</string>
 
 
 </resources>
