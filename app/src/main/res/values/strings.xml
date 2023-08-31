@@ -117,6 +117,10 @@
     <string name="change">- We may update this policy from time to time. Check the Last Updated date at the beginning of the policy.</string>
     <string name="gmail_fr">friendship@gmail.com</string>
     <string name="agree">By using Friendship, you agree to the terms of this Privacy Policy. Please review it carefully.</string>
+    <string name="developer">Developer</string>
+    <string name="made_with">Made with 💝</string>
+    <string name="who_we_are">Who we are?</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

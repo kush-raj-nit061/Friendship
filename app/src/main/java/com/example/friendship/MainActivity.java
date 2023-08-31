@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
     ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs;
     TextView branch,year,name;
 
 
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         year = findViewById(R.id.year);
         name = findViewById(R.id.drawerName);
         cvPrivacy = findViewById(R.id.cvPrivacy);
+        cvAboutUs = findViewById(R.id.aboutus);
 
         reference2 = FirebaseDatabase.getInstance().getReference("students");
 
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, PrivacyAndSecurity.class);
+                startActivity(i);
+            }
+        });
+        cvAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AboutUs.class);
                 startActivity(i);
             }
         });
