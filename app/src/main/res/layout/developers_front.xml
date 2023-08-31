@@ -26,13 +26,14 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/profileimg"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_margin="40dp"
                 android:alpha="0.9"
                 android:scaleType="centerCrop"
-                android:background="@drawable/circular_image"
+                app:civ_border_width="5dp"
+                app:civ_border_color="@color/black"
                 android:src="@drawable/img_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -101,12 +102,13 @@
                     android:focusableInTouchMode="true">
 
                     <TextView
+                        android:id="@+id/Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Kush Raj"
-                        android:textSize="25dp"
+                        android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:layout_centerInParent="true"/>
+                        android:text="Kush Raj"
+                        android:textSize="25dp" />
 
 
 
@@ -137,14 +139,15 @@
                     android:focusableInTouchMode="true">
 
                     <TextView
+                        android:id="@+id/post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/developer"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/categories_progress_bar_violet"
+                        android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:layout_centerInParent="true"/>
+                        android:text="@string/developer"
+                        android:textColor="@color/categories_progress_bar_violet"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
 
 

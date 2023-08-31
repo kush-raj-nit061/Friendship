@@ -24,6 +24,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#5BC0DD">
+            <TextView
+                android:id="@+id/tvds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:layout_margin="8dp"
+                android:textStyle="italic|bold"
+                android:text="Description:"/>
+
+            <TextView
+                android:id="@+id/descr"
+                android:layout_below="@+id/tvds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:textStyle="italic"
+                android:text="Descriptions"/>
 
 
         </RelativeLayout>
