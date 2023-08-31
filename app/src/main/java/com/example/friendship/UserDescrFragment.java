@@ -263,7 +263,7 @@ public class UserDescrFragment extends Fragment {
                         Map<String,Object> map = new HashMap<>();
                         if(snapshot.child("status").exists()){
                             if(snapshot.child("status").getValue().equals("0")){
-                                Toast.makeText(getContext(),"ene1",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
 //                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
                                 card1.setVisibility(View.VISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
@@ -273,24 +273,48 @@ public class UserDescrFragment extends Fragment {
 
                             } else if (snapshot.child("status").getValue().equals("1")) {
                                 button.setText("Align");
-                                Toast.makeText(getContext(),"ene2",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(),"Request retrieved:{",Toast.LENGTH_SHORT).show();
                                 card1.setVisibility(View.INVISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 map.put("status","0");
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
                             }else{
                                 card1.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getContext(),"ene3",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(),"Unaligned",Toast.LENGTH_SHORT).show();
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 button.setText("Align");
                                 map.put("status","0");
+
+                                DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist").child(fAuth.getUid()).child(userId);
+                                chatRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        snapshot.getRef().removeValue();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                                DatabaseReference chatRefopp = FirebaseDatabase.getInstance().getReference("Chatlist").child(userId).child(fAuth.getUid());
+                                chatRefopp.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        snapshot.getRef().removeValue();
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
                             }
 
                         }else {
                             card1.setVisibility(View.VISIBLE);
                             privatebutton.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getContext(),"ene4",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
                             button.setText("Requested");
                             map.put("status","1");
 

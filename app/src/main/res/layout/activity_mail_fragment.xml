@@ -36,14 +36,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_30_dp"
-                android:textSize="25dp"
-                android:text="EE 25"
-                android:fontFamily="@font/bariol_bold"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="50dp"/>
+                android:layout_marginEnd="50dp"
+                android:fontFamily="@font/bariol_bold"
+                android:text="Chats"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>

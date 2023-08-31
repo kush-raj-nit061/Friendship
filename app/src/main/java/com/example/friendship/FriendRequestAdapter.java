@@ -66,6 +66,7 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
                 ch.put("id",model.getId());
                 cha.put("id",fAuth.getUid());
                 map.put("status","2");
+                Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
                 chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
                 chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
                 myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);

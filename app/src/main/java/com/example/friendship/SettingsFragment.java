@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,6 +46,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SettingsFragment extends Fragment {
@@ -60,6 +62,7 @@ public class SettingsFragment extends Fragment {
     LinearLayoutManager manager1;
     LinearLayoutManager manager2;
     LinearLayoutManager manager3;
+    DatabaseReference myRefCeleb;
 
 
 
@@ -78,6 +81,7 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_settings_fragment, container, false);
+
 
 
         recyclerView = view.findViewById(R.id.recycler_view);
@@ -105,10 +109,51 @@ public class SettingsFragment extends Fragment {
         DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
         recyclerViewEvents.addItemDecoration(dividerItemDecorationCeleb);
 
+        try {
+            myRefCeleb = FirebaseDatabase.getInstance().getReference("Celebration").child(FirebaseAuth.getInstance().getUid());
+            myRefCeleb.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long l = snapshot.getChildrenCount();
+                        if(l>0){
+                            recyclerViewCeleb.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){}
+        try {
+            myRefCeleb = FirebaseDatabase.getInstance().getReference("Events");
+            myRefCeleb.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long l = snapshot.getChildrenCount();
+                        if(l>0){
+                            recyclerViewEvents.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){}
+
 
         readUsersEvent();
 
         readUsersCeleb();
+
+
 
 
         readUsers();
@@ -152,10 +197,10 @@ public class SettingsFragment extends Fragment {
                 new FirebaseRecyclerOptions.Builder<Celebration>()
                         .setQuery(reference, Celebration.class)
                         .build();
-
         celebAdapter=new CelebrationAdapter(options);
         recyclerViewCeleb.setAdapter(celebAdapter);
         celebAdapter.startListening();
+
 
 
 

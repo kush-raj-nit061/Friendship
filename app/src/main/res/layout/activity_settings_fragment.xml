@@ -28,6 +28,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_celeb"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:background="@color/blue_grey_active"
                     android:layout_height="300dp" />
 
@@ -41,6 +42,7 @@
                 >
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:visibility="gone"
                     android:id="@+id/recEvents"
                     android:background="@color/blue_grey_active"
                     android:layout_width="match_parent"
