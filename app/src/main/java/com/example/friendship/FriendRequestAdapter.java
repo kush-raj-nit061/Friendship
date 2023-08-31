@@ -24,8 +24,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -67,8 +69,17 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
                 cha.put("id",fAuth.getUid());
                 map.put("status","2");
                 Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
-                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
-                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
+                if(fAuth.getUid().equals(model.getId())){
+                    chatRef.child(model.getId()).child(fAuth.getUid()).setValue(cha);
+                }else{
+                    chatRef.child(model.getId()).child(fAuth.getUid()).setValue(cha);
+                    chatRef.child(fAuth.getUid()).child(model.getId()).setValue(ch);
+                }
+
+
+
+//                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
+//                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
                 myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
             }
         });

@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
     String purl;
     LinearLayout llnametv,llnameet,lllocationtv,lllocationet,llyeartv,llyearet,llshortbiotv,llshortbioet;
 
-    TextView tvShortBio,tvLocation,tvName,tvYear;
+    TextView tvShortBio,tvLocation,tvName,tvYear,userid;
     EditText etShortBio,etLocation,etName,etYear;
 
 
@@ -79,6 +79,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        userid = findViewById(R.id.userId);
+        userid.setText(fAuth.getUid().substring(0,8));
 
         tvShortBio= findViewById(R.id.tvShortBio);
         tvLocation = findViewById(R.id.tvLocation);
