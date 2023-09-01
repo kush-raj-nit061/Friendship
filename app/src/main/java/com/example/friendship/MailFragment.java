@@ -130,7 +130,12 @@ public class MailFragment extends Fragment {
 
 
         try {
-            dbref.child("Chatlist").child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            DatabaseReference referencer = database.getReference().child("Connection").child(fAuth.getUid());
+
+            Query queryr = referencer.orderByChild("status").equalTo("2");
+
+
+            queryr.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     tvNoFriends.setText(String.valueOf((int) snapshot.getChildrenCount()));
