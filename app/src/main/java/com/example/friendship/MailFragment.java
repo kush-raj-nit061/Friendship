@@ -180,7 +180,6 @@ public class MailFragment extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-
             }
         });
 
@@ -203,16 +202,6 @@ public class MailFragment extends Fragment {
         MR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriad.ttf");
 
         recyclerView = view.findViewById(R.id.recConnection);
-//        frameLayout = view.findViewById(R.id.es_layout);
-//        es_descp = view.findViewById(R.id.es_descp);
-//        es_title = view.findViewById(R.id.es_title);
-
-//        es_descp.setTypeface(MR);
-//        es_title.setTypeface(MRR);
-
-
-
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
@@ -223,8 +212,13 @@ public class MailFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
+
+        DatabaseReference reference1 = database.getReference().child("Connection").child(fAuth.getUid());
+
+        Query query1 = reference1.orderByChild("status").equalTo("2");
+
         reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
+        query1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();

@@ -284,31 +284,8 @@ public class UserDescrFragment extends Fragment {
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 button.setText("Align");
                                 map.put("status","0");
-
-                                DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist").child(fAuth.getUid()).child(userId);
-                                chatRef.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        snapshot.getRef().removeValue();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                                DatabaseReference chatRefopp = FirebaseDatabase.getInstance().getReference("Chatlist").child(userId).child(fAuth.getUid());
-                                chatRefopp.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        snapshot.getRef().removeValue();
-                                    }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
+                                myRef.child(fAuth.getUid()).child(userId).updateChildren(map);
                             }
 
                         }else {
