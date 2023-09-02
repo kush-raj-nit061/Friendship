@@ -44,7 +44,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,8 +63,10 @@ public class SettingsFragment extends Fragment {
     static OnItemClick onItemClick;
     LinearLayoutManager manager1;
     LinearLayoutManager manager2;
+    String key = "";
     LinearLayoutManager manager3;
     DatabaseReference myRefCeleb;
+    String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
 
 
@@ -109,25 +113,8 @@ public class SettingsFragment extends Fragment {
         DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
         recyclerViewEvents.addItemDecoration(dividerItemDecorationCeleb);
 
-        try {
-            myRefCeleb = FirebaseDatabase.getInstance().getReference("Celebration").child(FirebaseAuth.getInstance().getUid());
-            myRefCeleb.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        long l = snapshot.getChildrenCount();
-                        if(l>0){
-                            recyclerViewCeleb.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }catch (Exception e){}
         try {
             myRefCeleb = FirebaseDatabase.getInstance().getReference("Events");
             myRefCeleb.addValueEventListener(new ValueEventListener() {
@@ -168,15 +155,65 @@ public class SettingsFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String userId = fAuth.getCurrentUser().getUid();
         DatabaseReference reference = database.getReference().child("Events");
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 
-        FirebaseRecyclerOptions<Events> options =
-                new FirebaseRecyclerOptions.Builder<Events>()
-                        .setQuery(reference, Events.class)
-                        .build();
 
-        eventAdapter=new EventsAdapter(options);
-        recyclerViewEvents.setAdapter(eventAdapter);
-        eventAdapter.startListening();
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                        String s = datePatternFormat.format(new Date().getTime());
+                        int i = Integer.parseInt(s.substring(0,2));
+
+                        if(snapshot1.child("date").getValue().equals(String.valueOf(i-1))){
+                               key = snapshot1.getKey();
+                            if(!key.equals("")){
+                                reference.child(key).removeValue();
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+                Query query = reference.orderByChild("date").limitToLast(count);
+
+                FirebaseRecyclerOptions<Events> options =
+                        new FirebaseRecyclerOptions.Builder<Events>()
+                                .setQuery(query, Events.class)
+                                .build();
+
+                eventAdapter=new EventsAdapter(options);
+                recyclerViewEvents.setAdapter(eventAdapter);
+                eventAdapter.startListening();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
 
 
     }
@@ -192,14 +229,47 @@ public class SettingsFragment extends Fragment {
         DatabaseReference myRef = database.getReference("Celebration");
         String userId = fAuth.getCurrentUser().getUid();
         DatabaseReference reference = database.getReference().child("Celebration").child(fAuth.getUid());
+        DatabaseReference dob = database.getReference().child("students").child(fAuth.getUid());
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+        recyclerViewCeleb.setVisibility(View.GONE);
 
-        FirebaseRecyclerOptions<Celebration> options =
-                new FirebaseRecyclerOptions.Builder<Celebration>()
-                        .setQuery(reference, Celebration.class)
-                        .build();
-        celebAdapter=new CelebrationAdapter(options);
-        recyclerViewCeleb.setAdapter(celebAdapter);
-        celebAdapter.startListening();
+        dob.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child("birthday").exists()){
+                    String s = datePatternFormat.format(new Date().getTime());
+                    String birthday = (String) snapshot.child("birthday").getValue();
+                    Toast.makeText(getContext(),birthday,Toast.LENGTH_SHORT).show();
+                    if(birthday.substring(0,2).equals(s.substring(0,2))){
+                        for(int i = 0;i< month.length;i++) {
+                            if (birthday.substring(3, 6).equals(month[i])){
+
+                                recyclerViewCeleb.setVisibility(View.VISIBLE);
+                                FirebaseRecyclerOptions<Celebration> options =
+                                        new FirebaseRecyclerOptions.Builder<Celebration>()
+                                                .setQuery(reference, Celebration.class)
+                                                .build();
+                                celebAdapter=new CelebrationAdapter(options);
+                                recyclerViewCeleb.setAdapter(celebAdapter);
+                                celebAdapter.startListening();
+
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
 
 
@@ -218,6 +288,21 @@ public class SettingsFragment extends Fragment {
         DatabaseReference reference = database.getReference().child("Connection").child(userId);
 
         Query query = reference.orderByChild("status").equalTo("1");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long l = snapshot.getChildrenCount();
+                if(!(l == 0)){
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         FirebaseRecyclerOptions<User> options =
                 new FirebaseRecyclerOptions.Builder<User>()

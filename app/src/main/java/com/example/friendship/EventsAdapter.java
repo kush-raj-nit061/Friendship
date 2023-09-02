@@ -2,6 +2,7 @@ package com.example.friendship;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -35,6 +36,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.rolud.solidglowanimation.SolidGlowAnimation;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +50,8 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
-    DatabaseReference chatRef = database.getReference("Chatlist");
+
+
 
 
 
@@ -60,6 +64,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Events model) {
 
         holder.date.setText(model.getDate());
+        holder.month.setText(model.getMonth());
         holder.description.setText(model.getDescription());
         holder.eventname.setText(model.getEventname());
         holder.eventtitle.setText(model.getEventtitle());

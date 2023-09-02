@@ -48,6 +48,7 @@ import com.wwdablu.soumya.lottiebottomnav.MenuItemBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
@@ -99,7 +100,15 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 });
 
 
+
+
         reference2 = FirebaseDatabase.getInstance().getReference("students");
+
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("connectionId",FirebaseMessaging.getInstance().getToken().toString());
+
+        reference2.child(fAuth.getCurrentUser().getUid()).updateChildren(map);
 
         terms.setOnClickListener(new View.OnClickListener() {
             @Override

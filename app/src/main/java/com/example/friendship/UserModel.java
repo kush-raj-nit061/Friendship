@@ -42,7 +42,17 @@ public class UserModel {
         this.likes = likes;
     }
 
-    public UserModel(String college,String likes,String status, String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
+    public String getConnectionId() {
+        return connectionId;
+    }
+
+    public void setConnectionId(String connectionId) {
+        this.connectionId = connectionId;
+    }
+
+    String connectionId;
+
+    public UserModel(String connectionId,String college,String likes,String status, String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
         this.status = status;
         this.purl = purl;
         this.birthday = birthday;
@@ -61,6 +71,7 @@ public class UserModel {
         this.shortBio = shortBio;
         this.likes = likes;
         this.college = college;
+        this.connectionId = connectionId;
     }
 
     public String getBirthday() {

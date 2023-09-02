@@ -7,7 +7,7 @@
 
     android:paddingTop="@dimen/padding_10_dp"
     android:paddingBottom="@dimen/padding_10_dp"
-
+    android:minHeight="100dp"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
