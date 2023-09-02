@@ -1,17 +1,23 @@
 package com.example.friendship;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.Manifest;
 
 import com.example.friendship.BasicDetails.DetailsActivity1;
+
 
 public class TermsAndCondition extends AppCompatActivity {
 
     TextView tvAccept;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
