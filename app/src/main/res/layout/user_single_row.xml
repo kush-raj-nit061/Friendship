@@ -44,21 +44,25 @@
             android:elevation="12dp"
             android:layout_marginTop="28dp"
             android:id="@+id/imageView"
-            app:cardCornerRadius="40dp"
+            app:cardCornerRadius="1000dp"
             android:layout_alignParentStart="true"
             android:innerRadius="0dp"
             android:shape="ring"
             android:thicknessRatio="1.9">
 
-            <ImageView
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_height="150dp"
                 android:layout_width="match_parent"
                 android:id="@+id/profileImage"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#7190EE"
                 android:src="@drawable/img"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true"
                 >
-            </ImageView>
+            </de.hdodenhof.circleimageview.CircleImageView>
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/gifLove"
@@ -68,7 +72,20 @@
                 android:layout_marginRight="0dp"
                 android:src="@drawable/gifloves"/>
 
+
+
         </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/college"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="36dp"
+            android:textStyle="bold"
+            android:textColor="#ffbf24"/>
+
+
 
 
 
@@ -93,7 +110,7 @@
             android:id="@+id/shortBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="130dp"
+            android:minHeight="120dp"
             android:paddingStart="8dp"
             android:layout_marginStart="-3dp"
             android:paddingEnd="8dp"
@@ -161,50 +178,59 @@
             android:layout_below="@id/branch"
             android:text=""/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_toEndOf="@+id/branch"
+            android:layout_below="@id/shortBio"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/like"
+                android:layout_width="80dp"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/likes"
+                app:lottie_loop="false"
+                android:visibility="visible"
+                app:lottie_speed="1"
+                android:layout_height="80dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:text="4"
+                    android:paddingStart="30dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ffbf24"
+                    />
+
+                <TextView
+                    android:id="@+id/pop"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Popularity"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/like"
-            android:layout_width="60dp"
-            app:lottie_autoPlay="false"
-            app:lottie_rawRes="@raw/handshake"
-            app:lottie_loop="true"
-            android:visibility="visible"
-            app:lottie_speed="1"
-            android:layout_height="60dp"
-            android:layout_toEndOf="@id/year"
-            android:layout_below="@+id/shortBio"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
 
-            />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvPopular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/like"
-            android:layout_below="@+id/shortBio"
-            android:text=""
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#ffbf24"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/tvPopular"
-            android:layout_below="@+id/shortBio"
-            android:text="Popularity"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="18dp"/>
-
-
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -15,15 +15,40 @@
         android:background="#C10E0E0E"
         android:id="@+id/constraint_layout">
 
-        <ImageView
-            android:id="@+id/cover"
+        <RelativeLayout
+            android:id="@id/cover"
             android:layout_width="0dp"
             android:layout_height="96dp"
-            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_1" />
+            android:background="@drawable/messageback"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/cover1"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:scaleType="centerInside"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_30_dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="50dp"
+                android:fontFamily="@font/bariol_bold"
+                android:text="Chats"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
 
         <com.github.sshadkany.shapes.CircleView
             android:layout_width="150dp"
@@ -39,10 +64,12 @@
             app:layout_constraintTop_toBottomOf="@+id/cover"
             app:layout_constraintVertical_bias="0.45">
             <ImageView
+                android:id="@+id/imgProfile"
                 android:layout_width="150dp"
+                android:padding="22dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/photo" />
+                 />
 
 
 
@@ -56,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:padding="4dp"
             android:text="00"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +96,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:textColor="@color/colorAccent"
+            android:padding="3dp"
+            android:textColor="#010D27"
+            android:background="@drawable/bg_logout_card_normal"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="Friends"
@@ -83,8 +113,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:padding="4dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
+
             android:text="00"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,10 +128,12 @@
             android:id="@+id/tvReq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="8dp"
+            android:padding="3dp"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:textColor="@color/colorAccent"
+            android:textColor="#010D27"
+            android:background="@drawable/bg_logout_card_normal"
             android:layout_marginTop="8dp"
             android:text="Requested"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,15 +141,14 @@
             app:layout_constraintStart_toEndOf="@+id/photo"
             app:layout_constraintTop_toBottomOf="@+id/tvNoReq" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/recView"
 
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="-40dp"
-            android:paddingEnd="2dp"
+            android:layout_marginTop="25dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -123,14 +156,26 @@
             app:layout_constraintTop_toBottomOf="@+id/photo"
             app:layout_constraintVertical_bias="0.072" >
 
-
-            <androidx.recyclerview.widget.RecyclerView
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/recConnection"/>
+                android:layout_marginBottom="250dp"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:id="@+id/recConnection"/>
 
 
-        </LinearLayout>
+            </ScrollView>
+
+
+
+
+
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

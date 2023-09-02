@@ -136,29 +136,51 @@ public class test extends AppCompatActivity {
                                                         DocumentSnapshot document = tasks.getResult();
                                                         if (document.exists()) {
                                                             String detailsGiven = document.getString("detailsGiven");
+                                                            FirebaseFirestore fMaintainance = FirebaseFirestore.getInstance();
+                                                            fMaintainance.collection("Friends").document("underMaintainance").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
+                                                                    DocumentSnapshot maintainance = task2.getResult();
+                                                                    if(maintainance.exists()){
+                                                                        String num = maintainance.getString("maintainance");
+                                                                        if(num.equals("1")){
 
-                                                            if(detailsGiven.equals("1")){
-                                                                Intent intent
-                                                                        = new Intent(test.this,
-                                                                        MainActivity.class);
-                                                                Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
-                                                                startActivity(intent);
+                                                                            Intent in = new Intent(test.this, UnderMaintainance.class);
+                                                                            startActivity(in);
+
+
+
+
+                                                                        }else {
+                                                                            if(detailsGiven.equals("1")){
+                                                                                Intent intent
+                                                                                        = new Intent(test.this,
+                                                                                        MainActivity.class);
+                                                                                Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
+                                                                                startActivity(intent);
 //                                                                finish();
 
 
 
-                                                            }else{
-                                                                if(mAuth.getCurrentUser().isEmailVerified()){
-                                                                    Intent intent
-                                                                            = new Intent(test.this,DetailsActivity1.class);
-                                                                    startActivity(intent);
+                                                                            }else{
+                                                                                if(mAuth.getCurrentUser().isEmailVerified()){
+                                                                                    Intent intent
+                                                                                            = new Intent(test.this,TermsAndCondition.class);
+                                                                                    startActivity(intent);
 //                                                                    finish();
 
+                                                                                }
+
+                                                                            }
+
+                                                                        }
+                                                                    }
                                                                 }
+                                                            });
 
 
 
-                                                            }
+
 
 
 
@@ -215,26 +237,45 @@ public class test extends AppCompatActivity {
                             DocumentSnapshot document = tasks.getResult();
                             if (document.exists()) {
                                 String detailsGiven = document.getString("detailsGiven");
-                                if(detailsGiven.equals("1")){
-                                    Intent intent
-                                            = new Intent(test.this,
-                                            MainActivity.class);
-                                    Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
-                                    startActivity(intent);
-                                    finish();
+                                FirebaseFirestore fMaintainance = FirebaseFirestore.getInstance();
+                                fMaintainance.collection("Friends").document("underMaintainance").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
+                                        DocumentSnapshot maintainance = task2.getResult();
+                                        if(maintainance.exists()){
+                                            String num = maintainance.getString("maintainance");
 
-                                }else{
-                                    if(mAuth.getCurrentUser().isEmailVerified()){
-                                        Intent intent
-                                                = new Intent(test.this,DetailsActivity1.class);
-                                        startActivity(intent);
-                                        finish();
+                                            if(num.equals("1")){
+                                                Intent in = new Intent(test.this, UnderMaintainance.class);
+                                                startActivity(in);
 
+                                            }else {
+                                                if(detailsGiven.equals("1")){
+                                                    Intent intent
+                                                            = new Intent(test.this,
+                                                            MainActivity.class);
+                                                    Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
+                                                    startActivity(intent);
+
+                                                }else{
+                                                    if(mAuth.getCurrentUser().isEmailVerified()){
+                                                        Intent intent
+                                                                = new Intent(test.this,TermsAndCondition.class);
+                                                        startActivity(intent);
+//                                                                    finish();
+
+                                                    }
+
+                                                }
+
+                                            }
+                                        }
                                     }
+                                });
 
 
 
-                                }
+
 
 
 

@@ -43,7 +43,6 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<User,Notificati
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
-    DatabaseReference chatRef = database.getReference("Chatlist");
 
 
     public NotificationAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
@@ -52,11 +51,32 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<User,Notificati
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
-        Toast.makeText(holder.profileImage.getContext(), model.getUsername(),Toast.LENGTH_SHORT).show();
+
 
         holder.name.setText(model.getUsername());
         holder.branch.setText(model.getBranch());
-        Glide.with(holder.profileImage.getContext()).load(model.getImageURL()).into(holder.profileImage);
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.accept.setVisibility(View.INVISIBLE);
+                holder.reject.setVisibility(View.VISIBLE);
+                Map<String,Object> map = new HashMap<>();
+                map.put("status","2");
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+                myRef.child(model.getId()).child(fAuth.getUid().toString()).updateChildren(map);
+
+            }
+        });
+        holder.reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.reject.setVisibility(View.INVISIBLE);
+                holder.accept.setVisibility(View.VISIBLE);
+                Map<String,Object> map = new HashMap<>();
+                map.put("status","0");
+                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+            }
+        });
 
     }
 
@@ -68,14 +88,15 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<User,Notificati
     }
 
     public class userAdapterHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
+        ImageView accept,reject;
         TextView name,branch;
 
 
         public userAdapterHolder(@NonNull View itemView) {
             super(itemView);
 
-            profileImage = itemView.findViewById(R.id.profile_image);
+            accept = itemView.findViewById(R.id.accept);
+            reject = itemView.findViewById(R.id.reject);
             name = itemView.findViewById(R.id.name);
             branch = itemView.findViewById(R.id.branch);
 

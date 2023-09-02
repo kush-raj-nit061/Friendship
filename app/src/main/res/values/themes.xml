@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.Friendship" parent="Base.Theme.Friendship" />
+    <style name="Theme.Friendship.Fullscreen" parent="Theme.Friendship">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Friendship.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+
 </resources>

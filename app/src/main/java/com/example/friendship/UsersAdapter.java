@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,6 +43,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     Typeface MR,MRR;
     String theLastMessage;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef = database.getReference("students");
+
     public UsersAdapter(Context mContext, OnItemClick onItemClick, List<User> mUsers, boolean ischat){
         this.onItemClick = onItemClick;
         this.mUsers = mUsers;
@@ -54,9 +58,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         }
 
     }
-
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -77,12 +78,21 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         } else {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("students").child(user.getId());
 
-        if (ischat){
-            lastMessage(user.getId(), holder.last_msg);
-        } else {
-            holder.last_msg.setVisibility(View.GONE);
-        }
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    holder.last_msg.setText((String) snapshot.child("branch").getValue());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         if (ischat){
             if (user.getStatus().equals("online")){
@@ -100,8 +110,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MessageActivity.class);
-                intent.putExtra("userid", user.getId());
+
+                Intent intent = new Intent(mContext, ChatActivity.class);
+                intent.putExtra("visit_user_id",user.getId());
+                intent.putExtra("visit_user_name",user.getUsername());
+                intent.putExtra("visit_image", user.getImageURL());
                 mContext.startActivity(intent);
             }
         });
@@ -110,7 +123,30 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         holder.profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClick.onItemCLick(user.getId(),view);
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                dbRef.child(user.getId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                                new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear()
+                                        ,model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday()
+                                        ,model.getQualitylike(),model.getQualitydislike(),model.getFoods()
+                                        ,model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
             }
         });
     }
@@ -143,38 +179,38 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     private void lastMessage(final String userid, final TextView last_msg){
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if (firebaseUser != null && chat != null) {
-                        if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ||
-                                chat.getReceiver().equals(userid) && chat.getSender().equals(firebaseUser.getUid())) {
-                            theLastMessage = chat.getMessage();
-                        }
-                    }
-                }
 
-                switch (theLastMessage){
-                    case  "default":
-                        last_msg.setText("No Message");
-                        break;
-
-                    default:
-                        last_msg.setText(theLastMessage);
-                        break;
-                }
-
-                theLastMessage = "default";
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    Chat chat = snapshot.getValue(Chat.class);
+//                    if (firebaseUser != null && chat != null) {
+//                        if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ||
+//                                chat.getReceiver().equals(userid) && chat.getSender().equals(firebaseUser.getUid())) {
+//                            theLastMessage = chat.getMessage();
+//                        }
+//                    }
+//                }
+//
+//                switch (theLastMessage){
+//                    case  "default":
+//                        last_msg.setText("No Message");
+//                        break;
+//
+//                    default:
+//                        last_msg.setText(theLastMessage);
+//                        break;
+//                }
+//
+//                theLastMessage = "default";
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }

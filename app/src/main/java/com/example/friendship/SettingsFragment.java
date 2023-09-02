@@ -1,5 +1,6 @@
 package com.example.friendship;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.friendship.FriendRequestAdapter;
+import com.example.friendship.Model.Celebration;
+import com.example.friendship.Model.Events;
 import com.example.friendship.Model.User;
 import com.example.friendship.OnItemClick;
 import com.example.friendship.R;
@@ -40,16 +44,31 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SettingsFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewCeleb;
+    private RecyclerView recyclerViewEvents;
 
     private NotificationAdapter userAdapter;
+    private EventsAdapter eventAdapter;
+    private CelebrationAdapter celebAdapter;
     static OnItemClick onItemClick;
+    LinearLayoutManager manager1;
+    LinearLayoutManager manager2;
+    String key = "";
+    LinearLayoutManager manager3;
+    DatabaseReference myRefCeleb;
+    String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+
 
     public static SettingsFragment newInstance(OnItemClick click) {
         onItemClick = click;
@@ -60,6 +79,7 @@ public class SettingsFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,15 +87,193 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_settings_fragment, container, false);
 
 
+
         recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerViewCeleb = view.findViewById(R.id.recycler_view_celeb);
+        recyclerViewEvents = view.findViewById(R.id.recEvents);
+        manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager3 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        recyclerView.setLayoutManager(manager1);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        recyclerViewCeleb.setHasFixedSize(true);
+        recyclerViewCeleb.setLayoutManager(manager2);
+        DividerItemDecoration dividerItemDecorationCeleb = new DividerItemDecoration(recyclerViewCeleb.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerViewCeleb.addItemDecoration(dividerItemDecorationCeleb);
+
+
+        recyclerViewEvents.setHasFixedSize(true);
+        recyclerViewEvents.setLayoutManager(manager3);
+        DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerViewEvents.addItemDecoration(dividerItemDecorationCeleb);
+
+
+
+        try {
+            myRefCeleb = FirebaseDatabase.getInstance().getReference("Events");
+            myRefCeleb.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        long l = snapshot.getChildrenCount();
+                        if(l>0){
+                            recyclerViewEvents.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){}
+
+
+        readUsersEvent();
+
+        readUsersCeleb();
+
+
+
+
         readUsers();
 
         return view;
+    }
+
+    private void readUsersEvent(){
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String userId = fAuth.getCurrentUser().getUid();
+        DatabaseReference reference = database.getReference().child("Events");
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                        String s = datePatternFormat.format(new Date().getTime());
+                        int i = Integer.parseInt(s.substring(0,2));
+
+                        if(snapshot1.child("date").getValue().equals(String.valueOf(i-1))){
+                               key = snapshot1.getKey();
+                            if(!key.equals("")){
+                                reference.child(key).removeValue();
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+                Query query = reference.orderByChild("date").limitToLast(count);
+
+                FirebaseRecyclerOptions<Events> options =
+                        new FirebaseRecyclerOptions.Builder<Events>()
+                                .setQuery(query, Events.class)
+                                .build();
+
+                eventAdapter=new EventsAdapter(options);
+                recyclerViewEvents.setAdapter(eventAdapter);
+                eventAdapter.startListening();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
+
+
+    private void readUsersCeleb() {
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Celebration");
+        String userId = fAuth.getCurrentUser().getUid();
+        DatabaseReference reference = database.getReference().child("Celebration").child(fAuth.getUid());
+        DatabaseReference dob = database.getReference().child("students").child(fAuth.getUid());
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+        recyclerViewCeleb.setVisibility(View.GONE);
+
+        dob.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child("birthday").exists()){
+                    String s = datePatternFormat.format(new Date().getTime());
+                    String birthday = (String) snapshot.child("birthday").getValue();
+                    Toast.makeText(getContext(),birthday,Toast.LENGTH_SHORT).show();
+                    if(birthday.substring(0,2).equals(s.substring(0,2))){
+                        for(int i = 0;i< month.length;i++) {
+                            if (birthday.substring(3, 6).equals(month[i])){
+
+                                recyclerViewCeleb.setVisibility(View.VISIBLE);
+                                FirebaseRecyclerOptions<Celebration> options =
+                                        new FirebaseRecyclerOptions.Builder<Celebration>()
+                                                .setQuery(reference, Celebration.class)
+                                                .build();
+                                celebAdapter=new CelebrationAdapter(options);
+                                recyclerViewCeleb.setAdapter(celebAdapter);
+                                celebAdapter.startListening();
+
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
     }
 
 
@@ -91,15 +289,31 @@ public class SettingsFragment extends Fragment {
 
         Query query = reference.orderByChild("status").equalTo("1");
 
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(query, User.class)
-                        .build();
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long l = snapshot.getChildrenCount();
+                if(!(l == 0)){
+                    recyclerView.setVisibility(View.VISIBLE);
+                    FirebaseRecyclerOptions<User> options =
+                            new FirebaseRecyclerOptions.Builder<User>()
+                                    .setQuery(query, User.class)
+                                    .build();
 
 
-        userAdapter=new NotificationAdapter(options);
-        recyclerView.setAdapter(userAdapter);
-        userAdapter.startListening();
+                    userAdapter=new NotificationAdapter(options);
+                    recyclerView.setAdapter(userAdapter);
+                    userAdapter.startListening();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
     }
 }

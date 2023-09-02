@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/message_profile_image"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/time_tv_receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:textSize="12sp"
+        android:text=""
+        android:layout_marginLeft="@dimen/margin_10_dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/receiver_message_text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/message_profile_image"
+        android:id="@+id/receiver_message_text"
+        android:layout_marginTop="6dp"
+        android:lineSpacingExtra="2dp"
+        android:maxWidth="280dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="10dp"
+        android:text="Hi, How are you?"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:background="@drawable/background_left"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_seen1"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/sender_message_text"
+        android:layout_alignParentStart="true"
+         />
+
+
+    <ImageView
+        android:id="@+id/message_sender_image_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/message_receiver_image_view"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_image"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/time_tv_sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0099"
+        android:textSize="12sp"
+        android:text=""
+        android:layout_marginRight="@dimen/margin_10_dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/sender_message_text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_right"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:maxWidth="280dp"
+        android:id="@+id/sender_message_text"
+        android:lineSpacingExtra="2dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="Hi, How are you?"
+        android:textColor="#A656D1"
+        android:textSize="14sp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_seen"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/sender_message_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

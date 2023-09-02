@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import pl.droidsonroids.gif.GifImageView;
 
 public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.userAdapterHolder> {
@@ -49,13 +50,17 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         holder.year.setText(model.getYear());
         holder.shortBio.setText(model.getShortBio());
         holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+        holder.tvCollege.setText(model.getCollege());
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.gifLove.setVisibility(View.GONE);
         dbRef.child("Likes").child(model.getUserId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String,Object> map  = new HashMap<>();
                 holder.tvPopular.setText(String.valueOf(snapshot.getChildrenCount()));
+                map.put("likes",String.valueOf(snapshot.getChildrenCount()));
+                dbRef.child("students").child(model.getUserId()).updateChildren(map);
             }
 
             @Override
@@ -108,7 +113,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
     }
 
     public class userAdapterHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
+        CircleImageView profileImage;
         TextView shortBio;
         TextView name;
         TextView branch;
@@ -117,6 +122,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         LottieAnimationView gifImageView,like;
         GifImageView gifLove;
         TextView tvPopular;
+        TextView tvCollege;
 
 
 
@@ -132,6 +138,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             gifLove = itemView.findViewById(R.id.gifLove);
             like = itemView.findViewById(R.id.like);
             tvPopular = itemView.findViewById(R.id.tvPopular);
+            tvCollege = itemView.findViewById(R.id.college);
         }
     }
 }

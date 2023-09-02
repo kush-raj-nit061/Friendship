@@ -24,8 +24,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -41,7 +43,6 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
-    DatabaseReference chatRef = database.getReference("Chatlist");
 
 
     public FriendRequestAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
@@ -50,7 +51,7 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
-        Toast.makeText(holder.profileImage.getContext(), model.getUsername(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(holder.profileImage.getContext(), "Requests Of: "+model.getUsername(),Toast.LENGTH_SHORT).show();
 
         holder.name.setText(model.getUsername());
         holder.branch.setText(model.getBranch());
@@ -61,14 +62,10 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
                 holder.accept.setVisibility(View.INVISIBLE);
                 holder.reject.setVisibility(View.VISIBLE);
                 Map<String,Object> map = new HashMap<>();
-                Map<String,Object> ch = new HashMap<>();
-                Map<String,Object> cha = new HashMap<>();
-                ch.put("id",model.getId());
-                cha.put("id",fAuth.getUid());
                 map.put("status","2");
-                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
-                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
+                Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
                 myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+                myRef.child(model.getId()).child(fAuth.getUid().toString()).updateChildren(map);
             }
         });
         holder.reject.setOnClickListener(new View.OnClickListener() {

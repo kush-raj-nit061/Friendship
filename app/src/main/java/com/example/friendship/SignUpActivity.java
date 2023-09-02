@@ -51,7 +51,9 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseAuth fAuth;
     DatabaseReference myRef;
+    DatabaseReference unregistered= FirebaseDatabase.getInstance().getReference("unregistered");
     DatabaseReference mRef = database.getReference("Connection");
+
 
 
 
@@ -140,13 +142,13 @@ public class SignUpActivity extends AppCompatActivity {
         confirmPass = inputConfirmPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(SignUpActivity.this, "Enter first name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "Enter Your Name", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(branchs)) {
             Toast.makeText(SignUpActivity.this, "Enter Branch Details", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(SignUpActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
-        } else if (!email.contains("nitp.ac.in")) {
-            Toast.makeText(SignUpActivity.this, "Enter NIT Patna email", Toast.LENGTH_SHORT).show();
+        } else if ((!email.contains("nitp.ac.in"))  || (!email.contains("gmail.com"))) {
+            Toast.makeText(SignUpActivity.this, "Enter Your College email", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(confirmPass)) {
@@ -165,13 +167,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-
-
-
                                 userID = mAuth.getCurrentUser().getUid();
 
-
-                                myRef = database.getReference("students");
+                                myRef = database.getReference("unregistered");
 
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
@@ -211,6 +209,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 users.put("qualitydislike","");
                                 users.put("birthday","");
                                 users.put("connectionId","");
+                                users.put("likes","0");
+                                if(email.contains("nitp.ac.in")){users.put("college","NIT PATNA"); }
+                                else if (email.contains("nitrkl.ac.in")){users.put("college","NIT ROURKELA");}else{
+                                    users.put("college","test");
+                                }
+
 
 
                                 myRef.child(String.valueOf(userID)).setValue(users).addOnSuccessListener(new OnSuccessListener<Void>() {

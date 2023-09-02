@@ -37,7 +37,8 @@ import pl.droidsonroids.gif.GifImageView;
 public class DetailsActivity2 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     ImageView tvCal;
-    EditText etCal,etBirthPlace;
+    EditText etBirthPlace;
+    TextView etCal;
     LottieAnimationView frog1,frog2,frog3;
     ImageView tvNext,tvPrevious;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
@@ -45,7 +46,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     StorageReference storageReference = storage.getReference();
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
 
 
 

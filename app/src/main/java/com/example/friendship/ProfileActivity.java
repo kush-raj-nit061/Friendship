@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,8 +55,17 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
+
+    ImageView ivEditInfo,ivEditShortBio;
+    Button saveChanges;
+
+
     String userID;
     String purl;
+    LinearLayout llnametv,llnameet,lllocationtv,lllocationet,llyeartv,llyearet,llshortbiotv,llshortbioet;
+
+    TextView tvShortBio,tvLocation,tvName,tvYear,userid;
+    EditText etShortBio,etLocation,etName,etYear;
 
 
 
@@ -64,11 +74,121 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseReference myRef = database.getReference("students");
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        userid = findViewById(R.id.userId);
+        userid.setText(fAuth.getUid().substring(0,8));
+
+        tvShortBio= findViewById(R.id.tvShortBio);
+        tvLocation = findViewById(R.id.tvLocation);
+        tvName = findViewById(R.id.tvName);
+        tvYear = findViewById(R.id.tvYear);
+
+        etYear = findViewById(R.id.etYear);
+        etShortBio = findViewById(R.id.etShortBio);
+        etLocation = findViewById(R.id.etLocation);
+        etName = findViewById(R.id.etName);
+
         imgButton = findViewById(R.id.ivAvatar);
+        lllocationtv = findViewById(R.id.lllocationtv);
+        llnametv = findViewById(R.id.llnametv);
+        llyeartv = findViewById(R.id.llyeartv);
+
+
+        llshortbiotv = findViewById(R.id.llshortbiotv);
+        lllocationet = findViewById(R.id.lllocationet);
+        llnameet = findViewById(R.id.llnameet);
+        llyearet = findViewById(R.id.llyearet);
+        llshortbioet = findViewById(R.id.llshortbioet);
+
+
+
+
+        ivEditInfo = findViewById(R.id.ivEditInfo);
+        ivEditShortBio = findViewById(R.id.ivEditShortDet);
+        saveChanges = findViewById(R.id.btnSaveChanges);
+
+
+
+
+
+        myRef.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+                    tvName.setText(model.getName());
+                    tvLocation.setText(model.getLocation());
+                    tvShortBio.setText(model.getShortBio());
+                    tvYear.setText(model.getYear());
+
+                    etName.setText(model.getName());
+                    etLocation.setText(model.getLocation());
+                    etShortBio.setText(model.getShortBio());
+                    etYear.setText(model.getYear());
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        llshortbioet.setVisibility(View.GONE);
+        llnameet.setVisibility(View.GONE);
+        lllocationet.setVisibility(View.GONE);
+        llyearet.setVisibility(View.GONE);
+
+
+        ivEditShortBio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llshortbiotv.setVisibility(View.GONE);
+                llshortbioet.setVisibility(View.VISIBLE);
+
+            }
+        });
+        saveChanges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String,Object> map = new HashMap<>();
+                map.put("name",etName.getText().toString());
+                map.put("year",etYear.getText().toString());
+                map.put("location",etLocation.getText().toString());
+                map.put("shortBio",etShortBio.getText().toString());
+
+                myRef.child(fAuth.getUid()).updateChildren(map);
+                llshortbioet.setVisibility(View.GONE);
+                llnameet.setVisibility(View.GONE);
+                lllocationet.setVisibility(View.GONE);
+                llyearet.setVisibility(View.GONE);
+                llshortbiotv.setVisibility(View.VISIBLE);
+                llnametv.setVisibility(View.VISIBLE);
+                lllocationtv.setVisibility(View.VISIBLE);
+                llyeartv.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(),"Changes Saved",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        ivEditInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llnametv.setVisibility(View.GONE);
+                lllocationtv.setVisibility(View.GONE);
+                llyeartv.setVisibility(View.GONE);
+
+                llnameet.setVisibility(View.VISIBLE);
+                lllocationet.setVisibility(View.VISIBLE);
+                llyearet.setVisibility(View.VISIBLE);
+            }
+        });
 
         ivProfile = findViewById(R.id.ivEditProfile);
         userID = fAuth.getCurrentUser().getUid();

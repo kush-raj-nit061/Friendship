@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_item_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="-35dp"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    tools:context=".MainActivity">
 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.zyp.cardview.YcCardView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:ycCardPreventCornerOverlap="true"
+        app:ycCardBackgroundColor="@color/white"
+        android:outlineAmbientShadowColor="@color/colorAccent"
+        app:ycCardElevation="5dp"
+        app:ycCardCornerRadius="25dp"
+        app:ycStartShadowColor="@color/design_default_color_secondary"
 
-    <com.rolud.solidglowanimation.SolidGlowAnimation
-        android:id="@+id/animation_view_complex_view"
-        android:layout_marginBottom="-30dp"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layers="5"
-        app:color1="#FF5903"
-        app:color2="#FF6903"
-        app:color3="#FF7903"
-        app:color4="#ff9903"
-        app:color5="#Fd8903"
-        app:duration="4000"
-        app:scaleMax="1.3"
-        android:radius="5dp"
         >
+
         <RelativeLayout
             android:layout_width="330dp"
             android:layout_height="120dp"
@@ -71,15 +71,28 @@
                     />
 
                 <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/reject"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:paddingEnd="4dp"
+                    android:src="@drawable/cross"
+                    android:visibility="visible"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="15dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <ImageView
+                    android:layout_toLeftOf="@+id/reject"
+                    android:id="@+id/accept"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:paddingEnd="4dp"
+                    android:src="@drawable/verify"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    />
             </RelativeLayout>
 
             <TextView
@@ -96,8 +109,7 @@
 
 
 
-    </com.rolud.solidglowanimation.SolidGlowAnimation>
 
 
-
-</RelativeLayout>
+    </com.zyp.cardview.YcCardView>
+</LinearLayout>

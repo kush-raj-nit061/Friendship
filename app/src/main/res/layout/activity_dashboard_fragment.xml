@@ -10,14 +10,14 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C10E0E0E"
+        android:background="#00FFFFFF"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linear1"
             android:layout_marginTop="-10dp"
-            android:background="@color/colorAccent"
+            android:background="#FC896A"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -139,7 +139,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="110dp"
+                                android:layout_marginBottom="100dp"
                                 android:id="@+id/recPeople"/>
 
 

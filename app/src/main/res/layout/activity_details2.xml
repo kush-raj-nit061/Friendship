@@ -144,7 +144,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/normalPadding"
                 android:layout_marginRight="@dimen/horizontal_dashboard">
-                <EditText
+                <TextView
                     android:id="@+id/etCal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -226,7 +226,7 @@
 
                 android:textColor="?attr/colorPrimaryDark"
 
-                android:textColorHint="@color/color_hint"
+                android:textColorHint="#8AA29B9B"
                 android:textSize="22sp" />
 
 

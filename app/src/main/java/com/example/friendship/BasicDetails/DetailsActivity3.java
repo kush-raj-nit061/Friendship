@@ -41,7 +41,7 @@ public class DetailsActivity3 extends AppCompatActivity {
     Spinner spinner ;
     String foodSelected;
     LottieAnimationView frog1,frog2,frog3,frog4;
-    TextView tvSkip;
+    ImageView tvSkip;
     ImageView tvNext,tvPrevious;
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
     Chip chip1p,chip2p,chip3p,chip4p,chip5p,chip6p,chip7p,chip8p,chip9p,chip10p,chip11p;
@@ -51,7 +51,7 @@ public class DetailsActivity3 extends AppCompatActivity {
     StorageReference storageReference = storage.getReference();
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
 
 
 

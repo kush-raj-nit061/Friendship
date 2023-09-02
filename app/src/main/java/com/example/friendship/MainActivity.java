@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,17 +17,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.wwdablu.soumya.lottiebottomnav.FontBuilder;
@@ -38,6 +48,7 @@ import com.wwdablu.soumya.lottiebottomnav.MenuItemBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
@@ -45,18 +56,118 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     boolean doubleBackToExitPressedOnce = false;
     ArrayList<MenuItem> list;
     DatabaseReference reference;
+    DatabaseReference reference2;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FlowingDrawer mDrawer;
     ImageView iv_menu;
+    ImageView ivDrawer;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp;
+    TextView branch,year,name;
+
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        terms = findViewById(R.id.terms);
 
         bottomNav   = findViewById(R.id.bottom_nav);
         iv_menu = findViewById(R.id.iv_Menu);
+        cvProfile = findViewById(R.id.cvProfile);
+        ivDrawer = findViewById(R.id.ivDrawer);
+        branch = findViewById(R.id.branch);
+        year = findViewById(R.id.year);
+        name = findViewById(R.id.drawerName);
+        cvPrivacy = findViewById(R.id.cvPrivacy);
+        cvAboutUs = findViewById(R.id.aboutus);
+        cvHelp = findViewById(R.id.help);
+
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("News")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Done";
+                        if (!task.isSuccessful()) {
+                            msg = "Failed";
+                        }
+
+                    }
+                });
+
+
+
+
+        reference2 = FirebaseDatabase.getInstance().getReference("students");
+
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("connectionId",FirebaseMessaging.getInstance().getToken().toString());
+
+        reference2.child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TermsAndConditionsActivity.class);
+                startActivity(i);
+            }
+        });
+        cvPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, PrivacyAndSecurity.class);
+                startActivity(i);
+            }
+        });
+        cvAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AboutUs.class);
+                startActivity(i);
+            }
+        });
+        cvHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, HelpAndSupport.class);
+                startActivity(i);
+            }
+        });
+
+        reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
+
+                year.setText(String.valueOf(snapshot.child("year").getValue()));
+                branch.setText(String.valueOf(snapshot.child("branch").getValue()));
+                name.setText(String.valueOf(snapshot.child("name").getValue()));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        cvProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
         iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
             @Override
             public void onDrawerStateChange(int oldState, int newState) {

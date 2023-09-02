@@ -109,7 +109,7 @@
                     android:layout_height="225dp"
                     android:scaleType="centerCrop"
                     android:padding="20dp"
-                    app:srcCompat="@drawable/ic_study" />
+                     />
 
 
 
@@ -131,6 +131,30 @@
 
 
     </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:id="@+id/userId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:text="UserId"
+            android:textColor="@color/qiscus_primary_text" />
+
+
+    </LinearLayout>
+
 
 
 
@@ -157,7 +181,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="INFORMATION" />
 
-                <LinearLayout
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/qiscus_white"
@@ -167,86 +192,227 @@
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="20dp">
-
-                    <ImageView
-                        android:id="@+id/imageView8"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/llnametv"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/baseline_person_24" />
+                        android:orientation="horizontal"
+                        >
 
-                    <TextView
-                        android:id="@+id/tvName"
-                        android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_profile" />
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="name"
+                            android:textColor="@color/qiscus_primary_text" />
+
+
+                        <ImageView
+                            android:id="@+id/ivEditInfo"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/baseline_edit_24" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/llnameet"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="name"
-                        android:textColor="@color/qiscus_primary_text" />
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_profile" />
+
+                        <EditText
+                            android:id="@+id/etName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="15sp"
+                            android:background="@drawable/edittextback"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:text="name"
+                            android:textColor="@color/qiscus_primary_text" />
 
 
-                    <ImageView
-                        android:id="@+id/ivEditName"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:clickable="true"
-                        app:srcCompat="@drawable/baseline_edit_24" />
-                </LinearLayout>
 
-                <LinearLayout
+                    </LinearLayout>
+
+
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/qiscus_white"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="20dp">
-
-                    <ImageView
-                        android:id="@+id/imageView82"
-                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/lllocationtv"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_dept" />
+                        android:background="@color/qiscus_white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="20dp">
 
-                    <TextView
-                        android:id="@+id/tvUniqueID"
-                        android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/imageView82"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_dept" />
+
+                        <TextView
+                            android:id="@+id/tvLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="Place"
+                            android:textColor="@color/qiscus_primary_text" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lllocationet"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="Place"
-                        android:textColor="@color/qiscus_primary_text" />
+                        android:background="@color/qiscus_white"
+                        android:gravity="center"
 
-                </LinearLayout>
-                <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="20dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_dept" />
+
+                        <EditText
+                            android:id="@+id/etLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="15sp"
+                            android:background="@drawable/edittextback"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:text="Location"
+                            android:textColor="@color/qiscus_primary_text" /> />
+
+                    </LinearLayout>
+
+
+
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/qiscus_white"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/imageView83"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/llyeartv"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_study" />
+                        android:background="@color/qiscus_white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="20dp">
 
-                    <TextView
-                        android:id="@+id/year"
-                        android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/imageView83"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_study" />
+
+                        <TextView
+                            android:id="@+id/tvYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="year"
+                            android:textColor="@color/qiscus_primary_text" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/llyearet"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="UserId"
-                        android:textColor="@color/qiscus_primary_text" />
+                        android:background="@color/qiscus_white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="20dp">
 
-                </LinearLayout>
+                        <ImageView
+
+                            android:layout_width="30dp"
+                            android:layout_gravity="center"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_study" />
+
+                        <EditText
+                            android:id="@+id/etYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="15sp"
+                            android:background="@drawable/edittextback"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:text="Year"
+                            android:textColor="@color/qiscus_primary_text" />
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </RelativeLayout>
+
+
+
+
+
+
+
 
 
             </LinearLayout>
@@ -266,96 +432,99 @@
                     android:layout_marginBottom="10dp"
                     android:text="SHORT DETAILS" />
 
-                <LinearLayout
-                    android:id="@+id/llLogout"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/qiscus_white"
                     android:clickable="true"
                     android:orientation="horizontal"
-                    android:padding="20dp">
+                    android:padding="20dp"
+                    >
 
-                    <ImageView
-                        android:id="@+id/img_logout"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/llshortbiotv"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_detail" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_logout"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/img_logout"
+                            android:layout_width="30dp"
+                            android:layout_gravity="center"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_detail" />
+
+                        <TextView
+                            android:id="@+id/tvShortBio"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="Short Details"
+                            android:textColor="@color/qiscus_primary_text" />
+                        <ImageView
+                            android:id="@+id/ivEditShortDet"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            app:srcCompat="@drawable/baseline_edit_24" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/llshortbioet"
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="Short Details"
-                        android:textColor="@color/qiscus_primary_text" />
-                    <ImageView
-                        android:id="@+id/ivEditShortDet"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:clickable="true"
-                        app:srcCompat="@drawable/baseline_edit_24" />
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </LinearLayout>
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_detail" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/etShortBio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:background="@drawable/edittextback"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:text="Short Details"
+                            android:textColor="@color/qiscus_primary_text" />
 
 
-            </ScrollView>
+                    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llBottoml"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/textView12"
+                </RelativeLayout>
+
+                <soup.neumorphism.NeumorphButton
+                    android:id="@+id/btnSaveChanges"
+                    style="@style/Widget.Neumorph.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="SHORT DETAILS" />
+                    android:layout_below="@+id/btn3a"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="8dp"
+                    android:text="Save Changes"
+                    android:textColor="#8246D6"
+                    android:paddingTop="10dp"
+                    android:textSize="20dp"
 
-                <LinearLayout
-                    android:id="@+id/longDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/qiscus_white"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="20dp">
 
-                    <ImageView
-                        android:id="@+id/img_logoutl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/ic_detail" />
+                    />
 
-                    <TextView
-                        android:id="@+id/longs"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="Long Details"
-                        android:textColor="@color/qiscus_primary_text" />
 
-                    <ImageView
-                        android:id="@+id/ivEditLongDet"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:clickable="true"
-                        app:srcCompat="@drawable/baseline_edit_24" />
-
-                </LinearLayout>
             </LinearLayout>
+
+
 
         </LinearLayout>
 
