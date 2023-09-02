@@ -45,7 +45,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     StorageReference storageReference = storage.getReference();
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
 
 
 

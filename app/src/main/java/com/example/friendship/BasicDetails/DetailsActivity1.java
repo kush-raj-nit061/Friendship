@@ -45,7 +45,7 @@ public class DetailsActivity1 extends AppCompatActivity {
     StorageReference storageReference = storage.getReference();
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
     DatabaseReference reference;
 
     @SuppressLint("MissingInflatedId")

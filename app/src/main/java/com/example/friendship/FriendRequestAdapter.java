@@ -43,7 +43,6 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
-    DatabaseReference chatRef = database.getReference("Chatlist");
 
 
     public FriendRequestAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
@@ -63,24 +62,10 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
                 holder.accept.setVisibility(View.INVISIBLE);
                 holder.reject.setVisibility(View.VISIBLE);
                 Map<String,Object> map = new HashMap<>();
-                Map<String,Object> ch = new HashMap<>();
-                Map<String,Object> cha = new HashMap<>();
-                ch.put("id",model.getId());
-                cha.put("id",fAuth.getUid());
                 map.put("status","2");
                 Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
-                if(fAuth.getUid().equals(model.getId())){
-                    chatRef.child(model.getId()).child(fAuth.getUid()).setValue(cha);
-                }else{
-                    chatRef.child(model.getId()).child(fAuth.getUid()).setValue(cha);
-                    chatRef.child(fAuth.getUid()).child(model.getId()).setValue(ch);
-                }
-
-
-
-//                chatRef.child(fAuth.getUid()).child(model.getId()).updateChildren(ch);
-//                chatRef.child(model.getId()).child(fAuth.getUid()).updateChildren(cha);
                 myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+                myRef.child(model.getId()).child(fAuth.getUid().toString()).updateChildren(map);
             }
         });
         holder.reject.setOnClickListener(new View.OnClickListener() {

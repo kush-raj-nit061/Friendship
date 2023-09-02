@@ -19,13 +19,17 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.BasicDetailsActivity;
 import com.example.friendship.MainActivity;
 import com.example.friendship.R;
+import com.example.friendship.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -52,7 +56,8 @@ public class DetailsActivity5 extends AppCompatActivity {
     DatabaseReference reference;
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
+    DatabaseReference registered= database.getReference("students");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +102,43 @@ public class DetailsActivity5 extends AppCompatActivity {
                     }
                 });
 
+                myRef.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+                        registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(),"Something Wrong",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                registered.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            myRef.child(fAuth.getCurrentUser().getUid()).removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
                 Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
                 startActivity(i);

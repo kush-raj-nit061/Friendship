@@ -197,7 +197,7 @@ public class UserDescrFragment extends Fragment {
                             try {
                                 if(snapshot.getValue().equals("0")){
                                     button.setText("Align");
-                                    card1.setVisibility(View.INVISIBLE);
+//                                    card1.setVisibility(View.INVISIBLE);
                                     privatebutton.setVisibility(View.INVISIBLE);
 
                                 } else if (snapshot.getValue().equals("1")) {
@@ -270,7 +270,6 @@ public class UserDescrFragment extends Fragment {
                         if(snapshot.child("status").exists()){
                             if(snapshot.child("status").getValue().equals("0")){
                                 Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
-//                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
                                 card1.setVisibility(View.VISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 button.setText("Requested");
@@ -280,12 +279,10 @@ public class UserDescrFragment extends Fragment {
                             } else if (snapshot.child("status").getValue().equals("1")) {
                                 button.setText("Align");
                                 Toast.makeText(getContext(),"Request retrieved:{",Toast.LENGTH_SHORT).show();
-                                card1.setVisibility(View.INVISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 map.put("status","0");
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
                             }else{
-                                card1.setVisibility(View.INVISIBLE);
                                 Toast.makeText(getContext(),"Unaligned",Toast.LENGTH_SHORT).show();
                                 privatebutton.setVisibility(View.INVISIBLE);
                                 button.setText("Align");

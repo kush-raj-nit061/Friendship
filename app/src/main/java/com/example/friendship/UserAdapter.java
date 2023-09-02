@@ -50,6 +50,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         holder.year.setText(model.getYear());
         holder.shortBio.setText(model.getShortBio());
         holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+        holder.tvCollege.setText(model.getCollege());
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.gifLove.setVisibility(View.GONE);
@@ -121,6 +122,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         LottieAnimationView gifImageView,like;
         GifImageView gifLove;
         TextView tvPopular;
+        TextView tvCollege;
 
 
 
@@ -136,6 +138,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             gifLove = itemView.findViewById(R.id.gifLove);
             like = itemView.findViewById(R.id.like);
             tvPopular = itemView.findViewById(R.id.tvPopular);
+            tvCollege = itemView.findViewById(R.id.college);
         }
     }
 }

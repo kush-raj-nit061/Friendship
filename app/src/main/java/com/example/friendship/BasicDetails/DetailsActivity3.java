@@ -51,7 +51,7 @@ public class DetailsActivity3 extends AppCompatActivity {
     StorageReference storageReference = storage.getReference();
     String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("students");
+    DatabaseReference myRef = database.getReference("unregistered");
 
 
 

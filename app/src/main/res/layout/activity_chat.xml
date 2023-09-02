@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A6D7FF"
-    tools:context=".MessageActivity">
+    tools:context=".ChatActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bar_layout"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Toolbar
-            android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_10_dp"
+        android:background="#3B1544"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/MenuStyle">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_10_dp"
-            android:background="#3B1544"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/MenuStyle">
-
+            >
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -30,22 +27,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
-                android:textSize="22sp"
+                android:layout_toRightOf="@id/profile_image"
+                android:textSize="18sp"
                 android:layout_marginLeft="25dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_marginStart="25dp" />
 
-        </Toolbar>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userlastseen"
+                android:layout_below="@+id/username"
+                android:layout_toRightOf="@+id/profile_image"
+                android:textSize="15sp"
+                android:layout_marginLeft="25dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+
+        </RelativeLayout>
+
+
+
+    </Toolbar>
+
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/private_message_list_of_users"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottom"
+        android:layout_marginBottom="6dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
-        android:layout_below="@id/bar_layout"
-        android:layout_above="@id/bottom"/>
+        android:layout_height="match_parent"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -68,7 +86,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_send"
+            android:id="@+id/input_messages"
             android:textSize="16sp"
             android:padding="@dimen/padding_10_dp"
             android:textColor="@color/blue"
@@ -93,5 +111,8 @@
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>
+
+
+
 
 </RelativeLayout>

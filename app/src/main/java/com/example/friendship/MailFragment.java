@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.friendship.BasicDetails.UsersFragment;
 import com.example.friendship.Model.Chatlist;
 import com.example.friendship.Model.User;
-import com.example.friendship.Notifications.Token;
+//import com.example.friendship.Notifications.Token;
 import com.github.sshadkany.shapes.CircleView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,10 +71,10 @@ public class MailFragment extends Fragment {
     {
         View view = inflater.inflate(R.layout.activity_mail_fragment, container, false);
         layout1 = new ConstraintSet();
-        layout2 = new ConstraintSet();
+//        layout2 = new ConstraintSet();
         imageViewPhoto = view.findViewById(R.id.photo);
         constraintLayout = view.findViewById(R.id.constraint_layout);
-        layout2.clone(requireContext(), R.layout.activity_testing1);
+//        layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
         TextView tvReq = view.findViewById(R.id.tvReq);
         tvNoReq = view.findViewById(R.id.tvNoReq);
@@ -136,20 +136,20 @@ public class MailFragment extends Fragment {
             }
         });
 
-        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isOpen) {
-                    TransitionManager.beginDelayedTransition(constraintLayout);
-                    layout2.applyTo(constraintLayout);
-                    isOpen = !isOpen;
-                } else {
-                    TransitionManager.beginDelayedTransition(constraintLayout);
-                    layout1.applyTo(constraintLayout);
-                    isOpen = !isOpen;
-                }
-            }
-        });
+//        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (!isOpen) {
+//                    TransitionManager.beginDelayedTransition(constraintLayout);
+//                    layout2.applyTo(constraintLayout);
+//                    isOpen = !isOpen;
+//                } else {
+//                    TransitionManager.beginDelayedTransition(constraintLayout);
+//                    layout1.applyTo(constraintLayout);
+//                    isOpen = !isOpen;
+//                }
+//            }
+//        });
 
         MRR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriadregular.ttf");
         MR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriad.ttf");
@@ -162,7 +162,7 @@ public class MailFragment extends Fragment {
         usersList = new ArrayList<>();
         DatabaseReference reference1 = database.getReference().child("Connection").child(fAuth.getUid());
         Query query1 = reference1.orderByChild("status").equalTo("2");
-        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
+//        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
         query1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -181,14 +181,9 @@ public class MailFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        updateToken(String.valueOf(FirebaseMessaging.getInstance().getToken()));
         return view;
     }
-    private void updateToken(String token){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
-        Token token1 = new Token(token);
-        reference.child(fuser.getUid()).setValue(token1);
-    }
+
     private void chatList() {
         mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
