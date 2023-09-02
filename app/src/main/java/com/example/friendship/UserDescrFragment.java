@@ -85,6 +85,8 @@ public class UserDescrFragment extends Fragment {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout privatebutton = v.findViewById(R.id.privatea);
         if(userId.equals(fAuth.getUid())){
             button.setVisibility(View.GONE);
+            cardView.setVisibility(View.VISIBLE);
+            privatebutton.setVisibility(View.VISIBLE);
         }
 
 
