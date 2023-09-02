@@ -295,6 +295,15 @@ public class SettingsFragment extends Fragment {
                 long l = snapshot.getChildrenCount();
                 if(!(l == 0)){
                     recyclerView.setVisibility(View.VISIBLE);
+                    FirebaseRecyclerOptions<User> options =
+                            new FirebaseRecyclerOptions.Builder<User>()
+                                    .setQuery(query, User.class)
+                                    .build();
+
+
+                    userAdapter=new NotificationAdapter(options);
+                    recyclerView.setAdapter(userAdapter);
+                    userAdapter.startListening();
                 }
             }
 
@@ -304,15 +313,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(query, User.class)
-                        .build();
 
-
-        userAdapter=new NotificationAdapter(options);
-        recyclerView.setAdapter(userAdapter);
-        userAdapter.startListening();
 
     }
 }
