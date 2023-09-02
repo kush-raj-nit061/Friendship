@@ -83,6 +83,10 @@ public class UserDescrFragment extends Fragment {
         TextView yearholder = v.findViewById(R.id.yearholder);
         NeumorphButton button = v.findViewById(R.id.button);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout privatebutton = v.findViewById(R.id.privatea);
+        if(userId.equals(fAuth.getUid())){
+            button.setVisibility(View.GONE);
+        }
+
 
         round.setOnClickListener(new View.OnClickListener() {
             @Override
