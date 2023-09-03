@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/padding_50_dp"
         app:ycCardCornerRadius="@dimen/margin_10_dp"
-        app:ycCardBackgroundColor="@color/black_transparent"
+        app:ycCardBackgroundColor="@color/white"
         android:elevation="@dimen/margin_10_dp"
         android:background="@drawable/bg_card_explore_3_inside">
 
@@ -50,6 +50,7 @@
                 android:autoLink="web"
                 android:visibility="gone"
                 android:layout_alignParentBottom="true"
+                android:textColor="@color/white"
                 android:maxLines="1"
                 android:layout_gravity="center"
                 android:layout_marginBottom="3dp"
@@ -62,6 +63,7 @@
                 android:id="@+id/link2"
                 android:maxLines="1"
                 android:layout_gravity="center"
+                android:textColor="@color/white"
                 android:visibility="gone"
                 android:layout_marginBottom="3dp"
                 android:linksClickable="true"/>
@@ -72,6 +74,7 @@
                 android:autoLink="web"
                 android:id="@+id/link3"
                 android:maxLines="1"
+                android:textColor="@color/white"
                 android:visibility="gone"
                 android:layout_gravity="center"
                 android:layout_marginBottom="3dp"

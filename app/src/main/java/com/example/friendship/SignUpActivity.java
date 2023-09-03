@@ -141,13 +141,13 @@ public class SignUpActivity extends AppCompatActivity {
         branchs = strbranchs;
         confirmPass = inputConfirmPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(name)) {
             Toast.makeText(SignUpActivity.this, "Enter Your Name", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(branchs)) {
             Toast.makeText(SignUpActivity.this, "Enter Branch Details", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(SignUpActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
-        } else if ((!email.contains("nitp.ac.in"))  || (!email.contains("gmail.com"))) {
+        } else if ((!email.contains("nitp.ac.in")) && (!email.contains("nitrkl.ac.in"))) {
             Toast.makeText(SignUpActivity.this, "Enter Your College email", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
@@ -210,6 +210,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 users.put("birthday","");
                                 users.put("connectionId","");
                                 users.put("likes","0");
+                                users.put("premiumres","https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/vip.json?alt=media&token=df29f227-5d3e-440a-8572-c82ae93c21b7");
                                 if(email.contains("nitp.ac.in")){users.put("college","NIT PATNA"); }
                                 else if (email.contains("nitrkl.ac.in")){users.put("college","NIT ROURKELA");}else{
                                     users.put("college","test");

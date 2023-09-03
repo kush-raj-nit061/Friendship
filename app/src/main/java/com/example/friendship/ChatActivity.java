@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +46,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -88,16 +93,6 @@ public class ChatActivity extends AppCompatActivity {
         messageRecieverId=getIntent().getExtras().get("visit_user_id").toString();
         getMessageRecievername=getIntent().getExtras().get("visit_user_name").toString();
         messagereceiverimage=getIntent().getExtras().get("visit_image").toString();
-
-
-//        chattoolbar=findViewById(R.id.toolbar);
-//
-//        setSupportActionBar(chattoolbar);
-//        ActionBar actionBar=getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setDisplayShowCustomEnabled(true);
-
-
 
         username=findViewById(R.id.username);
         userlastseen=findViewById(R.id.userlastseen);
@@ -284,7 +279,24 @@ public class ChatActivity extends AppCompatActivity {
                 final String messagePushID=Usermessagekeyref.getKey();
 
                 final StorageReference filepath=storageReference.child(messagePushID+"."+"jpg");
-                uploadTask =filepath.putFile(fileuri);
+
+                Bitmap bitmap;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileuri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
+                // Compress the image with reduced quality (adjust quality as needed)
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos); // Adjust the quality here (50 in this example)
+
+                // Convert the compressed Bitmap to bytes
+                byte[] data1 = baos.toByteArray();
+
+                // Upload the compressed image to Firebase Storage
+                UploadTask uploadTask = filepath.putBytes(data1);
                 uploadTask.continueWithTask(new Continuation() {
                     @Override
                     public Object then(@NonNull Task task) throws Exception {

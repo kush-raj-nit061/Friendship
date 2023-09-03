@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,9 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.friendship.BasicDetailsActivity;
 import com.example.friendship.MainActivity;
-import com.example.friendship.ProfileActivity;
 import com.example.friendship.R;
 import com.example.friendship.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,17 +33,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.wwdablu.soumya.lottiebottomnav.FontBuilder;
-import com.wwdablu.soumya.lottiebottomnav.FontItem;
-import com.wwdablu.soumya.lottiebottomnav.MenuItem;
-import com.wwdablu.soumya.lottiebottomnav.MenuItemBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity5 extends AppCompatActivity {
 
@@ -87,7 +77,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                 Map<String,Object> users = new HashMap<>();
 
                 if(purl == null|| purl.isEmpty() ){
-                    purl = "https://firebasestorage.googleapis.com/v0/b/tesla-members-record.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=507e6418-5807-4439-b148-9015755a2213";
+                    purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
                     Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
                 }
                 users.put("purl",purl);
@@ -136,7 +126,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
-                            myRef.child(fAuth.getCurrentUser().getUid()).removeValue();
+//                            myRef.child(fAuth.getCurrentUser().getUid()).removeValue();
                         }
                     }
 

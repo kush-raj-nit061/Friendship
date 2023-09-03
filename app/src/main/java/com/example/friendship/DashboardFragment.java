@@ -98,18 +98,21 @@ public class DashboardFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String searchText = charSequence.toString().trim();
 
-                // Create a query based on the entered text
-                Query query = FirebaseDatabase.getInstance().getReference().child("students")
-                        .orderByChild("name")
-                        .startAt(searchText)
-                        .endAt(searchText + "\uf8ff");
 
-                FirebaseRecyclerOptions<UserModel> options = new FirebaseRecyclerOptions.Builder<UserModel>()
-                        .setQuery(query, UserModel.class)
-                        .build();
 
                 // Update your adapter with the new options
                 try {
+                    // Create a query based on the entered text
+                    Query query = FirebaseDatabase.getInstance().getReference().child("students")
+                            .orderByChild("name")
+                            .startAt(searchText)
+                            .endAt(searchText + "\uf8ff");
+
+                    FirebaseRecyclerOptions<UserModel> options = new FirebaseRecyclerOptions.Builder<UserModel>()
+                            .setQuery(query, UserModel.class)
+                            .build();
+
+
                     userAdapter.updateOptions(options);
                 }catch (Exception e){
                     Toast.makeText(getContext(),"Orientation changed",Toast.LENGTH_SHORT).show();

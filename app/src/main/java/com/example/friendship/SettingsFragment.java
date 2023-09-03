@@ -185,29 +185,33 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        try {
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+                    Query query = reference.orderByChild("date").limitToLast(count);
 
+                    FirebaseRecyclerOptions<Events> options =
+                            new FirebaseRecyclerOptions.Builder<Events>()
+                                    .setQuery(query, Events.class)
+                                    .build();
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
-                Query query = reference.orderByChild("date").limitToLast(count);
+                    eventAdapter=new EventsAdapter(options);
+                    recyclerViewEvents.setAdapter(eventAdapter);
+                    eventAdapter.startListening();
+                }
 
-                FirebaseRecyclerOptions<Events> options =
-                        new FirebaseRecyclerOptions.Builder<Events>()
-                                .setQuery(query, Events.class)
-                                .build();
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                eventAdapter=new EventsAdapter(options);
-                recyclerViewEvents.setAdapter(eventAdapter);
-                eventAdapter.startListening();
-            }
+                }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        }catch (Exception e){
 
-            }
-        });
+        }
+
 
 
 
@@ -290,31 +294,37 @@ public class SettingsFragment extends Fragment {
         String userId = fAuth.getCurrentUser().getUid();
         DatabaseReference reference = database.getReference().child("Connection").child(userId);
 
-        Query query = reference.orderByChild("status").equalTo("1");
+        try {
 
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long l = snapshot.getChildrenCount();
-                if(!(l == 0)){
-                    recyclerView.setVisibility(View.VISIBLE);
-                    FirebaseRecyclerOptions<User> options =
-                            new FirebaseRecyclerOptions.Builder<User>()
-                                    .setQuery(query, User.class)
-                                    .build();
+            Query query = reference.orderByChild("status").equalTo("1");
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long l = snapshot.getChildrenCount();
+                    if(!(l == 0)){
+                        recyclerView.setVisibility(View.VISIBLE);
+                        FirebaseRecyclerOptions<User> options =
+                                new FirebaseRecyclerOptions.Builder<User>()
+                                        .setQuery(query, User.class)
+                                        .build();
 
 
-                    userAdapter=new NotificationAdapter(options);
-                    recyclerView.setAdapter(userAdapter);
-                    userAdapter.startListening();
+                        userAdapter=new NotificationAdapter(options);
+                        recyclerView.setAdapter(userAdapter);
+                        userAdapter.startListening();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+
+        }catch (Exception e){}
+
+
 
 
 

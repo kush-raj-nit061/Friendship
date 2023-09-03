@@ -49,11 +49,16 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         holder.branch.setText(model.getBranch());
         holder.year.setText(model.getYear());
         holder.shortBio.setText(model.getShortBio());
-        holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+        try {
+            holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+            holder.gifImageView.setAnimationFromUrl(model.getPremiumres());
+        }catch (Exception e){}
+
         holder.tvCollege.setText(model.getCollege());
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.gifLove.setVisibility(View.GONE);
+        try{
         dbRef.child("Likes").child(model.getUserId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,7 +72,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });}catch (Exception e){}
 
 
         holder.like.setOnClickListener(new View.OnClickListener() {

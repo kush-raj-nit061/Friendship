@@ -44,15 +44,24 @@ public class FeaturedAdapter extends FirebaseRecyclerAdapter<FeaturedModel,Featu
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull FeaturedModel model) {
 
-        holder.name.setText(model.getName());
-        holder.name1.setText(model.getName());
-        holder.branch.setText(model.getBranch());
-        holder.branch1.setText(model.getBranch());
-        holder.shortBio.setText(model.getShortBio());
-        holder.year.setText(model.getYear());
-        Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
-        holder.medal.setAnimationFromUrl(model.getMedallottie());
-        holder.medal1.setAnimationFromUrl(model.getMedallottie());
+        try {
+
+            holder.name.setText(model.getName());
+            holder.name1.setText(model.getName());
+            holder.branch.setText(model.getBranch());
+            holder.branch1.setText(model.getBranch());
+            holder.shortBio.setText(model.getShortBio());
+            holder.year.setText(model.getYear());
+            Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
+            holder.medal.setAnimationFromUrl(model.getMedallottie());
+            holder.medal1.setAnimationFromUrl(model.getMedallottie());
+
+
+        }catch (Exception e){
+            Toast.makeText(holder.name.getContext(), "Something wrong in Featured",Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 

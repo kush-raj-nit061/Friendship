@@ -50,22 +50,31 @@ public class CelebrationAdapter extends FirebaseRecyclerAdapter<Celebration,Cele
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Celebration model) {
 
-        holder.img2.setAnimationFromUrl(model.getLottie2());
-        holder.imgFire.setAnimationFromUrl(model.getLottie1());
-        Glide.with(holder.circleImage.getContext()).load(model.getPurl()).into(holder.circleImage);
-        Glide.with(holder.fullImage.getContext()).load(model.getPurl()).into(holder.fullImage);
-        holder.eventName.setText(model.getEventname());
-        holder.userName.setText(model.getUsername());
+        try {
 
-        holder.imgFire.setVisibility(View.INVISIBLE);
-        holder.arrowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.imgFire.playAnimation();
-                holder.imgFire.setVisibility(View.VISIBLE);
-            }
-        });
-        holder.imgFire.setVisibility(View.INVISIBLE);
+            holder.img2.setAnimationFromUrl(model.getLottie2());
+            holder.imgFire.setAnimationFromUrl(model.getLottie1());
+            Glide.with(holder.circleImage.getContext()).load(model.getPurl()).into(holder.circleImage);
+            Glide.with(holder.fullImage.getContext()).load(model.getPurl()).into(holder.fullImage);
+            holder.eventName.setText(model.getEventname());
+            holder.userName.setText(model.getUsername());
+
+            holder.imgFire.setVisibility(View.INVISIBLE);
+            holder.arrowBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.imgFire.playAnimation();
+                    holder.imgFire.setVisibility(View.VISIBLE);
+                }
+            });
+            holder.imgFire.setVisibility(View.INVISIBLE);
+
+
+        }catch (Exception e){
+            Toast.makeText(holder.eventName.getContext(), "Something wrong in Celebration",Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 

@@ -83,11 +83,7 @@ public class UserDescrFragment extends Fragment {
         TextView yearholder = v.findViewById(R.id.yearholder);
         NeumorphButton button = v.findViewById(R.id.button);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout privatebutton = v.findViewById(R.id.privatea);
-        if(userId.equals(fAuth.getUid())){
-            button.setVisibility(View.GONE);
-            cardView.setVisibility(View.VISIBLE);
-            privatebutton.setVisibility(View.VISIBLE);
-        }
+
 
 
         round.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +125,13 @@ public class UserDescrFragment extends Fragment {
         });
 
         NeumorphCardView card1 = v.findViewById(R.id.card1);
+
+        if(userId.equals(fAuth.getUid())){
+//            button.setVisibility(View.GONE);
+            card1.setVisibility(View.VISIBLE);
+            privatebutton.setVisibility(View.VISIBLE);
+        }
+
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView shortBioholder = v.findViewById(R.id.shortbioholder);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})TextView tvfoods = v.findViewById(R.id.tvfoods);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})TextView tvhobbies = v.findViewById(R.id.tvhobbies);

@@ -76,9 +76,6 @@
             android:name=".BasicDetails.DetailsActivity1"
             android:exported="false" />
         <activity
-            android:name=".BasicDetailsActivity"
-            android:exported="false" />
-        <activity
             android:name=".testing"
             android:exported="true" />
         <activity

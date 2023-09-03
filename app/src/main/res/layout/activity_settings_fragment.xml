@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
     android:layout_height="match_parent"
-    android:background="@color/blue_grey_active"
+    android:background="#D8C0EA"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment">
 
@@ -29,7 +29,7 @@
                     android:id="@+id/recycler_view_celeb"
                     android:layout_width="match_parent"
                     android:visibility="gone"
-                    android:background="@color/blue_grey_active"
+                    android:background="#D8C0EA"
                     android:layout_height="300dp" />
 
             </RelativeLayout>
@@ -44,7 +44,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:visibility="gone"
                     android:id="@+id/recEvents"
-                    android:background="@color/blue_grey_active"
+                    android:background="#D8C0EA"
                     android:layout_width="match_parent"
                     android:minHeight="410dp"
                     android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:background="@color/blue_grey_active"
+                    android:background="#D8C0EA"
                     android:layout_marginTop="@dimen/margin_10_dp"
                     android:layout_marginBottom="90dp"
                     android:visibility="gone"

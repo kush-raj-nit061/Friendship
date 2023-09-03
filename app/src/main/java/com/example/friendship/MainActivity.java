@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     ImageView ivDrawer;
     CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp;
     TextView branch,year,name;
-
+    String purl;
 
 
 
@@ -138,23 +138,28 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 startActivity(i);
             }
         });
+        try {
 
-        reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
+            reference2.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
+                    purl= (String) snapshot.child("purl").getValue();
 
-                year.setText(String.valueOf(snapshot.child("year").getValue()));
-                branch.setText(String.valueOf(snapshot.child("branch").getValue()));
-                name.setText(String.valueOf(snapshot.child("name").getValue()));
+                    year.setText(String.valueOf(snapshot.child("year").getValue()));
+                    branch.setText(String.valueOf(snapshot.child("branch").getValue()));
+                    name.setText(String.valueOf(snapshot.child("name").getValue()));
 
-            }
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Something wrong",Toast.LENGTH_SHORT).show();
+        }
 
 
 
@@ -162,6 +167,15 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+        ivDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, FullProfileLoader.class);
+                i.putExtra("purl",purl);
                 startActivity(i);
             }
         });

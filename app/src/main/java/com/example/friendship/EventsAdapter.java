@@ -62,28 +62,34 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Events model) {
+        try {
+            holder.date.setText(model.getDate());
+            holder.month.setText(model.getMonth());
+            holder.description.setText(model.getDescription());
+            holder.eventname.setText(model.getEventname());
+            holder.eventtitle.setText(model.getEventtitle());
+            holder.eventtitle.setText(model.getMonth());
+            Glide.with(holder.eventpurl.getContext()).load(model.getEventpurl()).into(holder.eventpurl);
+            String link1,link2,link3;
+            link1 = model.getLink1();
+            link2 = model.getLink2();
+            link3 = model.getLink3();
+            if(!(link1 ==null)){
+                holder.link1.setVisibility(View.VISIBLE);
+                holder.link1.setText(link1);
+            }if(!(link2 ==null)){
+                holder.link2.setVisibility(View.VISIBLE);
+                holder.link2.setText(link2);
+            }if(!(link3 ==null)){
+                holder.link3.setVisibility(View.VISIBLE);
+                holder.link3.setText(link3);
+            }
 
-        holder.date.setText(model.getDate());
-        holder.month.setText(model.getMonth());
-        holder.description.setText(model.getDescription());
-        holder.eventname.setText(model.getEventname());
-        holder.eventtitle.setText(model.getEventtitle());
-        holder.eventtitle.setText(model.getMonth());
-        Glide.with(holder.eventpurl.getContext()).load(model.getEventpurl()).into(holder.eventpurl);
-        String link1,link2,link3;
-        link1 = model.getLink1();
-        link2 = model.getLink2();
-        link3 = model.getLink3();
-        if(!(link1 ==null)){
-            holder.link1.setVisibility(View.VISIBLE);
-            holder.link1.setText(link1);
-        }if(!(link2 ==null)){
-            holder.link2.setVisibility(View.VISIBLE);
-            holder.link2.setText(link2);
-        }if(!(link3 ==null)){
-            holder.link3.setVisibility(View.VISIBLE);
-            holder.link3.setText(link3);
+
+        }catch (Exception e){
+            Toast.makeText(holder.eventname.getContext(), "Something wrong in Events",Toast.LENGTH_SHORT).show();
         }
+
         holder.eventpurl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
