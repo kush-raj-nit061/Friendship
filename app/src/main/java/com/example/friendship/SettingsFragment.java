@@ -234,40 +234,43 @@ public class SettingsFragment extends Fragment {
         SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
         recyclerViewCeleb.setVisibility(View.GONE);
 
-        dob.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child("birthday").exists()){
-                    String s = datePatternFormat.format(new Date().getTime());
-                    String birthday = (String) snapshot.child("birthday").getValue();
-                    Toast.makeText(getContext(),birthday,Toast.LENGTH_SHORT).show();
-                    if(birthday.substring(0,2).equals(s.substring(0,2))){
-                        for(int i = 0;i< month.length;i++) {
-                            if (birthday.substring(3, 6).equals(month[i])){
+        try {
+            dob.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.child("birthday").exists()){
+                        String s = datePatternFormat.format(new Date().getTime());
+                        String birthday = (String) snapshot.child("birthday").getValue();
+                        if(birthday.substring(0,2).equals(s.substring(0,2))){
+                            for(int i = 0;i< month.length;i++) {
+                                if (birthday.substring(3, 6).equals(month[i])){
 
-                                recyclerViewCeleb.setVisibility(View.VISIBLE);
-                                FirebaseRecyclerOptions<Celebration> options =
-                                        new FirebaseRecyclerOptions.Builder<Celebration>()
-                                                .setQuery(reference, Celebration.class)
-                                                .build();
-                                celebAdapter=new CelebrationAdapter(options);
-                                recyclerViewCeleb.setAdapter(celebAdapter);
-                                celebAdapter.startListening();
+                                    recyclerViewCeleb.setVisibility(View.VISIBLE);
+                                    FirebaseRecyclerOptions<Celebration> options =
+                                            new FirebaseRecyclerOptions.Builder<Celebration>()
+                                                    .setQuery(reference, Celebration.class)
+                                                    .build();
+                                    celebAdapter=new CelebrationAdapter(options);
+                                    recyclerViewCeleb.setAdapter(celebAdapter);
+                                    celebAdapter.startListening();
 
+                                }
                             }
+
+
                         }
 
-
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        }catch (Exception e){}
 
-            }
-        });
 
 
 
