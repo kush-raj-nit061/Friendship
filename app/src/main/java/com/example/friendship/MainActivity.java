@@ -28,6 +28,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.example.friendship.Admins.AnnouncementActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
     ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications;
     TextView branch,year,name;
     String purl;
     private ViewPager viewPager;
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvPrivacy = findViewById(R.id.cvPrivacy);
         cvAboutUs = findViewById(R.id.aboutus);
         cvHelp = findViewById(R.id.help);
+        cvNotifications = findViewById(R.id.notification);
 
 
 
@@ -139,6 +143,43 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, HelpAndSupport.class);
                 startActivity(i);
+            }
+        });
+
+        cvNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                try {
+
+                    fStore.collection("Managers").document(fAuth.getCurrentUser().getUid())
+                            .get().addOnCompleteListener(tasks -> {
+                                if (tasks.isSuccessful()) {
+                                    DocumentSnapshot document = tasks.getResult();
+                                    if (document.exists()) {
+                                        String detailsGiven = document.getString("Admin");
+                                        if (detailsGiven.equals("1")) {
+
+                                            // For admin work
+                                        } else {
+
+                                            Intent i = new Intent(MainActivity.this, AnnouncementActivity.class);
+                                            startActivity(i);
+
+                                        }
+
+
+                                    }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "You don't have permission to set Notification", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "You don't have permission to set Notification:", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
         try {

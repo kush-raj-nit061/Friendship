@@ -346,6 +346,42 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:id="@+id/notification"
+                        android:backgroundTint="@color/cardview_light_background"
+                        android:layout_marginTop="2dp">
+                        <LinearLayout
+                            android:id="@+id/llhome7"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+
+
+                            >
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/baseline_notifications_active_24"
+                                android:layout_marginLeft="2dp"
+                                app:tint="#495154" />
+                            <TextView
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Set Notifications >"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:textColor="@color/black"/>
+
+
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
 
 

@@ -53,6 +53,7 @@ public class DashboardFragment extends Fragment {
         searchEditText = view.findViewById(R.id.etSearch);
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recView.setItemAnimator(null);
 
         // Restore the RecyclerView's scroll state if available
         if (savedInstanceState != null) {

@@ -68,7 +68,6 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
             holder.description.setText(model.getDescription());
             holder.eventname.setText(model.getEventname());
             holder.eventtitle.setText(model.getEventtitle());
-            holder.eventtitle.setText(model.getMonth());
             Glide.with(holder.eventpurl.getContext()).load(model.getEventpurl()).into(holder.eventpurl);
             String link1,link2,link3;
             link1 = model.getLink1();

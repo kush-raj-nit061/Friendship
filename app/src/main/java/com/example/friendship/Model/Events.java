@@ -6,6 +6,10 @@ public class Events {
     String description;
     String link1;
     String link2;
+    String link3;
+    String eventpurl;
+    String eventname;
+    String eventtitle;
     public Events(){}
 
     public Events(String date, String month, String description, String link1, String link2, String link3, String eventpurl, String eventname, String eventtitle) {
@@ -92,8 +96,5 @@ public class Events {
         this.eventtitle = eventtitle;
     }
 
-    String link3;
-    String eventpurl;
-    String eventname;
-    String eventtitle;
+
 }
