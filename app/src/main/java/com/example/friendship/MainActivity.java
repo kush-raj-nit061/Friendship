@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp;
     TextView branch,year,name;
     String purl;
+    private ViewPager viewPager;
+
 
 
 
@@ -349,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Please click Back again", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

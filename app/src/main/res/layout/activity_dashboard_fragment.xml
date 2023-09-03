@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:id="@+id/linear1"
             android:layout_marginTop="-10dp"
-            android:background="#FC896A"
+            android:background="@color/black"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
                     android:text="Have You Found Someone lets search ?"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/google_color"
                     android:textSize="30sp" />
 
 
