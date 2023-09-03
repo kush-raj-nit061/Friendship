@@ -85,6 +85,15 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(etCal.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Select Your Birthday from calender",Toast.LENGTH_SHORT).show();
+                    return;
+                }if(etBirthPlace.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please Enter Your Birth Place",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 Map<String,Object> users = new HashMap<>();
                 users.put("birthday",etCal.getText().toString());
                 users.put("location",etBirthPlace.getText().toString());

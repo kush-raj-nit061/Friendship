@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.BasicDetailsActivity;
 import com.example.friendship.MainActivity;
+import com.example.friendship.ProfileActivity;
 import com.example.friendship.R;
 import com.example.friendship.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +42,8 @@ import com.wwdablu.soumya.lottiebottomnav.FontItem;
 import com.wwdablu.soumya.lottiebottomnav.MenuItem;
 import com.wwdablu.soumya.lottiebottomnav.MenuItemBuilder;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,8 +85,10 @@ public class DetailsActivity5 extends AppCompatActivity {
                 Map<String,Object> data = new HashMap<>();
 
                 Map<String,Object> users = new HashMap<>();
+
                 if(purl == null|| purl.isEmpty() ){
                     purl = "https://firebasestorage.googleapis.com/v0/b/tesla-members-record.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=507e6418-5807-4439-b148-9015755a2213";
+                    Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
                 }
                 users.put("purl",purl);
                 data.put("imageURL",purl);
@@ -188,35 +194,51 @@ public class DetailsActivity5 extends AppCompatActivity {
 
 
     }
-
     private void uploadImageToFirebase(Uri imageUri) {
+        final StorageReference fileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "profile.jpg");
 
-        final StorageReference fileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"profile.jpg");
-        fileRef.putFile((imageUri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        // Load the image into a Bitmap
+        Bitmap bitmap;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Compress the image with reduced quality (adjust quality as needed)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos); // Adjust the quality here (50 in this example)
+
+        // Convert the compressed Bitmap to bytes
+        byte[] data = baos.toByteArray();
+
+        // Upload the compressed image to Firebase Storage
+        UploadTask uploadTask = fileRef.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-
+                // Handle the successful upload
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         purl = String.valueOf(uri);
+                        Map<String, Object> users = new HashMap<>();
+                        users.put("purl", purl);
 
-                        Picasso.get().load(uri).into(ivProfile);
-//                        progressBar.setVisibility(View.GONE);
+                        if (purl != null) {
+                            myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                        }
+
+                        Picasso.get().load(uri).into(imgButton);
                     }
                 });
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(DetailsActivity5.this,"Failed.",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
+                // Handle the failure to upload
+                Toast.makeText(DetailsActivity5.this, "Failed.", Toast.LENGTH_LONG).show();
+            }});
     }
 }

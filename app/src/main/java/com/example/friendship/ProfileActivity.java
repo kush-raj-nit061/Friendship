@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -256,40 +258,61 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImageToFirebase(Uri imageUri) {
+        final StorageReference fileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "profile.jpg");
 
-        final StorageReference fileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"profile.jpg");
-        fileRef.putFile((imageUri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        // Load the image into a Bitmap
+        Bitmap bitmap;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Compress the image with reduced quality (adjust quality as needed)
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos); // Adjust the quality here (50 in this example)
+
+        // Convert the compressed Bitmap to bytes
+        byte[] data = baos.toByteArray();
+
+        // Upload the compressed image to Firebase Storage
+        UploadTask uploadTask = fileRef.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
+                // Handle the successful upload
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         purl = String.valueOf(uri);
-                        Map<String,Object> users = new HashMap<>();
-                        users.put("purl",purl);
+                        Map<String, Object> users = new HashMap<>();
 
-                        if(purl!=null){
-                            myRef.child(fAuth.getUid().toString()).updateChildren(users);
-                        }
+                        Map<String, Object> users2 = new HashMap<>();
+                        users2.put("imageURL",purl);
+                        users.put("purl", purl);
+
+                        try {
+                            if (purl != null) {
+                                myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(users2);
+                            }
+
+                        }catch (Exception e){}
+
+
 
                         Picasso.get().load(uri).into(imgButton);
-//                        progressBar.setVisibility(View.GONE);
                     }
                 });
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProfileActivity.this,"Failed.",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
+                // Handle the failure to upload
+                Toast.makeText(ProfileActivity.this, "Failed.", Toast.LENGTH_LONG).show();
+            }});
     }
-
 
 }

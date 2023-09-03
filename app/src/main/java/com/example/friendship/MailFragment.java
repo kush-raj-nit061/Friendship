@@ -136,20 +136,7 @@ public class MailFragment extends Fragment {
             }
         });
 
-//        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!isOpen) {
-//                    TransitionManager.beginDelayedTransition(constraintLayout);
-//                    layout2.applyTo(constraintLayout);
-//                    isOpen = !isOpen;
-//                } else {
-//                    TransitionManager.beginDelayedTransition(constraintLayout);
-//                    layout1.applyTo(constraintLayout);
-//                    isOpen = !isOpen;
-//                }
-//            }
-//        });
+
 
         MRR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriadregular.ttf");
         MR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriad.ttf");
