@@ -1,22 +1,21 @@
 package com.example.friendship;
 
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -28,13 +27,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.rolud.solidglowanimation.SolidGlowAnimation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 public class DashboardFragment extends Fragment {
 
     RecyclerView recView;
@@ -43,9 +35,7 @@ public class DashboardFragment extends Fragment {
     DatabaseReference reference;
     EditText searchEditText;
     int count;
-
-
-
+    private Parcelable recyclerViewState; // Add this variable
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -57,37 +47,21 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard_fragment, container, false);
-        recView = (RecyclerView) view.findViewById(R.id.recPeople);
+        recView = view.findViewById(R.id.recPeople);
         animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
         animation_view_complex_view.startAnimation();
         searchEditText = view.findViewById(R.id.etSearch);
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recView.setItemAnimator(null);
 
-        Map<String,Integer> map = new HashMap<>();
+        // Restore the RecyclerView's scroll state if available
+        if (savedInstanceState != null) {
+            recyclerViewState = savedInstanceState.getParcelable("recycler_state");
+        }
 
-        reference = FirebaseDatabase.getInstance().getReference();
+        // Initialize FirebaseRecyclerOptions and UserAdapter
+        initializeRecyclerView();
 
-        reference.child("students").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
-                FirebaseRecyclerOptions<UserModel> options =
-                        new FirebaseRecyclerOptions.Builder<UserModel>()
-                                .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
-                                        .orderByChild("likes").limitToLast(count), UserModel.class)
-                                .build();
-                userAdapter=new UserAdapter(options);
-                recView.setAdapter(userAdapter);
-                userAdapter.startListening();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -97,8 +71,6 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String searchText = charSequence.toString().trim();
-
-
 
                 // Update your adapter with the new options
                 try {
@@ -112,10 +84,9 @@ public class DashboardFragment extends Fragment {
                             .setQuery(query, UserModel.class)
                             .build();
 
-
                     userAdapter.updateOptions(options);
-                }catch (Exception e){
-                    Toast.makeText(getContext(),"Orientation changed",Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Orientation changed", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -126,15 +97,52 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-
-
-
-
         return view;
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        // Save the RecyclerView's scroll state
+        if (recView.getLayoutManager() != null) {
+            recyclerViewState = recView.getLayoutManager().onSaveInstanceState();
+            outState.putParcelable("recycler_state", recyclerViewState);
+        }
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        // Restore the RecyclerView's scroll state if available
+        if (recyclerViewState != null) {
+            recView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+        }
+    }
+
+    // Method to initialize FirebaseRecyclerOptions and UserAdapter
+    private void initializeRecyclerView() {
+        reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.child("students").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+                FirebaseRecyclerOptions<UserModel> options =
+                        new FirebaseRecyclerOptions.Builder<UserModel>()
+                                .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
+                                        .orderByChild("likes").limitToLast(count), UserModel.class)
+                                .build();
+                userAdapter = new UserAdapter(options);
+                recView.setAdapter(userAdapter);
+                userAdapter.startListening();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle the error here
+            }
+        });
+    }
 }
-

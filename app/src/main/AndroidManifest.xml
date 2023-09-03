@@ -19,6 +19,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:configChanges="screenSize|orientation"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -55,12 +56,6 @@
             android:name=".TermsAndCondition"
             android:exported="true" />
         <activity
-            android:name=".Testing2"
-            android:exported="true" />
-        <activity
-            android:name=".Testing1"
-            android:exported="true" />
-        <activity
             android:name=".BasicDetails.DetailsActivity5"
             android:exported="true" />
         <activity
@@ -75,9 +70,6 @@
         <activity
             android:name=".BasicDetails.DetailsActivity1"
             android:exported="false" />
-        <activity
-            android:name=".testing"
-            android:exported="true" />
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />

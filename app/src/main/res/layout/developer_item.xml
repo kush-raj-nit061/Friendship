@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_marginBottom="@dimen/margin_10_dp"
-    tools:context=".Testing1"
     android:id="@+id/constraint_layout">
 
     <com.wajahatkarim3.easyflipview.EasyFlipView

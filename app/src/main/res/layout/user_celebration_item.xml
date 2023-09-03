@@ -29,7 +29,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/img"
+
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
@@ -81,7 +81,6 @@
                     android:id="@+id/circleImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/img_1"
                     android:scaleType="centerCrop"/>
 
             </androidx.cardview.widget.CardView>

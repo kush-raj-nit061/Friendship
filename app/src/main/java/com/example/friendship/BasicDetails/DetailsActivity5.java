@@ -220,7 +220,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                             myRef.child(fAuth.getUid().toString()).updateChildren(users);
                         }
 
-                        Picasso.get().load(uri).into(imgButton);
+                        Picasso.get().load(uri).into(ivProfile);
                     }
                 });
             }

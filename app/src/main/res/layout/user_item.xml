@@ -14,7 +14,7 @@
         android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:id="@+id/profile_image"
-        android:src="@drawable/img_1"/>
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
