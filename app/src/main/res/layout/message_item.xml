@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Kush raj"
 
-            android:textColor="@color/white"
+
             android:letterSpacing="0.1"
             android:textStyle="bold"
             android:id="@+id/username"
@@ -53,7 +53,7 @@
 
 
             android:layout_marginTop="3dp"
-            android:textColor="@color/grey"
+
             android:maxLines="1"/>
 
     </LinearLayout>

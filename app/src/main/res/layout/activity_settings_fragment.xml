@@ -12,25 +12,44 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:background="#D8C0EA"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#D8C0EA"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/celebration"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/bubble_left">
+
+                android:background="#D8C0EA"
+                >
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/likedby"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/heart"
+                    app:lottie_loop="true"
+                    app:lottie_speed="0.8"
+                    android:scaleType="centerCrop"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_10_dp"
+                    />
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_toRightOf="@+id/likedby"
                     android:id="@+id/recycler_view_celeb"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:background="#D8C0EA"
-                    android:layout_height="300dp" />
+                    android:layout_height="110dp" />
 
             </RelativeLayout>
 

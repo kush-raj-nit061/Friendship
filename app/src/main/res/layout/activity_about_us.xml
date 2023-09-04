@@ -9,40 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:padding="@dimen/padding_10_dp"
-                android:background="#3B1544"
-                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/MenuStyle">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="30dp"
-                    android:src="@drawable/ic_back"
-                    android:layout_height="30dp"
-                    android:id="@+id/backs"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/username"
-                    android:textSize="22sp"
-                    android:text="About Us"
-                    android:layout_marginLeft="25dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:layout_marginStart="25dp" />
-
-            </Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -87,33 +54,7 @@
         </androidx.cardview.widget.CardView>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="77dp"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/aboutustop"
-                android:contentDescription="@string/todo" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="35dp"
-                android:alpha="0.8"
-                android:fontFamily="@font/ubuntu_regular"
-                android:text="@string/who_we_are"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                android:textStyle="bold" />
-
-
-
-        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recAbout"
             android:layout_width="match_parent"

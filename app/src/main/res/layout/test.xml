@@ -15,7 +15,7 @@
             android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
             android:layout_height="150dip"
-            android:background="@color/colorAccent"
+            android:background="@drawable/gradient"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">

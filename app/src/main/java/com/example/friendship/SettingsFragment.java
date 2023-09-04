@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +21,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.FriendRequestAdapter;
 import com.example.friendship.Model.Celebration;
 import com.example.friendship.Model.Events;
+import com.example.friendship.Model.Likedby;
 import com.example.friendship.Model.User;
 import com.example.friendship.OnItemClick;
 import com.example.friendship.R;
@@ -59,13 +62,15 @@ public class SettingsFragment extends Fragment {
 
     private NotificationAdapter userAdapter;
     private EventsAdapter eventAdapter;
-    private CelebrationAdapter celebAdapter;
+    private LikedbyAdapter celebAdapter;
     static OnItemClick onItemClick;
     LinearLayoutManager manager1;
     LinearLayoutManager manager2;
     String key = "";
+    LottieAnimationView likedBy;
     LinearLayoutManager manager3;
     DatabaseReference myRefCeleb;
+    RelativeLayout celeb;
     String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
 
@@ -87,9 +92,10 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_settings_fragment, container, false);
 
 
-
+        celeb = view.findViewById(R.id.celebration);
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerViewCeleb = view.findViewById(R.id.recycler_view_celeb);
+        likedBy = view.findViewById(R.id.likedby);
         recyclerViewEvents = view.findViewById(R.id.recEvents);
         manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -166,8 +172,7 @@ public class SettingsFragment extends Fragment {
                     for(DataSnapshot snapshot1 : snapshot.getChildren()){
                         String s = datePatternFormat.format(new Date().getTime());
                         int i = Integer.parseInt(s.substring(0,2));
-
-                        if(snapshot1.child("date").getValue().equals(String.valueOf(i-1))){
+                        if(snapshot1.child("date").getValue().equals(String.valueOf(i-1)) || snapshot1.child("date").getValue().equals("0"+String.valueOf(i-1))){
                                key = snapshot1.getKey();
                             if(!key.equals("")){
                                 reference.child(key).removeValue();
@@ -232,38 +237,28 @@ public class SettingsFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Celebration");
         String userId = fAuth.getCurrentUser().getUid();
-        DatabaseReference reference = database.getReference().child("Celebration").child(fAuth.getUid());
-        DatabaseReference dob = database.getReference().child("students").child(fAuth.getUid());
+        DatabaseReference reference = database.getReference().child("Likes").child(fAuth.getCurrentUser().getUid());
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
         recyclerViewCeleb.setVisibility(View.GONE);
 
+
+
         try {
-            dob.addValueEventListener(new ValueEventListener() {
+            reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.child("birthday").exists()){
-                        String s = datePatternFormat.format(new Date().getTime());
-                        String birthday = (String) snapshot.child("birthday").getValue();
-                        if(birthday.substring(0,2).equals(s.substring(0,2))){
-                            for(int i = 0;i< month.length;i++) {
-                                if (birthday.substring(3, 6).equals(month[i])){
-
-                                    recyclerViewCeleb.setVisibility(View.VISIBLE);
-                                    FirebaseRecyclerOptions<Celebration> options =
-                                            new FirebaseRecyclerOptions.Builder<Celebration>()
-                                                    .setQuery(reference, Celebration.class)
-                                                    .build();
-                                    celebAdapter=new CelebrationAdapter(options);
-                                    recyclerViewCeleb.setAdapter(celebAdapter);
-                                    celebAdapter.startListening();
-
-                                }
-                            }
-
-
-                        }
-
+                    if(snapshot.exists()){
+                        celeb.setVisibility(View.VISIBLE);
+                        recyclerViewCeleb.setVisibility(View.VISIBLE);
+                        likedBy.setVisibility(View.VISIBLE);
+                        FirebaseRecyclerOptions<Likedby> options =
+                                new FirebaseRecyclerOptions.Builder<Likedby>()
+                                        .setQuery(reference, Likedby.class)
+                                        .build();
+                        celebAdapter=new LikedbyAdapter(options);
+                        recyclerViewCeleb.setAdapter(celebAdapter);
+                        celebAdapter.startListening();
                     }
                 }
 

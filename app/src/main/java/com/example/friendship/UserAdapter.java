@@ -83,7 +83,8 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         Map<String,Object> map  = new HashMap<>();
-                        map.put(FirebaseAuth.getInstance().getUid(),true);
+                        map.put("userId",model.getUserId());
+                        map.put("purl",model.getPurl());
                         dbRef.child("Likes").child(model.getUserId()).child(FirebaseAuth.getInstance().getUid()).updateChildren(map);
                         Toast.makeText(v.getContext(), "You Liked: "+model.getName(), Toast.LENGTH_SHORT).show();
                         holder.like.pauseAnimation();
