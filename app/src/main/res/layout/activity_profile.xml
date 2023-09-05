@@ -151,7 +151,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="UserId"
-            android:textColor="@color/qiscus_primary_text" />
+            android:textColor="@color/lose_red_bg" />
 
 
     </LinearLayout>

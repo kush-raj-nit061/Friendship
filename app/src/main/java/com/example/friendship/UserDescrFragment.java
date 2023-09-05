@@ -125,9 +125,11 @@ public class UserDescrFragment extends Fragment {
         });
 
         NeumorphCardView card1 = v.findViewById(R.id.card1);
+        card1.setVisibility(View.VISIBLE);
+        privatebutton.setVisibility(View.GONE);
 
         if(userId.equals(fAuth.getUid())){
-//            button.setVisibility(View.GONE);
+            button.setVisibility(View.GONE);
             card1.setVisibility(View.VISIBLE);
             privatebutton.setVisibility(View.VISIBLE);
         }

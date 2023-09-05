@@ -211,9 +211,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 users.put("connectionId","");
                                 users.put("likes","0");
                                 users.put("premiumres","https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/vip.json?alt=media&token=df29f227-5d3e-440a-8572-c82ae93c21b7");
-                                if(email.contains("nitp.ac.in")){users.put("college","NIT PATNA"); }
-                                else if (email.contains("nitrkl.ac.in")){users.put("college","NIT ROURKELA");}else{
-                                    users.put("college","test");
+                                if(email.contains("nitp.ac.in")){users.put("college","NATIONAL INSTITUTE OF TECHNOLOGY PATNA"); }
+                                else if (email.contains("nitrkl.ac.in")){users.put("college","NATIONAL INSTITUTE OF TECHNOLOGY ROURKELA");}else{
+                                    users.put("college","");
                                 }
 
 
@@ -221,7 +221,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 myRef.child(String.valueOf(userID)).setValue(users).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(getApplicationContext(),"Data Saved",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_LONG).show();
 
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
