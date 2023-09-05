@@ -1,49 +1,59 @@
 package com.example.friendship;
 
-import android.content.pm.PackageManager;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        getFirebaseMessage(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
-
-    }
-
-    public void getFirebaseMessage(String title, String msg) {
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "myFirebaseChannel")
-                .setSmallIcon(R.drawable.baseline_notifications_active_24)
-                .setContentTitle(title)
-                .setContentText(msg)
-                .setAutoCancel(true);
-
-
-        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        if (remoteMessage.getData().size() > 0) {
+            // Handle data payload (if any)
         }
-        manager.notify(101, builder.build());
 
+        if (remoteMessage.getNotification() != null) {
+            String title = remoteMessage.getNotification().getTitle();
+            String message = remoteMessage.getNotification().getBody();
+
+            sendNotification(title, message);
+        }
     }
+
+    private void sendNotification(String title, String messageBody) {
+        String channelId = "MyAppChannelId";
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.baseline_notifications_active_24)
+                        .setContentTitle(title)
+                        .setContentText(messageBody)
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Notification channels are available in Android O (API 26) and higher.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    channelId,
+                    "MyApp Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(0, notificationBuilder.build());
 }
-
-
-
-
+}

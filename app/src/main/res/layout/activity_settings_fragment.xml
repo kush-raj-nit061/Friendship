@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
     android:layout_height="match_parent"
-    android:background="#D8C0EA"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment">
 
@@ -12,13 +12,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="#D8C0EA"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#D8C0EA"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:background="#D8C0EA"
+                android:background="@color/white"
                 >
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -51,6 +51,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="110dp" />
 
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/likedby"
+                    android:layout_marginTop="-7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+
             </RelativeLayout>
 
 
@@ -63,11 +70,19 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:visibility="gone"
                     android:id="@+id/recEvents"
-                    android:background="#D8C0EA"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:minHeight="410dp"
                     android:layout_height="wrap_content"
                     />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/recEvents"
+                    android:layout_marginTop="7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+
             </RelativeLayout>
 
 
@@ -80,7 +95,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:background="#D8C0EA"
+                    android:background="@color/white"
                     android:layout_marginTop="@dimen/margin_10_dp"
                     android:layout_marginBottom="90dp"
                     android:visibility="gone"

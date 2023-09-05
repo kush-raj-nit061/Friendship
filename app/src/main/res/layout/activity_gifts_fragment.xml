@@ -17,6 +17,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="111dp">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animation"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:lottie_autoPlay="true"
+                    android:background="@color/white"
+                    app:lottie_rawRes="@raw/statusadd"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+                    android:scaleType="centerCrop"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recStatus"
+                    android:layout_toRightOf="@id/animation"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_height="110dp"/>
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/recStatus"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+            </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recFeatured1"
                 android:layout_width="match_parent"

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
 
 
-        FirebaseMessaging.getInstance().subscribeToTopic("News")
+        FirebaseMessaging.getInstance().subscribeToTopic("All")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

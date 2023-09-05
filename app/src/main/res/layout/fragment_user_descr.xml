@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:background="#BE43E8CF"
+            android:background="@color/white"
             android:layout_height="wrap_content">
 
             <com.github.sshadkany.shapes.RoundRectView
