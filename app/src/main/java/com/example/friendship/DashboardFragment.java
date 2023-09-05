@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -126,9 +127,11 @@ public class DashboardFragment extends Fragment {
     private void initializeRecyclerView() {
         reference = FirebaseDatabase.getInstance().getReference();
 
-        reference.child("students").addValueEventListener(new ValueEventListener() {
+
+        reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
                 count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
                 FirebaseRecyclerOptions<UserModel> options =
                         new FirebaseRecyclerOptions.Builder<UserModel>()
@@ -138,12 +141,48 @@ public class DashboardFragment extends Fragment {
                 userAdapter = new UserAdapter(options);
                 recView.setAdapter(userAdapter);
                 userAdapter.startListening();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle the error here
+
             }
         });
+
+//        reference.child("students").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+//                FirebaseRecyclerOptions<UserModel> options =
+//                        new FirebaseRecyclerOptions.Builder<UserModel>()
+//                                .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
+//                                        .orderByChild("likes").limitToLast(count), UserModel.class)
+//                                .build();
+//                userAdapter = new UserAdapter(options);
+//                recView.setAdapter(userAdapter);
+//                userAdapter.startListening();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                // Handle the error here
+//            }
+//        });
     }
 }

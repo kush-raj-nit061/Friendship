@@ -36,6 +36,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference();
+    String myPurl;
 
 
     public UserAdapter(@NonNull FirebaseRecyclerOptions<UserModel> options) {
@@ -83,9 +84,26 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         Map<String,Object> map  = new HashMap<>();
-                        map.put("userId",model.getUserId());
-                        map.put("purl",model.getPurl());
-                        dbRef.child("Likes").child(model.getUserId()).child(FirebaseAuth.getInstance().getUid()).updateChildren(map);
+                        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                        dbRef.child("students").child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    String purl = (String) snapshot.child("purl").getValue();
+                                    map.put("userId",fAuth.getCurrentUser().getUid());
+                                    map.put("purl",purl);
+                                    dbRef.child("Likes").child(model.getUserId()).child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
                         Toast.makeText(v.getContext(), "You Liked: "+model.getName(), Toast.LENGTH_SHORT).show();
                         holder.like.pauseAnimation();
 

@@ -248,6 +248,7 @@ public class test extends AppCompatActivity {
                                             if(num.equals("1")){
                                                 Intent in = new Intent(test.this, UnderMaintainance.class);
                                                 startActivity(in);
+                                                finish();
 
                                             }else {
                                                 if(detailsGiven.equals("1")){
@@ -256,12 +257,14 @@ public class test extends AppCompatActivity {
                                                             MainActivity.class);
                                                     Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                                     startActivity(intent);
+                                                    finish();
 
                                                 }else{
                                                     if(mAuth.getCurrentUser().isEmailVerified()){
                                                         Intent intent
                                                                 = new Intent(test.this,TermsAndCondition.class);
                                                         startActivity(intent);
+                                                        finish();
 //                                                                    finish();
 
                                                     }

@@ -2,18 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="400dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:layout_marginTop="5dp"
     android:elevation="15dp">
 
-    <TextView
-        android:id="@+id/college"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="National Institute of Technology Patna"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textColor="@color/headToHead_deep"/>
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/crown"
@@ -36,7 +29,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:paddingTop="60dp"
-
+        android:background="@color/white"
         android:paddingStart="10dp"
 
 
@@ -56,6 +49,7 @@
             android:layout_height="150dp"
             android:elevation="12dp"
             android:layout_marginTop="28dp"
+
             android:id="@+id/imageView"
             app:cardCornerRadius="1000dp"
             android:layout_alignParentStart="true"
@@ -223,6 +217,15 @@
         </LinearLayout>
 
     </RelativeLayout>
+    <TextView
+        android:id="@+id/college"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="National Institute of Technology Patna"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="@color/headToHead_deep"/>
 
 
 
