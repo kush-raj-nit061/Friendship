@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoryFullView extends AppCompatActivity {
-    ImageView image,next,prev,cross;
+    ImageView image,next,prev,cross,liked;
     LottieAnimationView likes;
     CircleImageView profile;
     TextView tvName, tvDate,likesCount;
@@ -44,23 +49,42 @@ public class StoryFullView extends AppCompatActivity {
         next = findViewById(R.id.next);
         prev = findViewById(R.id.prev);
         likes = findViewById(R.id.likes);
+
         profile = findViewById(R.id.profile);
         tvDate = findViewById(R.id.date);
         tvName = findViewById(R.id.name);
         likesCount = findViewById(R.id.likesCount);
         cross = findViewById(R.id.cross);
+        liked = findViewById(R.id.liked);
 
         likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 likes.playAnimation();
+                liked.setVisibility(View.INVISIBLE);
 
                 Intent in = getIntent();
                 String ids = in.getStringExtra("id");
 
                 Map<String,Object> map = new HashMap<>();
                 map.put("status","liked");
-                dbRef.child(ids).child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+                dbRef.child(ids).child(fAuth.getCurrentUser().getUid()).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(),"Post Liked",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Handler handler = new Handler();
+
+
+
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        liked.setVisibility(View.VISIBLE);
+
+                    }
+                }, 10000);
 
             }
         });
