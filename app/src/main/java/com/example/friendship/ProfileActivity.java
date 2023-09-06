@@ -294,7 +294,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                         try {
                             if (purl != null) {
-                                myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                                myRef.child(fAuth.getCurrentUser().getUid().toString()).updateChildren(users);
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
                                 reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(users2);
                             }

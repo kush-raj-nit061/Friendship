@@ -26,6 +26,9 @@
         android:theme="@style/Theme.Friendship"
         tools:targetApi="31">
         <activity
+            android:name=".StoryFullView"
+            android:exported="false" />
+        <activity
             android:name=".Admins.AnnouncementActivity"
             android:exported="false" />
         <activity

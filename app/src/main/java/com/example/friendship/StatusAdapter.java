@@ -1,5 +1,6 @@
 package com.example.friendship;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -38,6 +39,8 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference();
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("StatusLiked");
 
 
     public StatusAdapter(@NonNull FirebaseRecyclerOptions<Status> options) {
@@ -45,22 +48,73 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Status model) {
+    protected void onBindViewHolder(@NonNull userAdapterHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Status model) {
 
         try {
 
             Glide.with(holder.imgprofile.getContext()).load(model.getPurl()).into(holder.imgprofile);
 
+            try {
+
+                dbr.child(model.getId()).child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child(fAuth.getCurrentUser().getUid()).exists()){
+                            holder.cvStatusOut.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }catch (Exception e){}
+
+
             holder.imgprofile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Map<String,Object> map = new HashMap<>();
+                    map.put(fAuth.getCurrentUser().getUid(),"seen");
+                    dbr.child(model.getId()).child(fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("status").exists()){
+                                if(snapshot.child("status").getValue().equals("liked")){
+                                    map.put("status","liked");
+                                    dbr.child(model.getId()).child(fAuth.getCurrentUser().getUid()).setValue(map);
+                                }else{
+                                    map.put("status","unliked");
+                                    dbr.child(model.getId()).child(fAuth.getCurrentUser().getUid()).setValue(map);
+                                }
+
+
+                            }else {
+                                map.put("status","unliked");
+                                dbr.child(model.getId()).child(fAuth.getCurrentUser().getUid()).setValue(map);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
                     holder.cvStatusOut.setVisibility(View.INVISIBLE);
-                    Intent i = new Intent(holder.imgprofile.getContext(),FullProfileLoader.class);
+                    Intent i = new Intent(holder.imgprofile.getContext(),StoryFullView.class);
                     i.putExtra("purl",model.getPurl());
                     i.putExtra("date",model.getDate());
                     i.putExtra("posturl",model.getPostUrl());
                     i.putExtra("id",model.getId());
                     i.putExtra("name",model.getName());
+                    i.putExtra("likes",model.getPostlikes());
+                    i.putExtra("position",String.valueOf(position));
+                    i.putExtra("itemCount",String.valueOf(getItemCount()));
                     holder.imgprofile.getContext().startActivity(i);
                 }
             });

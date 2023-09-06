@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +58,7 @@ public class GiftsFragment extends Fragment {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("students");
     StorageReference storageReference = storage.getReference();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbsl = FirebaseDatabase.getInstance().getReference("StatusLiked");
 
 
     String postUrl="";
@@ -96,6 +97,64 @@ public class GiftsFragment extends Fragment {
         recFeatured2.setItemAnimator(null);
         recStatus.setItemAnimator(null);
 
+        try {
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("Status");
+            db.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    if(snapshot.exists()){
+                        String dateStr = (String) snapshot.child("date").getValue();
+                        long timestamp = Long.parseLong(dateStr);
+                        Date date = new Date(timestamp);
+                        Date currentDate = new Date();
+                        // Calculate the time difference in milliseconds
+                        long timeDifferenceMillis = currentDate.getTime() - date.getTime();
+                        // Convert milliseconds to hours
+                        long hoursAgo = timeDifferenceMillis / (1000 * 60 * 60);
+                        // Set the calculated time difference as text
+
+                        if(hoursAgo>24){
+                            DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("Status");
+                            String key = snapshot.getKey();
+                            dbs.child(key).removeValue();
+                            dbsl.child(key).removeValue();
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+
+
+
+        }catch (Exception e){
+            Toast.makeText(getContext(),"Check Your Network Connections",Toast.LENGTH_SHORT).show();
+
+        }
+
+
         FirebaseRecyclerOptions<Status> options3 =
                 new FirebaseRecyclerOptions.Builder<Status>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Status"), Status.class)
@@ -129,8 +188,14 @@ public class GiftsFragment extends Fragment {
         addStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent openGallInt= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGallInt,1000);
+
+
+
+
 
 
 
@@ -188,15 +253,14 @@ public class GiftsFragment extends Fragment {
                     @Override
                     public void onSuccess(Uri uri) {
                         postUrl = String.valueOf(uri);
-
-                        Toast.makeText(getContext(),postUrl,Toast.LENGTH_SHORT).show();
-
                         if(!(postUrl.isEmpty())){
 
                             reference.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     if(snapshot.exists()){
+                                        DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("StatusLiked");
+                                        dbs.child(fAuth.getCurrentUser().getUid()).removeValue();
                                         String purl = (String) snapshot.child("purl").getValue();
                                         String name = (String) snapshot.child("name").getValue();
                                         Map<String,Object> map = new HashMap<>();
@@ -212,7 +276,10 @@ public class GiftsFragment extends Fragment {
                                         db.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(getContext(),"Memo Added",Toast.LENGTH_SHORT).show();
+                                                try {
+                                                    Toast.makeText(getContext(),"Memo Added",Toast.LENGTH_SHORT).show();
+                                                }catch (Exception e){}
+
                                             }
                                         });
                                     }

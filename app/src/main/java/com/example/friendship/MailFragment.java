@@ -113,17 +113,22 @@ public class MailFragment extends Fragment {
                 }
             });
         }catch (Exception e){}
-        DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
-        Query query = reference.orderByChild("status").equalTo("1");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long count = dataSnapshot.getChildrenCount();
-                tvNoReq.setText(String.valueOf(count));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
+
+        try {
+            DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
+            Query query = reference.orderByChild("status").equalTo("1");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    long count = dataSnapshot.getChildrenCount();
+                    tvNoReq.setText(String.valueOf(count));
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
+            });
+
+        }catch (Exception e){}
+
         tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
