@@ -152,6 +152,19 @@
             app:layout_constraintTop_toBottomOf="@+id/photo"
             app:layout_constraintVertical_bias="0.072" >
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:visibility="visible"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/progress"
+                android:paddingBottom="@dimen/margin_30_dp"
+                app:lottie_loop="true"
+                app:lottie_speed="1"
+                android:layout_weight="60"
+                android:contentDescription="@string/imageAccess" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

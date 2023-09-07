@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.friendship.BasicDetails.UsersFragment;
 import com.example.friendship.Model.Chatlist;
@@ -56,6 +58,7 @@ public class MailFragment extends Fragment {
     private List<Chatlist> usersList;
     static OnItemClick onItemClick;
     String purl;
+    LottieAnimationView progress;
 
     public static MailFragment newInstance(OnItemClick click)
     {
@@ -77,6 +80,7 @@ public class MailFragment extends Fragment {
 //        layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
         TextView tvReq = view.findViewById(R.id.tvReq);
+        progress = view.findViewById(R.id.progress);
         tvNoReq = view.findViewById(R.id.tvNoReq);
         tvNoFriends = view.findViewById(R.id.tvNoFriends);
         imgProfile = view.findViewById(R.id.imgProfile);
@@ -193,6 +197,7 @@ public class MailFragment extends Fragment {
                     }
                 }
                 userAdapter = new UsersAdapter(getContext(), onItemClick,mUsers, true);
+                progress.setVisibility(View.GONE);
                 recyclerView.setAdapter(userAdapter);
             }
             @Override

@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,7 @@ public class DashboardFragment extends Fragment {
     SolidGlowAnimation animation_view_complex_view;
     DatabaseReference reference;
     EditText searchEditText;
+    LottieAnimationView progress;
     int count;
     private Parcelable recyclerViewState; // Add this variable
 
@@ -53,9 +55,10 @@ public class DashboardFragment extends Fragment {
         animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
         animation_view_complex_view.startAnimation();
         searchEditText = view.findViewById(R.id.etSearch);
+        progress = view.findViewById(R.id.progress);
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recView.setItemAnimator(new DefaultItemAnimator());
+        recView.setItemAnimator(null);
 
         // Restore the RecyclerView's scroll state if available
         if (savedInstanceState != null) {
@@ -88,6 +91,7 @@ public class DashboardFragment extends Fragment {
                             .build();
 
                     userAdapter.updateOptions(options);
+
                 } catch (Exception e) {
                     Toast.makeText(getContext(), "Orientation changed", Toast.LENGTH_SHORT).show();
                 }
@@ -149,6 +153,7 @@ public class DashboardFragment extends Fragment {
                                 .build();
                 userAdapter = new UserAdapter(options);
                 recView.setAdapter(userAdapter);
+                progress.setVisibility(View.GONE);
                 userAdapter.startListening();
 
             }

@@ -267,122 +267,57 @@ public class UserDescrFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.child(userId).child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    myRef.child(userId).child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Map<String,Object> map = new HashMap<>();
-                        if(snapshot.child("status").exists()){
-                            if(snapshot.child("status").getValue().equals("0")){
-                                Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
+                            Map<String,Object> map = new HashMap<>();
+                            if(snapshot.child("status").exists()){
+                                if(snapshot.child("status").getValue().equals("0")){
+                                    Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
+                                    card1.setVisibility(View.VISIBLE);
+                                    privatebutton.setVisibility(View.INVISIBLE);
+                                    button.setText("Requested");
+                                    map.put("status","1");
+                                    myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
+
+                                } else if (snapshot.child("status").getValue().equals("1")) {
+                                    button.setText("Align");
+                                    Toast.makeText(getContext(),"Request retrieved:{",Toast.LENGTH_SHORT).show();
+                                    privatebutton.setVisibility(View.INVISIBLE);
+                                    map.put("status","0");
+                                    myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
+                                }else{
+                                    Toast.makeText(getContext(),"Unaligned",Toast.LENGTH_SHORT).show();
+                                    privatebutton.setVisibility(View.INVISIBLE);
+                                    button.setText("Align");
+                                    map.put("status","0");
+                                    myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
+                                    myRef.child(fAuth.getUid()).child(userId).updateChildren(map);
+                                }
+
+                            }else {
                                 card1.setVisibility(View.VISIBLE);
                                 privatebutton.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
                                 button.setText("Requested");
                                 map.put("status","1");
+
                                 myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
 
-                            } else if (snapshot.child("status").getValue().equals("1")) {
-                                button.setText("Align");
-                                Toast.makeText(getContext(),"Request retrieved:{",Toast.LENGTH_SHORT).show();
-                                privatebutton.setVisibility(View.INVISIBLE);
-                                map.put("status","0");
-                                myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
-                            }else{
-                                Toast.makeText(getContext(),"Unaligned",Toast.LENGTH_SHORT).show();
-                                privatebutton.setVisibility(View.INVISIBLE);
-                                button.setText("Align");
-                                map.put("status","0");
-                                myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
-                                myRef.child(fAuth.getUid()).child(userId).updateChildren(map);
                             }
+                        }
 
-                        }else {
-                            card1.setVisibility(View.VISIBLE);
-                            privatebutton.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getContext(),"Requested:}",Toast.LENGTH_SHORT).show();
-                            button.setText("Requested");
-                            map.put("status","1");
-
-                            myRef.child(userId).child(fAuth.getUid()).updateChildren(map);
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                }catch (Exception e){}
 
 
-
-
-
-
-
-//                myRef.child(fAuth.getUid().toString()).child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                        int i = 0;
-//
-//                        for(DataSnapshot snapshot: task.getResult().getChildren()){
-//                            i=1;
-//                            Toast.makeText(getContext(),snapshot.getKey().toString(),Toast.LENGTH_SHORT).show();
-//
-//
-//                            if (snapshot.getKey().toString().trim().equals(userId)){
-//
-//
-//
-//                                Map<String,Object> map = new HashMap<>();
-//                                if(snapshot.getValue().equals("0")){
-////                                    Toast.makeText(getContext(),userId,Toast.LENGTH_SHORT).show();
-//                                    card1.setVisibility(View.VISIBLE);
-//                                    privatebutton.setVisibility(View.INVISIBLE);
-//                                    button.setText("Requested");
-//                                    map.put(userId,"1");
-//                                    myRef.child(fAuth.getUid()).updateChildren(map);
-//                                    break;
-//                                } else if (snapshot.getValue().equals("1")) {
-//                                    button.setText("Align");
-//                                    card1.setVisibility(View.INVISIBLE);
-//                                    privatebutton.setVisibility(View.INVISIBLE);
-//                                    map.put(userId,"0");
-//                                    myRef.child(fAuth.getUid()).updateChildren(map);
-//                                    break;
-//                                }else{
-//                                    card1.setVisibility(View.INVISIBLE);
-//                                    privatebutton.setVisibility(View.INVISIBLE);
-//                                    button.setText("Diverge");
-//                                    map.put(userId,"0");
-//                                    myRef.child(fAuth.getUid()).updateChildren(map);
-//                                    break;
-//
-//                                }
-//
-//                            }else{
-//                                card1.setVisibility(View.VISIBLE);
-//                                privatebutton.setVisibility(View.INVISIBLE);
-//                                i=1;
-//
-//                                button.setText("Requested");
-//                                Map<String,Object> map = new HashMap<>();
-//                                map.put(userId,"1");
-//                                myRef.child(fAuth.getUid()).updateChildren(map);
-//
-//                            }
-//                        }
-//
-//                        if(i==0){
-//                            card1.setVisibility(View.VISIBLE);
-//                            privatebutton.setVisibility(View.INVISIBLE);
-//                            button.setText("Requested");
-//                            Map<String,Object> map = new HashMap<>();
-//                            map.put(userId,"1");
-//                            myRef.child(fAuth.getUid()).updateChildren(map);
-//                        }
-//                    }
-//                });
 
             }
         });
@@ -390,9 +325,14 @@ public class UserDescrFragment extends Fragment {
         return v;
     }
     public void onBackPressed(){
-        AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
-        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                new DashboardFragment()).addToBackStack(null).commit();
+        try {
+            AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
+            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                    new DashboardFragment()).addToBackStack(null).commit();
+        }catch (Exception e){
+
+        }
+
 
     }
 }

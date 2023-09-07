@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -52,7 +53,9 @@ public class DetailsActivity5 extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
     DatabaseReference registered= database.getReference("students");
+    LottieAnimationView progress;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,7 @@ public class DetailsActivity5 extends AppCompatActivity {
         tvPrevious = findViewById(R.id.tvPrevious);
 
         tvNext = findViewById(R.id.tvNext);
+        progress = findViewById(R.id.progress);
 
         lottieAnimationView = findViewById(R.id.lottie_animation);
         lottieAnimationView.playAnimation();
@@ -174,6 +178,7 @@ public class DetailsActivity5 extends AppCompatActivity {
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri =data.getData();
+                progress.setVisibility(View.VISIBLE);
 
 //                imgButton.setImageURI(imageUri);
 //                progressBar.setVisibility(View.VISIBLE);
@@ -221,6 +226,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                         }
 
                         Picasso.get().load(uri).into(ivProfile);
+                        progress.setVisibility(View.GONE);
                     }
                 });
             }
@@ -229,6 +235,7 @@ public class DetailsActivity5 extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload
                 Toast.makeText(DetailsActivity5.this, "Failed.", Toast.LENGTH_LONG).show();
+                progress.setVisibility(View.GONE);
             }});
     }
 }

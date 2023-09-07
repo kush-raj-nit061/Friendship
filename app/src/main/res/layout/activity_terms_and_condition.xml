@@ -99,7 +99,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:padding="6dp"
-                            android:text="Effective Date: [Date]"
+                            android:text="Effective Date: [10/09/2023]"
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -557,7 +557,7 @@
                             android:lineHeight="20sp"
                             android:minHeight="60dp"
                             android:padding="12dp"
-                            android:text="@string/contacts"
+                            android:text="[Friendship]\nAshok Rajpath, Near Patna University Campus,\n800005"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView11">

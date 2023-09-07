@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
+    LottieAnimationView progress;
 
     ImageView ivEditInfo,ivEditShortBio,btBack;
     Button saveChanges;
@@ -99,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
         lllocationtv = findViewById(R.id.lllocationtv);
         llnametv = findViewById(R.id.llnametv);
         llyeartv = findViewById(R.id.llyeartv);
+        progress = findViewById(R.id.progress);
 
 
         llshortbiotv = findViewById(R.id.llshortbiotv);
@@ -230,6 +233,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
+
+                progress.setVisibility(View.VISIBLE);
                 Uri imageUri =data.getData();
 //                imgButton.setImageURI(imageUri);
 //                progressBar.setVisibility(View.VISIBLE);
@@ -288,6 +293,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                         Picasso.get().load(uri).into(imgButton);
+                        progress.setVisibility(View.GONE);
                     }
                 });
             }
@@ -295,6 +301,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload
+                progress.setVisibility(View.GONE);
                 Toast.makeText(ProfileActivity.this, "Failed.", Toast.LENGTH_LONG).show();
             }});
     }

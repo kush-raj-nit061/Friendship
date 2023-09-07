@@ -477,6 +477,7 @@
                             android:lineHeight="20sp"
                             android:minHeight="60dp"
                             android:padding="12dp"
+                            android:textColor="@color/black"
                             android:text="@string/agree"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

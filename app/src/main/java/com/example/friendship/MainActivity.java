@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     ArrayList<MenuItem> list;
     DatabaseReference reference;
     DatabaseReference reference2;
+    DatabaseReference reference3;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FlowingDrawer mDrawer;
     ImageView iv_menu;
@@ -110,6 +111,21 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
 
         reference2 = FirebaseDatabase.getInstance().getReference("students");
+        reference3 = FirebaseDatabase.getInstance().getReference("unregistered");
+
+        reference3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(fAuth.getCurrentUser().getUid()).exists()){
+                    reference3.child(fAuth.getCurrentUser().getUid()).removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         Map<String,Object> map = new HashMap<>();
