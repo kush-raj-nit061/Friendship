@@ -66,7 +66,8 @@
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/frog3"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"                    android:visibility="visible"
+                    android:layout_height="80dp"
+                    android:visibility="visible"
                     android:layout_weight="1"
                     app:lottie_autoPlay="false"
                     app:lottie_rawRes="@raw/frog"
@@ -79,7 +80,8 @@
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/frog4"
                     android:layout_width="0dp"
-                    android:layout_height="80dp"                    android:visibility="visible"
+                    android:layout_height="80dp"
+                    android:visibility="visible"
                     app:lottie_autoPlay="false"
                     app:lottie_rawRes="@raw/frog"
                     app:lottie_loop="true"
@@ -101,13 +103,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:layout_marginHorizontal="5dp">
+                android:layout_marginHorizontal="5dp"
+                tools:ignore="UseCompoundDrawables">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/bariol_regular"
-                    android:text="You are 2 steps away"
+                    android:text="@string/you_are_2_steps_away"
 
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
@@ -122,7 +125,8 @@
 
                     android:src="@drawable/skip"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:contentDescription="@string/todo" />
 
 
             </LinearLayout>
@@ -159,7 +163,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="Select Type of Books that you like:"
+                    android:text="@string/select_type_of_books_that_you_like"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
 
@@ -180,24 +184,24 @@
                     android:id="@+id/chip1"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Novels"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/novels"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip2"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Poetry"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/poetry"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip3"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Biography"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/biography"/>
 
 
             </LinearLayout>
@@ -215,24 +219,24 @@
                     android:id="@+id/chip4"
                     android:layout_weight="0.8"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Fiction"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/fiction"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip5"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="NonFiction"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/nonfiction"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip6"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Horrror"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/horrror"/>
 
 
             </LinearLayout>
@@ -251,24 +255,24 @@
                     android:id="@+id/chip7"
                     android:layout_weight="0.9"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Mystery"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/mystery"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip8"
                     android:layout_weight="1.3"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="AutoBiography"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/autobiography"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="0.8"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip9"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Comics"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/comics"/>
 
 
             </LinearLayout>
@@ -286,16 +290,16 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chip10"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Historical Fiction"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/historical_fiction"/>
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip11"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Science Fiction"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/science_fiction"/>
 
 
             </LinearLayout>
@@ -307,7 +311,7 @@
                 android:layout_weight="40"
                 android:layout_marginHorizontal="29dp"
                 android:fontFamily="@font/bariol_bold"
-                android:text="What do you normally like:"
+                android:text="@string/what_do_you_normally_like"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
             <RelativeLayout
@@ -330,7 +334,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_keyboard_arrow_down_24"/>
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    android:contentDescription="@string/todo" />
 
 
 
@@ -351,7 +356,7 @@
                 android:layout_weight="40"
                 android:layout_marginHorizontal="29dp"
                 android:fontFamily="@font/bariol_bold"
-                android:text="Type of place you like to travel:"
+                android:text="@string/type_of_place_you_like_to_travel"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
 
@@ -369,24 +374,24 @@
                     android:id="@+id/chip1p"
                     android:layout_weight="0.88"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Beaches"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/beaches"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip2p"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Mountains"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/mountains"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="0.9"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip3p"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Heritage"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/heritage"/>
 
 
             </LinearLayout>
@@ -404,24 +409,24 @@
                     android:id="@+id/chip4p"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Historical"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/historical"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip5p"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Adventure"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/adventure"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip6p"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Wildlife"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/wildlife"/>
 
 
             </LinearLayout>
@@ -440,24 +445,24 @@
                     android:id="@+id/chip7p"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Educational"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/educational"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip8p"
                     android:layout_weight="0.8"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Caves"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/caves"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip9p"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Unexplored"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/unexplored"/>
 
 
             </LinearLayout>
@@ -473,25 +478,28 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="20dp"
-                >
+                tools:ignore="RtlHardcoded">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_marginBottom="@dimen/margin_20_dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
                     <ImageView
                         android:id="@+id/tvPrevious"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="left"
-                        android:src="@drawable/prev"/>
+                        android:src="@drawable/prev"
+                        android:contentDescription="@string/todo" />
 
                     <ImageView
                         android:id="@+id/tvNext"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/next"/>
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/next"
+                        android:contentDescription="@string/todo" />
 
 
                 </RelativeLayout>
@@ -499,17 +507,6 @@
 
 
             </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

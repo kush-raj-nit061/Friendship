@@ -52,7 +52,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="Have You Found Someone lets search ?"
+                    android:text="@string/have_you_found_someone_lets_search"
                     android:textColor="@color/google_color"
                     android:textSize="30sp" />
 
@@ -167,7 +167,7 @@
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/progress"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="0dp"
                             android:visibility="visible"
                             app:lottie_autoPlay="true"
                             app:lottie_rawRes="@raw/progress"

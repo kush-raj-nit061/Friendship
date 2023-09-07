@@ -33,16 +33,16 @@
                     android:gravity="center"
                     android:textSize="22sp"
                     android:layout_marginStart="@dimen/margin_10_dp"
-                    android:text=">  Version:"/>
+                    android:text="@string/version"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:layout_marginStart="38dp"
-                    android:text="1.0"
+                    android:text="@string/_1_0"
                     android:layout_marginTop="3dp"
-                    android:layout_toRightOf="@+id/tvv"/>
+                    android:layout_toEndOf="@+id/tvv"/>
 
 
 
