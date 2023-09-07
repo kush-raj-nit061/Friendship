@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    >
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:id="@+id/iv_Menu"
@@ -40,11 +40,12 @@
                         android:layout_height="45dp"
                         android:padding="8dp"
                         android:src="@drawable/baseline_menu_24"
-                        app:tint="@color/black" />
+                        app:tint="@color/black"
+                        android:contentDescription="@string/todo" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Friendship"
+                        android:text="@string/friendship"
                         android:layout_marginHorizontal="16dp"
 
                         android:textSize="24sp"
@@ -59,7 +60,6 @@
 
             <FrameLayout
                 android:id="@+id/fragmentContainer"
-                android:layout_above="@+id/bottom_nav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -82,7 +82,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@color/black"/>
+                        android:src="@color/black"
+                        android:contentDescription="@string/todo" />
                     <LinearLayout
 
                         android:layout_width="match_parent"
@@ -91,7 +92,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             >
 
 
@@ -100,10 +101,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:text="Quick tool"
+                                android:text="@string/quick_tool"
                                 android:fontFamily="@font/bariol_bold"
                                 android:textColor="@color/white"
-                                android:textSize="20dp"/>
+                                android:textSize="20sp"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -115,8 +116,7 @@
                                 android:src="#090101"
                                 app:civ_border_width="1.5dp"
                                 app:civ_border_color="#7190EE"
-                                android:layout_marginLeft="5dp"
-                                android:layout_alignParentLeft="true"/>
+                                android:layout_marginStart="5dp" />
                             <TextView
                                 android:id="@+id/drawerName"
                                 android:fontFamily="@font/bariol_regular"
@@ -126,7 +126,7 @@
                                 android:text=""
                                 android:textColor="#FFF1F1"
                                 android:textSize="25sp"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginTop="24dp"/>
                         </LinearLayout>
                         <TextView
@@ -137,8 +137,8 @@
                             android:text=""
                             android:fontFamily="@font/bariol_regular"
                             android:textColor="@color/white"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="5dp"/>
+                            android:textSize="20sp"
+                            android:layout_marginStart="5dp"/>
                         <TextView
                             android:id="@+id/year"
                             android:layout_width="match_parent"
@@ -148,8 +148,8 @@
                             android:layout_marginBottom="10dp"
                             android:text=""
                             android:textColor="@color/white"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="5dp"/>
+                            android:textSize="20sp"
+                            android:layout_marginStart="5dp"/>
 
                     </LinearLayout>
 
@@ -176,18 +176,19 @@
                             android:layout_height="32dp"
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/account_avatar_profile_png_photo"
-                                android:layout_marginLeft="2dp"
-                                app:tint="#495154" />
+                                android:layout_marginStart="2dp"
+                                app:tint="#495154"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Profile >"
+                                android:text="@string/profile"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
                                 android:textColor="@color/black"/>
@@ -212,19 +213,20 @@
                             android:gravity="center_vertical"
 
 
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/privacy_protect_security_icon_1320190884998801875"
-                                android:layout_marginLeft="2dp"
+                                android:layout_marginStart="2dp"
                                 app:tint="#495154"
-                                android:gravity="center_vertical"/>
+                                android:gravity="center_vertical"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Privacy and Security >"
+                                android:text="@string/privacy_and_security"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
                                 android:textColor="@color/black"/>
@@ -249,18 +251,19 @@
                             android:gravity="center_vertical"
 
 
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/_63350_vector_pic_help_free_download_png_hq"
-                                android:layout_marginLeft="2dp"
-                                app:tint="#495154" />
+                                android:layout_marginStart="2dp"
+                                app:tint="#495154"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Help >"
+                                android:text="@string/help"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
                                 android:textColor="@color/black"/>
@@ -286,23 +289,25 @@
                             android:gravity="center_vertical"
 
 
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/agreement"
                                 android:layout_gravity="center"
-                                android:layout_marginLeft="2dp"
+                                android:layout_marginStart="2dp"
 
-                                app:tint="#495154" />
+                                app:tint="#495154"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Terms and Conditions >"
+                                android:text="@string/terms_and_conditions"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black"
+                                 />
 
 
 
@@ -325,18 +330,19 @@
                             android:gravity="center_vertical"
 
 
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/communication_icon_png_16"
-                                android:layout_marginLeft="2dp"
-                                app:tint="#495154" />
+                                android:layout_marginStart="2dp"
+                                app:tint="#495154"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="About us >"
+                                android:text="@string/about_us"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
                                 android:textColor="@color/black"/>
@@ -361,18 +367,19 @@
                             android:gravity="center_vertical"
 
 
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:src="@drawable/baseline_notifications_active_24"
-                                android:layout_marginLeft="2dp"
-                                app:tint="#495154" />
+                                android:layout_marginStart="2dp"
+                                app:tint="#495154"
+                                android:contentDescription="@string/todo" />
                             <TextView
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Set Notifications >"
+                                android:text="@string/set_notifications"
                                 android:textStyle="bold"
                                 android:textSize="16sp"
                                 android:textColor="@color/black"/>

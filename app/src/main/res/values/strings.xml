@@ -121,7 +121,7 @@
     <string name="made_with">Made with 💝</string>
     <string name="who_we_are">Who we are?</string>
     <string name="todo">TODO</string>
-    <string name="maintainance">Hold On While We are Under Maintainance</string>
+    <string name="maintainance">Hold On While We are Under Maintenance</string>
     <string name="version"><![CDATA[> Version:]]></string>
     <string name="_1_0">1.0</string>
     <string name="set_the_announcements">Set the announcements</string>
@@ -137,7 +137,7 @@
     <string name="if_any_pdfs_or_any_other_documents_kindly_attach_the_google_drive_link">if any pdfs or any other documents kindly attach the google drive link:</string>
     <string name="set_notification">Set Notification</string>
     <string name="todoo">TODO</string>
-    <string name="message_here">Message Here...</string>
+    <string name="message_here">Message Here…</string>
     <string name="have_you_found_someone_lets_search">Have You Found Someone lets search ?</string>
     <string name="you_are_4_steps_away_to_setup_your_profile">You are 4 steps away to setup your profile</string>
     <string name="hey_tell_me_something_about_yourself">Hey, Tell Me Something About Yourself</string>
@@ -194,6 +194,22 @@
     <string name="selfish">Selfish</string>
     <string name="arrogance">Arrogance</string>
     <string name="other_s_if_anya">Other\'s (if any)</string>
+    <string name="your_account_is_now_ready_set_your_profile_picture">Your account is now ready set your profile picture:</string>
+    <string name="enter_registered_e_mail">Enter Registered E-Mail</string>
+    <string name="change_password">Change Password</string>
+    <string name="help_amp_support"><![CDATA[HELP & SUPPORT]]></string>
+    <string name="_00">00</string>
+    <string name="friends">Friends</string>
+    <string name="_00q">00</string>
+    <string name="requested">Requested</string>
+    <string name="friendship">Friendship</string>
+    <string name="quick_tool">Quick tool</string>
+    <string name="profile"><![CDATA[Profile >]]></string>
+    <string name="privacy_and_security"><![CDATA[Privacy and Security >]]></string>
+    <string name="help"><![CDATA[Help >]]></string>
+    <string name="terms_and_conditions"><![CDATA[Terms and Conditions >]]></string>
+    <string name="about_us"><![CDATA[About us >]]></string>
+    <string name="set_notifications"><![CDATA[Set Notifications >]]></string>
 
 
 </resources>

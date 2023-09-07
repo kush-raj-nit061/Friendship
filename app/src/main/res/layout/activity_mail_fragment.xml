@@ -63,7 +63,7 @@
                 android:padding="22dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                 />
+                android:contentDescription="@string/todo" />
 
 
 
@@ -78,7 +78,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:padding="4dp"
-            android:text="00"
+            android:text="@string/_00"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
             android:background="@drawable/bg_logout_card_normal"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
-            android:text="Friends"
+            android:text="@string/friends"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.138"
@@ -113,7 +113,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
 
-            android:text="00"
+            android:text="@string/_00q"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.594"
@@ -131,7 +131,7 @@
             android:textColor="#010D27"
             android:background="@drawable/bg_logout_card_normal"
             android:layout_marginTop="8dp"
-            android:text="Requested"
+            android:text="@string/requested"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.732"
             app:layout_constraintStart_toEndOf="@+id/photo"
@@ -162,7 +162,6 @@
                 android:paddingBottom="@dimen/margin_30_dp"
                 app:lottie_loop="true"
                 app:lottie_speed="1"
-                android:layout_weight="60"
                 android:contentDescription="@string/imageAccess" />
 
             <ScrollView

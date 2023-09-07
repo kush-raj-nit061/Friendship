@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -12,10 +11,11 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="220dp"
-        android:hint="Enter Registered E-Mail"
+        android:hint="@string/enter_registered_e_mail"
         android:layout_gravity="center"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnReset"
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
         android:background="@color/maza"
-        android:text="Change Password"
+        android:text="@string/change_password"
         android:textColor="#212121" />
 
 </LinearLayout>
