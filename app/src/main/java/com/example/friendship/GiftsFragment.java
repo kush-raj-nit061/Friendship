@@ -34,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -155,13 +156,36 @@ public class GiftsFragment extends Fragment {
         }
 
 
-        FirebaseRecyclerOptions<Status> options3 =
-                new FirebaseRecyclerOptions.Builder<Status>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Status"), Status.class)
-                        .build();
-        userAdapter3=new StatusAdapter(options3);
-        recStatus.setAdapter(userAdapter3);
-        userAdapter3.startListening();
+        DatabaseReference dbre = FirebaseDatabase.getInstance().getReference("Status");
+        dbre.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long count = snapshot.getChildrenCount();
+                Query q = dbre.orderByChild("date").limitToLast((int) count); // Assuming "date" is the key in each child containing the timestamp
+                FirebaseRecyclerOptions<Status> options3 =
+                        new FirebaseRecyclerOptions.Builder<Status>()
+                                .setQuery(q, Status.class)
+                                .build();
+                userAdapter3 = new StatusAdapter(options3);
+                recStatus.setAdapter(userAdapter3);
+                userAdapter3.startListening();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+
+//        FirebaseRecyclerOptions<Status> options3 =
+//                new FirebaseRecyclerOptions.Builder<Status>()
+//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Status"), Status.class)
+//                        .build();
+//        userAdapter3=new StatusAdapter(options3);
+//        recStatus.setAdapter(userAdapter3);
+//        userAdapter3.startListening();
 
 
 
@@ -201,8 +225,6 @@ public class GiftsFragment extends Fragment {
 
             }
         });
-
-
 
         return view;
     }

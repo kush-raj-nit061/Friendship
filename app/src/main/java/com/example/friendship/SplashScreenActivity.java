@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -70,12 +71,24 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                             }else {
                                                 if(detailsGiven.equals("1")){
-                                                    Intent intent
-                                                            = new Intent(SplashScreenActivity.this,
-                                                            MainActivity.class);
-                                                    Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
-                                                    startActivity(intent);
-                                                    finish();
+                                                    FirebaseAuth.getInstance().getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            Intent intent
+                                                                    = new Intent(SplashScreenActivity.this,
+                                                                    MainActivity.class);
+                                                            Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getApplicationContext(),"Your Account Has been Suspended",Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+
+
 
                                                 }else{
                                                     if(mAuth.getCurrentUser().isEmailVerified()){
