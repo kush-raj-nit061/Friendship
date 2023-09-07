@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:alpha="0.9"
+    tools:context=".SplashScreenActivity">
+
+
+
+    <TextView
+        android:id="@+id/tvSplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="Let's Know Our Family"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+
+        />
+
+    <com.github.sshadkany.shapes.RoundRectView
+        android:id="@+id/btn3a"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        app:shape_roundRect_backgroundColor="#ECF0F3"
+        app:shape_roundRect_bottomLeftRadius="12dp"
+        app:shape_roundRect_bottomRightRadius="12dp"
+        app:shape_roundRect_shadow_type="drop_shadow"
+        app:shape_roundRect_topLeftRadius="12dp"
+        app:shape_roundRect_topRightRadius="12dp"
+        tools:ignore="RtlSymmetry">
+
+        <com.github.sshadkany.shapes.RoundRectView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            app:shape_roundRect_backgroundColor="#ECF0F3"
+            app:shape_roundRect_bottomLeftRadius="12dp"
+            app:shape_roundRect_bottomRightRadius="12dp"
+            app:shape_roundRect_shadow_type="small_inner_shadow"
+            app:shape_roundRect_topLeftRadius="12dp"
+            app:shape_roundRect_topRightRadius="12dp">
+
+            <com.github.sshadkany.shapes.RoundRectView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                app:shape_roundRect_backgroundColor="#ECF0F3"
+                app:shape_roundRect_bottomLeftRadius="12dp"
+                app:shape_roundRect_bottomRightRadius="12dp"
+                app:shape_roundRect_shadow_type="drop_shadow"
+                app:shape_roundRect_topLeftRadius="12dp"
+                app:shape_roundRect_topRightRadius="12dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:padding="20dp"
+                    android:layout_gravity="center"
+
+                    android:contentDescription="TODO"
+                    android:src="@drawable/logo" />
+
+
+            </com.github.sshadkany.shapes.RoundRectView>
+        </com.github.sshadkany.shapes.RoundRectView>
+    </com.github.sshadkany.shapes.RoundRectView>
+
+</androidx.cardview.widget.CardView>

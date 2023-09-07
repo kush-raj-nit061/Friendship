@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -106,6 +107,9 @@ public class ProfileActivity extends AppCompatActivity {
         llyearet = findViewById(R.id.llyearet);
         llshortbioet = findViewById(R.id.llshortbioet);
         btBack = findViewById(R.id.bt_back);
+
+        Intent i = getIntent();
+        Glide.with(getApplicationContext()).load(i.getStringExtra("purl")).into(imgButton);
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,34 +206,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         ivProfile = findViewById(R.id.ivEditProfile);
         userID = fAuth.getCurrentUser().getUid();
-
-        fStore.collection("users").document(userID)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-
-                            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    Picasso.get().load(uri).into(imgButton);
-
-                                }
-                            });
-                        }
-                    } else {
-                        // Handle the error
-                        Exception exception = task.getException();
-                        // Log or display an error message
-                    }
-                });
-
-
-
-
-
-
 
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Glide.with(getApplicationContext()).load(snapshot.child("purl").getValue()).into(ivDrawer);
                     purl= (String) snapshot.child("purl").getValue();
-
                     year.setText(String.valueOf(snapshot.child("year").getValue()));
                     branch.setText(String.valueOf(snapshot.child("branch").getValue()));
                     name.setText(String.valueOf(snapshot.child("name").getValue()));
@@ -211,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                i.putExtra("purl",purl);
                 startActivity(i);
             }
         });
