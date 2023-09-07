@@ -49,10 +49,27 @@ public class LikedbyAdapter extends FirebaseRecyclerAdapter<Likedby,LikedbyAdapt
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Likedby model) {
 
+        try {
+            dbRef.child("students").child(model.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String prof = (String) snapshot.child("purl").getValue();
+                        Glide.with(holder.profileImage.getContext()).load(prof).into(holder.profileImage);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){
+            Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
+        }
 
 
 
-        Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
         holder.profileImage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +55,7 @@ public class DashboardFragment extends Fragment {
         searchEditText = view.findViewById(R.id.etSearch);
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recView.setItemAnimator(null);
+        recView.setItemAnimator(new DefaultItemAnimator());
 
         // Restore the RecyclerView's scroll state if available
         if (savedInstanceState != null) {
@@ -107,10 +108,14 @@ public class DashboardFragment extends Fragment {
         super.onSaveInstanceState(outState);
 
         // Save the RecyclerView's scroll state
-        if (recView.getLayoutManager() != null) {
-            recyclerViewState = recView.getLayoutManager().onSaveInstanceState();
-            outState.putParcelable("recycler_state", recyclerViewState);
-        }
+        try {
+            if (recView.getLayoutManager() != null) {
+                recyclerViewState = recView.getLayoutManager().onSaveInstanceState();
+                outState.putParcelable("recycler_state", recyclerViewState);
+            }
+
+        }catch (Exception e){}
+
     }
 
     @Override
@@ -118,9 +123,13 @@ public class DashboardFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // Restore the RecyclerView's scroll state if available
-        if (recyclerViewState != null) {
-            recView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
-        }
+        try {
+            if (recyclerViewState != null) {
+                recView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+            }
+
+        }catch (Exception e){}
+
     }
 
     // Method to initialize FirebaseRecyclerOptions and UserAdapter
@@ -165,24 +174,6 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-//        reference.child("students").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
-//                FirebaseRecyclerOptions<UserModel> options =
-//                        new FirebaseRecyclerOptions.Builder<UserModel>()
-//                                .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
-//                                        .orderByChild("likes").limitToLast(count), UserModel.class)
-//                                .build();
-//                userAdapter = new UserAdapter(options);
-//                recView.setAdapter(userAdapter);
-//                userAdapter.startListening();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                // Handle the error here
-//            }
-//        });
+
     }
 }

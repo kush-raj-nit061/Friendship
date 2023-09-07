@@ -51,8 +51,21 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Status model) {
 
         try {
+            dbRef.child("students").child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String prof = (String) snapshot.child("purl").getValue();
+                        Glide.with(holder.imgprofile.getContext()).load(prof).into(holder.imgprofile);
+                    }
+                }
 
-            Glide.with(holder.imgprofile.getContext()).load(model.getPurl()).into(holder.imgprofile);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
 
             try {
 

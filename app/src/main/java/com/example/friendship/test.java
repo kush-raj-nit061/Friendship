@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.BasicDetails.DetailsActivity1;
 import com.example.friendship.BasicDetails.DetailsActivity2;
 import com.example.friendship.BasicDetails.DetailsActivity5;
@@ -30,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class test extends AppCompatActivity {
+    LottieAnimationView frog1,frog2,frog3,frog4;
+
 
     private EditText emailTextView, passwordTextView;
     private Button Btn;
@@ -44,7 +48,34 @@ public class test extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.tester);
+        frog1 = findViewById(R.id.frog1);
+        frog2= findViewById(R.id.frog2);
+        frog3 = findViewById(R.id.frog3);
+        frog4 = findViewById(R.id.frog4);
+
+        Handler handler = new Handler();
+
+
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                frog2.setVisibility(View.VISIBLE);
+                frog2.playAnimation();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        frog3.playAnimation();
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                frog4.playAnimation();
+                            }
+                        },3000);
+                    }
+                }, 3000);
+            }
+        }, 3000);
 
 
 

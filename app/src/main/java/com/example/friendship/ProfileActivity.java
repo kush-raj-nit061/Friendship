@@ -58,7 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
 
-    ImageView ivEditInfo,ivEditShortBio;
+    ImageView ivEditInfo,ivEditShortBio,btBack;
     Button saveChanges;
 
 
@@ -105,6 +105,14 @@ public class ProfileActivity extends AppCompatActivity {
         llnameet = findViewById(R.id.llnameet);
         llyearet = findViewById(R.id.llyearet);
         llshortbioet = findViewById(R.id.llshortbioet);
+        btBack = findViewById(R.id.bt_back);
+
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

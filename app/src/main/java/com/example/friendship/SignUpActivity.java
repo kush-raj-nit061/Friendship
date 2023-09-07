@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.ActionCodeSettings;
@@ -58,6 +59,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private Button b;
+    LottieAnimationView frog1,frog2,frog3,frog4;
+
 
 
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
@@ -69,11 +72,15 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.layout_signup);
         this.progressBar = findViewById(R.id.progressBarSignUp);
         progressBar.setVisibility(View.GONE);
         // taking FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
+        frog1 = findViewById(R.id.frog1);
+        frog2= findViewById(R.id.frog2);
+        frog3 = findViewById(R.id.frog3);
+        frog4 = findViewById(R.id.frog4);
         // initialising all views through id defined above
         fullname       = findViewById(R.id.inputFirstName);
         branch = findViewById(R.id.branch);
@@ -81,6 +88,30 @@ public class SignUpActivity extends AppCompatActivity {
         passwordTextView        = findViewById(R.id.inputPassword);
         inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
         Btn         = findViewById(R.id.buttonSignUp);
+        Handler handler = new Handler();
+
+
+        handler.postDelayed(new Runnable() {
+            public void run() {
+
+
+                frog2.setVisibility(View.VISIBLE);
+                frog2.playAnimation();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        frog3.playAnimation();
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                frog4.playAnimation();
+                            }
+                        },3000);
+                    }
+                }, 3000);
+            }
+        }, 3000);
 
         branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

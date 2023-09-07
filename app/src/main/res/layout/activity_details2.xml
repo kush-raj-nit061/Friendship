@@ -158,13 +158,14 @@
                     android:gravity="center_vertical"
                     android:hint="DD Feb YYYY"
                     android:background="@drawable/container_search"
+                    android:backgroundTint="@color/bg_text_color"
                     android:paddingLeft="@dimen/normalPadding"
                     android:paddingTop="@dimen/vertical_search"
                     android:paddingRight="@dimen/normalPadding"
                     android:textStyle="bold"
                     android:paddingBottom="@dimen/vertical_search"
                     android:textColor="?attr/colorPrimaryDark"
-                    android:textColorHint="@color/color_hint"
+                    android:textColorHint="@color/black_transparent"
                     android:textSize="22sp" />
 
                 <ImageView
