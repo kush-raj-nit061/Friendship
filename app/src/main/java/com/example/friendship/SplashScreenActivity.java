@@ -116,7 +116,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                             }
                         }else {
-
+                                Toast.makeText(getApplicationContext(),"Something Wrong!!!",Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -125,7 +125,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent i = new Intent(SplashScreenActivity.this, test.class);
+                    Intent i = new Intent(SplashScreenActivity.this, SignUpActivity.class);
                     startActivity(i);
                     finish();
                 }

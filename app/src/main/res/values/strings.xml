@@ -123,7 +123,7 @@
     <string name="todo">TODO</string>
     <string name="maintainance">Hold On While We are Under Maintenance</string>
     <string name="version"><![CDATA[> Version:]]></string>
-    <string name="_1_0">1.0</string>
+    <string name="_1_0">1.0.0</string>
     <string name="set_the_announcements">Set the announcements</string>
     <string name="add_event_poster_above">Add Event Poster above</string>
     <string name="event_name_here">EVENT NAME HERE</string>
@@ -210,6 +210,19 @@
     <string name="terms_and_conditions"><![CDATA[Terms and Conditions >]]></string>
     <string name="about_us"><![CDATA[About us >]]></string>
     <string name="set_notifications"><![CDATA[Set Notifications >]]></string>
+    <string name="privacy_amp_policy"><![CDATA[Privacy & Policy]]></string>
+    <string name="_1_information_we_collect">1. *Information We Collect:*</string>
+    <string name="_2_how_we_use_your_information">2. *How We Use Your Information:*</string>
+    <string name="_3_sharing_of_your_information">3 *Sharing of Your Information:*</string>
+    <string name="_4_security">4. *Security:*</string>
+    <string name="_6_contact_us">6. *Contact Us:*</string>
+    <string name="if_you_have_questions_about_this_privacy_policy_contact_us_at">- If you have questions about this Privacy Policy, contact us at:</string>
+    <string name="also_review_our_terms_of_use">Also review our Terms of use.</string>
+    <string name="terms_and_conditionsa">Terms And Conditions</string>
+    <string name="privacy_amp_security"><![CDATA[PRIVACY & SECURITY]]></string>
+    <string name="change_passworda"><![CDATA[> Change Password]]></string>
+    <string name="privacy_and_policy"><![CDATA[> Privacy And Policy]]></string>
+    <string name="logout"><![CDATA[> Logout]]></string>
 
 
 </resources>

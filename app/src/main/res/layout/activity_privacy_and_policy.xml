@@ -38,7 +38,7 @@
                     android:padding="6dp"
                     android:src="@drawable/baseline_arrow_back_24"
                     tools:ignore="MissingConstraints"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
 
                 <TextView
@@ -49,7 +49,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:padding="6dp"
-                    android:text="Privacy &amp; Policy"
+                    android:text="@string/privacy_amp_policy"
                     android:textColor="@color/colorSecondary"
                     android:textSize="28sp"
                     android:textStyle="bold"
@@ -69,7 +69,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tvMainText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvMainText"
-                    app:tint="@color/grey_active">
+                    app:tint="@color/grey_active"
+                    android:contentDescription="@string/todo">
 
                 </ImageView>
 
@@ -155,7 +156,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="1. *Information We Collect:*"
+                            android:text="@string/_1_information_we_collect"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -193,7 +194,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="2. *How We Use Your Information:*"
+                            android:text="@string/_2_how_we_use_your_information"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -233,7 +234,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="3 *Sharing of Your Information:*"
+                            android:text="@string/_3_sharing_of_your_information"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -292,7 +293,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="4. *Security:*"
+                            android:text="@string/_4_security"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -371,7 +372,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="6. *Contact Us:*"
+                            android:text="@string/_6_contact_us"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -394,7 +395,7 @@
                             android:ellipsize="end"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="- If you have questions about this Privacy Policy, contact us at:"
+                            android:text="@string/if_you_have_questions_about_this_privacy_policy_contact_us_at"
                             android:textColor="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -433,7 +434,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="Also review our Terms of use."
+                            android:text="@string/also_review_our_terms_of_use"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -451,7 +452,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="Terms And Conditions"
+                            android:text="@string/terms_and_conditionsa"
                             android:textColor="@color/blue_active"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -474,7 +475,6 @@
                             android:alpha="0.8"
                             android:background="@drawable/week_card_bg_active"
                             android:letterSpacing="0.03"
-                            android:lineHeight="20sp"
                             android:minHeight="60dp"
                             android:padding="12dp"
                             android:textColor="@color/black"
