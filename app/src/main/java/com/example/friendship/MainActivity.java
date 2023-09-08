@@ -3,13 +3,18 @@ package com.example.friendship;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.Manifest;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -20,9 +25,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -54,6 +64,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
     LottieBottomNav bottomNav;
@@ -70,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     TextView branch,year,name;
     String purl;
     private ViewPager viewPager;
+    Boolean permission_notif = false;
+
+    String [] permissions = new String[]{Manifest.permission.POST_NOTIFICATIONS};
 
 
 
@@ -92,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvAboutUs = findViewById(R.id.aboutus);
         cvHelp = findViewById(R.id.help);
         cvNotifications = findViewById(R.id.notification);
+
+
+
+
 
 
 
@@ -152,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AboutUs.class);
                 startActivity(i);
+
             }
         });
         cvHelp.setOnClickListener(new View.OnClickListener() {
@@ -326,6 +346,57 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         setFragment(new DashboardFragment());
     }
 
+    private void requestPermission() {
+        if(ContextCompat.checkSelfPermission(MainActivity.this,permissions[0]) == PackageManager.PERMISSION_GRANTED){
+                permission_notif = true;
+        }else {
+
+            if(shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)){
+                Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+            }
+            requestPermissionLauncherNotification.launch(permissions[0]);
+        }
+    }
+
+    private ActivityResultLauncher<String>requestPermissionLauncherNotification=
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(),isGranted -> {
+                if(isGranted){
+                    permission_notif = true;
+                }
+                else {
+                    permission_notif = false;
+                    showPermissionDialog("Notification Permission");
+                }
+            });
+
+    private void showPermissionDialog(String permission_desc) {
+
+        new AlertDialog.Builder(
+                MainActivity.this
+        ).setTitle("Alert for Notification Permission")
+                .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent rintent = new Intent();
+                        rintent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri =  Uri.fromParts("package",getPackageName(),null);
+                        rintent.setData(uri);
+                        startActivity(rintent);
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                    }
+                })
+
+                .show();
+    }
+
+
     @Override
     public void onMenuSelected(int oldIndex, int newIndex, MenuItem menuItem) {
         switch (newIndex) {
@@ -342,8 +413,14 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 break;
             }
             case 3: {
+
                 setFragment(new SettingsFragment());
-                break;
+                if(!permission_notif){
+                    requestPermission();
+                }else {
+                    break;
+                }
+
             }
         }
     }

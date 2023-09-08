@@ -75,8 +75,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             Intent intent
-                                                                    = new Intent(SplashScreenActivity.this,
-                                                                    MainActivity.class);
+                                                                    = null;
+                                                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                                                                intent = new Intent(SplashScreenActivity.this,
+                                                                MainActivity.class);
+                                                            }
                                                             Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                                             startActivity(intent);
                                                             finish();
@@ -106,14 +109,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-
-
-
-
-
-
-
-
                             }
                         }else {
                                 Toast.makeText(getApplicationContext(),"Something Wrong!!!",Toast.LENGTH_SHORT).show();
