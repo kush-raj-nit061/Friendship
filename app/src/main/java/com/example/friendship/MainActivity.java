@@ -65,7 +65,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+
 public class MainActivity extends AppCompatActivity implements ILottieBottomNavCallback {
     FragmentTransaction transaction = null;
     LottieBottomNav bottomNav;
@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     private ViewPager viewPager;
     Boolean permission_notif = false;
 
-    String [] permissions = new String[]{Manifest.permission.POST_NOTIFICATIONS};
+
+
+    String [] permissions ;
 
 
 
@@ -95,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         terms = findViewById(R.id.terms);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions = new String[]{Manifest.permission.POST_NOTIFICATIONS};
+        }
+
 
         bottomNav   = findViewById(R.id.bottom_nav);
         iv_menu = findViewById(R.id.iv_Menu);
@@ -131,20 +137,6 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         reference2 = FirebaseDatabase.getInstance().getReference("students");
         reference3 = FirebaseDatabase.getInstance().getReference("unregistered");
-
-        reference3.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(fAuth.getCurrentUser().getUid()).exists()){
-                    reference3.child(fAuth.getCurrentUser().getUid()).removeValue();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
         Map<String,Object> map = new HashMap<>();

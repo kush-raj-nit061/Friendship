@@ -98,6 +98,18 @@ public class GiftsFragment extends Fragment {
         recFeatured2.setItemAnimator(null);
         recStatus.setItemAnimator(null);
 
+        recFeatured1.setItemViewCacheSize(20);
+        recFeatured1.setDrawingCacheEnabled(true);
+        recFeatured1.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        recFeatured2.setItemViewCacheSize(20);
+        recFeatured2.setDrawingCacheEnabled(true);
+        recFeatured2.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        recStatus.setItemViewCacheSize(20);
+        recStatus.setDrawingCacheEnabled(true);
+        recStatus.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
         try {
             DatabaseReference db = FirebaseDatabase.getInstance().getReference("Status");
             db.addChildEventListener(new ChildEventListener() {

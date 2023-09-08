@@ -113,6 +113,9 @@ public class DetailsActivity5 extends AppCompatActivity {
                         registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
+                                Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
+                                startActivity(i);
+                                finish();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -129,22 +132,9 @@ public class DetailsActivity5 extends AppCompatActivity {
 
                     }
                 });
-                registered.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-//                            myRef.child(fAuth.getCurrentUser().getUid()).removeValue();
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
 
-                Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
-                startActivity(i);
             }
         });
 
@@ -170,6 +160,7 @@ public class DetailsActivity5 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity5.this,DetailsActivity4.class);
                 startActivity(i);
+                finish();
             }
         });
 

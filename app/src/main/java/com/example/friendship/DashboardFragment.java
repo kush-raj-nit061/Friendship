@@ -59,6 +59,9 @@ public class DashboardFragment extends Fragment {
 
         recView.setLayoutManager(new LinearLayoutManager(getContext()));
         recView.setItemAnimator(null);
+        recView.setItemViewCacheSize(20);
+        recView.setDrawingCacheEnabled(true);
+        recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         // Restore the RecyclerView's scroll state if available
         if (savedInstanceState != null) {

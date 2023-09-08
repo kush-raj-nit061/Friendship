@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -76,10 +77,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             Intent intent
                                                                     = null;
-                                                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                                                                intent = new Intent(SplashScreenActivity.this,
-                                                                MainActivity.class);
-                                                            }
+                                                            intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+
+
                                                             Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
                                                             startActivity(intent);
                                                             finish();

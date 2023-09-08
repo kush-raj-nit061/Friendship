@@ -132,6 +132,7 @@ public class DetailsActivity1 extends AppCompatActivity {
 
                 Intent i = new Intent(DetailsActivity1.this,DetailsActivity2.class);
                 startActivity(i);
+                finish();
             }
         });
 

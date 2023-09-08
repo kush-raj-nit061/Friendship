@@ -244,7 +244,7 @@ public class test extends AppCompatActivity {
 
                                     // sign-in failed
                                     Toast.makeText(getApplicationContext(),
-                                                    "Account D.N.E or Blocked!!",
+                                                    "Login Failed!!",
                                                     Toast.LENGTH_LONG)
                                             .show();
 

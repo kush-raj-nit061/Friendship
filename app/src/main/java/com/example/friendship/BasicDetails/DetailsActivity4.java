@@ -180,6 +180,7 @@ public class DetailsActivity4 extends AppCompatActivity {
 
                 Intent i = new Intent(DetailsActivity4.this,DetailsActivity5.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -188,6 +189,7 @@ public class DetailsActivity4 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity4.this,DetailsActivity3.class);
                 startActivity(i);
+                finish();
             }
         });
 

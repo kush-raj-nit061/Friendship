@@ -219,6 +219,7 @@ public class DetailsActivity3 extends AppCompatActivity {
                 });
                 Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -228,6 +229,7 @@ public class DetailsActivity3 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity3.this,DetailsActivity5.class);
                 startActivity(i);
+                finish();
             }
         });
 

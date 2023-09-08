@@ -109,6 +109,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
 
                 Intent i = new Intent(DetailsActivity2.this,DetailsActivity3.class);
                 startActivity(i);
+                finish();
             }
         });
         tvPrevious.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +117,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity2.this,DetailsActivity1.class);
                 startActivity(i);
+                finish();
             }
         });
 
