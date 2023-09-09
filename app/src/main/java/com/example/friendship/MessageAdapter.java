@@ -90,6 +90,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 holder.sendermessagetext.setVisibility(View.VISIBLE);
                 holder.tvTimeSender.setText(messages.getTime());
                 holder.sendermessagetext.setText(messages.getMessage());
+//                holder.txtSeen.setText(messages.getIsseen());
             }
             else
             {
@@ -465,7 +466,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView sendermessagetext,receivermessagetext,tvTimeSender,tvTimeReceiver;
+        public TextView sendermessagetext,receivermessagetext,tvTimeSender,tvTimeReceiver,txtSeen;
         public CircleImageView receiverprofileimage;
         public ImageView messageSenderPicture,messageReceiverPicture;
 
@@ -478,6 +479,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             messageReceiverPicture=itemView.findViewById(R.id.message_receiver_image_view);
             tvTimeSender = itemView.findViewById(R.id.time_tv_sender);
             tvTimeReceiver = itemView.findViewById(R.id.time_tv_receiver);
+            txtSeen = itemView.findViewById(R.id.txt_seen);
+
         }
     }
 

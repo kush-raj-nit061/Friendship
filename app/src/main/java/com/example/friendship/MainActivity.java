@@ -344,24 +344,32 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         bottomNav.setCallback(this);
         bottomNav.setMenuItemList(list);
-        bottomNav.setSelectedIndex(0); //first selected index
+        bottomNav.setSelectedIndex(0);
 
-        //First selected fragment
         setFragment(new DashboardFragment());
     }
 
     private void requestPermission() {
-        if(ContextCompat.checkSelfPermission(MainActivity.this,permissions[0]) == PackageManager.PERMISSION_GRANTED){
-            permission_notif = true;
-        }else {
 
-            if(shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)){
-                Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+        try{
+
+            if(ContextCompat.checkSelfPermission(MainActivity.this,permissions[0]) == PackageManager.PERMISSION_GRANTED){
+                permission_notif = true;
             }else {
-                Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+
+                if(shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)){
+                    Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Grant Permission for Latest Event Notification ",Toast.LENGTH_SHORT).show();
+                }
+                requestPermissionLauncherNotification.launch(permissions[0]);
             }
-            requestPermissionLauncherNotification.launch(permissions[0]);
+
+        }catch (Exception e){
+
+
         }
+
     }
 
     private ActivityResultLauncher<String>requestPermissionLauncherNotification=

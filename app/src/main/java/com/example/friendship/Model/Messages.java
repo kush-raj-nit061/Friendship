@@ -1,14 +1,31 @@
 package com.example.friendship.Model;
 
 public class Messages {
-    private String from,message,type,to,messageID,time,date,name;
+    private String from;
+    private String message;
+    private String type;
+    private String to;
+    private String messageID;
+    private String time;
+    private String date;
+    private String name;
+
+    public String getIsseen() {
+        return isseen;
+    }
+
+    public void setIsseen(String isseen) {
+        this.isseen = isseen;
+    }
+
+    private String isseen;
 
     public Messages()
     {
 
     }
 
-    public Messages(String from, String message, String type, String to, String messageID, String time, String date, String name) {
+    public Messages(String isseen,String from, String message, String type, String to, String messageID, String time, String date, String name) {
         this.from = from;
         this.message = message;
         this.type = type;
@@ -17,6 +34,7 @@ public class Messages {
         this.time = time;
         this.date = date;
         this.name = name;
+        this.isseen = isseen;
     }
 
     public String getFrom() {

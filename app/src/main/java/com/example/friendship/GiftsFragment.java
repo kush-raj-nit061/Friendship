@@ -163,7 +163,8 @@ public class GiftsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long count = snapshot.getChildrenCount();
-                Query q = dbre.orderByChild("date").limitToLast((int) count); // Assuming "date" is the key in each child containing the timestamp
+
+                Query q = dbre.orderByChild("date"); // Assuming "date" is the key in each child containing the timestamp
                 FirebaseRecyclerOptions<Status> options3 =
                         new FirebaseRecyclerOptions.Builder<Status>()
                                 .setQuery(q, Status.class)

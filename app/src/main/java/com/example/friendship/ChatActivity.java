@@ -73,6 +73,7 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private MessageAdapter messageAdapter;
     private RecyclerView usermessagerecyclerview;
+//    ValueEventListener seenListener;
 
 
     private String savecurrentTime,savecurrentDate;
@@ -120,6 +121,8 @@ public class ChatActivity extends AppCompatActivity {
         username.setText(getMessageRecievername);
         Picasso.get().load(messagereceiverimage).into(userprofile);
         Displaylastseen();
+
+
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +246,7 @@ public class ChatActivity extends AppCompatActivity {
                                 messageDocsBody.put("messageID", messagePushID);
                                 messageDocsBody.put("time", savecurrentTime);
                                 messageDocsBody.put("date", savecurrentDate);
+                                messageDocsBody.put("isseen","false");
 
 
                                 Map messageBodyDDetail = new HashMap();
@@ -323,6 +327,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageTextBody.put("messageID",messagePushID);
                             messageTextBody.put("time",savecurrentTime);
                             messageTextBody.put("date",savecurrentDate);
+                            messageTextBody.put("isseen","false");
 
                             Map messageBodyDetails =new HashMap();
                             messageBodyDetails.put(messageSenderRef+"/"+messagePushID,messageTextBody);
@@ -366,8 +371,6 @@ public class ChatActivity extends AppCompatActivity {
                 {
 
                     String state=dataSnapshot.child("status").getValue().toString();
-
-
 
                     if(state.equals("online"))
                     {
@@ -413,6 +416,7 @@ public class ChatActivity extends AppCompatActivity {
             messageTextBody.put("messageID",messagePushID);
             messageTextBody.put("time",savecurrentTime);
             messageTextBody.put("date",savecurrentDate);
+            messageTextBody.put("isseen","false");
 
             Map messageBodyDetails =new HashMap();
             messageBodyDetails.put(messageSenderRef+"/"+messagePushID,messageTextBody);
@@ -432,8 +436,47 @@ public class ChatActivity extends AppCompatActivity {
                     messagesentinput.setText("");
                 }
             });
+
+
+
+
         }
     }
+
+    private void SeenMessage(String userid){
+        RootRef.child("Messages").child(messageRecieverId).child(messageSenderId).
+        addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    Messages chat=snapshot.getValue(Messages.class);
+                    if (chat.getTo().equals(messageSenderId) &&
+                            chat.getFrom().equals(messageRecieverId)){
+
+                        HashMap<String,Object> hashMap=new HashMap<>();
+                        hashMap.put("isseen","true");
+                        snapshot.getRef().updateChildren(hashMap);
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+    }
+
+
+
     private void currentUser(String userid){
         SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
         editor.putString("currentuser", userid);
@@ -452,13 +495,13 @@ public class ChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         status("online");
+
         currentUser(messageRecieverId);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        reference.removeEventListener(seenListener);
         status("offline");
         currentUser("none");
     }
