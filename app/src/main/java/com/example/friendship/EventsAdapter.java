@@ -6,16 +6,21 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -113,6 +118,9 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
     public class userAdapterHolder extends RecyclerView.ViewHolder {
         ImageView eventpurl;
         TextView eventname,eventtitle,link1,link2,link3,description,date,month;
+        RelativeLayout expandableView;
+        Button arrowBtn;
+        CardView cardView;
 
 
         public userAdapterHolder(@NonNull View itemView) {
@@ -127,6 +135,24 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events,EventsAdapter.
             month = itemView.findViewById(R.id.tvLession);
             date = itemView.findViewById(R.id.tvDate);
             description = itemView.findViewById(R.id.description);
+            expandableView = itemView.findViewById(R.id.expandableView);
+            arrowBtn = itemView.findViewById(R.id.arrowBtn);
+            cardView = itemView.findViewById(R.id.cardView);
+
+            arrowBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (expandableView.getVisibility()==View.GONE){
+                        TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                        expandableView.setVisibility(View.VISIBLE);
+                        arrowBtn.setBackgroundResource(R.drawable.arrowdown);
+                    } else {
+                        TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                        expandableView.setVisibility(View.GONE);
+                        arrowBtn.setBackgroundResource(R.drawable.terms);
+                    }
+                }
+            });
 
 
 

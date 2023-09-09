@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="3dp"
     tools:context=".MainActivity"
-    android:background="#FFFFFF">
+    android:background="#E4E3E3">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -29,6 +28,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="12dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_white_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="30"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvLession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="May"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDate"
+                    app:layout_constraintStart_toStartOf="@+id/tvDate"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate">
+
+                </TextView>
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/eventpurl"
@@ -92,7 +135,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/terms"
+                android:background="@drawable/arrowdown"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view" />
@@ -101,9 +144,8 @@
                 android:id="@+id/expandableView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginBottom="60dp"
-                android:background="#D7000000"
+                android:background="@color/blue_active"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -136,7 +178,7 @@
                         android:maxLines="20"
                         android:minHeight="290dp"
                         android:text="learn english conversation a to z "
-                        android:textColor="#F1CE28"
+                        android:textColor="#0D1D4D"
                         android:textSize="16sp"
                         android:layout_below="@+id/decs">
 
@@ -194,51 +236,6 @@
 
 
             </RelativeLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_white_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="30"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.3">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/tvLession"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="May"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/tvDate"
-                    app:layout_constraintStart_toStartOf="@+id/tvDate"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDate">
-
-                </TextView>
-
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 

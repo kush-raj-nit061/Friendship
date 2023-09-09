@@ -75,7 +75,7 @@ public class MailFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_mail_fragment, container, false);
         layout1 = new ConstraintSet();
 //        layout2 = new ConstraintSet();
-        imageViewPhoto = view.findViewById(R.id.photo);
+//        imageViewPhoto = view.findViewById(R.id.photo);
         constraintLayout = view.findViewById(R.id.constraint_layout);
 //        layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);

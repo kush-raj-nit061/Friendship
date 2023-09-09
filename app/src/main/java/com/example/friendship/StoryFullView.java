@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.jsibbold.zoomage.ZoomageView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.text.ParseException;
@@ -31,7 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoryFullView extends AppCompatActivity {
-    ImageView image,next,prev,cross,liked;
+    ImageView next,prev,cross,liked;
+    ZoomageView image;
     LottieAnimationView likes;
     CircleImageView profile;
     TextView tvName, tvDate,likesCount;

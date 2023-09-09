@@ -154,7 +154,7 @@
                 android:paddingStart="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#39A69F9F"
+                android:background="#E4E3E3"
                 android:layout_below="@+id/top"
                 android:orientation="vertical"
                 android:id="@+id/Header"
@@ -269,6 +269,45 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:id="@+id/collab"
+                    android:backgroundTint="@color/cardview_light_background"
+                    android:layout_marginTop="2dp">
+                    <LinearLayout
+                        android:id="@+id/llhome8"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+
+
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/idea"
+                            android:layout_marginStart="2dp"
+                            app:tint="#495154"
+                            android:contentDescription="@string/todo" />
+                        <TextView
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Collaboration >"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/terms"
                     android:layout_width="match_parent"
@@ -310,6 +349,7 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

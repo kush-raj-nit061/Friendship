@@ -73,13 +73,12 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private MessageAdapter messageAdapter;
     private RecyclerView usermessagerecyclerview;
-//    ValueEventListener seenListener;
-
-
+    ValueEventListener seenListener;
     private String savecurrentTime,savecurrentDate;
     private String checker="",myUrl="";
     private StorageTask uploadTask;
     private Uri fileuri;
+    boolean b= false;
     private ProgressDialog loadingBar;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -441,38 +440,64 @@ public class ChatActivity extends AppCompatActivity {
 
 
         }
+        seenMessage(messageRecieverId);
     }
 
-    private void SeenMessage(String userid){
-        RootRef.child("Messages").child(messageRecieverId).child(messageSenderId).
-        addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+    private void seenMessage(final String userid){
 
-                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    Messages chat=snapshot.getValue(Messages.class);
-                    if (chat.getTo().equals(messageSenderId) &&
-                            chat.getFrom().equals(messageRecieverId)){
 
-                        HashMap<String,Object> hashMap=new HashMap<>();
-                        hashMap.put("isseen","true");
-                        snapshot.getRef().updateChildren(hashMap);
-
+        try {
+            reference = FirebaseDatabase.getInstance().getReference("Messages").child(messageRecieverId).child(messageSenderId);
+            seenListener = reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Messages chat = snapshot.getValue(Messages.class);
+                        if (chat.getTo().equals(FirebaseAuth.getInstance().getUid()) && chat.getFrom().equals(userid)){
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("isseen", "true");
+                            b = true;
+                            snapshot.getRef().updateChildren(hashMap);
+                        }
                     }
-
                 }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }catch (Exception e){}
+        finally {
+            if(b){
+//                reference = FirebaseDatabase.getInstance().getReference("Messages").child(messageRecieverId).child(messageSenderId);
+//                seenListener = reference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                            Messages chat = snapshot.getValue(Messages.class);
+//                            if (chat.getTo().equals(FirebaseAuth.getInstance().getUid()) && chat.getFrom().equals(userid)){
+//                                HashMap<String, Object> hashMap = new HashMap<>();
+//                                hashMap.put("isseen", "true");
+//                                snapshot.getRef().updateChildren(hashMap);
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+            b=false;
 
 
 
-
+        }
     }
 
 
@@ -503,6 +528,8 @@ public class ChatActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         status("offline");
+//        reference = FirebaseDatabase.getInstance().getReference("students").child(FirebaseAuth.getInstance().getUid());
+//        reference.removeEventListener(seenListener);
         currentUser("none");
     }
 }
