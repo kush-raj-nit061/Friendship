@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/profile"
+        android:title="Profile>"
+        android:icon="@drawable/account_avatar_profile_png_photo"/>
+<item android:id="@+id/privacy"
+        android:title="Privacy and Security>"
+        android:icon="@drawable/privacy_protect_security_icon_1320190884998801875"/>
+<item android:id="@+id/help"
+        android:title="Help>"
+        android:icon="@drawable/_63350_vector_pic_help_free_download_png_hq"/>
+<item android:id="@+id/terms"
+        android:title="Terms and Conditions>"
+        android:icon="@drawable/terms"/>
+<item android:id="@+id/aboutus"
+        android:title="About Us>"
+        android:icon="@drawable/aboutustop"/>
+    <item android:id="@+id/notification"
+        android:title="Set Notification>"
+        android:icon="@drawable/baseline_notifications_active_24"/>
+
+
+
+</menu>

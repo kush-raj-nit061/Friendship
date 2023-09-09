@@ -30,9 +30,12 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -41,6 +44,7 @@ import com.bumptech.glide.Glide;
 import com.example.friendship.Admins.AnnouncementActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     DatabaseReference reference3;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FlowingDrawer mDrawer;
-    ImageView iv_menu;
+//    ImageView iv_menu;
     ImageView ivDrawer;
     CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications;
     TextView branch,year,name;
@@ -87,10 +91,10 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
 
     String [] permissions ;
-
-
-
-
+    NavigationView navView;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,9 +105,17 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             permissions = new String[]{Manifest.permission.POST_NOTIFICATIONS};
         }
 
+        navView = findViewById(R.id.navmenu);
+        drawerLayout=findViewById(R.id.drawer);
+        toolbar = findViewById(R.id.toolbar);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        toggle.syncState();
+
+
+
 
         bottomNav   = findViewById(R.id.bottom_nav);
-        iv_menu = findViewById(R.id.iv_Menu);
+//        iv_menu = findViewById(R.id.iv_Menu);
         cvProfile = findViewById(R.id.cvProfile);
         ivDrawer = findViewById(R.id.ivDrawer);
         branch = findViewById(R.id.branch);
@@ -253,30 +265,30 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         });
 
 
+//
+//        iv_menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                mDrawer.openMenu(true);
+//            }
+//        });
 
-        iv_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawer.openMenu(true);
-            }
-        });
-
-        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
-        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
-
-        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
-            @Override
-            public void onDrawerStateChange(int oldState, int newState) {
-                if (newState == ElasticDrawer.STATE_CLOSED) {
-                    Log.i("MainActivity", "Drawer STATE_CLOSED");
-                }
-            }
-
-            @Override
-            public void onDrawerSlide(float openRatio, int offsetPixels) {
-                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
-            }
-        });
+//        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+//        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+//
+//        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
+//            @Override
+//            public void onDrawerStateChange(int oldState, int newState) {
+//                if (newState == ElasticDrawer.STATE_CLOSED) {
+//                    Log.i("MainActivity", "Drawer STATE_CLOSED");
+//                }
+//            }
+//
+//            @Override
+//            public void onDrawerSlide(float openRatio, int offsetPixels) {
+//                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
+//            }
+//        });
 
 
         bottomNav   = findViewById(R.id.bottom_nav);
@@ -340,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
     private void requestPermission() {
         if(ContextCompat.checkSelfPermission(MainActivity.this,permissions[0]) == PackageManager.PERMISSION_GRANTED){
-                permission_notif = true;
+            permission_notif = true;
         }else {
 
             if(shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)){
@@ -381,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+                        dialog.dismiss();
                     }
                 })
 

@@ -4,10 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="@color/white"
     tools:context=".MailFragment">
-
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -159,7 +157,6 @@
                 android:visibility="visible"
                 app:lottie_autoPlay="true"
                 app:lottie_rawRes="@raw/progress"
-                android:paddingBottom="@dimen/margin_30_dp"
                 app:lottie_loop="true"
                 app:lottie_speed="1"
                 android:contentDescription="@string/imageAccess" />
@@ -167,22 +164,18 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="250dp"
+                android:layout_marginBottom="185dp"
                 >
                 <androidx.recyclerview.widget.RecyclerView
 
+                    android:background="@color/white"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
                     android:id="@+id/recConnection"/>
 
 
             </ScrollView>
-
-
-
-
-
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

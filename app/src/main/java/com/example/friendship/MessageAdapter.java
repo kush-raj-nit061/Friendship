@@ -121,6 +121,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 holder.messageSenderPicture.setVisibility(View.GONE);
                 Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/tesla-members-record.appspot.com/o/pngwing.com%20(4).png?alt=media&token=fd13080c-6968-421c-94e3-038c45689f8a")
                         .into(holder.messageSenderPicture);
+                holder.messageSenderPicture.setVisibility(View.VISIBLE);
 
 
             }

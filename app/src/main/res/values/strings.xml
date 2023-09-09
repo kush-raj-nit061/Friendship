@@ -124,6 +124,8 @@
     <string name="maintainance">Hold On While We are Under Maintenance</string>
     <string name="version"><![CDATA[> Version:]]></string>
     <string name="_1_0">1.0.0</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
     <string name="set_the_announcements">Set the announcements</string>
     <string name="add_event_poster_above">Add Event Poster above</string>
     <string name="event_name_here">EVENT NAME HERE</string>
