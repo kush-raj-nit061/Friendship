@@ -62,10 +62,10 @@ public class SeeCollaborationDetail extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Collab").child(id);
                 Map<String,Object> map = new HashMap<>();
-                map.put(FirebaseAuth.getInstance().getUid(), "letscollab");
+                map.put("id",FirebaseAuth.getInstance().getUid());
                 if(!id.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
 
-                    dbRef.child("members").updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    dbRef.child("members").child(FirebaseAuth.getInstance().getUid()).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getApplicationContext(), "Request For Collab added", Toast.LENGTH_SHORT).show();

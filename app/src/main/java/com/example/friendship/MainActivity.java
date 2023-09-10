@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvCollab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CollabDetails1.class);
+                Intent i = new Intent(MainActivity.this, CollaborationActivity.class);
                 startActivity(i);
             }
         });
