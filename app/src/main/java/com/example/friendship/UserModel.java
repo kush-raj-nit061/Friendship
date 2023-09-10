@@ -24,6 +24,16 @@ public class UserModel {
     String userId;
     String likes;
 
+    public String getPremiumres() {
+        return premiumres;
+    }
+
+    public void setPremiumres(String premiumres) {
+        this.premiumres = premiumres;
+    }
+
+    String premiumres;
+
     public String getCollege() {
         return college;
     }
@@ -52,7 +62,7 @@ public class UserModel {
 
     String connectionId;
 
-    public UserModel(String connectionId,String college,String likes,String status, String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
+    public UserModel(String premiumres, String connectionId,String college,String likes,String status, String purl, String birthday, String books, String foods, String qualitydislike, String hobbies, String location, String qualitylike, String travellike, String userId, String premium, String name, String branch, String year, String shortBio) {
         this.status = status;
         this.purl = purl;
         this.birthday = birthday;
@@ -72,6 +82,7 @@ public class UserModel {
         this.likes = likes;
         this.college = college;
         this.connectionId = connectionId;
+        this.premiumres = premiumres;
     }
 
     public String getBirthday() {

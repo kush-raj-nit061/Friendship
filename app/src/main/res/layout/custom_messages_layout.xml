@@ -6,6 +6,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:visibility="gone"
         android:id="@+id/message_profile_image"
         android:src="@mipmap/ic_launcher"/>
 
@@ -13,7 +14,7 @@
         android:id="@+id/time_tv_receiver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/grey"
+        android:textColor="@color/bg_text_color"
         android:textSize="12sp"
         android:text=""
         android:layout_marginLeft="@dimen/margin_10_dp"
@@ -104,11 +105,12 @@
         android:textSize="14sp"
         android:layout_alignParentRight="true" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_seen"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginRight="15dp"
         android:layout_below="@id/sender_message_text"

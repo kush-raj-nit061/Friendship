@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +46,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,12 +73,12 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private MessageAdapter messageAdapter;
     private RecyclerView usermessagerecyclerview;
-
-
+    ValueEventListener seenListener;
     private String savecurrentTime,savecurrentDate;
     private String checker="",myUrl="";
     private StorageTask uploadTask;
     private Uri fileuri;
+    boolean b= false;
     private ProgressDialog loadingBar;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -88,16 +93,6 @@ public class ChatActivity extends AppCompatActivity {
         messageRecieverId=getIntent().getExtras().get("visit_user_id").toString();
         getMessageRecievername=getIntent().getExtras().get("visit_user_name").toString();
         messagereceiverimage=getIntent().getExtras().get("visit_image").toString();
-
-
-//        chattoolbar=findViewById(R.id.toolbar);
-//
-//        setSupportActionBar(chattoolbar);
-//        ActionBar actionBar=getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setDisplayShowCustomEnabled(true);
-
-
 
         username=findViewById(R.id.username);
         userlastseen=findViewById(R.id.userlastseen);
@@ -125,6 +120,8 @@ public class ChatActivity extends AppCompatActivity {
         username.setText(getMessageRecievername);
         Picasso.get().load(messagereceiverimage).into(userprofile);
         Displaylastseen();
+
+
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,6 +245,7 @@ public class ChatActivity extends AppCompatActivity {
                                 messageDocsBody.put("messageID", messagePushID);
                                 messageDocsBody.put("time", savecurrentTime);
                                 messageDocsBody.put("date", savecurrentDate);
+                                messageDocsBody.put("isseen","false");
 
 
                                 Map messageBodyDDetail = new HashMap();
@@ -284,7 +282,24 @@ public class ChatActivity extends AppCompatActivity {
                 final String messagePushID=Usermessagekeyref.getKey();
 
                 final StorageReference filepath=storageReference.child(messagePushID+"."+"jpg");
-                uploadTask =filepath.putFile(fileuri);
+
+                Bitmap bitmap;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), fileuri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
+                // Compress the image with reduced quality (adjust quality as needed)
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos); // Adjust the quality here (50 in this example)
+
+                // Convert the compressed Bitmap to bytes
+                byte[] data1 = baos.toByteArray();
+
+                // Upload the compressed image to Firebase Storage
+                UploadTask uploadTask = filepath.putBytes(data1);
                 uploadTask.continueWithTask(new Continuation() {
                     @Override
                     public Object then(@NonNull Task task) throws Exception {
@@ -311,6 +326,7 @@ public class ChatActivity extends AppCompatActivity {
                             messageTextBody.put("messageID",messagePushID);
                             messageTextBody.put("time",savecurrentTime);
                             messageTextBody.put("date",savecurrentDate);
+                            messageTextBody.put("isseen","false");
 
                             Map messageBodyDetails =new HashMap();
                             messageBodyDetails.put(messageSenderRef+"/"+messagePushID,messageTextBody);
@@ -354,8 +370,6 @@ public class ChatActivity extends AppCompatActivity {
                 {
 
                     String state=dataSnapshot.child("status").getValue().toString();
-
-
 
                     if(state.equals("online"))
                     {
@@ -401,6 +415,7 @@ public class ChatActivity extends AppCompatActivity {
             messageTextBody.put("messageID",messagePushID);
             messageTextBody.put("time",savecurrentTime);
             messageTextBody.put("date",savecurrentDate);
+            messageTextBody.put("isseen","false");
 
             Map messageBodyDetails =new HashMap();
             messageBodyDetails.put(messageSenderRef+"/"+messagePushID,messageTextBody);
@@ -420,8 +435,73 @@ public class ChatActivity extends AppCompatActivity {
                     messagesentinput.setText("");
                 }
             });
+
+
+
+
+        }
+        seenMessage(messageRecieverId);
+    }
+
+    private void seenMessage(final String userid){
+
+
+        try {
+            reference = FirebaseDatabase.getInstance().getReference("Messages").child(messageRecieverId).child(messageSenderId);
+            seenListener = reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Messages chat = snapshot.getValue(Messages.class);
+                        if (chat.getTo().equals(FirebaseAuth.getInstance().getUid()) && chat.getFrom().equals(userid)){
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("isseen", "true");
+                            b = true;
+                            snapshot.getRef().updateChildren(hashMap);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }catch (Exception e){}
+        finally {
+            if(b){
+//                reference = FirebaseDatabase.getInstance().getReference("Messages").child(messageRecieverId).child(messageSenderId);
+//                seenListener = reference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                            Messages chat = snapshot.getValue(Messages.class);
+//                            if (chat.getTo().equals(FirebaseAuth.getInstance().getUid()) && chat.getFrom().equals(userid)){
+//                                HashMap<String, Object> hashMap = new HashMap<>();
+//                                hashMap.put("isseen", "true");
+//                                snapshot.getRef().updateChildren(hashMap);
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+
+            }
+            b=false;
+
+
+
         }
     }
+
+
+
     private void currentUser(String userid){
         SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
         editor.putString("currentuser", userid);
@@ -440,14 +520,16 @@ public class ChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         status("online");
+
         currentUser(messageRecieverId);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        reference.removeEventListener(seenListener);
         status("offline");
+//        reference = FirebaseDatabase.getInstance().getReference("students").child(FirebaseAuth.getInstance().getUid());
+//        reference.removeEventListener(seenListener);
         currentUser("none");
     }
 }

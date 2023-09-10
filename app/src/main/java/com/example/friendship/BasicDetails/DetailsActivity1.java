@@ -97,6 +97,15 @@ public class DetailsActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(etShortDetails.getText().toString().length()<100){
+                    Toast.makeText(getApplicationContext(),"Add more Words",Toast.LENGTH_SHORT).show();
+                    return;
+                }if(etHobbies.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please Enter Your Hobbies",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 reference = FirebaseDatabase.getInstance().getReference("Users");
                 Map<String,Object> data = new HashMap<>();
                 data.put("bio",etShortDetails.getText().toString());
@@ -123,6 +132,7 @@ public class DetailsActivity1 extends AppCompatActivity {
 
                 Intent i = new Intent(DetailsActivity1.this,DetailsActivity2.class);
                 startActivity(i);
+                finish();
             }
         });
 

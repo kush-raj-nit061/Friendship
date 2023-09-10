@@ -95,7 +95,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/bariol_regular"
-                android:text="You are 3 steps away"
+                android:text="@string/you_are_3_steps_away"
                 android:layout_gravity="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
@@ -130,7 +130,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="Let's celebrate your birthday on:"
+                    android:text="@string/let_s_celebrate_your_birthday_on"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
 
@@ -156,16 +156,18 @@
                     android:drawablePadding="@dimen/drawable_left"
                     android:fontFamily="@font/bariol_regular"
                     android:gravity="center_vertical"
-                    android:hint="DD Feb YYYY"
+                    android:hint="@string/dd_feb_yyyy"
                     android:background="@drawable/container_search"
+                    android:backgroundTint="@color/bg_text_color"
                     android:paddingLeft="@dimen/normalPadding"
                     android:paddingTop="@dimen/vertical_search"
                     android:paddingRight="@dimen/normalPadding"
                     android:textStyle="bold"
                     android:paddingBottom="@dimen/vertical_search"
                     android:textColor="?attr/colorPrimaryDark"
-                    android:textColorHint="@color/color_hint"
-                    android:textSize="22sp" />
+                    android:textColorHint="@color/black_transparent"
+                    android:textSize="22sp"
+                    tools:ignore="TextViewEdits" />
 
                 <ImageView
                     android:layout_width="0dp"
@@ -174,7 +176,8 @@
                     android:layout_height="44dp"
                     android:background="@drawable/container_search"
                     android:id="@+id/calender"
-                    android:src="@drawable/baseline_edit_calendar_24"/>
+                    android:src="@drawable/baseline_edit_calendar_24"
+                    android:contentDescription="@string/todo" />
 
 
 
@@ -187,12 +190,12 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="40"
                 android:layout_marginHorizontal="29dp"
                 android:fontFamily="@font/bariol_bold"
-                android:text="Can yoy tell me about your Birth Place:"
+                android:text="@string/can_yoy_tell_me_about_your_birth_place"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
 
@@ -215,7 +218,7 @@
 
                 android:fontFamily="@font/bariol_regular"
                 android:gravity="center_vertical"
-                android:hint="7th Street,\nDelhi,\n100005"
+                android:hint="@string/_7th_street_ndelhi_n100005"
                 android:background="@drawable/container_search"
                 android:paddingLeft="@dimen/normalPadding"
                 android:paddingTop="@dimen/vertical_search"
@@ -238,24 +241,27 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="100dp"
                 android:paddingHorizontal="30dp"
-                >
+                tools:ignore="RtlHardcoded">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
                     <ImageView
                         android:id="@+id/tvprevious"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="left"
-                        android:src="@drawable/prev"/>
+                        android:src="@drawable/prev"
+                        android:contentDescription="@string/todo" />
 
                     <ImageView
                         android:id="@+id/tvNext"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_alignParentRight="true"
-                        android:src="@drawable/next"/>
+                        android:src="@drawable/next"
+                        android:contentDescription="@string/todo" />
 
 
                 </RelativeLayout>

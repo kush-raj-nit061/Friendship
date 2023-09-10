@@ -108,17 +108,23 @@ public class UsersFragment extends Fragment {
         String userId = fAuth.getCurrentUser().getUid();
         DatabaseReference reference = database.getReference().child("Connection").child(userId);
 
-        Query query = reference.orderByChild("status").equalTo("1");
 
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(query, User.class)
-                        .build();
+        try {
+            Query query = reference.orderByChild("status").equalTo("1");
+
+            FirebaseRecyclerOptions<User> options =
+                    new FirebaseRecyclerOptions.Builder<User>()
+                            .setQuery(query, User.class)
+                            .build();
 
 
-        userAdapter=new FriendRequestAdapter(options);
-        recyclerView.setAdapter(userAdapter);
-        userAdapter.startListening();
+            userAdapter=new FriendRequestAdapter(options);
+            recyclerView.setAdapter(userAdapter);
+            userAdapter.startListening();
+
+        }catch (Exception e){}
+
+
 
     }
 }

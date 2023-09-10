@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    tools:context=".testing">
+>
 
 
     <androidx.cardview.widget.CardView
@@ -23,25 +22,30 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#5BC0DD">
+            android:background="@drawable/gradient">
+
             <TextView
                 android:id="@+id/tvds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="35sp"
                 android:layout_margin="8dp"
-                android:textStyle="italic|bold"
-                android:text="Description:"/>
+                android:text="About :"
+                android:textSize="35sp"
+                android:fontFamily="@font/poppins"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/descr"
-                android:layout_below="@+id/tvds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tvds"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Descriptions"
                 android:textSize="20sp"
-                android:layout_margin="10dp"
-                android:textStyle="italic"
-                android:text="Descriptions"/>
+                android:fontFamily="@font/ubuntu_regular" />
 
 
         </RelativeLayout>

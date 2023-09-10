@@ -36,6 +36,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference();
+    String myPurl;
 
 
     public UserAdapter(@NonNull FirebaseRecyclerOptions<UserModel> options) {
@@ -49,11 +50,15 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         holder.branch.setText(model.getBranch());
         holder.year.setText(model.getYear());
         holder.shortBio.setText(model.getShortBio());
-        holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+        try {
+            holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
+            holder.gifImageView.setAnimationFromUrl(model.getPremiumres());
+        }catch (Exception e){}
+
         holder.tvCollege.setText(model.getCollege());
         Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
 
-        holder.gifLove.setVisibility(View.GONE);
+        try{
         dbRef.child("Likes").child(model.getUserId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,7 +72,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });}catch (Exception e){}
 
 
         holder.like.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +84,26 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         Map<String,Object> map  = new HashMap<>();
-                        map.put(FirebaseAuth.getInstance().getUid(),true);
-                        dbRef.child("Likes").child(model.getUserId()).child(FirebaseAuth.getInstance().getUid()).updateChildren(map);
+                        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                        dbRef.child("students").child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    String purl = (String) snapshot.child("purl").getValue();
+                                    map.put("userId",fAuth.getCurrentUser().getUid());
+                                    map.put("purl",purl);
+                                    dbRef.child("Likes").child(model.getUserId()).child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
                         Toast.makeText(v.getContext(), "You Liked: "+model.getName(), Toast.LENGTH_SHORT).show();
                         holder.like.pauseAnimation();
 
@@ -120,7 +143,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         TextView year;
         TextView btnlike;
         LottieAnimationView gifImageView,like;
-        GifImageView gifLove;
+
         TextView tvPopular;
         TextView tvCollege;
 
@@ -135,7 +158,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
             branch=itemView.findViewById(R.id.branch);
             year = itemView.findViewById(R.id.year);
             gifImageView =itemView.findViewById(R.id.crown);
-            gifLove = itemView.findViewById(R.id.gifLove);
+
             like = itemView.findViewById(R.id.like);
             tvPopular = itemView.findViewById(R.id.tvPopular);
             tvCollege = itemView.findViewById(R.id.college);

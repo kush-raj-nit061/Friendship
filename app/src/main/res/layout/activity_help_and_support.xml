@@ -35,8 +35,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/username"
                     android:textSize="22sp"
-                    android:text="HELP &amp; SUPPORT"
-                    android:layout_marginLeft="25dp"
+                    android:text="@string/help_amp_support"
                     android:textColor="#fff"
                     android:textStyle="bold"
                     android:layout_marginStart="25dp" />

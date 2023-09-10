@@ -18,7 +18,7 @@ public class AboutUs extends AppCompatActivity {
     RecyclerView recFeatured1;
     DeveloperAdapter userAdapter;
     LinearLayoutManager manager;
-    ImageView backs;
+//    ImageView backs;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,7 +26,7 @@ public class AboutUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         recFeatured1  = findViewById(R.id.recAbout);
-        backs = findViewById(R.id.backs);
+//        backs = findViewById(R.id.backs);
         manager = new LinearLayoutManager(AboutUs.this,LinearLayoutManager.HORIZONTAL,false);
         recFeatured1.setLayoutManager(manager);
         recFeatured1.setHasFixedSize(true);
@@ -41,12 +41,12 @@ public class AboutUs extends AppCompatActivity {
         recFeatured1.setAdapter(userAdapter);
         userAdapter.startListening();
 
-        backs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        backs.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
     }
 }

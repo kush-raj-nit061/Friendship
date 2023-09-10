@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
     android:layout_height="match_parent"
-    android:background="@color/blue_grey_active"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment">
 
@@ -12,25 +12,51 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:background="@color/white"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/celebration"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/bubble_left">
+
+                android:background="@color/white"
+                >
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/likedby"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/heart"
+                    app:lottie_loop="true"
+                    app:lottie_speed="0.8"
+                    android:scaleType="centerCrop"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_10_dp"
+                    />
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_toEndOf="@+id/likedby"
                     android:id="@+id/recycler_view_celeb"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:background="@color/blue_grey_active"
-                    android:layout_height="300dp" />
+                    android:layout_height="110dp" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/likedby"
+                    android:layout_marginTop="-7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
 
             </RelativeLayout>
 
@@ -44,33 +70,65 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:visibility="gone"
                     android:id="@+id/recEvents"
-                    android:background="@color/blue_grey_active"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:minHeight="410dp"
                     android:layout_height="wrap_content"
                     />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/recEvents"
+                    android:layout_marginTop="7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+
             </RelativeLayout>
+
+
+
 
 
             <RelativeLayout
                 android:id="@+id/notifications"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:background="@color/blue_grey_active"
+                    android:background="@color/white"
                     android:layout_marginTop="@dimen/margin_10_dp"
-                    android:layout_marginBottom="90dp"
+                    android:minHeight="170dp"
                     android:visibility="gone"
                     android:layout_height="170dp" />
 
+
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rvCollab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recCollab"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/margin_10_dp"
+                    android:minHeight="300dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" />
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/recCollab"
+                    android:layout_marginTop="7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
 
+            </RelativeLayout>
 
 
 

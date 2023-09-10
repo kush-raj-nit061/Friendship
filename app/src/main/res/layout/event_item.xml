@@ -1,62 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:layout_gravity="center_horizontal"
-    tools:context=".Testing1"
-    android:orientation="vertical"
-    android:id="@+id/constraint_layout">
-    <com.wajahatkarim3.easyflipview.EasyFlipView
-        android:layout_width="match_parent"
+    android:layout_marginEnd="3dp"
+    tools:context=".MainActivity"
+    android:background="#FFFFFF">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:flipOnTouch="true"
-        app:flipEnabled="true"
-        app:flipDuration="400"
-        app:flipFrom="right"
-        app:flipType="horizontal"
-        app:autoFlipBack="false"
+        style="@style/CardView.Light"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         >
 
-        <!-- Back Layout Goes Here -->
-        <include layout="@layout/event_back"/>
 
-        <!-- Front Layout Goes Here -->
-        <include layout="@layout/event_front"/>
 
-    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
-    <TextView
-        android:id="@+id/link1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="www.google.com"
-        android:autoLink="web"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:linksClickable="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="www.google.com"
-        android:autoLink="web"
-        android:id="@+id/link2"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:layout_marginBottom="3dp"
-        android:linksClickable="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="www.google.com"
-        android:autoLink="web"
-        android:id="@+id/link3"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:linksClickable="true"/>
-</LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp">
+
+            <ImageView
+                android:id="@+id/eventpurl"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/privacy_protect_security_icon_1320190884998801875"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="H,3:4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="12dp"
+                android:elevation="12dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventpurl">
+
+                <ImageView
+                    android:id="@+id/circleImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/logo"
+                    android:scaleY="1.6"
+                    android:scaleX="1.4"
+                    android:paddingBottom="4dp"
+                    android:scaleType="fitCenter"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Victoria Smith"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view"
+                app:layout_constraintBottom_toTopOf="@+id/tvSubTitle"/>
+
+            <TextView
+                android:id="@+id/tvSubTitle"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Work"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#8A000000"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
+
+            <Button
+                android:id="@+id/arrowBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/terms"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+
+            <RelativeLayout
+                android:id="@+id/expandableView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginBottom="60dp"
+                android:background="#D7000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/decs"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:padding="3dp"
+                        android:text="Description:"
+                        android:textColor="@color/blue_grey_active"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </TextView>
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="290dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:alpha="0.7"
+                        android:maxLines="20"
+                        android:minHeight="290dp"
+                        android:text="learn english conversation a to z "
+                        android:textColor="#F1CE28"
+                        android:textSize="16sp"
+                        android:layout_below="@+id/decs">
+
+                    </TextView>
+
+
+
+                    <TextView
+                        android:id="@+id/link1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="www.google.com"
+                        android:autoLink="web"
+                        android:visibility="gone"
+                        android:minWidth="300dp"
+                        android:textColor="@color/white"
+                        android:maxLines="1"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="3dp"
+                        android:linksClickable="true"
+                        app:drawableStartCompat="@drawable/link" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="www.google.com"
+                        android:autoLink="web"
+                        android:visibility="gone"
+                        android:minWidth="300dp"
+                        android:id="@+id/link2"
+                        android:maxLines="1"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="3dp"
+                        android:linksClickable="true"
+                        app:drawableStartCompat="@drawable/link"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="www.google.com"
+                        android:autoLink="web"
+                        android:id="@+id/link3"
+                        android:maxLines="1"
+                        android:visibility="gone"
+                        android:minWidth="300dp"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="3dp"
+                        android:linksClickable="true"
+                        app:drawableStartCompat="@drawable/link"/>
+
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_white_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="30"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvLession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="May"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDate"
+                    app:layout_constraintStart_toStartOf="@+id/tvDate"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate">
+
+                </TextView>
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

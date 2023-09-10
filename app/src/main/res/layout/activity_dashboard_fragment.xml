@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:id="@+id/linear1"
             android:layout_marginTop="-10dp"
-            android:background="#FC896A"
+            android:background="@color/black"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -38,7 +38,8 @@
                     android:layout_height="match_parent"
                     android:visibility="visible"
                     app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/announcement"
+                    app:lottie_rawRes="@raw/search"
+                    android:paddingTop="15dp"
                     app:lottie_loop="true"
                     app:lottie_speed="1"
 
@@ -51,8 +52,8 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="Have You Found Someone lets search ?"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/have_you_found_someone_lets_search"
+                    android:textColor="@color/google_color"
                     android:textSize="30sp" />
 
 
@@ -113,10 +114,16 @@
 
                     </LinearLayout>
 
+
+
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/horizontal_card"
+                        android:minHeight="500dp"
+                        android:background="@color/white"
                         android:layout_marginBottom="@dimen/horizontal_card"
                         android:orientation="vertical">
 
@@ -139,7 +146,6 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginBottom="100dp"
                                 android:id="@+id/recPeople"/>
 
 
@@ -148,6 +154,37 @@
 
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingTop="60dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginBottom="@dimen/horizontal_card"
+                        android:orientation="vertical">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/progress"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:visibility="visible"
+                            app:lottie_autoPlay="true"
+                            app:lottie_rawRes="@raw/progress"
+                            android:paddingTop="15dp"
+                            app:lottie_loop="true"
+                            app:lottie_speed="1"
+
+                            android:layout_weight="60"
+                            android:contentDescription="@string/imageAccess" />
+
+
+
+
+
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
 
             </LinearLayout>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Collaboration.CollabDetails2"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-15dp"
+        android:background="#A6D7FF"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#A6D7FF"
+            android:id="@+id/froglayout"
+
+            >
+
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/frog1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:visibility="visible"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/frog"
+                app:lottie_loop="true"
+                app:lottie_speed="1"
+
+                android:layout_weight="1"
+                android:contentDescription="@string/imageAccess" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/frog2"
+                android:layout_width="0dp"
+                android:layout_height="80dp"                    android:visibility="visible"
+
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/frog"
+                app:lottie_loop="true"
+                app:lottie_speed="1"
+
+                android:layout_weight="1"
+
+                android:contentDescription="@string/imageAccess" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/frog3"
+                android:layout_width="0dp"
+                android:layout_height="80dp"                    android:visibility="visible"
+                android:layout_weight="1"
+                app:lottie_autoPlay="false"
+                app:lottie_rawRes="@raw/frog"
+                app:lottie_loop="true"
+                app:lottie_speed="1"
+
+
+                android:contentDescription="@string/imageAccess" />
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/froglayout"
+            android:layout_above="@+id/bottom"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#A6D7FF"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/bariol_regular"
+                    android:text="@string/you_are_2_steps_away"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp" />
+
+
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="40"
+                    android:layout_marginHorizontal="29dp"
+                    android:fontFamily="@font/bariol_bold"
+                    android:text="Enter the full Description Of Your Project"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30sp" />
+
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/horizontal_dashboard"
+                    android:layout_marginTop="@dimen/normalPadding"
+                    android:singleLine="false"
+                    android:inputType="textCapSentences|textMultiLine"
+
+                    android:layout_marginRight="@dimen/horizontal_dashboard"
+                    android:autofillHints="username"
+                    android:minLines="15"
+                    android:textAlignment="center"
+
+                    android:drawablePadding="@dimen/drawable_left"
+
+                    android:fontFamily="@font/bariol_regular"
+                    android:gravity="center_vertical"
+                    android:hint="@string/write_here"
+                    android:background="@drawable/container_search"
+                    android:paddingLeft="@dimen/normalPadding"
+                    android:paddingTop="@dimen/vertical_search"
+                    android:paddingRight="@dimen/normalPadding"
+                    android:textStyle="bold"
+
+                    android:paddingBottom="@dimen/vertical_search"
+
+                    android:textColor="?attr/colorPrimaryDark"
+
+                    android:textColorHint="#8AA29B9B"
+                    android:textSize="22sp"
+                    tools:ignore="RtlCompat" />
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+
+            android:paddingHorizontal="30dp"
+            tools:ignore="RtlHardcoded">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/tvprevious"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/prev"
+                    android:contentDescription="@string/todo" />
+
+                <ImageView
+                    android:id="@+id/tvNext"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/next"
+                    android:contentDescription="@string/todo" />
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

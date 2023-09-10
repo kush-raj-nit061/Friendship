@@ -51,33 +51,44 @@ public class FriendRequestAdapter extends FirebaseRecyclerAdapter<User,FriendReq
 
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull User model) {
-        Toast.makeText(holder.profileImage.getContext(), "Requests Of: "+model.getUsername(),Toast.LENGTH_SHORT).show();
 
-        holder.name.setText(model.getUsername());
-        holder.branch.setText(model.getBranch());
-        Glide.with(holder.profileImage.getContext()).load(model.getImageURL()).into(holder.profileImage);
-        holder.accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.accept.setVisibility(View.INVISIBLE);
-                holder.reject.setVisibility(View.VISIBLE);
-                Map<String,Object> map = new HashMap<>();
-                map.put("status","2");
-                Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
-                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
-                myRef.child(model.getId()).child(fAuth.getUid().toString()).updateChildren(map);
-            }
-        });
-        holder.reject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.reject.setVisibility(View.INVISIBLE);
-                holder.accept.setVisibility(View.VISIBLE);
-                Map<String,Object> map = new HashMap<>();
-                map.put("status","0");
-                myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
-            }
-        });
+        try {
+
+            holder.name.setText(model.getUsername());
+            holder.branch.setText(model.getBranch());
+            Glide.with(holder.profileImage.getContext()).load(model.getImageURL()).into(holder.profileImage);
+            holder.accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.accept.setVisibility(View.INVISIBLE);
+                    holder.reject.setVisibility(View.VISIBLE);
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("status","2");
+                    Toast.makeText(holder.accept.getContext(), "Accepted",Toast.LENGTH_SHORT).show();
+                    myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+                    myRef.child(model.getId()).child(fAuth.getUid().toString()).updateChildren(map);
+                }
+            });
+            holder.reject.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.reject.setVisibility(View.INVISIBLE);
+                    holder.accept.setVisibility(View.VISIBLE);
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("status","0");
+                    myRef.child(fAuth.getUid().toString()).child(model.getId()).updateChildren(map);
+                }
+            });
+
+
+        }catch (Exception e){
+            Toast.makeText(holder.name.getContext(), "Something wrong in Events",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
     }
 
     @NonNull

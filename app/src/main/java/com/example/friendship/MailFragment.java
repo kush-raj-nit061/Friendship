@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.friendship.BasicDetails.UsersFragment;
 import com.example.friendship.Model.Chatlist;
@@ -56,6 +58,7 @@ public class MailFragment extends Fragment {
     private List<Chatlist> usersList;
     static OnItemClick onItemClick;
     String purl;
+    LottieAnimationView progress;
 
     public static MailFragment newInstance(OnItemClick click)
     {
@@ -72,11 +75,12 @@ public class MailFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_mail_fragment, container, false);
         layout1 = new ConstraintSet();
 //        layout2 = new ConstraintSet();
-        imageViewPhoto = view.findViewById(R.id.photo);
+//        imageViewPhoto = view.findViewById(R.id.photo);
         constraintLayout = view.findViewById(R.id.constraint_layout);
 //        layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
         TextView tvReq = view.findViewById(R.id.tvReq);
+        progress = view.findViewById(R.id.progress);
         tvNoReq = view.findViewById(R.id.tvNoReq);
         tvNoFriends = view.findViewById(R.id.tvNoFriends);
         imgProfile = view.findViewById(R.id.imgProfile);
@@ -113,17 +117,22 @@ public class MailFragment extends Fragment {
                 }
             });
         }catch (Exception e){}
-        DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
-        Query query = reference.orderByChild("status").equalTo("1");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long count = dataSnapshot.getChildrenCount();
-                tvNoReq.setText(String.valueOf(count));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
+
+        try {
+            DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
+            Query query = reference.orderByChild("status").equalTo("1");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    long count = dataSnapshot.getChildrenCount();
+                    tvNoReq.setText(String.valueOf(count));
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
+            });
+
+        }catch (Exception e){}
+
         tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,26 +145,16 @@ public class MailFragment extends Fragment {
             }
         });
 
-//        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!isOpen) {
-//                    TransitionManager.beginDelayedTransition(constraintLayout);
-//                    layout2.applyTo(constraintLayout);
-//                    isOpen = !isOpen;
-//                } else {
-//                    TransitionManager.beginDelayedTransition(constraintLayout);
-//                    layout1.applyTo(constraintLayout);
-//                    isOpen = !isOpen;
-//                }
-//            }
-//        });
+
 
         MRR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriadregular.ttf");
         MR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriad.ttf");
         recyclerView = view.findViewById(R.id.recConnection);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
         fuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -201,6 +200,7 @@ public class MailFragment extends Fragment {
                     }
                 }
                 userAdapter = new UsersAdapter(getContext(), onItemClick,mUsers, true);
+                progress.setVisibility(View.GONE);
                 recyclerView.setAdapter(userAdapter);
             }
             @Override

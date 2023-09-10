@@ -101,7 +101,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:textAlignment="center"
                 android:fontFamily="@font/bariol_regular"
-                android:text="You are At last Step to setup your profile"
+                android:text="@string/you_are_at_last_step_to_setup_your_profile"
                 android:layout_gravity="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
@@ -136,7 +136,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_weight="40"
                     android:fontFamily="@font/bariol_bold"
-                    android:text="What Qualities do you like in person:"
+                    android:text="@string/what_qualities_do_you_like_in_person"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
 
@@ -157,24 +157,24 @@
                     android:id="@+id/chip1"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Charming"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/charming"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip2"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Calm"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/calm"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip3"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Honesty"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/honesty"/>
 
 
             </LinearLayout>
@@ -192,24 +192,24 @@
                     android:id="@+id/chip4"
                     android:layout_weight="0.8"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Confidence"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/confidence"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip5"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Friendly"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/friendly"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip6"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Social"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/social"/>
 
 
             </LinearLayout>
@@ -228,24 +228,24 @@
                     android:id="@+id/chip7"
                     android:layout_weight="0.6"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Loyal"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/loyal"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip8"
                     android:layout_weight="0.5"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Kind"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/kind"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip9"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Hard Working"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/hard_working"/>
 
 
             </LinearLayout>
@@ -263,16 +263,16 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chip10"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Passionate"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/passionate"/>
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip11"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Beautiful"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/beautiful"/>
 
 
             </LinearLayout>
@@ -291,7 +291,7 @@
                 android:drawablePadding="@dimen/drawable_left"
                 android:fontFamily="@font/bariol_regular"
                 android:gravity="center_vertical"
-                android:hint="Other's (if any)"
+                android:hint="@string/other_s_if_any"
                 android:background="@drawable/container_search"
                 android:paddingLeft="@dimen/normalPadding"
                 android:paddingTop="@dimen/vertical_search"
@@ -304,12 +304,12 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="40"
                 android:layout_marginHorizontal="29dp"
                 android:fontFamily="@font/bariol_bold"
-                android:text="What Qualities do you Dislike in person:"
+                android:text="@string/what_qualities_do_you_dislike_in_person"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
             <LinearLayout
@@ -327,16 +327,16 @@
                     android:id="@+id/chip1d"
                     android:layout_weight="1"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="self centered"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/self_centered"/>
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip2d"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Negative"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/negative"/>
 
 
             </LinearLayout>
@@ -354,8 +354,8 @@
                     android:id="@+id/chip3d"
                     android:layout_weight="0.8"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Judgemental"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/judgemental"/>
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
@@ -363,8 +363,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chip4d"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Dishonest"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/dishonest"/>
 
 
             </LinearLayout>
@@ -383,8 +383,8 @@
                     android:id="@+id/chip5d"
                     android:layout_weight="0.6"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Selfish"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/selfish"/>
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="0dp"
@@ -392,8 +392,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chip6d"
                     android:checkable="true"
-                    android:layout_marginRight="2dp"
-                    android:text="Arrogance"/>
+                    android:layout_marginEnd="2dp"
+                    android:text="@string/arrogance"/>
 
 
             </LinearLayout>
@@ -412,7 +412,7 @@
                 android:drawablePadding="@dimen/drawable_left"
                 android:fontFamily="@font/bariol_regular"
                 android:gravity="center_vertical"
-                android:hint="Other's (if any)"
+                android:hint="@string/other_s_if_anya"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/container_search"
                 android:paddingLeft="@dimen/normalPadding"
@@ -432,25 +432,28 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp"
                 android:paddingHorizontal="30dp"
-                >
+                tools:ignore="RtlHardcoded">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_marginBottom="@dimen/margin_20_dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="UselessParent">
 
                     <ImageView
                         android:id="@+id/tvPrevious"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="left"
-                        android:src="@drawable/prev"/>
+                        android:src="@drawable/prev"
+                        android:contentDescription="@string/todo" />
 
                     <ImageView
                         android:id="@+id/tvNext"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_alignParentRight="true"
-                        android:src="@drawable/next"/>
+                        android:src="@drawable/next"
+                        android:contentDescription="@string/todo" />
 
 
                 </RelativeLayout>

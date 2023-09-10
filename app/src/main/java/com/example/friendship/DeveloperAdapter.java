@@ -45,10 +45,22 @@ public class DeveloperAdapter extends FirebaseRecyclerAdapter<Developer,Develope
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, int position, @NonNull Developer model) {
 
-        holder.name.setText(model.getName());
-        holder.description.setText(model.getDescription());
-        holder.post.setText(model.getPost());
-        Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
+
+        try {
+
+            holder.name.setText(model.getName());
+            holder.description.setText(model.getDescription());
+            holder.post.setText(model.getPost());
+            Glide.with(holder.profileImage.getContext()).load(model.getPurl()).into(holder.profileImage);
+
+
+        }catch (Exception e){
+            Toast.makeText(holder.name.getContext(), "Something wrong in Developer",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
 
 
     }

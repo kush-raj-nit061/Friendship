@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="8dp">
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:src="@drawable/logo"
+                android:scaleType="centerCrop"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                />
+
+            <TextView
+                android:id="@+id/projectName"
+                android:textColor="#262626"
+                android:layout_below="@id/image"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:maxLines="1"
+                android:text="project"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/projectType"
+                android:layout_below="@id/projectName"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:text="ShortDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/seeMore"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/margin_10_dp"
+                android:layout_below="@id/projectType"
+                android:background="@color/stat_card_backcolor"
+                android:textAlignment="center"
+                android:text="@string/see_more"/>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ChatActivity">
 
     <Toolbar
@@ -27,9 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
-                android:layout_toRightOf="@id/profile_image"
+                android:layout_toEndOf="@id/profile_image"
                 android:textSize="18sp"
-                android:layout_marginLeft="25dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_marginStart="25dp" />
@@ -39,9 +39,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/userlastseen"
                 android:layout_below="@+id/username"
-                android:layout_toRightOf="@+id/profile_image"
+                android:layout_toEndOf="@+id/profile_image"
                 android:textSize="15sp"
-                android:layout_marginLeft="25dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_marginStart="25dp" />
@@ -61,6 +60,7 @@
         android:id="@+id/private_message_list_of_users"
         android:layout_below="@id/toolbar"
         android:layout_above="@id/bottom"
+        android:background="@color/white"
         android:layout_marginBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -69,7 +69,10 @@
         android:layout_width="match_parent"
         android:padding="10dp"
         android:id="@+id/bottom"
-        android:background="@color/white"
+        android:backgroundTint="#E8E7E5"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/container_search"
+        android:layout_marginHorizontal="8dp"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
         <ImageButton
@@ -81,7 +84,8 @@
             android:textAlignment="center"
             android:id="@+id/send_files_btn"
             android:backgroundTint="@color/colorPrimary"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/todoo" />
 
         <EditText
             android:layout_width="match_parent"
@@ -90,15 +94,18 @@
             android:textSize="16sp"
             android:padding="@dimen/padding_10_dp"
             android:textColor="@color/blue"
-            android:textAlignment="center"
-            android:textColorHint="@color/yellow"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/poppins"
+            android:textColorHint="@color/textColor"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="8dp"
-            android:layout_toLeftOf="@+id/btn_send"
-            android:hint="Type a message>>>"
+            android:layout_toStartOf="@+id/btn_send"
+            android:hint="@string/message_here"
             android:background="@null"
-            android:layout_toRightOf="@+id/send_files_btn"
-            />
+            android:layout_toEndOf="@+id/send_files_btn"
+            android:autofillHints=""
+
+            tools:ignore="TextFields" />
 
         <ImageButton
             android:layout_width="@dimen/margin_30_dp"
@@ -108,7 +115,8 @@
             android:layout_centerVertical="true"
             android:id="@+id/btn_send"
             android:backgroundTint="@color/colorPrimary"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/todo" />
 
     </RelativeLayout>
 
