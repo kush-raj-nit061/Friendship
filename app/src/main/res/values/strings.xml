@@ -226,6 +226,9 @@
     <string name="privacy_and_policy"><![CDATA[> Privacy And Policy]]></string>
     <string name="logout"><![CDATA[> Logout]]></string>
     <string name="robotics_iot"><![CDATA[Robotics & IOT]]></string>
+    <string name="project_name">Project Name</string>
+    <string name="project_type">Project Type</string>
+    <string name="see_more">See More</string>
 
 
 </resources>

@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.FriendRequestAdapter;
 import com.example.friendship.Model.Celebration;
+import com.example.friendship.Model.Collaboration;
 import com.example.friendship.Model.Events;
 import com.example.friendship.Model.Likedby;
 import com.example.friendship.Model.User;
@@ -65,16 +66,19 @@ public class SettingsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewCeleb;
     private RecyclerView recyclerViewEvents;
+    private RecyclerView recCollab;
 
     private NotificationAdapter userAdapter;
     private EventsAdapter eventAdapter;
     private LikedbyAdapter celebAdapter;
+    private CollaborationAdapter collabAdapter;
     static OnItemClick onItemClick;
     LinearLayoutManager manager1;
     LinearLayoutManager manager2;
     String key = "";
     LottieAnimationView likedBy;
     LinearLayoutManager manager3;
+    LinearLayoutManager manager4;
     DatabaseReference myRefCeleb;
     RelativeLayout celeb;
     String[] month = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
@@ -103,11 +107,13 @@ public class SettingsFragment extends Fragment {
         celeb = view.findViewById(R.id.celebration);
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerViewCeleb = view.findViewById(R.id.recycler_view_celeb);
+        recCollab= view.findViewById(R.id.recCollab);
         likedBy = view.findViewById(R.id.likedby);
         recyclerViewEvents = view.findViewById(R.id.recEvents);
         manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager3 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager4 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
         recyclerView.setHasFixedSize(true);
 
@@ -125,7 +131,12 @@ public class SettingsFragment extends Fragment {
         recyclerViewEvents.setHasFixedSize(true);
         recyclerViewEvents.setLayoutManager(manager3);
         DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
-        recyclerViewEvents.addItemDecoration(dividerItemDecorationCeleb);
+        recyclerViewEvents.addItemDecoration(dividerItemDecorationEvents);
+
+        recCollab.setHasFixedSize(true);
+        recCollab.setLayoutManager(manager4);
+        DividerItemDecoration dividerItemDecorationCollab = new DividerItemDecoration(recCollab.getContext(), DividerItemDecoration.VERTICAL);
+        recCollab.addItemDecoration(dividerItemDecorationCollab);
 
 
 
@@ -154,12 +165,57 @@ public class SettingsFragment extends Fragment {
 
         readUsersCeleb();
 
-
-
+        readUsersCollab();
 
         readUsers();
 
         return view;
+    }
+
+    private void readUsersCollab() {
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Celebration");
+        String userId = fAuth.getCurrentUser().getUid();
+        DatabaseReference reference = database.getReference().child("Collab");
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+        recCollab.setVisibility(View.GONE);
+
+
+
+        try {
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
+                    Query query = reference.orderByChild("date").limitToLast(count);
+
+                    FirebaseRecyclerOptions<Collaboration> options =
+                            new FirebaseRecyclerOptions.Builder<Collaboration>()
+                                    .setQuery(query, Collaboration.class)
+                                    .build();
+
+                    collabAdapter=new CollaborationAdapter(options);
+                    recCollab.setAdapter(collabAdapter);
+                    recCollab.setVisibility(View.VISIBLE);
+                    collabAdapter.startListening();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+
+
     }
 
     private void readUsersEvent(){

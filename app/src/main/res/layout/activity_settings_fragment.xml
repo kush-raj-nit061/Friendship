@@ -13,7 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_toRightOf="@+id/likedby"
+                    android:layout_toEndOf="@+id/likedby"
                     android:id="@+id/recycler_view_celeb"
                     android:layout_width="match_parent"
                     android:layout_height="110dp" />
@@ -86,10 +86,13 @@
             </RelativeLayout>
 
 
+
+
+
             <RelativeLayout
                 android:id="@+id/notifications"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -97,14 +100,35 @@
                     android:layout_width="match_parent"
                     android:background="@color/white"
                     android:layout_marginTop="@dimen/margin_10_dp"
-                    android:layout_marginBottom="90dp"
+                    android:minHeight="170dp"
                     android:visibility="gone"
                     android:layout_height="170dp" />
 
+
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rvCollab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recCollab"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/margin_10_dp"
+                    android:minHeight="300dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" />
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/recCollab"
+                    android:layout_marginTop="7dp"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
 
+            </RelativeLayout>
 
 
 

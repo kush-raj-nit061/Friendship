@@ -128,7 +128,7 @@
 
 
                 <EditText
-                    android:id="@+id/etShortDetails"
+                    android:id="@+id/etProjectName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -324,7 +324,7 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/etQualityLike"
+                    android:id="@+id/etProjectType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -347,7 +347,6 @@
                     android:textColorHint="@color/color_hint"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -358,10 +357,8 @@
                     android:text="Enter Your Requirements For Your Project :"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp" />
-
-
                 <EditText
-                    android:id="@+id/etReq"
+                    android:id="@+id/etRequirement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -369,13 +366,10 @@
                     android:layout_marginTop="@dimen/normalPadding"
                     android:layout_marginRight="@dimen/horizontal_dashboard"
                     android:autofillHints="username"
-
                     android:background="@drawable/container_search"
                     android:drawablePadding="@dimen/drawable_left"
                     android:fontFamily="@font/bariol_regular"
-
                     android:gravity="center_vertical"
-
                     android:hint="@string/write_here"
                     android:inputType="textCapSentences|textMultiLine"
                     android:minLines="3"
@@ -384,11 +378,8 @@
                     android:paddingRight="@dimen/normalPadding"
                     android:paddingBottom="@dimen/vertical_search"
                     android:singleLine="false"
-
                     android:textColor="?attr/colorPrimaryDark"
-
                     android:textColorHint="@color/color_hint"
-
                     android:textSize="22sp"
                     android:textStyle="bold" />
 

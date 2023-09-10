@@ -238,6 +238,7 @@ public class DetailsActivity3 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity3.this,DetailsActivity2.class);
                 startActivity(i);
+                finish();
             }
         });
 
