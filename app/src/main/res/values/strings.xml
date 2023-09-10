@@ -225,6 +225,7 @@
     <string name="change_passworda"><![CDATA[> Change Password]]></string>
     <string name="privacy_and_policy"><![CDATA[> Privacy And Policy]]></string>
     <string name="logout"><![CDATA[> Logout]]></string>
+    <string name="robotics_iot"><![CDATA[Robotics & IOT]]></string>
 
 
 </resources>

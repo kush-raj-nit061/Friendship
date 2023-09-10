@@ -42,6 +42,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.friendship.Admins.AnnouncementActivity;
+import com.example.friendship.Collaboration.CollabDetails1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
 //    ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications,cvCollab;
     TextView branch,year,name;
     String purl;
     private ViewPager viewPager;
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
 
         bottomNav   = findViewById(R.id.bottom_nav);
+        cvCollab = findViewById(R.id.collab);
 //        iv_menu = findViewById(R.id.iv_Menu);
         cvProfile = findViewById(R.id.cvProfile);
         ivDrawer = findViewById(R.id.ivDrawer);
@@ -125,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvAboutUs = findViewById(R.id.aboutus);
         cvHelp = findViewById(R.id.help);
         cvNotifications = findViewById(R.id.notification);
+
+
 
 
 
@@ -170,6 +174,13 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                 startActivity(i);
             }
         });
+        cvCollab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, CollabDetails1.class);
+                startActivity(i);
+            }
+        });
         cvAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
             }
         });
+
         cvHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

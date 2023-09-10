@@ -22,23 +22,23 @@ public class KushRaj extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kush_raj);
 
-        expandableView = findViewById(R.id.expandableView);
-        arrowBtn = findViewById(R.id.arrowBtn);
-        cardView = findViewById(R.id.cardView);
+//        expandableView = findViewById(R.id.expandableView);
+//        arrowBtn = findViewById(R.id.arrowBtn);
+//        cardView = findViewById(R.id.cardView);
 
-        arrowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (expandableView.getVisibility()==View.GONE){
-                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                    expandableView.setVisibility(View.VISIBLE);
-                    arrowBtn.setBackgroundResource(R.drawable.baseline_arrow_back_24);
-                } else {
-                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                    expandableView.setVisibility(View.GONE);
-                    arrowBtn.setBackgroundResource(R.drawable.arrowdown);
-                }
-            }
-        });
+//        arrowBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (expandableView.getVisibility()==View.GONE){
+//                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+//                    expandableView.setVisibility(View.VISIBLE);
+//                    arrowBtn.setBackgroundResource(R.drawable.baseline_arrow_back_24);
+//                } else {
+//                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+//                    expandableView.setVisibility(View.GONE);
+//                    arrowBtn.setBackgroundResource(R.drawable.arrowdown);
+//                }
+//            }
+//        });
     }
 }
