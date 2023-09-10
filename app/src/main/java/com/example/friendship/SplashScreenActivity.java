@@ -3,6 +3,7 @@ package com.example.friendship;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,11 +23,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
 
 
     LottieAnimationView frog1,frog2,frog3,frog4;
+    GifImageView img;
 
 
     private EditText emailTextView, passwordTextView;
@@ -37,10 +41,21 @@ public class SplashScreenActivity extends AppCompatActivity {
     private FirebaseAuth mAuth= FirebaseAuth.getInstance();
     ProgressBar progressbar;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        img = findViewById(R.id.img);
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                img.setVisibility(View.INVISIBLE);
+
+            }
+        },2000);
+
 
 
 
@@ -87,7 +102,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(getApplicationContext(),"Your Account Has been Suspended",Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(getApplicationContext(),"Check Your network:",Toast.LENGTH_LONG).show();
                                                         }
                                                     });
 

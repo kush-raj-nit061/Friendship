@@ -12,27 +12,15 @@
 
 
 
-    <TextView
-        android:id="@+id/tvSplash"
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/bariol_bold"
-        android:text="Let's Know Our Family"
-        android:textAlignment="center"
-        android:textColor="@color/google_color"
-        android:textSize="50sp"
-        android:textStyle="bold"
-
-        />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
         android:padding="20dp"
         android:layout_gravity="center"
-
         android:contentDescription="TODO"
-        android:src="@drawable/logo" />
+        android:src="@drawable/gifsplash" />
 
 
 </androidx.cardview.widget.CardView>
