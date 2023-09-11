@@ -1,53 +1,41 @@
 package com.example.friendship;
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.example.friendship.Model.Celebration;
 import com.example.friendship.Model.Collaborator;
-import com.example.friendship.Model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.RemoteMessage;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.rolud.solidglowanimation.SolidGlowAnimation;
-import java.util.HashMap;
-import java.util.Map;
-import pl.droidsonroids.gif.GifImageView;
 
 public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,CollaboratorAdapter.userAdapterHolder> {
 
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Celebration");
+    private FragmentManager fragmentManager;
+
+    FragmentTransaction transaction = null;
 
 
-    public CollaboratorAdapter(@NonNull FirebaseRecyclerOptions<Collaborator> options) {
+
+
+    public CollaboratorAdapter(@NonNull FirebaseRecyclerOptions<Collaborator> options,FragmentManager fragment) {
         super(options);
+        this.fragmentManager = fragment;
     }
 
     @Override
@@ -65,7 +53,10 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
 
                     holder.name.setText(name);
                     holder.branch.setText(branch);
-                    Glide.with(holder.profile.getContext()).load(purl).into(holder.profile);
+                    try {
+                        Glide.with(holder.profile.getContext()).load(purl).into(holder.profile);
+                    }catch (Exception e){}
+
                 }
 
                 @Override
@@ -77,6 +68,44 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
             holder.profile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("students").child(model.getId());
+                    dbs.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                UserModel model = snapshot.getValue(UserModel.class);
+                                AppCompatActivity appCompatActivity = unwrap(v.getContext());
+                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                                        new UserDescrFragment(model.getUserId(),model.getName(),model.getBranch(),model.getYear()
+                                                ,model.getShortBio(),model.getPurl(),model.getHobbies(),model.getBirthday()
+                                                ,model.getQualitylike(),model.getQualitydislike(),model.getFoods()
+                                                ,model.getBooks(),model.getTravellike())).addToBackStack(null).commit();
+
+
+
+
+                                try {
+
+
+                                }catch (Exception e){
+
+                                    Toast.makeText(v.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
 
                 }
             });
@@ -89,6 +118,14 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
 
 
     }
+    private static AppCompatActivity unwrap(Context context) {
+        while (!(context instanceof Activity) && context instanceof ContextWrapper) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+
+        assert context instanceof AppCompatActivity;
+        return (AppCompatActivity) context;
+    }
 
     @NonNull
     @Override
@@ -97,7 +134,7 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
         return new userAdapterHolder(view);
     }
 
-    public class userAdapterHolder extends RecyclerView.ViewHolder {
+    public static class userAdapterHolder extends RecyclerView.ViewHolder {
 
         ImageView profile;
         TextView name,branch;
@@ -110,8 +147,12 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
             name = itemView.findViewById(R.id.name);
             branch = itemView.findViewById(R.id.branch);
 
-
-
         }
+    }
+    private void setFragment(Fragment fragment) {
+        transaction = fragmentManager.beginTransaction();
+        transaction.add(fragment,"all");
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.frame, fragment).commit();
     }
 }

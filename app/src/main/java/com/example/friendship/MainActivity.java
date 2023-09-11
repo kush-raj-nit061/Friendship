@@ -37,6 +37,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -211,12 +212,11 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                                     if (document.exists()) {
                                         String detailsGiven = document.getString("Admin");
                                         if (detailsGiven.equals("1")) {
-
-                                            // For admin work
-                                        } else {
-
                                             Intent i = new Intent(MainActivity.this, AnnouncementActivity.class);
                                             startActivity(i);
+                                            // For admin work
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "You don't have permission to set Clubs Notification", Toast.LENGTH_SHORT).show();
 
                                         }
 
@@ -276,31 +276,6 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             }
         });
 
-
-//
-//        iv_menu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                mDrawer.openMenu(true);
-//            }
-//        });
-
-//        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
-//        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
-//
-//        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
-//            @Override
-//            public void onDrawerStateChange(int oldState, int newState) {
-//                if (newState == ElasticDrawer.STATE_CLOSED) {
-//                    Log.i("MainActivity", "Drawer STATE_CLOSED");
-//                }
-//            }
-//
-//            @Override
-//            public void onDrawerSlide(float openRatio, int offsetPixels) {
-//                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
-//            }
-//        });
 
 
         bottomNav   = findViewById(R.id.bottom_nav);
@@ -504,20 +479,12 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        }else {
             super.onBackPressed();
-            return;
         }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click Back again", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);    }
+    }
 
 }

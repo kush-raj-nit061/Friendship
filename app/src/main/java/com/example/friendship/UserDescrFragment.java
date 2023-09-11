@@ -324,6 +324,7 @@ public class UserDescrFragment extends Fragment {
 
         return v;
     }
+
     public void onBackPressed(){
         try {
             AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();

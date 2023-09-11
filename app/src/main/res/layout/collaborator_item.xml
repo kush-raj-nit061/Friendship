@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/padding_10_dp"
     android:paddingBottom="@dimen/padding_10_dp"
 
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="75dp"
@@ -19,6 +19,16 @@
         app:civ_border_color="@color/teal_700"
         android:layout_centerVertical="true"
         android:id="@+id/profile"
+        />
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/teal_700"
+        android:layout_centerVertical="true"
+        android:src="@drawable/idea"
+        android:layout_marginEnd="5dp"
+        android:layout_alignParentEnd="true"
         />
 
     <LinearLayout
