@@ -121,7 +121,7 @@ public class DashboardFragment extends Fragment {
                 outState.putParcelable("recycler_state", recyclerViewState);
             }
 
-        }catch (Exception e){}
+        }catch (Exception ignored){}
 
     }
 
@@ -135,7 +135,7 @@ public class DashboardFragment extends Fragment {
                 recView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
             }
 
-        }catch (Exception e){}
+        }catch (Exception ignored){}
 
     }
 

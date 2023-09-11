@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,10 +49,11 @@ public class CollaborationActivity extends AppCompatActivity {
         add = findViewById(R.id.add);
         recCollab= findViewById(R.id.recCollab);
         back = findViewById(R.id.back);
-        manager4 = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+        GridLayoutManager manager = new GridLayoutManager(this,2);
+
 
         recCollab.setHasFixedSize(true);
-        recCollab.setLayoutManager(manager4);
+        recCollab.setLayoutManager(manager);
         DividerItemDecoration dividerItemDecorationCollab = new DividerItemDecoration(recCollab.getContext(), DividerItemDecoration.VERTICAL);
         recCollab.addItemDecoration(dividerItemDecorationCollab);
 

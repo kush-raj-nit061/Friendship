@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -65,7 +66,7 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
                 }
             });
 
-            holder.profile.setOnClickListener(new View.OnClickListener() {
+            holder.rv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("students").child(model.getId());
@@ -138,7 +139,7 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
 
         ImageView profile;
         TextView name,branch;
-
+        RelativeLayout rv;
 
         public userAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -146,6 +147,7 @@ public class CollaboratorAdapter extends FirebaseRecyclerAdapter<Collaborator,Co
             profile = itemView.findViewById(R.id.profile);
             name = itemView.findViewById(R.id.name);
             branch = itemView.findViewById(R.id.branch);
+            rv = itemView.findViewById(R.id.rl);
 
         }
     }

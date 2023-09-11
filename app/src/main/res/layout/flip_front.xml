@@ -17,7 +17,7 @@
         android:layout_margin="8dp"
         app:ycCardCornerRadius="8dp"
         app:ycCardBackgroundColor="#A465E2"
-        app:ycEndShadowColor="#FFEB3B"
+        app:ycEndShadowColor="@color/blue_active"
         app:ycCardElevation="6dp"
         >
 
