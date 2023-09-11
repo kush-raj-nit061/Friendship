@@ -46,14 +46,14 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/margin_20_dp"
         android:fontFamily="@font/ubuntu_regular"
-        android:text="People who will request you to collab will be displayed here:"/>
+        android:text="Collab Requests:"/>
 
 
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/Collaborator"
         />
 
