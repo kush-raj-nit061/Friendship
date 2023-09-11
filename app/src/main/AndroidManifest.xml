@@ -40,11 +40,6 @@
             android:name=".CollaborationActivity"
             android:exported="false" />
         <activity
-            android:name=".KushRaj"
-            android:exported="true">
-
-        </activity>
-        <activity
             android:name=".SplashScreenActivity"
             android:exported="true" >
             <intent-filter>

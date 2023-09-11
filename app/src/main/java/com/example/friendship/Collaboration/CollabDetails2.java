@@ -83,7 +83,7 @@ public class CollabDetails2 extends AppCompatActivity {
                         }
                     });
 
-                }catch (Exception e){}
+                }catch (Exception ignored){}
 
 
 

@@ -25,9 +25,9 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:layout_toRightOf="@+id/person"
+                android:layout_toEndOf="@+id/person"
                 android:layout_marginStart="@dimen/margin_10_dp"
-                android:text="Person1"/>
+                android:text=""/>
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
@@ -38,9 +38,10 @@
                 android:clickable="true"
                 android:autoLink="email"
                 android:layout_below="@+id/personname"
-                android:layout_toRightOf="@+id/person"
+                android:layout_toEndOf="@+id/person"
                 android:layout_marginStart="@dimen/margin_10_dp"
-                android:text="Email"/>
+                android:text=""
+                android:focusable="true" />
 
             <ImageView
                 android:id="@+id/person"
@@ -50,7 +51,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="6dp"
-                android:src="@drawable/baseline_person_24" />
+                android:src="@drawable/baseline_person_24"
+                android:contentDescription="@string/todo" />
 
 
 

@@ -15,7 +15,6 @@
         android:layout_height="160dp"
         app:ycCardPreventCornerOverlap="true"
         app:ycCardBackgroundColor="@color/white"
-        android:outlineAmbientShadowColor="@color/colorAccent"
         app:ycCardElevation="5dp"
         app:ycCardCornerRadius="25dp"
         app:ycStartShadowColor="@color/design_default_color_secondary"
@@ -42,13 +41,13 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text=""
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginTop="34dp"
                     android:layout_marginStart="40dp"
-                    />
+                    tools:ignore="RelativeOverlap" />
                 <View
                     android:id="@+id/line"
                     android:layout_width="100dp"
@@ -62,13 +61,13 @@
                     android:id="@+id/branch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Branch"
+                    android:text=""
                     android:textStyle="italic"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:layout_marginTop="65dp"
                     android:layout_marginStart="40dp"
-                    />
+                    tools:ignore="RelativeOverlap" />
 
                 <ImageView
                     android:id="@+id/reject"
@@ -78,27 +77,28 @@
                     android:src="@drawable/cross"
                     android:visibility="visible"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    />
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/todo"
+                    tools:ignore="RtlSymmetry" />
 
                 <ImageView
-                    android:layout_toLeftOf="@+id/reject"
+                    android:layout_toStartOf="@+id/reject"
                     android:id="@+id/accept"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:paddingEnd="4dp"
                     android:src="@drawable/verify"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    />
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/todo"
+                    tools:ignore="RtlSymmetry" />
             </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friend Request"
+                android:text="@string/friend_request"
                 android:textColor="#180C46"
                 android:textSize="17sp"
                 android:textStyle="bold|italic"

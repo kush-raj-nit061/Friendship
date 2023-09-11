@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bariol_bold"
                         android:layout_marginTop="-8dp"
-                        android:text="let\'s search !!!"
+                        android:text="@string/let_s_search"
                         android:textColor="@color/blue_active"
                         android:textSize="30sp" />
 

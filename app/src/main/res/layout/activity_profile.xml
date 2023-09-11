@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -39,7 +40,8 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:padding="6dp"
-                        android:src="@drawable/ic_back" />
+                        android:src="@drawable/ic_back"
+                        android:contentDescription="@string/todo" />
 
                 </FrameLayout>
 
@@ -47,7 +49,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -58,7 +59,7 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Profile"
+                        android:text="@string/profiles"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textColor="@color/qiscus_primary_text" />
 
@@ -69,6 +70,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:contentDescription="@string/todo"
                         android:id="@+id/bt_back2"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -97,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            >
+            tools:ignore="UselessParent">
 
             <com.github.sshadkany.shapes.CircleView
                 android:layout_width="225dp"
@@ -106,6 +108,7 @@
                 >
                 <ImageView
                     android:id="@+id/ivAvatar"
+                    android:contentDescription="@string/todo"
                     android:layout_width="match_parent"
                     android:layout_height="225dp"
                     android:scaleType="centerCrop"
@@ -134,11 +137,13 @@
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="150dp"
+                android:contentDescription="@string/todo"
                 android:layout_marginTop="150dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:clickable="true"
-                app:srcCompat="@drawable/baseline_add_a_photo_24" />
+                app:srcCompat="@drawable/baseline_add_a_photo_24"
+                android:focusable="true" />
 
         </RelativeLayout>
 
@@ -164,7 +169,7 @@
             android:textIsSelectable="true"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:text="UserId"
+            android:text=""
             android:textColor="@color/lose_red_bg" />
 
 
@@ -191,10 +196,10 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="INFORMATION" />
+                    android:text="@string/information" />
 
 
                 <RelativeLayout
@@ -217,18 +222,19 @@
                         <ImageView
                             android:id="@+id/imageView8"
                             android:layout_width="30dp"
+                            android:contentDescription="@string/todo"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
                             app:srcCompat="@drawable/ic_profile" />
 
                         <TextView
                             android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:text="name"
+                            android:text=""
                             android:textColor="@color/qiscus_primary_text" />
 
 
@@ -237,7 +243,9 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:clickable="true"
-                            app:srcCompat="@drawable/baseline_edit_24" />
+                            app:srcCompat="@drawable/baseline_edit_24"
+                            android:focusable="true"
+                            android:contentDescription="@string/todo" />
                     </LinearLayout>
 
 
@@ -249,6 +257,7 @@
                         >
 
                         <ImageView
+                            android:contentDescription="@string/todo"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
@@ -256,7 +265,7 @@
 
                         <EditText
                             android:id="@+id/etName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -264,8 +273,11 @@
                             android:background="@drawable/edittextback"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:text="name"
-                            android:textColor="@color/qiscus_primary_text" />
+                            android:text=""
+                            android:textColor="@color/qiscus_primary_text"
+                            android:autofillHints=""
+                            android:inputType="text"
+                            tools:ignore="LabelFor" />
 
 
 
@@ -296,16 +308,17 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
                             app:srcCompat="@drawable/ic_dept" />
 
                         <TextView
                             android:id="@+id/tvLocation"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:text="Place"
+                            android:text=""
                             android:textColor="@color/qiscus_primary_text" />
 
                     </LinearLayout>
@@ -325,11 +338,12 @@
                             android:layout_gravity="center"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            app:srcCompat="@drawable/ic_dept" />
+                            app:srcCompat="@drawable/ic_dept"
+                            android:contentDescription="@string/todo" />
 
                         <EditText
                             android:id="@+id/etLocation"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -337,8 +351,11 @@
                             android:background="@drawable/edittextback"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:text="Location"
-                            android:textColor="@color/qiscus_primary_text" /> />
+                            android:text=""
+                            android:textColor="@color/qiscus_primary_text"
+                            android:autofillHints=""
+                            android:inputType="text"
+                            tools:ignore="LabelFor" />
 
                     </LinearLayout>
 
@@ -369,16 +386,18 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
+
                             app:srcCompat="@drawable/ic_study" />
 
                         <TextView
                             android:id="@+id/tvYear"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:text="year"
+                            android:text=""
                             android:textColor="@color/qiscus_primary_text" />
 
                     </LinearLayout>
@@ -394,7 +413,7 @@
                         android:paddingBottom="20dp">
 
                         <ImageView
-
+                            android:contentDescription="@string/todo"
                             android:layout_width="30dp"
                             android:layout_gravity="center"
                             android:layout_height="30dp"
@@ -402,7 +421,7 @@
 
                         <EditText
                             android:id="@+id/etYear"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -410,8 +429,11 @@
                             android:background="@drawable/edittextback"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:text="Year"
-                            android:textColor="@color/qiscus_primary_text" />
+                            android:text=""
+                            android:textColor="@color/qiscus_primary_text"
+                            android:autofillHints=""
+                            android:inputType="text"
+                            tools:ignore="LabelFor" />
 
                     </LinearLayout>
 
@@ -442,10 +464,10 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="SHORT DETAILS" />
+                    android:text="@string/short_details" />
 
 
                 <RelativeLayout
@@ -455,7 +477,7 @@
                     android:clickable="true"
                     android:orientation="horizontal"
                     android:padding="20dp"
-                    >
+                    android:focusable="true">
 
                     <LinearLayout
                         android:id="@+id/llshortbiotv"
@@ -467,6 +489,7 @@
                             android:id="@+id/img_logout"
                             android:layout_width="30dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
                             android:layout_height="30dp"
                             app:srcCompat="@drawable/ic_detail" />
 
@@ -478,14 +501,16 @@
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:text="Short Details"
+                            android:text=""
                             android:textColor="@color/qiscus_primary_text" />
                         <ImageView
                             android:id="@+id/ivEditShortDet"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:clickable="true"
-                            app:srcCompat="@drawable/baseline_edit_24" />
+                            android:contentDescription="@string/todo"
+                            app:srcCompat="@drawable/baseline_edit_24"
+                            android:focusable="true" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -496,6 +521,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:contentDescription="@string/todo"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
@@ -503,7 +529,7 @@
 
                         <EditText
                             android:id="@+id/etShortBio"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -512,8 +538,11 @@
                             android:background="@drawable/edittextback"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:text="Short Details"
-                            android:textColor="@color/qiscus_primary_text" />
+                            android:text=""
+                            android:autofillHints=""
+                            android:inputType="text"
+                            android:textColor="@color/qiscus_primary_text"
+                            tools:ignore="LabelFor" />
 
 
                     </LinearLayout>
@@ -525,13 +554,12 @@
                     style="@style/Widget.Neumorph.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn3a"
                     android:layout_marginBottom="5dp"
                     android:drawablePadding="8dp"
-                    android:text="Save Changes"
+                    android:text="@string/save_changes"
                     android:textColor="#8246D6"
                     android:paddingTop="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
 
 
                     />

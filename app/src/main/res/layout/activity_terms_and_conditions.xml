@@ -7,12 +7,6 @@
     android:layout_margin="6dp"
     app:cardCornerRadius="10dp">
 
-
-
-
-
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,7 +31,7 @@
                     android:padding="6dp"
                     android:src="@drawable/baseline_arrow_back_24"
                     tools:ignore="MissingConstraints"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
 
                 <TextView
@@ -48,7 +42,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:padding="6dp"
-                    android:text="Terms &amp; Conditions"
+                    android:text="@string/terms_amp_conditions"
                     android:textColor="@color/colorSecondary"
                     android:textSize="28sp"
                     android:textStyle="bold"
@@ -59,6 +53,7 @@
                 </TextView>
 
                 <ImageView
+                    android:contentDescription="@string/todo"
                     android:id="@+id/imSpeak"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
@@ -112,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:padding="6dp"
-                            android:text="Effective Date: [10/09/2023]"
+                            android:text="@string/effective_date_10_09_2023"
                             android:textColor="@color/black"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -153,7 +148,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="1. Eligibility"
+                            android:text="@string/_1_eligibility"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -191,7 +186,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="2. User Account"
+                            android:text="@string/_2_user_account"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -231,7 +226,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="3. Use of the App"
+                            android:text="@string/_3_use_of_the_app"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -270,7 +265,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="4. Safety and Conduct"
+                            android:text="@string/_4_safety_and_conduct"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -309,7 +304,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="5. User Content:"
+                            android:text="@string/_5_user_content"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -348,7 +343,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="6. Privacy"
+                            android:text="@string/_6_privacy"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -387,7 +382,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="7. Termination:"
+                            android:text="@string/_7_termination"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -426,7 +421,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="8. Disclaimers:"
+                            android:text="@string/_8_disclaimers"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -465,7 +460,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="9. Limitation of Liability:"
+                            android:text="@string/_9_limitation_of_liability"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -504,7 +499,7 @@
                             android:alpha="0.8"
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
-                            android:text="10. Governing Law:"
+                            android:text="@string/_10_governing_law"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -569,11 +564,10 @@
                             android:alpha="0.8"
                             android:background="@drawable/week_card_bg_active"
                             android:letterSpacing="0.03"
-                            android:lineHeight="20sp"
                             android:minHeight="60dp"
 
                             android:padding="12dp"
-                            android:text="[Friendship]\nAshok Rajpath, Near Patna University Campus,\n800005"
+                            android:text="@string/friendship_nashok_rajpath_near_patna_university_campus_n800005"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView11">

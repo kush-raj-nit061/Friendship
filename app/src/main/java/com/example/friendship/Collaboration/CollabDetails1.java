@@ -10,8 +10,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -137,7 +135,7 @@ public class CollabDetails1 extends AppCompatActivity {
                         }
                     });
 
-                }catch (Exception e){}
+                }catch (Exception ignored){}
 
 
 

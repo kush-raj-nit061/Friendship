@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -23,15 +22,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity1 extends AppCompatActivity {
 
@@ -41,9 +36,6 @@ public class DetailsActivity1 extends AppCompatActivity {
     String yearSelected;
     EditText etHobbies,etShortDetails;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
-    String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
     DatabaseReference reference;
@@ -98,7 +90,7 @@ public class DetailsActivity1 extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(etShortDetails.getText().toString().length()<100){
-                    Toast.makeText(getApplicationContext(),"Add more Words",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Add Atleast 30 Words",Toast.LENGTH_SHORT).show();
                     return;
                 }if(etHobbies.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please Enter Your Hobbies",Toast.LENGTH_SHORT).show();
@@ -110,7 +102,7 @@ public class DetailsActivity1 extends AppCompatActivity {
                 Map<String,Object> data = new HashMap<>();
                 data.put("bio",etShortDetails.getText().toString());
 
-                reference.child(FirebaseAuth.getInstance().getUid()).updateChildren(data);
+                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(data);
 
 
                 Map<String,Object> users = new HashMap<>();

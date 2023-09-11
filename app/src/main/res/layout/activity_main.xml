@@ -297,7 +297,7 @@
                             android:layout_marginHorizontal="16dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Collaboration >"
+                            android:text="@string/collaborations"
                             android:textStyle="bold"
                             android:textSize="16sp"
                             android:textColor="@color/black"/>

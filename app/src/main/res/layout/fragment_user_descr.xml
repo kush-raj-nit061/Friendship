@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserDescrFragment">
 
@@ -12,108 +13,58 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:background="@color/white"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
 
-            <com.github.sshadkany.shapes.RoundRectView
-                android:id="@+id/btn3a"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                app:shape_roundRect_backgroundColor="#ECF0F3"
-                app:shape_roundRect_bottomLeftRadius="12dp"
-                app:shape_roundRect_bottomRightRadius="12dp"
-                app:shape_roundRect_shadow_type="drop_shadow"
-                app:shape_roundRect_topLeftRadius="12dp"
-                app:shape_roundRect_topRightRadius="12dp"
-                tools:ignore="RtlSymmetry">
-
-                <com.github.sshadkany.shapes.RoundRectView
-                    android:id="@+id/roundrect1"
+                android:backgroundTint="@color/white"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                >
+                <ImageView
+                    android:id="@+id/imagegholder"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    app:shape_roundRect_backgroundColor="#ECF0F3"
-                    app:shape_roundRect_bottomLeftRadius="12dp"
-                    app:shape_roundRect_bottomRightRadius="12dp"
-                    app:shape_roundRect_shadow_type="small_inner_shadow"
-                    app:shape_roundRect_topLeftRadius="12dp"
-                    app:shape_roundRect_topRightRadius="12dp">
-
-                    <com.github.sshadkany.shapes.RoundRectView
-                        android:id="@+id/roundrect"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="15dp"
-                        app:shape_roundRect_backgroundColor="#ECF0F3"
-                        app:shape_roundRect_bottomLeftRadius="12dp"
-                        app:shape_roundRect_bottomRightRadius="12dp"
-                        app:shape_roundRect_shadow_type="drop_shadow"
-                        app:shape_roundRect_topLeftRadius="12dp"
-                        app:shape_roundRect_topRightRadius="12dp">
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:src="@color/common_google_signin_btn_text_dark_disabled"
+                    android:contentDescription="@string/todo" />
 
 
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card5"
-
-                            android:layout_width="match_parent"
-                            android:layout_margin="25dp"
-                            android:background="@color/colorWhiteSmoke"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/round"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:background="@color/colorWhiteSmoke"
-                                android:layout_margin="5dp"
-                                >
-                                <ImageView
-                                    android:id="@+id/imagegholder"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:scaleType="centerInside"
-                                    android:src="@color/common_google_signin_btn_text_dark_disabled"
-                                    android:contentDescription="TODO" />
-                            </LinearLayout>
-
-
-                        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
 
-                    </com.github.sshadkany.shapes.RoundRectView>
-                </com.github.sshadkany.shapes.RoundRectView>
-            </com.github.sshadkany.shapes.RoundRectView>
 
             <soup.neumorphism.NeumorphButton
                 android:id="@+id/button"
                 style="@style/Widget.Neumorph.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn3a"
+                android:layout_below="@+id/cv"
                 android:layout_marginBottom="5dp"
                 android:drawablePadding="8dp"
                 android:text=""
                 android:textColor="#8246D6"
                 android:paddingTop="10dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
 
 
                 />
 
 
-            <soup.neumorphism.NeumorphCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/card1"
                 android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="90dp"
+                android:backgroundTint="@color/white"
                 app:cardElevation="10dp"
-                android:background="@color/blue"
+                android:background="@color/white"
                 app:cardCornerRadius="5dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true"
@@ -133,7 +84,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center"
                         android:id="@+id/nameholder"
-                        android:text="Candidate Name"
+                        android:text=""
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:textColor="#000"/>
@@ -143,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:id="@+id/branchholder"
-                        android:text="Branch"
+                        android:text=""
                         android:textSize="25sp"
                         android:layout_gravity="center"
                         android:textColor="#000"/>
@@ -153,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:id="@+id/yearholder"
-                        android:text="Year"
+                        android:text=""
                         android:layout_gravity="center"
                         android:textSize="25sp"
                         android:textColor="#000"/>
@@ -161,11 +112,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About them"
-                        android:paddingLeft="5dp"
+                        android:text="@string/about_them"
+                        android:paddingStart="5dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#622a0f"/>
+                        android:textColor="#622a0f"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/shortbioholder"
@@ -185,10 +137,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="5dp"
-                            android:text="All Details"
+                            android:text="@string/all_details"
                             android:textColor="#622a0f"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="RtlSymmetry" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -203,34 +156,24 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_marginTop="5dp"
                                 android:paddingStart="5dp"
-                                android:text="HOBBIES:"
+                                android:text="@string/hobbies"
                                 android:textColor="#622a0f"
                                 android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="RtlSymmetry" />
                             <TextView
                                 android:id="@+id/tvhobbies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:textStyle="bold"
-                                android:layout_toRightOf="@+id/hobbies"
+                                android:layout_toEndOf="@+id/hobbies"
                                 android:layout_marginTop="5dp"
                                 android:textSize="12sp"
                                 android:textColor="#5D1D6B"/>
 
 
                         </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content"
-                            >
-
-
-
-                        </RelativeLayout>
-
-
 
 
                     </LinearLayout>
@@ -253,10 +196,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
-                                android:text="Personal Details"
+                                android:text="@string/personal_details"
                                 android:textColor="#622a0f"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="RtlSymmetry" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -271,17 +215,18 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Birthday:"
+                                    android:text="@string/birthday"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/tvbirthday"
                                     android:layout_marginStart="5dp"
                                     android:textStyle="bold"
-                                    android:layout_toRightOf="@+id/birthday"
+                                    android:layout_toEndOf="@+id/birthday"
                                     android:layout_marginTop="5dp"
                                     android:textSize="12sp"
                                     android:textColor="#5D1D6B"/>
@@ -310,10 +255,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="5dp"
-                                android:text="Favourites"
+                                android:text="@string/favourites"
                                 android:textColor="#622a0f"
                                 android:textSize="20sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="RtlSymmetry" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -328,10 +274,11 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Qualities like: "
+                                    android:text="@string/qualities_like"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
                                 <TextView
                                     android:id="@+id/tvqualitylike"
                                     android:layout_width="wrap_content"
@@ -339,7 +286,7 @@
                                     android:text=""
                                     android:layout_marginStart="5dp"
                                     android:textStyle="bold"
-                                    android:layout_toRightOf="@+id/qualiylike"
+                                    android:layout_toEndOf="@+id/qualiylike"
                                     android:layout_marginTop="5dp"
                                     android:textSize="12sp"
                                     android:textColor="#5D1D6B"/>
@@ -360,10 +307,11 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Quality dislike:"
+                                    android:text="@string/quality_dislike"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
                                 <TextView
                                     android:id="@+id/tvqualitydislike"
                                     android:layout_width="wrap_content"
@@ -371,7 +319,7 @@
                                     android:text=""
                                     android:layout_marginStart="5dp"
                                     android:textStyle="bold"
-                                    android:layout_toRightOf="@+id/qualitydislike"
+                                    android:layout_toEndOf="@+id/qualitydislike"
                                     android:layout_marginTop="5dp"
                                     android:textSize="12sp"
                                     android:textColor="#5D1D6B"/>
@@ -393,17 +341,18 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Foods:"
+                                    android:text="@string/foods"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
                                 <TextView
                                     android:id="@+id/tvfoods"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:textStyle="bold"
-                                    android:layout_toRightOf="@+id/foods"
+                                    android:layout_toEndOf="@+id/foods"
                                     android:layout_marginTop="5dp"
                                     android:textSize="12sp"
                                     android:textColor="#5D1D6B"/>
@@ -424,10 +373,11 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Books:"
+                                    android:text="@string/books"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <TextView
                                     android:id="@+id/tvbooks"
@@ -435,7 +385,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginTop="5dp"
-                                    android:layout_toRightOf="@+id/books"
+                                    android:layout_toEndOf="@+id/books"
                                     android:textColor="#5D1D6B"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
@@ -457,17 +407,18 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_marginTop="5dp"
                                     android:paddingStart="5dp"
-                                    android:text="Place Like:"
+                                    android:text="@string/place_like"
                                     android:textColor="#622a0f"
                                     android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
                                 <TextView
                                     android:id="@+id/tvtravellike"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:textStyle="bold"
-                                    android:layout_toRightOf="@+id/travelling"
+                                    android:layout_toEndOf="@+id/travelling"
                                     android:layout_marginTop="5dp"
                                     android:textSize="12sp"
                                     android:textColor="#5D1D6B"/>
@@ -498,7 +449,7 @@
 
 
 
-            </soup.neumorphism.NeumorphCardView>
+            </androidx.cardview.widget.CardView>
 
 
 
