@@ -16,6 +16,17 @@
         android:background="@color/white"
         android:layout_height="wrap_content">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            app:lottie_autoPlay="true"
+            android:padding="300dp"
+            app:lottie_rawRes="@raw/progress"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
+            android:scaleType="centerCrop"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +57,7 @@
 
 
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_toEndOf="@+id/likedby"
                     android:id="@+id/recycler_view_celeb"
@@ -60,6 +72,16 @@
                     android:background="@color/black"/>
 
             </RelativeLayout>
+            <TextView
+                android:id="@+id/tvEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:visibility="gone"
+                android:text="Event Notifications:"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp" />
 
 
             <RelativeLayout
@@ -85,6 +107,16 @@
                     android:background="@color/black"/>
 
             </RelativeLayout>
+            <TextView
+                android:id="@+id/tvFriendreq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:visibility="gone"
+                android:text="Friend Requests:"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp" />
 
 
 
@@ -95,7 +127,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
@@ -107,6 +138,16 @@
 
 
             </RelativeLayout>
+            <TextView
+                android:id="@+id/tvCollab"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Collab Requests:"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp" />
 
             <RelativeLayout
                 android:id="@+id/rvCollab"

@@ -64,6 +64,7 @@ public class GiftsFragment extends Fragment {
     LinearLayoutManager manager2;
     LinearLayoutManager manager3;
     LottieAnimationView addStatus;
+    LottieAnimationView progress;
 
     public GiftsFragment() {
         // Required empty public constructor
@@ -81,6 +82,7 @@ public class GiftsFragment extends Fragment {
         recFeatured2  = view.findViewById(R.id.recFeatured2);
         recStatus  = view.findViewById(R.id.recStatus);
         addStatus = view.findViewById(R.id.animation);
+        progress = view.findViewById(R.id.progress);
 
         manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -221,6 +223,7 @@ public class GiftsFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
+                progress.setVisibility(View.VISIBLE);
                 Uri imageUri =data.getData();
                 uploadImageToFirebase(imageUri);
             }
@@ -281,8 +284,13 @@ public class GiftsFragment extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 try {
+                                                    progress.setVisibility(View.GONE);
                                                     Toast.makeText(getContext(),"Memo Added",Toast.LENGTH_SHORT).show();
-                                                }catch (Exception e){}
+                                                }catch (Exception e){
+                                                    progress.setVisibility(View.GONE);
+                                                    Toast.makeText(getContext(),"Failed !!!",Toast.LENGTH_SHORT).show();
+
+                                                }
 
                                             }
                                         });
@@ -291,6 +299,7 @@ public class GiftsFragment extends Fragment {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
+                                    progress.setVisibility(View.GONE);
 
                                 }
                             });
@@ -308,6 +317,7 @@ public class GiftsFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload
                 Toast.makeText(getContext(), "Failed.", Toast.LENGTH_LONG).show();
+                progress.setVisibility(View.GONE);
             }});
     }
 }

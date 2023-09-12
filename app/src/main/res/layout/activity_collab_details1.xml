@@ -114,10 +114,9 @@
 
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:layout_weight="40"
                         android:fontFamily="@font/bariol_bold"
                         android:text="@string/what_s_your_project_name"
                         android:textColor="@color/colorPrimaryDark"

@@ -554,6 +554,7 @@
                             android:alpha="0.8"
                             android:background="@drawable/week_card_bg_active"
                             android:letterSpacing="0.03"
+                            android:textColor="@color/black"
                             android:minHeight="60dp"
                             android:padding="12dp"
                             android:text="@string/friendship_nashok_rajpath_near_patna_university_campus_n800005a"

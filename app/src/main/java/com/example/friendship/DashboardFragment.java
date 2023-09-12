@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.alimuzaffar.lib.widgets.AnimatedEditText;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,11 +37,11 @@ public class DashboardFragment extends Fragment {
     RecyclerView recView;
     UserAdapter userAdapter;
     SolidGlowAnimation animation_view_complex_view;
-    DatabaseReference reference;
-    EditText searchEditText;
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    AnimatedEditText searchEditText;
     LottieAnimationView progress;
-    int count;
-    private Parcelable recyclerViewState; // Add this variable
+    private Parcelable recyclerViewState;
+    // Add this variable
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -56,17 +58,21 @@ public class DashboardFragment extends Fragment {
         animation_view_complex_view.startAnimation();
         searchEditText = view.findViewById(R.id.etSearch);
         progress = view.findViewById(R.id.progress);
+        progress.setVisibility(View.VISIBLE);
 
-        recView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
+        recView.setLayoutManager(manager);
         recView.setItemAnimator(null);
         recView.setItemViewCacheSize(20);
         recView.setDrawingCacheEnabled(true);
         recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
+
+
+
         // Restore the RecyclerView's scroll state if available
-        if (savedInstanceState != null) {
-            recyclerViewState = savedInstanceState.getParcelable("recycler_state");
-        }
+
 
         // Initialize FirebaseRecyclerOptions and UserAdapter
         initializeRecyclerView();
@@ -142,45 +148,35 @@ public class DashboardFragment extends Fragment {
     // Method to initialize FirebaseRecyclerOptions and UserAdapter
     private void initializeRecyclerView() {
         reference = FirebaseDatabase.getInstance().getReference();
+        try {
+            FirebaseRecyclerOptions<UserModel> options =
+                    new FirebaseRecyclerOptions.Builder<UserModel>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
+                                    .orderByChild("likes"), UserModel.class)
+                            .build();
+            userAdapter = new UserAdapter(options);
+            recView.setAdapter(userAdapter);
+            userAdapter.startListening();
+            progress.setVisibility(View.GONE);
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
 
-        reference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                }
+            },1500);
 
-                count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
-                FirebaseRecyclerOptions<UserModel> options =
-                        new FirebaseRecyclerOptions.Builder<UserModel>()
-                                .setQuery(FirebaseDatabase.getInstance().getReference().child("students")
-                                        .orderByChild("likes").limitToLast(count), UserModel.class)
-                                .build();
-                userAdapter = new UserAdapter(options);
-                recView.setAdapter(userAdapter);
-                progress.setVisibility(View.GONE);
-                userAdapter.startListening();
 
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+        }catch (Exception e){
 
-            }
+            Toast.makeText(getContext(), "Something error in students data", Toast.LENGTH_SHORT).show();
+        }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-            }
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
     }

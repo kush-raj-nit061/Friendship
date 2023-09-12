@@ -78,14 +78,16 @@
 
             </LinearLayout>
 
-            <EditText
+            <com.alimuzaffar.lib.widgets.AnimatedEditText
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/horizontal_dashboard"
                 android:layout_marginTop="@dimen/normalPadding"
-
+                app:animationType="fromRight"
+                app:animateCursor="true"
+                app:animateTextClear="true"
                 android:layout_marginRight="@dimen/horizontal_dashboard"
                 android:autofillHints="username"
                 android:background="@drawable/container_search"
@@ -105,11 +107,9 @@
                 android:paddingLeft="@dimen/normalPadding"
                 android:paddingTop="@dimen/vertical_search"
                 android:paddingRight="@dimen/normalPadding"
-
                 android:paddingBottom="@dimen/vertical_search"
                 android:singleLine="true"
-                android:textColor="?attr/colorPrimaryDark"
-
+                android:textColor="@color/blue_active"
                 android:textColorHint="@color/color_hint"
                 android:textSize="14sp" />
 

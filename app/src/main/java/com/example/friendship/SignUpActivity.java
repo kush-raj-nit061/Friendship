@@ -129,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
         arrayList.add("");
         arrayList.add("Electrical Engineering");
         arrayList.add("Computer Science and Engineering");
-        arrayList.add("Electronics and communication");
+        arrayList.add("Electronics and communication Engineering");
         arrayList.add("Civil Engineering");
         arrayList.add("Mechanical Engineering");
         arrayList.add("Chemical Technology");

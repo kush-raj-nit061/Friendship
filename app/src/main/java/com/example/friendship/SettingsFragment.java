@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,8 @@ public class SettingsFragment extends Fragment {
     DatabaseReference db = FirebaseDatabase.getInstance().getReference("Collab").child(fAuth.getCurrentUser().getUid()).child("members");
 
     LinearLayoutManager manager;
+    LottieAnimationView progress;
+    TextView tvCollab,tvEvents,tvFriendreq;
 
 
 
@@ -80,11 +83,17 @@ public class SettingsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.activity_settings_fragment, container, false);
 
+        tvCollab = view.findViewById(R.id.tvCollab);
+        tvFriendreq = view.findViewById(R.id.tvFriendreq);
+        tvEvents = view.findViewById(R.id.tvEvents);
+
 
         celebration = view.findViewById(R.id.celebration);
         events = view.findViewById(R.id.events);
         notifications = view.findViewById(R.id.notifications);
         rvCollab= view.findViewById(R.id.rvCollab);
+        progress = view.findViewById(R.id.progress);
+        progress.setVisibility(View.VISIBLE);
 
         rvCollab.setVisibility(View.GONE);
         events.setVisibility(View.GONE);
@@ -141,6 +150,8 @@ public class SettingsFragment extends Fragment {
                         long l = snapshot.getChildrenCount();
                         if(l>0){
                             recyclerViewEvents.setVisibility(View.VISIBLE);
+                            tvEvents.setVisibility(View.VISIBLE);
+                            progress.setVisibility(View.GONE);
                         }
                     }
                 }
@@ -177,6 +188,7 @@ public class SettingsFragment extends Fragment {
             rvCollab.setVisibility(View.VISIBLE);
             collaborator.setVisibility(View.VISIBLE);
             collaborator.setAdapter(adapter);
+            tvCollab.setVisibility(View.VISIBLE);
 
             adapter.startListening();
 
@@ -236,9 +248,11 @@ public class SettingsFragment extends Fragment {
 
                     eventAdapter=new EventsAdapter(options);
                     events.setVisibility(View.VISIBLE);
+                    tvEvents.setVisibility(View.VISIBLE);
 
                     recyclerViewEvents.setAdapter(eventAdapter);
                     eventAdapter.startListening();
+                    progress.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -281,6 +295,7 @@ public class SettingsFragment extends Fragment {
                         celebration.setVisibility(View.VISIBLE);
                         recyclerViewCeleb.setAdapter(celebAdapter);
                         celebAdapter.startListening();
+                        progress.setVisibility(View.GONE);
                     }
                 }
 
@@ -325,9 +340,11 @@ public class SettingsFragment extends Fragment {
 
                         userAdapter=new NotificationAdapter(options);
                         notifications.setVisibility(View.VISIBLE);
+                        tvFriendreq.setVisibility(View.VISIBLE);
 
                         recyclerView.setAdapter(userAdapter);
                         userAdapter.startListening();
+                        progress.setVisibility(View.GONE);
                     }
                 }
 

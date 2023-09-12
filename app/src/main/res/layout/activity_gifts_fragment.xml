@@ -29,6 +29,16 @@
                     app:lottie_loop="true"
                     app:lottie_speed="1"
                     android:scaleType="centerCrop"/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/progress"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    app:lottie_autoPlay="true"
+                    android:visibility="gone"
+                    app:lottie_rawRes="@raw/progress"
+                    app:lottie_loop="true"
+                    app:lottie_speed="1"
+                    android:scaleType="centerCrop"/>
 
 
                 <androidx.recyclerview.widget.RecyclerView

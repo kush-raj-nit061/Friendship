@@ -109,7 +109,10 @@
             android:layout_toStartOf="@+id/shortBio"
             android:textColor="@color/black"
             android:layout_marginBottom="4dp"
-            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:marqueeRepeatLimit="marquee_forever"
             android:layout_marginTop="34dp"
             android:layout_alignParentStart="true"
             android:gravity="center"
@@ -123,7 +126,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:textColor="@color/black"
-            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:marqueeRepeatLimit="marquee_forever"
             android:layout_toStartOf="@id/shortBio"
             android:layout_marginBottom="4dp"
             android:gravity="center"
@@ -213,12 +219,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:scrollHorizontally="true"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:marqueeRepeatLimit="marquee_forever"
         android:textSize="15sp"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"
-        android:textColor="@color/headToHead_deep"/>
+        android:textColor="@color/blue_active"/>
 
 
     <com.airbnb.lottie.LottieAnimationView

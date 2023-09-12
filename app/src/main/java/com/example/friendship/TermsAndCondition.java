@@ -31,6 +31,7 @@ public class TermsAndCondition extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TermsAndCondition.this, DetailsActivity1.class);
                 startActivity(i);
+                finish();
             }
         });
     }

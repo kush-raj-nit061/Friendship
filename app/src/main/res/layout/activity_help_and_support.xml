@@ -46,9 +46,20 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="match_parent"
             android:id="@+id/recHelp"/>
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textSize="22sp"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:text="In case of bullying or any other cyber harrashments through our take a screenshot and  send it to our help Emails."
+            android:textColor="@color/red_active"
+            android:textStyle="bold"
+            android:layout_marginStart="5dp" />
 
 
 
