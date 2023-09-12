@@ -54,6 +54,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
 //    ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications,cvCollab;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications,cvCollab,share;
     TextView branch,year,name;
     String purl;
     private ViewPager viewPager;
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvPrivacy = findViewById(R.id.cvPrivacy);
         cvAboutUs = findViewById(R.id.aboutus);
         cvHelp = findViewById(R.id.help);
+        share = findViewById(R.id.share);
         cvNotifications = findViewById(R.id.notification);
 
 
@@ -187,6 +189,32 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AboutUs.class);
                 startActivity(i);
+
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    FirebaseFirestore.getInstance().collection("ShareApp").document("AppLink").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot link1= task.getResult();
+                            if(link1.exists()){
+                                String link = link1.getString("link");
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(Intent.EXTRA_TEXT, "Friendship");
+                                intent.putExtra(Intent.EXTRA_SUBJECT, "Friendship");
+                                intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.linkdescription) + "\n\n" + link);
+                                startActivity(Intent.createChooser(intent, "Friendship"));
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception ignored){}
 
             }
         });

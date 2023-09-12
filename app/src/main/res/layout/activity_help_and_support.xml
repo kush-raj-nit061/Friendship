@@ -55,11 +55,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:textSize="22sp"
-            android:drawableStart="@drawable/baseline_person_24"
-            android:text="In case of bullying or any other cyber harrashments through our take a screenshot and  send it to our help Emails."
+            android:text="@string/in_case_of_bullying_or_any_other_cyber_harrashments_through_our_app_take_a_screenshot_and_send_it_to_our_help_emails"
             android:textColor="@color/red_active"
             android:textStyle="bold"
-            android:layout_marginStart="5dp" />
+            android:layout_marginStart="5dp"
+            app:drawableStartCompat="@drawable/baseline_person_24" />
 
 
 

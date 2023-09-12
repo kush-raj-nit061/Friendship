@@ -195,6 +195,86 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:id="@+id/collab"
+                    android:backgroundTint="@color/cardview_light_background"
+                    android:layout_marginTop="2dp">
+                    <LinearLayout
+                        android:id="@+id/llhome8"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+
+
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/idea"
+                            android:layout_marginStart="2dp"
+                            app:tint="#495154"
+                            android:contentDescription="@string/todo" />
+                        <TextView
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/collaborations"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:id="@+id/notification"
+                    android:backgroundTint="@color/cardview_light_background"
+                    android:layout_marginTop="2dp">
+                    <LinearLayout
+                        android:id="@+id/llhome7"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+
+
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/baseline_notifications_active_24"
+                            android:layout_marginStart="2dp"
+                            app:tint="#495154"
+                            android:contentDescription="@string/todo" />
+                        <TextView
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/set_notifications"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:scrollHorizontally="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cvPrivacy"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
@@ -236,81 +316,7 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/help"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:backgroundTint="@color/cardview_light_background"
-                    android:layout_marginTop="2dp">
-                    <LinearLayout
-                        android:id="@+id/llhome5"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-
-
-                        tools:ignore="UseCompoundDrawables">
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/_63350_vector_pic_help_free_download_png_hq"
-                            android:layout_marginStart="2dp"
-                            app:tint="#495154"
-                            android:contentDescription="@string/todo" />
-                        <TextView
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/help"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"/>
-
-
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:id="@+id/collab"
-                    android:backgroundTint="@color/cardview_light_background"
-                    android:layout_marginTop="2dp">
-                    <LinearLayout
-                        android:id="@+id/llhome8"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-
-
-                        tools:ignore="UseCompoundDrawables">
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/idea"
-                            android:layout_marginStart="2dp"
-                            app:tint="#495154"
-                            android:contentDescription="@string/todo" />
-                        <TextView
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/collaborations"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"/>
-
-
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/terms"
@@ -398,13 +404,13 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/help"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
-                    android:id="@+id/notification"
                     android:backgroundTint="@color/cardview_light_background"
                     android:layout_marginTop="2dp">
                     <LinearLayout
-                        android:id="@+id/llhome7"
+                        android:id="@+id/llhome5"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -416,7 +422,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/baseline_notifications_active_24"
+                            android:src="@drawable/_63350_vector_pic_help_free_download_png_hq"
                             android:layout_marginStart="2dp"
                             app:tint="#495154"
                             android:contentDescription="@string/todo" />
@@ -424,11 +430,43 @@
                             android:layout_marginHorizontal="16dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/set_notifications"
-                            android:singleLine="true"
-                            android:ellipsize="marquee"
-                            android:scrollHorizontally="true"
-                            android:marqueeRepeatLimit="marquee_forever"
+                            android:text="@string/help"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/share"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:backgroundTint="@color/cardview_light_background"
+                    android:layout_marginTop="2dp">
+                    <LinearLayout
+                        android:id="@+id/llhome9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+
+
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/sharing"
+                            android:layout_marginStart="2dp"
+                            app:tint="#495154"
+                            android:contentDescription="@string/todo" />
+                        <TextView
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Share this app >"
                             android:textStyle="bold"
                             android:textSize="16sp"
                             android:textColor="@color/black"/>

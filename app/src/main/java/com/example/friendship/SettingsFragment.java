@@ -119,20 +119,20 @@ public class SettingsFragment extends Fragment {
         manager3 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
 
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
 
 
         recyclerView.setLayoutManager(manager1);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        recyclerViewCeleb.setHasFixedSize(true);
+//        recyclerViewCeleb.setHasFixedSize(true);
         recyclerViewCeleb.setLayoutManager(manager2);
         DividerItemDecoration dividerItemDecorationCeleb = new DividerItemDecoration(recyclerViewCeleb.getContext(), DividerItemDecoration.VERTICAL);
         recyclerViewCeleb.addItemDecoration(dividerItemDecorationCeleb);
 
 
-        recyclerViewEvents.setHasFixedSize(true);
+//        recyclerViewEvents.setHasFixedSize(true);
         recyclerViewEvents.setLayoutManager(manager3);
         DividerItemDecoration dividerItemDecorationEvents = new DividerItemDecoration(recyclerViewEvents.getContext(), DividerItemDecoration.VERTICAL);
         recyclerViewEvents.addItemDecoration(dividerItemDecorationEvents);

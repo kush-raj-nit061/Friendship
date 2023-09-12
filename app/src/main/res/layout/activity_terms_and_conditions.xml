@@ -29,7 +29,6 @@
                     android:layout_height="@dimen/padding_50_dp"
                     android:layout_marginTop="@dimen/margin_10_dp"
                     android:padding="6dp"
-                    android:src="@drawable/baseline_arrow_back_24"
                     tools:ignore="MissingConstraints"
                     android:contentDescription="@string/todo" />
 
@@ -38,7 +37,8 @@
                     android:id="@+id/tvMainText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="0dp"
+                    android:drawableStart="@drawable/baseline_arrow_back_24"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:padding="6dp"

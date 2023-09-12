@@ -269,6 +269,7 @@
     <string name="collaborations"><![CDATA[Collaboration >]]></string>
     <string name="electrical_engineering">Electrical Engineering</string>
     <string name="description">Description:</string>
+    <string name="linkdescription">Let\'s together join the Friendship App :</string>
     <string name="it_s_empty_for_now">It\'s empty for now!</string>
     <string name="once_people_start_joining_app_you_can_view_the_list_of_those_users_here">Once people start joining app, you can view the list of those users here.</string>
     <string name="descriptions">Descriptions</string>
@@ -313,6 +314,7 @@
     <string name="short_details">SHORT DETAILS</string>
     <string name="short_detailss">Short Details</string>
     <string name="save_changes">Save Changes</string>
+    <string name="in_case_of_bullying_or_any_other_cyber_harrashments_through_our_app_take_a_screenshot_and_send_it_to_our_help_emails">In case of bullying or any other cyber harrashments through our app take a screenshot and send it to our help Emails.</string>
 
 
 </resources>
