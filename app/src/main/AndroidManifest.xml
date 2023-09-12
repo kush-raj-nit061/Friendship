@@ -106,18 +106,7 @@
         <activity
             android:name=".test"
             android:exported="true" />
-        <activity
-            android:name=".SettingsFragment"
-            android:exported="false" />
-        <activity
-            android:name=".MailFragment"
-            android:exported="false" />
-        <activity
-            android:name=".GiftsFragment"
-            android:exported="false" />
-        <activity
-            android:name=".DashboardFragment"
-            android:exported="false" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
