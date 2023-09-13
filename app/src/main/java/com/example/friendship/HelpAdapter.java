@@ -35,8 +35,7 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class HelpAdapter extends FirebaseRecyclerAdapter<Help,HelpAdapter.userAdapterHolder> {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference dbRef = database.getReference();
+
 
 
     public HelpAdapter(@NonNull FirebaseRecyclerOptions<Help> options) {

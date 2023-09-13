@@ -154,7 +154,7 @@ public class CollabDetails3 extends AppCompatActivity {
                         }
                     });
 
-                }catch (Exception e){}
+                }catch (Exception ignored){}
 
 
 
@@ -221,7 +221,7 @@ public class CollabDetails3 extends AppCompatActivity {
                         users.put("purl", purl);
 
                         if (purl != null) {
-                            myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                            myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users);
                         }
 
                         Picasso.get().load(uri).into(image);

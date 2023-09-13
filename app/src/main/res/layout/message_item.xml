@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingStart="10dp"
     android:layout_marginBottom="5dp"
-
     android:paddingTop="@dimen/padding_10_dp"
     android:paddingBottom="@dimen/padding_10_dp"
     android:minHeight="100dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
@@ -23,11 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/profile_image"
         android:layout_toEndOf="@id/profile_image"
         android:padding="@dimen/padding_10_dp"
         android:orientation="vertical"
-        >
+        tools:ignore="RelativeOverlap">
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +39,6 @@
             android:textStyle="bold"
             android:id="@+id/username"
 
-            android:layout_centerVertical="true"
             android:textSize="14sp"/>
 
 
@@ -49,7 +48,7 @@
             android:id="@+id/last_msg"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:fontFamily="@font/poppins"
 
 
@@ -68,7 +67,7 @@
         android:visibility="gone"
         android:src="@mipmap/ic_launcher"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         />
 
 
@@ -80,7 +79,7 @@
         android:visibility="gone"
         android:src="@mipmap/ic_launcher"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         />
 
 
@@ -95,9 +94,8 @@
         app:lottie_loop="true"
         app:lottie_speed="4"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -110,8 +108,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 
@@ -125,8 +122,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 

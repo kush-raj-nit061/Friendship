@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.friendship.BasicDetails.DetailsActivity5;
 import com.example.friendship.Model.Status;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,8 +38,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -61,13 +58,13 @@ public class GiftsFragment extends Fragment {
     StorageReference storageReference = storage.getReference();
     DatabaseReference dbsl = FirebaseDatabase.getInstance().getReference("StatusLiked");
 
-
     String postUrl="";
 
     LinearLayoutManager manager;
     LinearLayoutManager manager2;
     LinearLayoutManager manager3;
     LottieAnimationView addStatus;
+    LottieAnimationView progress;
 
     public GiftsFragment() {
         // Required empty public constructor
@@ -85,6 +82,7 @@ public class GiftsFragment extends Fragment {
         recFeatured2  = view.findViewById(R.id.recFeatured2);
         recStatus  = view.findViewById(R.id.recStatus);
         addStatus = view.findViewById(R.id.animation);
+        progress = view.findViewById(R.id.progress);
 
         manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -107,22 +105,26 @@ public class GiftsFragment extends Fragment {
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     if(snapshot.exists()){
                         String dateStr = (String) snapshot.child("date").getValue();
-                        long timestamp = Long.parseLong(dateStr);
-                        Date date = new Date(timestamp);
-                        Date currentDate = new Date();
-                        // Calculate the time difference in milliseconds
-                        long timeDifferenceMillis = currentDate.getTime() - date.getTime();
-                        // Convert milliseconds to hours
-                        long hoursAgo = timeDifferenceMillis / (1000 * 60 * 60);
-                        // Set the calculated time difference as text
+                        try {
+                            long timestamp = Long.parseLong(dateStr);
+                            Date date = new Date(timestamp);
+                            Date currentDate = new Date();
+                            // Calculate the time difference in milliseconds
+                            long timeDifferenceMillis = currentDate.getTime() - date.getTime();
+                            // Convert milliseconds to hours
+                            long hoursAgo = timeDifferenceMillis / (1000 * 60 * 60);
+                            // Set the calculated time difference as text
 
-                        if(hoursAgo>24){
-                            DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("Status");
-                            String key = snapshot.getKey();
-                            dbs.child(key).removeValue();
-                            dbsl.child(key).removeValue();
+                            if(hoursAgo>24){
+                                DatabaseReference dbs = FirebaseDatabase.getInstance().getReference("Status");
+                                String key = snapshot.getKey();
+                                dbs.child(key).removeValue();
+                                dbsl.child(key).removeValue();
 
-                        }
+                            }
+
+
+                        }catch (Exception ignored){}
 
                     }
                 }
@@ -181,18 +183,6 @@ public class GiftsFragment extends Fragment {
 
         });
 
-
-//        FirebaseRecyclerOptions<Status> options3 =
-//                new FirebaseRecyclerOptions.Builder<Status>()
-//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Status"), Status.class)
-//                        .build();
-//        userAdapter3=new StatusAdapter(options3);
-//        recStatus.setAdapter(userAdapter3);
-//        userAdapter3.startListening();
-
-
-
-
         FirebaseRecyclerOptions<FeaturedModel> options =
                 new FirebaseRecyclerOptions.Builder<FeaturedModel>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Featured"), FeaturedModel.class)
@@ -221,11 +211,6 @@ public class GiftsFragment extends Fragment {
                 startActivityForResult(openGallInt,1000);
 
 
-
-
-
-
-
             }
         });
 
@@ -238,11 +223,8 @@ public class GiftsFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
+                progress.setVisibility(View.VISIBLE);
                 Uri imageUri =data.getData();
-
-//                imgButton.setImageURI(imageUri);
-//                progressBar.setVisibility(View.VISIBLE);
-
                 uploadImageToFirebase(imageUri);
             }
         }
@@ -302,8 +284,13 @@ public class GiftsFragment extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 try {
+                                                    progress.setVisibility(View.GONE);
                                                     Toast.makeText(getContext(),"Memo Added",Toast.LENGTH_SHORT).show();
-                                                }catch (Exception e){}
+                                                }catch (Exception e){
+                                                    progress.setVisibility(View.GONE);
+                                                    Toast.makeText(getContext(),"Failed !!!",Toast.LENGTH_SHORT).show();
+
+                                                }
 
                                             }
                                         });
@@ -312,6 +299,7 @@ public class GiftsFragment extends Fragment {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
+                                    progress.setVisibility(View.GONE);
 
                                 }
                             });
@@ -329,6 +317,7 @@ public class GiftsFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload
                 Toast.makeText(getContext(), "Failed.", Toast.LENGTH_LONG).show();
+                progress.setVisibility(View.GONE);
             }});
     }
 }

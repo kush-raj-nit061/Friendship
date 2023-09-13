@@ -50,6 +50,9 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
         holder.branch.setText(model.getBranch());
         holder.year.setText(model.getYear());
         holder.shortBio.setText(model.getShortBio());
+        holder.branch.setSelected(true);
+        holder.name.setSelected(true);
+        holder.tvCollege.setSelected(true);
         try {
             holder.gifImageView.setVisibility(Integer.parseInt(model.getPremium()));
             holder.gifImageView.setAnimationFromUrl(model.getPremiumres());
@@ -85,22 +88,30 @@ public class UserAdapter extends FirebaseRecyclerAdapter<UserModel,UserAdapter.u
                     public void run() {
                         Map<String,Object> map  = new HashMap<>();
                         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                        dbRef.child("students").child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    String purl = (String) snapshot.child("purl").getValue();
-                                    map.put("userId",fAuth.getCurrentUser().getUid());
-                                    map.put("purl",purl);
-                                    dbRef.child("Likes").child(model.getUserId()).child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+                        try {
+                            dbRef.child("students").child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        String purl = (String) snapshot.child("purl").getValue();
+                                        map.put("userId",fAuth.getCurrentUser().getUid());
+                                        map.put("purl",purl);
+                                        try {
+                                            dbRef.child("Likes").child(model.getUserId()).child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+
+
+                                        }catch (Exception ignored){}
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                                }
+                            });
+
+
+                        }catch (Exception ignored){}
 
 
 

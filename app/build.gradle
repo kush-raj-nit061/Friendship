@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
     implementation 'com.zyp.cardview:cardview:1.0.1'
+    implementation 'com.alimuzaffar.lib:animated-edit-text:2.0.2'
 
 
 

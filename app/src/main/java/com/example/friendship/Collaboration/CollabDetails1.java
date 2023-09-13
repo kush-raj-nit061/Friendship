@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +21,8 @@ import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,6 +120,28 @@ public class CollabDetails1 extends AppCompatActivity {
                 name = projectName.getText().toString();
                 requirement= projectRequirement.getText().toString();
 
+
+                if (TextUtils.isEmpty(projectType)) {
+                    Toast.makeText(getApplicationContext(),
+                                    "Please enter Project Type!!",
+                                    Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(getApplicationContext(),
+                                    "Please enter Project Name!!",
+                                    Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }if (TextUtils.isEmpty(requirement)) {
+                    Toast.makeText(getApplicationContext(),
+                                    "Please enter Your Requirement for this project!!",
+                                    Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
+
                 Map<String,Object>  map = new HashMap<>();
                 map.put("projectname",name);
                 map.put("requirement",requirement);
@@ -137,7 +162,7 @@ public class CollabDetails1 extends AppCompatActivity {
                         }
                     });
 
-                }catch (Exception e){}
+                }catch (Exception ignored){}
 
 
 

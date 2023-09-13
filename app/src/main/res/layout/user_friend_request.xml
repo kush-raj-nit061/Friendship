@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingStart="10dp"
@@ -8,7 +9,8 @@
     android:paddingTop="@dimen/padding_10_dp"
     android:paddingBottom="@dimen/padding_10_dp"
 
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="75dp"
@@ -23,23 +25,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/profile_image"
         android:layout_toEndOf="@id/profile_image"
         android:padding="@dimen/padding_10_dp"
         android:orientation="vertical"
-        >
+        tools:ignore="RelativeOverlap">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kush raj"
+            android:text=""
 
             android:textColor="@color/white"
             android:letterSpacing="0.1"
             android:textStyle="bold"
             android:id="@+id/name"
-
-            android:layout_centerVertical="true"
             android:textSize="14sp"/>
 
 
@@ -47,8 +46,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:id="@+id/branch"
-            android:text="its magic"
-            android:textSize="12dp"
+            android:text=""
+            android:textSize="12sp"
             android:fontFamily="@font/poppins"
 
 
@@ -67,7 +66,7 @@
         android:visibility="gone"
         android:src="@mipmap/ic_launcher"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         />
 
 
@@ -79,7 +78,7 @@
         android:visibility="gone"
         android:src="@mipmap/ic_launcher"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         />
 
 
@@ -91,21 +90,20 @@
         android:src="@drawable/cross"
         android:visibility="visible"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/todo" />
 
     <ImageView
-        android:layout_toLeftOf="@+id/reject"
+        android:layout_toStartOf="@+id/reject"
         android:id="@+id/accept"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:paddingEnd="4dp"
         android:src="@drawable/verify"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/todo" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="15dp"
@@ -117,8 +115,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 
@@ -132,8 +129,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 

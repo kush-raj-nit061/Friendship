@@ -2,17 +2,14 @@ package com.example.friendship.BasicDetails;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,20 +19,12 @@ import com.example.friendship.FriendRequestAdapter;
 import com.example.friendship.Model.User;
 import com.example.friendship.OnItemClick;
 import com.example.friendship.R;
-
-import com.example.friendship.UserAdapter;
-import com.example.friendship.UserModel;
-import com.example.friendship.UsersAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -56,7 +45,7 @@ public class UsersFragment extends Fragment {
     private List<User> mUsers;
     static OnItemClick onItemClick;
 
-    EditText search_users;
+
 
     public static UsersFragment newInstance(OnItemClick click) {
         onItemClick = click;
@@ -101,8 +90,6 @@ public class UsersFragment extends Fragment {
     private void readUsers() {
 
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReference();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Connection");
         String userId = fAuth.getCurrentUser().getUid();
@@ -122,7 +109,9 @@ public class UsersFragment extends Fragment {
             recyclerView.setAdapter(userAdapter);
             userAdapter.startListening();
 
-        }catch (Exception e){}
+        }catch (Exception e){
+            Toast.makeText(getContext(), "Something wrong in Connection", Toast.LENGTH_SHORT).show();
+        }
 
 
 

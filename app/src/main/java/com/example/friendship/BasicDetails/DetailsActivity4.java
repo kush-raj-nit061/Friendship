@@ -20,14 +20,11 @@ import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity4 extends AppCompatActivity {
 
@@ -35,13 +32,10 @@ public class DetailsActivity4 extends AppCompatActivity {
     String strQualityLike,strQualityDislike;
     EditText etQualityLike,etQualityDislike;
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
-    Chip chip1p,chip2p,chip3p,chip4p,chip5p,chip6p,chip7p,chip8p,chip9p,chip10p,chip11p;
+    Chip chip1p,chip2p,chip3p,chip4p,chip5p,chip6p;
 
     LottieAnimationView frog1,frog2,frog3,frog4;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
-    String purl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
 

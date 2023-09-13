@@ -39,7 +39,7 @@ public class test extends AppCompatActivity {
     private Button Btn;
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
-    TextView tvForgot,tvSignup;
+    TextView tvForgot,tvSignup,tvReset;
     ProgressBar progressbar;
 
     private FirebaseAuth mAuth;
@@ -53,6 +53,7 @@ public class test extends AppCompatActivity {
         frog2= findViewById(R.id.frog2);
         frog3 = findViewById(R.id.frog3);
         frog4 = findViewById(R.id.frog4);
+        tvReset = findViewById(R.id.resetPassword);
 
         Handler handler = new Handler();
 
@@ -109,13 +110,13 @@ public class test extends AppCompatActivity {
                 loginUserAccount();
             }
         });
-//        tvForgot.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(Login_Activity.this, ForgotActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        tvReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(test.this, ForgotActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 

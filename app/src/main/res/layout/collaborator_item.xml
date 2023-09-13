@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="10dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginHorizontal="5dp"
+    android:background="@color/red_active"
+    android:id="@+id/rl"
+    android:paddingTop="@dimen/padding_10_dp"
+    android:paddingBottom="@dimen/padding_10_dp"
+
+    android:layout_height="100dp"
+    tools:ignore="RtlSymmetry">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/teal_700"
+        android:layout_centerVertical="true"
+        android:id="@+id/profile"
+        />
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/teal_700"
+        android:layout_centerVertical="true"
+        android:src="@drawable/idea"
+        android:layout_marginEnd="5dp"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/todo" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/profile"
+        android:padding="@dimen/padding_10_dp"
+        android:orientation="vertical"
+        tools:ignore="RelativeOverlap">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/white"
+            android:letterSpacing="0.1"
+            android:textStyle="bold"
+            android:id="@+id/name"
+            android:textSize="14sp"/>
+
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/branch"
+            android:text=""
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/grey"
+            android:maxLines="1"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

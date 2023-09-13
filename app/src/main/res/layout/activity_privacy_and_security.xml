@@ -66,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
                     android:gravity="center"
+                    android:textColor="@color/black"
                     android:textSize="22sp"
                     android:layout_marginStart="@dimen/margin_10_dp"
                     android:text="@string/change_passworda"
@@ -105,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
                     android:gravity="center"
+                    android:textColor="@color/black"
                     android:textSize="22sp"
                     android:layout_marginStart="@dimen/margin_10_dp"
                     android:text="@string/privacy_and_policy"
@@ -147,6 +149,7 @@
                     android:layout_marginTop="11dp"
                     android:gravity="center"
                     android:textSize="22sp"
+                    android:textColor="@color/black"
                     android:layout_marginStart="@dimen/margin_10_dp"
                     android:text="@string/logout"
                     tools:ignore="RelativeOverlap" />

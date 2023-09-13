@@ -26,7 +26,7 @@ import java.util.Map;
 public class SeeCollaborationDetail extends AppCompatActivity {
     ImageView image;
     TextView tvName,tvCategory,tvRequirement,tvDescription,tvDate;
-    Button btnCollab;
+    Button btnCollab,delete;
     SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 
 
@@ -42,6 +42,7 @@ public class SeeCollaborationDetail extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescr);
         image = findViewById(R.id.image);
         btnCollab = findViewById(R.id.btnCollab);
+        delete = findViewById(R.id.delete);
 
         Intent i = getIntent();
         String date = i.getStringExtra("date");
@@ -56,16 +57,30 @@ public class SeeCollaborationDetail extends AppCompatActivity {
 
         Glide.with(getApplicationContext()).load(i.getStringExtra("purl")).into(image);
 
+        if(id.equals(FirebaseAuth.getInstance().getUid())){
+            delete.setVisibility(View.VISIBLE);
+            btnCollab.setVisibility(View.GONE);
+        }
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("Collab").child(id).removeValue();
+                Toast.makeText(v.getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
 
         btnCollab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Collab").child(id);
                 Map<String,Object> map = new HashMap<>();
-                map.put(FirebaseAuth.getInstance().getUid(), "letscollab");
+                map.put("id",FirebaseAuth.getInstance().getUid());
                 if(!id.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
 
-                    dbRef.child("members").updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    dbRef.child("members").child(FirebaseAuth.getInstance().getUid()).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getApplicationContext(), "Request For Collab added", Toast.LENGTH_SHORT).show();
@@ -73,6 +88,7 @@ public class SeeCollaborationDetail extends AppCompatActivity {
                         }
                     });
                 }else{
+
                     Toast.makeText(getApplicationContext(), "It's Your Project", Toast.LENGTH_SHORT).show();
                 }
 

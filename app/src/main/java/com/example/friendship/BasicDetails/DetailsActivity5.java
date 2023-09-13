@@ -91,7 +91,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                 data.put("imageURL",purl);
 
 
-                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getUid());
+                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.updateChildren(data);
 
                 myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -215,7 +215,7 @@ public class DetailsActivity5 extends AppCompatActivity {
                         users.put("purl", purl);
 
                         if (purl != null) {
-                            myRef.child(fAuth.getUid().toString()).updateChildren(users);
+                            myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users);
                         }
 
                         Picasso.get().load(uri).into(ivProfile);

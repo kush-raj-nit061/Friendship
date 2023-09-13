@@ -2,7 +2,6 @@ package com.example.friendship;
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,22 +34,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.List;
 public class MailFragment extends Fragment {
     public MailFragment(){}
-    private boolean isOpen = false;
-    FragmentManager manager;
-    FragmentTransaction transaction = null;
-    private ConstraintSet layout1, layout2;
+    private ConstraintSet layout1;
     private ConstraintLayout constraintLayout;
-    private CircleView imageViewPhoto;
     private RecyclerView recyclerView;
     Typeface MR, MRR;
     private UsersAdapter userAdapter;
     private List<User> mUsers;
-    FrameLayout frameLayout;
     TextView tvNoFriends, tvNoReq;
     ImageView imgProfile;
     FirebaseUser fuser;
@@ -74,10 +67,7 @@ public class MailFragment extends Fragment {
     {
         View view = inflater.inflate(R.layout.activity_mail_fragment, container, false);
         layout1 = new ConstraintSet();
-//        layout2 = new ConstraintSet();
-//        imageViewPhoto = view.findViewById(R.id.photo);
         constraintLayout = view.findViewById(R.id.constraint_layout);
-//        layout2.clone(requireContext(), R.layout.activity_testing1);
         layout1.clone(constraintLayout);
         TextView tvReq = view.findViewById(R.id.tvReq);
         progress = view.findViewById(R.id.progress);
@@ -97,12 +87,12 @@ public class MailFragment extends Fragment {
                     {
                         Glide.with(getContext()).load(purl).into(imgProfile);
                     }
-                    catch (Exception e){}
+                    catch (Exception ignored){}
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
-        }catch (Exception e){}
+        }catch (Exception ignored){}
 
         try {
             DatabaseReference referencer = database.getReference().child("Connection").child(fAuth.getUid());
@@ -116,7 +106,7 @@ public class MailFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-        }catch (Exception e){}
+        }catch (Exception ignored){}
 
         try {
             DatabaseReference reference = database.getReference().child("Connection").child(fAuth.getUid());
@@ -131,7 +121,7 @@ public class MailFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError databaseError) {}
             });
 
-        }catch (Exception e){}
+        }catch (Exception ignored){}
 
         tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +140,7 @@ public class MailFragment extends Fragment {
         MRR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriadregular.ttf");
         MR = Typeface.createFromAsset(getContext().getAssets(), "fonts/myriad.ttf");
         recyclerView = view.findViewById(R.id.recConnection);
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemViewCacheSize(20);
         recyclerView.setDrawingCacheEnabled(true);
@@ -161,7 +151,6 @@ public class MailFragment extends Fragment {
         usersList = new ArrayList<>();
         DatabaseReference reference1 = database.getReference().child("Connection").child(fAuth.getUid());
         Query query1 = reference1.orderByChild("status").equalTo("2");
-//        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
         query1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

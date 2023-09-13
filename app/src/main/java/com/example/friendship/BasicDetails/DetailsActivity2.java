@@ -23,16 +23,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import pl.droidsonroids.gif.GifImageView;
 
 public class DetailsActivity2 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -42,9 +37,8 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     LottieAnimationView frog1,frog2,frog3;
     ImageView tvNext,tvPrevious;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
-    String purl;
+
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
 

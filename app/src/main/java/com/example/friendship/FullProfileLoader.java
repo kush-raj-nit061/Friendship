@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.jsibbold.zoomage.ZoomageView;
-import com.ortiz.touchview.TouchImageView;
 
 public class FullProfileLoader extends AppCompatActivity {
 

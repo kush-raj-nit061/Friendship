@@ -37,6 +37,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -53,6 +54,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     FlowingDrawer mDrawer;
 //    ImageView iv_menu;
     ImageView ivDrawer;
-    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications,cvCollab;
+    CardView cvProfile,terms,cvPrivacy,cvAboutUs,cvHelp,cvNotifications,cvCollab,share;
     TextView branch,year,name;
     String purl;
     private ViewPager viewPager;
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvPrivacy = findViewById(R.id.cvPrivacy);
         cvAboutUs = findViewById(R.id.aboutus);
         cvHelp = findViewById(R.id.help);
+        share = findViewById(R.id.share);
         cvNotifications = findViewById(R.id.notification);
 
 
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvCollab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CollabDetails1.class);
+                Intent i = new Intent(MainActivity.this, CollaborationActivity.class);
                 startActivity(i);
             }
         });
@@ -186,6 +189,32 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AboutUs.class);
                 startActivity(i);
+
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    FirebaseFirestore.getInstance().collection("ShareApp").document("AppLink").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot link1= task.getResult();
+                            if(link1.exists()){
+                                String link = link1.getString("link");
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(Intent.EXTRA_TEXT, "Friendship");
+                                intent.putExtra(Intent.EXTRA_SUBJECT, "Friendship");
+                                intent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.linkdescription) + "\n\n" + link);
+                                startActivity(Intent.createChooser(intent, "Friendship"));
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception ignored){}
 
             }
         });
@@ -211,12 +240,11 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
                                     if (document.exists()) {
                                         String detailsGiven = document.getString("Admin");
                                         if (detailsGiven.equals("1")) {
-
-                                            // For admin work
-                                        } else {
-
                                             Intent i = new Intent(MainActivity.this, AnnouncementActivity.class);
                                             startActivity(i);
+                                            // For admin work
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "You don't have permission to set Clubs Notification", Toast.LENGTH_SHORT).show();
 
                                         }
 
@@ -276,31 +304,6 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
             }
         });
 
-
-//
-//        iv_menu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                mDrawer.openMenu(true);
-//            }
-//        });
-
-//        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
-//        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
-//
-//        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
-//            @Override
-//            public void onDrawerStateChange(int oldState, int newState) {
-//                if (newState == ElasticDrawer.STATE_CLOSED) {
-//                    Log.i("MainActivity", "Drawer STATE_CLOSED");
-//                }
-//            }
-//
-//            @Override
-//            public void onDrawerSlide(float openRatio, int offsetPixels) {
-//                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
-//            }
-//        });
 
 
         bottomNav   = findViewById(R.id.bottom_nav);
@@ -504,20 +507,12 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        }else {
             super.onBackPressed();
-            return;
         }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click Back again", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);    }
+    }
 
 }

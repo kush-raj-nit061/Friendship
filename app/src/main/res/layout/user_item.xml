@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingStart="20dp"
@@ -20,11 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/profile_image"
         android:layout_toEndOf="@id/profile_image"
         android:padding="@dimen/padding_10_dp"
         android:orientation="vertical"
-        >
+        tools:ignore="RelativeOverlap">
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,17 +32,12 @@
             android:text=""
             android:id="@+id/username"
             android:textColor="@color/white"
-            android:layout_toRightOf="@id/profile_image"
-            android:layout_toEndOf="@id/profile_image"
-            android:layout_centerVertical="true"
             android:textSize="18sp"/>
 
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username"
-            android:layout_toRightOf="@id/profile_image"
             android:id="@+id/last_msg"
             android:layout_marginTop="3dp"
             android:textColor="@color/grey"
@@ -61,8 +56,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 
@@ -76,8 +70,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_below="@id/profile_image"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="-15dp"
-        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginStart="-15dp"
         android:layout_toEndOf="@id/profile_image"/>
 
 
@@ -87,9 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/todo" />
 
 </RelativeLayout>

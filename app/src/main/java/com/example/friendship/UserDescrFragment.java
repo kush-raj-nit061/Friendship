@@ -40,8 +40,7 @@ import soup.neumorphism.NeumorphCardView;
 public class UserDescrFragment extends Fragment {
     String userId,name,branch,year,shortBio,purl,hobbies,birthday,qualitylike,qualitydislike,foods,books,travellike;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Connection");
     DatabaseReference myOwnRef = database.getReference("students");
@@ -73,10 +72,6 @@ public class UserDescrFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_user_descr, container, false);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout round = v.findViewById(R.id.round);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RoundRectView roundrect = v.findViewById(R.id.roundrect);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RoundRectView roundrect1 = v.findViewById(R.id.roundrect1);
-         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView cardView = v.findViewById(R.id.card5);
         ImageView imagegholder = v.findViewById(R.id.imagegholder);
         TextView nameholder = v.findViewById(R.id.nameholder);
         TextView branchholder = v.findViewById(R.id.branchholder);
@@ -86,36 +81,8 @@ public class UserDescrFragment extends Fragment {
 
 
 
-        round.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), FullProfileLoader.class);
-                i.putExtra("purl",purl);
-                startActivity(i);
-            }
-        });
+
         imagegholder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), FullProfileLoader.class);
-                i.putExtra("purl",purl);
-                startActivity(i);
-            }
-        });cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), FullProfileLoader.class);
-                i.putExtra("purl",purl);
-                startActivity(i);
-            }
-        });roundrect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), FullProfileLoader.class);
-                i.putExtra("purl",purl);
-                startActivity(i);
-            }
-        });roundrect1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), FullProfileLoader.class);
@@ -124,7 +91,7 @@ public class UserDescrFragment extends Fragment {
             }
         });
 
-        NeumorphCardView card1 = v.findViewById(R.id.card1);
+        CardView card1 = v.findViewById(R.id.card1);
         card1.setVisibility(View.VISIBLE);
         privatebutton.setVisibility(View.GONE);
 
@@ -324,6 +291,7 @@ public class UserDescrFragment extends Fragment {
 
         return v;
     }
+
     public void onBackPressed(){
         try {
             AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();

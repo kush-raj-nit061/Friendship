@@ -29,7 +29,7 @@ public class AboutUs extends AppCompatActivity {
 //        backs = findViewById(R.id.backs);
         manager = new LinearLayoutManager(AboutUs.this,LinearLayoutManager.HORIZONTAL,false);
         recFeatured1.setLayoutManager(manager);
-        recFeatured1.setHasFixedSize(true);
+//        recFeatured1.setHasFixedSize(true);
         recFeatured1.setItemAnimator(null);
 
 

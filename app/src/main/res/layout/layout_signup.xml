@@ -136,7 +136,7 @@
                         android:layout_marginEnd="8dp"
                         android:background="@null"
                         android:fontFamily="@font/ubuntu_regular"
-                        android:hint="XYZ"
+                        android:hint="@string/xyz"
                         android:imeOptions="actionNext"
                         android:importantForAutofill="no"
                         android:includeFontPadding="false"

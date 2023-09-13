@@ -17,7 +17,7 @@
         android:layout_margin="8dp"
         app:ycCardCornerRadius="8dp"
         app:ycCardBackgroundColor="#A465E2"
-        app:ycEndShadowColor="#FFEB3B"
+        app:ycEndShadowColor="@color/blue_active"
         app:ycCardElevation="6dp"
         >
 
@@ -37,7 +37,7 @@
                 android:layout_height="250dp"
                 android:layout_marginStart="0dp"
                 android:scaleType="centerCrop"
-                 />
+                android:contentDescription="@string/todo" />
 
 
 
@@ -60,61 +60,74 @@
             android:layout_width="0dp"
             android:layout_height="15dp"
             android:background="@drawable/decorate_featured"
+            android:layout_weight="1"
+            android:contentDescription="@string/todo" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:background="@drawable/decorate_featured"
+            android:layout_weight="1"
+            android:contentDescription="@string/todo" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:background="@drawable/decorate_featured"
+            android:contentDescription="@string/todo"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
+            android:contentDescription="@string/todo"
             android:layout_height="15dp"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
+            android:contentDescription="@string/todo"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
+            android:contentDescription="@string/todo"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
+            android:contentDescription="@string/todo"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
+            android:contentDescription="@string/todo"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
-            android:background="@drawable/decorate_featured"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="15dp"
-            android:background="@drawable/decorate_featured"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="15dp"
+            android:contentDescription="@string/todo"
             android:background="@drawable/decorate_featured"
             android:layout_weight="1"/><ImageView
         android:layout_width="0dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/todo"
         android:background="@drawable/decorate_featured"
         android:layout_weight="1"/><ImageView
         android:layout_width="0dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/todo"
         android:background="@drawable/decorate_featured"
         android:layout_weight="1"/><ImageView
         android:layout_width="0dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/todo"
         android:background="@drawable/decorate_featured"
         android:layout_weight="1"/><ImageView
         android:layout_width="0dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/todo"
         android:background="@drawable/decorate_featured"
         android:layout_weight="1"/>
 
@@ -142,10 +155,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Vishwajeet Kumar"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="24dp"/>
 
 
@@ -154,11 +167,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Electrical Engineering"
+                android:text=""
                 android:fontFamily="@font/bariol_regular"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:layout_marginLeft="5dp"/>
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"/>
 
 
         </LinearLayout>

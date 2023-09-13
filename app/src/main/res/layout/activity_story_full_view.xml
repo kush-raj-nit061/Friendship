@@ -43,14 +43,14 @@
                         android:layout_marginTop="@dimen/margin_20_dp"
                         android:textSize="17sp"
                         android:letterSpacing="0.15"
-                        android:text="Name"/>
+                        android:text=""/>
                     <TextView
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:letterSpacing="0.15"
-                        android:text="Name"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -74,7 +74,7 @@
                         android:padding="15dp"
                         android:src="@drawable/cross1"
                         android:layout_alignParentEnd="true"
-                        />
+                        android:contentDescription="@string/todo" />
 
 
                 </RelativeLayout>
@@ -90,13 +90,13 @@
                     android:id="@+id/prev"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    />
+                    android:contentDescription="@string/todo" />
                 <ImageView
                     android:id="@+id/next"
                     android:layout_width="60dp"
                     android:layout_alignParentEnd="true"
                     android:layout_height="match_parent"
-                    />
+                    android:contentDescription="@string/todo" />
 
                 <com.jsibbold.zoomage.ZoomageView
                     android:id="@+id/image"
@@ -118,7 +118,7 @@
                 app:lottie_speed="1"
                 android:scaleX="1.6"
                 android:scaleY="1.6"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="30dp"
                 android:scaleType="centerCrop"
                 android:layout_marginEnd="0dp"
@@ -129,13 +129,14 @@
                 android:id="@+id/liked"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="10dp"
                 android:scaleX="2.6"
                 android:scaleY="2.6"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/like"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/todo" />
 
 
 

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".BasicDetails.DetailsActivity2"
+
     >
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -80,7 +81,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/bariol_regular"
-                android:text="You Are At last Step to Share Collaboration Details:"
+                android:text="@string/you_are_at_last_step_to_share_collaboration_details"
                 android:layout_gravity="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
@@ -91,7 +92,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/bariol_regular"
-                android:text="Add Image to frame>\n(3:4)recommended"
+                android:text="@string/add_image_to_frame_n_3_4_recommended"
                 android:layout_gravity="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp" />
@@ -120,7 +121,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="400dp"
                         android:layout_centerInParent="true"
-                        android:scaleType="centerCrop" />
+                        android:src="@drawable/addphoto"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/todo" />
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/progress"
                         android:layout_width="match_parent"
