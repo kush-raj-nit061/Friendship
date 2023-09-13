@@ -315,6 +315,8 @@
     <string name="short_detailss">Short Details</string>
     <string name="save_changes">Save Changes</string>
     <string name="in_case_of_bullying_or_any_other_cyber_harrashments_through_our_app_take_a_screenshot_and_send_it_to_our_help_emails">In case of bullying or any other cyber harrashments through our app take a screenshot and send it to our help Emails.</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="delete">Delete Project</string>
 
 
 </resources>

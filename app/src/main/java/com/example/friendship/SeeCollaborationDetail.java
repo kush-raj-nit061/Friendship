@@ -26,7 +26,7 @@ import java.util.Map;
 public class SeeCollaborationDetail extends AppCompatActivity {
     ImageView image;
     TextView tvName,tvCategory,tvRequirement,tvDescription,tvDate;
-    Button btnCollab;
+    Button btnCollab,delete;
     SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
 
 
@@ -42,6 +42,7 @@ public class SeeCollaborationDetail extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescr);
         image = findViewById(R.id.image);
         btnCollab = findViewById(R.id.btnCollab);
+        delete = findViewById(R.id.delete);
 
         Intent i = getIntent();
         String date = i.getStringExtra("date");
@@ -55,6 +56,21 @@ public class SeeCollaborationDetail extends AppCompatActivity {
         String id = i.getStringExtra("id");
 
         Glide.with(getApplicationContext()).load(i.getStringExtra("purl")).into(image);
+
+        if(id.equals(FirebaseAuth.getInstance().getUid())){
+            delete.setVisibility(View.VISIBLE);
+            btnCollab.setVisibility(View.GONE);
+        }
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("Collab").child(id).removeValue();
+                Toast.makeText(v.getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
 
 
         btnCollab.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +89,7 @@ public class SeeCollaborationDetail extends AppCompatActivity {
                         }
                     });
                 }else{
+
                     Toast.makeText(getApplicationContext(), "It's Your Project", Toast.LENGTH_SHORT).show();
                 }
 
