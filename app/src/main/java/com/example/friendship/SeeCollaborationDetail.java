@@ -72,7 +72,6 @@ public class SeeCollaborationDetail extends AppCompatActivity {
             }
         });
 
-
         btnCollab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
