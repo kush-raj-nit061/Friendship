@@ -47,16 +47,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         img = findViewById(R.id.img);
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                img.setVisibility(View.INVISIBLE);
-
-            }
-        },2000);
-
-
 
 
     }
