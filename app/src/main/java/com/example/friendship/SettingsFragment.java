@@ -114,7 +114,7 @@ public class SettingsFragment extends Fragment {
 
         likedBy = view.findViewById(R.id.likedby);
         recyclerViewEvents = view.findViewById(R.id.recEvents);
-        manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        manager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         manager2 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         manager3 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
@@ -239,20 +239,25 @@ public class SettingsFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     int count = Integer.parseInt(String.valueOf(snapshot.getChildrenCount()));
-                    Query query = reference.orderByChild("date").limitToLast(count);
 
-                    FirebaseRecyclerOptions<Events> options =
-                            new FirebaseRecyclerOptions.Builder<Events>()
-                                    .setQuery(query, Events.class)
-                                    .build();
+                    try {
+                        Query query = reference.orderByChild("date").limitToLast(count);
 
-                    eventAdapter=new EventsAdapter(options);
-                    events.setVisibility(View.VISIBLE);
-                    tvEvents.setVisibility(View.VISIBLE);
+                        FirebaseRecyclerOptions<Events> options =
+                                new FirebaseRecyclerOptions.Builder<Events>()
+                                        .setQuery(query, Events.class)
+                                        .build();
 
-                    recyclerViewEvents.setAdapter(eventAdapter);
-                    eventAdapter.startListening();
-                    progress.setVisibility(View.GONE);
+                        eventAdapter=new EventsAdapter(options);
+                        events.setVisibility(View.VISIBLE);
+                        tvEvents.setVisibility(View.VISIBLE);
+
+                        recyclerViewEvents.setAdapter(eventAdapter);
+                        eventAdapter.startListening();
+                        progress.setVisibility(View.GONE);
+
+                    }catch (Exception ignored){}
+
                 }
 
                 @Override

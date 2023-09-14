@@ -46,21 +46,27 @@ public class SeeCollaborationDetail extends AppCompatActivity {
 
         Intent i = getIntent();
         String date = i.getStringExtra("date");
-        long dat =Long.parseLong(date);
-
-        tvDate.setText(String.valueOf(datePatternFormat.format(dat)).substring(0,11));
-        tvName.setText(i.getStringExtra("projectname"));
-        tvCategory.setText(i.getStringExtra("projecttype"));
-        tvDescription.setText(i.getStringExtra("description"));
-        tvRequirement.setText(i.getStringExtra("requirement"));
         String id = i.getStringExtra("id");
+        try {
 
-        Glide.with(getApplicationContext()).load(i.getStringExtra("purl")).into(image);
+            long dat =Long.parseLong(date);
 
-        if(id.equals(FirebaseAuth.getInstance().getUid())){
-            delete.setVisibility(View.VISIBLE);
-            btnCollab.setVisibility(View.GONE);
-        }
+            tvDate.setText(String.valueOf(datePatternFormat.format(dat)).substring(0,11));
+            tvName.setText(i.getStringExtra("projectname"));
+            tvCategory.setText(i.getStringExtra("projecttype"));
+            tvDescription.setText(i.getStringExtra("description"));
+            tvRequirement.setText(i.getStringExtra("requirement"));
+
+
+            Glide.with(getApplicationContext()).load(i.getStringExtra("purl")).into(image);
+
+            if(id.equals(FirebaseAuth.getInstance().getUid())){
+                delete.setVisibility(View.VISIBLE);
+                btnCollab.setVisibility(View.GONE);
+            }
+
+        }catch (Exception ignored){}
+
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
