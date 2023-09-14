@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.friendship.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,6 +42,7 @@ public class AnnouncementActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     Button btnSet;
+    LottieAnimationView progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         link3 = findViewById(R.id.eventlink3);
         btnSet = findViewById(R.id.btnSet);
         ivPoster = findViewById(R.id.ivAnnouncements);
+        progress = findViewById(R.id.progress);
 
         ivPoster.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +151,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1000){
             if(resultCode == Activity.RESULT_OK){
+                progress.setVisibility(View.VISIBLE);
                 Uri imageUri =data.getData();
 
 //                imgButton.setImageURI(imageUri);
@@ -166,7 +171,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         try {
             bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
         } catch (IOException e) {
-            e.printStackTrace();
+
             return;
         }
 
@@ -188,6 +193,7 @@ public class AnnouncementActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         purl = String.valueOf(uri);
                         Picasso.get().load(uri).into(ivPoster);
+                        progress.setVisibility(View.GONE);
                     }
                 });
             }
@@ -195,6 +201,7 @@ public class AnnouncementActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload
+                progress.setVisibility(View.GONE);
                 Toast.makeText(AnnouncementActivity.this, "Failed.", Toast.LENGTH_LONG).show();
             }});
     }

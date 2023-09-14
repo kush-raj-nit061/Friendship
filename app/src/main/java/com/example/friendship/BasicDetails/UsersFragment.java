@@ -74,7 +74,7 @@ public class UsersFragment extends Fragment {
         es_descp.setTypeface(MR);
         es_title.setTypeface(MRR);
 
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
