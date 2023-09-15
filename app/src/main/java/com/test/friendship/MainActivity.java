@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         bottomNav   = findViewById(R.id.bottom_nav);
         cvCollab = findViewById(R.id.collab);
-//        iv_menu = findViewById(R.id.iv_Menu);
         cvProfile = findViewById(R.id.cvProfile);
         ivDrawer = findViewById(R.id.ivDrawer);
         branch = findViewById(R.id.branch);

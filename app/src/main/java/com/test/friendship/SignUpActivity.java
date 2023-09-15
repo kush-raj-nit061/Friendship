@@ -302,11 +302,6 @@ public class SignUpActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                // hide the progress bar
-
-
-                                // if the user created intent to login activity
-
                             }
                             else {
 
