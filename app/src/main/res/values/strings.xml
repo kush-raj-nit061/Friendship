@@ -127,7 +127,7 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="set_the_announcements">Set the announcements</string>
-    <string name="add_event_poster_above">Add Event Poster above</string>
+    <string name="add_event_poster_above">Add Event Poster above\n(3:4)Recommended</string>
     <string name="event_name_here">EVENT NAME HERE</string>
     <string name="event_subtitle_here">EVENT SUBTITLE HERE</string>
     <string name="date">Date</string>

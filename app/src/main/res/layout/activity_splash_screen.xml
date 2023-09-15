@@ -8,10 +8,6 @@
     android:backgroundTint="@color/black"
     android:alpha="0.9"
     tools:context=".SplashScreenActivity">
-
-
-
-
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/img"
         android:layout_width="match_parent"

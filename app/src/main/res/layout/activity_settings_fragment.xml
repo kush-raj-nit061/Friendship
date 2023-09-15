@@ -134,7 +134,7 @@
                     android:layout_marginTop="@dimen/margin_10_dp"
                     android:minHeight="170dp"
                     android:visibility="gone"
-                    android:layout_height="170dp" />
+                    android:layout_height="wrap_content" />
 
 
             </RelativeLayout>

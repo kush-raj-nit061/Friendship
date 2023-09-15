@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.friendship",
+  "applicationId": "com.test.friendship",
   "variantName": "release",
   "elements": [
     {

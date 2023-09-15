@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.friendship'
+    namespace 'com.test.friendship'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.friendship"
+        applicationId "com.test.friendship"
         minSdk 23
         //noinspection OldTargetApi
         targetSdk 33
