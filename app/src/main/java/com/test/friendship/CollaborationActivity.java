@@ -2,27 +2,22 @@ package com.test.friendship;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.test.friendship.R;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.test.friendship.Collaboration.CollabDetails1;
 import com.test.friendship.Model.Collaboration;
-import com.test.friendship.Model.Collaborator;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +31,7 @@ import java.text.SimpleDateFormat;
 
 public class CollaborationActivity extends AppCompatActivity {
     ImageView add;
-    LinearLayoutManager manager4;
+
     private RecyclerView recCollab;
     private CollaborationAdapter collabAdapter;
     TextView back;
@@ -58,12 +53,12 @@ public class CollaborationActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecorationCollab = new DividerItemDecoration(recCollab.getContext(), DividerItemDecoration.VERTICAL);
         recCollab.addItemDecoration(dividerItemDecorationCollab);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Celebration");
-        String userId = fAuth.getCurrentUser().getUid();
+
+
         DatabaseReference reference = database.getReference().child("Collab");
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat datePatternFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
@@ -89,7 +84,7 @@ public class CollaborationActivity extends AppCompatActivity {
                         recCollab.setVisibility(View.VISIBLE);
                         collabAdapter.startListening();
 
-                    }catch (Exception  e){}
+                    }catch (Exception ignored){}
 
                 }
 
@@ -99,7 +94,7 @@ public class CollaborationActivity extends AppCompatActivity {
                 }
             });
 
-        }catch (Exception e){
+        }catch (Exception ignored){
 
         }
         back.setOnClickListener(new View.OnClickListener() {
