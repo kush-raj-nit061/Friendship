@@ -89,8 +89,8 @@ public class DetailsActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(etShortDetails.getText().toString().length()<100){
-                    Toast.makeText(getApplicationContext(),"Add Atleast 30 Words",Toast.LENGTH_SHORT).show();
+                if(etShortDetails.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Write about Yourself",Toast.LENGTH_SHORT).show();
                     return;
                 }if(etHobbies.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please Enter Your Hobbies",Toast.LENGTH_SHORT).show();
