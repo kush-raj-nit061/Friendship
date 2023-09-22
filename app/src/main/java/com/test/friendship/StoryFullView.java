@@ -34,7 +34,7 @@ import com.test.friendship.R;
 
 public class StoryFullView extends AppCompatActivity {
     ImageView next,prev,cross,liked;
-    ZoomageView image;
+    ImageView image;
     LottieAnimationView likes;
     CircleImageView profile;
     TextView tvName, tvDate,likesCount;

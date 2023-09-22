@@ -111,18 +111,20 @@
                     android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/bariol_regular"
                     android:text="@string/you_are_2_steps_away"
-
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="30sp" />
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/skip"
+                    android:textSize="28sp"/>
 
                 <ImageView
                     android:id="@+id/tvSkip"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="0dp"
-
                     android:fontFamily="@font/coffeesugar"
-
                     android:src="@drawable/skip"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="30sp"

@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.test.friendship.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +45,7 @@ public class DetailsActivity3 extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
+    DatabaseReference Ref = database.getReference("students");
 
 
 
@@ -201,16 +204,57 @@ public class DetailsActivity3 extends AppCompatActivity {
                 strPlaceTravel ="";
 
 
-
-                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fStore.collection("users").document(fAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                String detailsGiven = document.getString("detailsGiven");
+                                if(detailsGiven.equals("1")){
+                                    Ref.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }else {
+                                    myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }
+                        }
+
                     }
                 });
-                Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
-                startActivity(i);
-                finish();
+
+
+
+
+
+//                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+//                startActivity(i);
+//                finish();
             }
         });
 

@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.test.friendship.MainActivity;
 import com.test.friendship.ProfileActivity;
 import com.test.friendship.R;
@@ -54,6 +56,7 @@ public class DetailsActivity5 extends AppCompatActivity {
     DatabaseReference reference;
     StorageReference storageReference = storage.getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    String detailsGiven,purls;
     DatabaseReference myRef = database.getReference("unregistered");
     DatabaseReference registered= database.getReference("students");
     LottieAnimationView progress;
@@ -73,65 +76,166 @@ public class DetailsActivity5 extends AppCompatActivity {
         lottieAnimationView = findViewById(R.id.lottie_animation);
         lottieAnimationView.playAnimation();
 
+
+        try {
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("students");
+            db.child(fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                       purls = (String) snapshot.child("purl").getValue();
+                        try {
+                            Glide.with(getApplicationContext()).load(purls).into(ivProfile);
+                        }catch (Exception e){}
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            fStore.collection("users").document(fAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
+                            detailsGiven = document.getString("detailsGiven");
+
+                        }
+                    }
+
+                }
+            });
+        }catch (Exception e){}
+
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-
                 Map<String,Object> data = new HashMap<>();
-
                 Map<String,Object> users = new HashMap<>();
 
-                if(purl == null|| purl.isEmpty() ){
-                    purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
-                    Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
+                if(detailsGiven.equals("1")){
+                    Intent i = new Intent(DetailsActivity5.this,ProfileActivity.class);
+                    i.putExtra("purl",purls);
+                    startActivity(i);
+                    finish();
+
+                }else {
+                    if(purl == null|| purl.isEmpty() ){
+                        purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
+                        Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
+                    }
+                    users.put("purl",purl);
+                    data.put("imageURL",purl);
+
+
+                    reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    reference.updateChildren(data);
+
+                    myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Map <String,Object> map = new HashMap<>();
+                            map.put("detailsGiven","1");
+                            FirebaseFirestore fStore= FirebaseFirestore.getInstance();
+
+                            fStore.collection("users").document(fAuth.getCurrentUser().getUid()).update(map);
+                        }
+                    });
+
+                    myRef.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+                            registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(),"Something Wrong",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-                users.put("purl",purl);
-                data.put("imageURL",purl);
 
 
-                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                reference.updateChildren(data);
 
-                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Map <String,Object> map = new HashMap<>();
-                        map.put("detailsGiven","1");
-                        FirebaseFirestore fStore= FirebaseFirestore.getInstance();
 
-                        fStore.collection("users").document(fAuth.getCurrentUser().getUid()).update(map);
-                    }
-                });
 
-                myRef.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
-                        registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
-                                startActivity(i);
-                                finish();
 
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(),"Something Wrong",Toast.LENGTH_SHORT).show();
-                            }
-                        });
 
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+//                if(purl == null|| purl.isEmpty() ){
+//                    purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
+//                    Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
+//                }
+//                users.put("purl",purl);
+//                data.put("imageURL",purl);
+//
+//
+//                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                reference.updateChildren(data);
+//
+//                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Map <String,Object> map = new HashMap<>();
+//                        map.put("detailsGiven","1");
+//                        FirebaseFirestore fStore= FirebaseFirestore.getInstance();
+//
+//                        fStore.collection("users").document(fAuth.getCurrentUser().getUid()).update(map);
+//                    }
+//                });
+//
+//                myRef.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
+//                        registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                                Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
+//                                startActivity(i);
+//                                finish();
+//
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(getApplicationContext(),"Something Wrong",Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
 
 
 
@@ -214,9 +318,16 @@ public class DetailsActivity5 extends AppCompatActivity {
                         Map<String, Object> users = new HashMap<>();
                         users.put("purl", purl);
 
-                        if (purl != null) {
-                            myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users);
+                        if(detailsGiven.equals("1")){
+                            registered.child(fAuth.getCurrentUser().getUid()).updateChildren(users);
+
+                        }else {
+                            if (purl != null) {
+                                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users);
+                            }
                         }
+
+
 
                         Picasso.get().load(uri).into(ivProfile);
                         progress.setVisibility(View.GONE);

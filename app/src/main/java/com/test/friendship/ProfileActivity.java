@@ -42,6 +42,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.test.friendship.BasicDetails.DetailsActivity2;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -56,6 +57,8 @@ import java.util.Map;
 import java.util.Objects;
 import com.test.friendship.R;
 
+import soup.neumorphism.NeumorphButton;
+
 public class ProfileActivity extends AppCompatActivity {
 
     ImageView imgButton,ivProfile;
@@ -63,17 +66,18 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
     LottieAnimationView progress;
+    NeumorphButton btnEditMore;
 
-    ImageView ivEditInfo,ivEditShortBio,btBack;
+    ImageView ivEditInfo,ivEditShortBio,ivEditHobbies,btBack;
     Button saveChanges;
 
 
     String userID;
     String purl;
-    LinearLayout llnametv,llnameet,lllocationtv,lllocationet,llyeartv,llyearet,llshortbiotv,llshortbioet;
+    LinearLayout llnametv,llnameet,lllocationtv,lllocationet,llyeartv,llyearet,llshortbiotv,llshortbioet,llHobbieset,llHobbiestv;
 
-    TextView tvShortBio,tvLocation,tvName,tvYear,userid;
-    EditText etShortBio,etLocation,etName,etYear;
+    TextView tvShortBio,tvLocation,tvName,tvYear,userid,tvHobbies;
+    EditText etShortBio,etLocation,etName,etYear,etHobbies;
 
 
 
@@ -91,12 +95,14 @@ public class ProfileActivity extends AppCompatActivity {
         userid.setText(fAuth.getUid().substring(0,8));
 
         tvShortBio= findViewById(R.id.tvShortBio);
+        tvHobbies = findViewById(R.id.tvHobbies);
         tvLocation = findViewById(R.id.tvLocation);
         tvName = findViewById(R.id.tvName);
         tvYear = findViewById(R.id.tvYear);
 
         etYear = findViewById(R.id.etYear);
         etShortBio = findViewById(R.id.etShortBio);
+        etHobbies =findViewById(R.id.etHobbies);
         etLocation = findViewById(R.id.etLocation);
         etName = findViewById(R.id.etName);
 
@@ -105,9 +111,12 @@ public class ProfileActivity extends AppCompatActivity {
         llnametv = findViewById(R.id.llnametv);
         llyeartv = findViewById(R.id.llyeartv);
         progress = findViewById(R.id.progress);
+        btnEditMore = findViewById(R.id.btnExtraDetails);
 
 
         llshortbiotv = findViewById(R.id.llshortbiotv);
+        llHobbieset= findViewById(R.id.llHobbieset);
+        llHobbiestv = findViewById(R.id.llHobbiestv);
         lllocationet = findViewById(R.id.lllocationet);
         llnameet = findViewById(R.id.llnameet);
         llyearet = findViewById(R.id.llyearet);
@@ -124,16 +133,18 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
+        btnEditMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfileActivity.this, DetailsActivity2.class);
+                startActivity(i);
+            }
+        });
 
         ivEditInfo = findViewById(R.id.ivEditInfo);
         ivEditShortBio = findViewById(R.id.ivEditShortDet);
+        ivEditHobbies = findViewById(R.id.ivEditHobbies);
         saveChanges = findViewById(R.id.btnSaveChanges);
-
-
-
-
 
         myRef.child(fAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -144,11 +155,13 @@ public class ProfileActivity extends AppCompatActivity {
                     tvLocation.setText(model.getLocation());
                     tvShortBio.setText(model.getShortBio());
                     tvYear.setText(model.getYear());
-
+                    tvHobbies.setText(model.getHobbies());
                     etName.setText(model.getName());
                     etLocation.setText(model.getLocation());
                     etShortBio.setText(model.getShortBio());
                     etYear.setText(model.getYear());
+                    etHobbies.setText(model.getHobbies());
+
 
 
                 }
@@ -164,6 +177,7 @@ public class ProfileActivity extends AppCompatActivity {
         llnameet.setVisibility(View.GONE);
         lllocationet.setVisibility(View.GONE);
         llyearet.setVisibility(View.GONE);
+        llHobbieset.setVisibility(View.GONE);
 
 
         ivEditShortBio.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +188,13 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+        ivEditHobbies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llHobbieset.setVisibility(View.VISIBLE);
+                llHobbiestv.setVisibility(View.GONE);
+            }
+        });
         saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,6 +203,7 @@ public class ProfileActivity extends AppCompatActivity {
                 map.put("year",etYear.getText().toString());
                 map.put("location",etLocation.getText().toString());
                 map.put("shortBio",etShortBio.getText().toString());
+                map.put("hobbies",etHobbies.getText().toString());
 
                 myRef.child(fAuth.getUid()).updateChildren(map);
                 llshortbioet.setVisibility(View.GONE);
@@ -192,6 +214,8 @@ public class ProfileActivity extends AppCompatActivity {
                 llnametv.setVisibility(View.VISIBLE);
                 lllocationtv.setVisibility(View.VISIBLE);
                 llyeartv.setVisibility(View.VISIBLE);
+                llHobbieset.setVisibility(View.GONE);
+                llHobbiestv.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(),"Changes Saved",Toast.LENGTH_SHORT).show();
 
             }

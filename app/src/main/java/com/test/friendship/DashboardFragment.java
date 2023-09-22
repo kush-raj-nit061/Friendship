@@ -1,5 +1,7 @@
 package com.test.friendship;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import com.test.friendship.R;
@@ -20,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -38,11 +42,13 @@ public class DashboardFragment extends Fragment {
 
     RecyclerView recView;
     UserAdapter userAdapter;
-    SolidGlowAnimation animation_view_complex_view;
+//    SolidGlowAnimation animation_view_complex_view;
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     AnimatedEditText searchEditText;
     LottieAnimationView progress;
     private Parcelable recyclerViewState;
+    LinearLayout linear;
+    ImageView eye;
     // Add this variable
 
     public DashboardFragment() {
@@ -56,11 +62,51 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard_fragment, container, false);
         recView = view.findViewById(R.id.recPeople);
-        animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
-        animation_view_complex_view.startAnimation();
+//        animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
+//        animation_view_complex_view.startAnimation();
         searchEditText = view.findViewById(R.id.etSearch);
         progress = view.findViewById(R.id.progress);
+        eye = view.findViewById(R.id.eyes);
+        linear = view.findViewById(R.id.linear);
         progress.setVisibility(View.VISIBLE);
+
+        linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linear.animate().alpha(1f).setDuration(0);
+
+                linear.animate().alpha(0f).setDuration(1900).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        linear.animate().alpha(0f).setDuration(1800);
+                        linear.setVisibility(View.GONE);
+                        eye.setVisibility(View.GONE);
+
+                    }
+                });
+
+            }
+        });
+
+        eye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                linear.animate().alpha(1f).setDuration(0);
+
+                linear.animate().alpha(0f).setDuration(1900).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        linear.animate().alpha(0f).setDuration(1800);
+                        linear.setVisibility(View.GONE);
+                        eye.setVisibility(View.GONE);
+
+                    }
+                });
+
+
+            }
+        });
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
@@ -159,18 +205,15 @@ public class DashboardFragment extends Fragment {
             userAdapter = new UserAdapter(options);
             recView.setAdapter(userAdapter);
             userAdapter.startListening();
-            progress.setVisibility(View.GONE);
+//
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
-
+                    progress.setVisibility(View.GONE);
                 }
-            },1500);
-
-
+            },4000);
 
         }catch (Exception e){
 

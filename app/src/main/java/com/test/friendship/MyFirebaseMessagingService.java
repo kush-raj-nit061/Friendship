@@ -2,6 +2,12 @@ package com.test.friendship;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.test.friendship.MessageNotif.Token;
 import com.test.friendship.R;
 
 import android.app.NotificationChannel;
@@ -57,5 +63,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         notificationManager.notify(0, notificationBuilder.build());
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        String refreshToken= FirebaseMessaging.getInstance().getToken().toString();
+        if (firebaseUser !=null)
+        {
+            updateToken(refreshToken);
+        }
 }
+    private void updateToken(String refreshToken)
+    {
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        Token token=new Token(refreshToken);
+        FirebaseDatabase.getInstance().getReference("Tokens")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(token);
+    }
 }
