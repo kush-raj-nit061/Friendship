@@ -129,7 +129,7 @@ public class DetailsActivity5 extends AppCompatActivity {
 
                 }else {
                     if(purl == null|| purl.isEmpty() ){
-                        purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
+                        purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/logooo.png?alt=media&token=19e500c3-3b51-4757-9e97-9fd7cb163758";
                         Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
                     }
                     users.put("purl",purl);
