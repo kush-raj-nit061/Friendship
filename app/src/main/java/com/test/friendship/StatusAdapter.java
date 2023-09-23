@@ -51,6 +51,16 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
     @Override
     protected void onBindViewHolder(@NonNull userAdapterHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Status model) {
 
+        Intent i = new Intent(holder.imgprofile.getContext(),StoryFullView.class);
+        i.putExtra("purl",model.getPurl());
+        i.putExtra("date",model.getDate());
+        i.putExtra("posturl",model.getPostUrl());
+        i.putExtra("id",model.getId());
+        i.putExtra("name",model.getName());
+        i.putExtra("likes",model.getPostlikes());
+        i.putExtra("position",String.valueOf(position));
+        i.putExtra("itemCount",String.valueOf(getItemCount()));
+
         try {
             dbRef.child("students").child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -120,15 +130,7 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
 
 
                     holder.cvStatusOut.setVisibility(View.INVISIBLE);
-                    Intent i = new Intent(holder.imgprofile.getContext(),StoryFullView.class);
-                    i.putExtra("purl",model.getPurl());
-                    i.putExtra("date",model.getDate());
-                    i.putExtra("posturl",model.getPostUrl());
-                    i.putExtra("id",model.getId());
-                    i.putExtra("name",model.getName());
-                    i.putExtra("likes",model.getPostlikes());
-                    i.putExtra("position",String.valueOf(position));
-                    i.putExtra("itemCount",String.valueOf(getItemCount()));
+
                     holder.imgprofile.getContext().startActivity(i);
                 }
             });
