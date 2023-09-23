@@ -129,7 +129,7 @@ public class DetailsActivity5 extends AppCompatActivity {
 
                 }else {
                     if(purl == null|| purl.isEmpty() ){
-                        purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/logooo.png?alt=media&token=19e500c3-3b51-4757-9e97-9fd7cb163758";
+                        purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
                         Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
                     }
                     users.put("purl",purl);
@@ -177,67 +177,8 @@ public class DetailsActivity5 extends AppCompatActivity {
 
                         }
                     });
+
                 }
-
-
-
-
-
-
-
-
-
-//                if(purl == null|| purl.isEmpty() ){
-//                    purl = "https://firebasestorage.googleapis.com/v0/b/friendship-c4818.appspot.com/o/friends-low-resolution-logo-color-on-transparent-background.png?alt=media&token=a97a58a1-21e2-4e3d-8256-8c95b3a894a3";
-//                    Toast.makeText(getApplicationContext(),"You have set your profile image to default",Toast.LENGTH_SHORT).show();
-//                }
-//                users.put("purl",purl);
-//                data.put("imageURL",purl);
-//
-//
-//                reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-//                reference.updateChildren(data);
-//
-//                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Map <String,Object> map = new HashMap<>();
-//                        map.put("detailsGiven","1");
-//                        FirebaseFirestore fStore= FirebaseFirestore.getInstance();
-//
-//                        fStore.collection("users").document(fAuth.getCurrentUser().getUid()).update(map);
-//                    }
-//                });
-//
-//                myRef.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                        UserModel model = (UserModel) snapshot.getValue(UserModel.class);
-//                        registered.child(fAuth.getCurrentUser().getUid()).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Intent i = new Intent(DetailsActivity5.this, MainActivity.class);
-//                                startActivity(i);
-//                                finish();
-//
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(getApplicationContext(),"Something Wrong",Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-
-
 
             }
         });

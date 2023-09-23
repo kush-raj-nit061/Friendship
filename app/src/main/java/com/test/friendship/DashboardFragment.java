@@ -116,13 +116,6 @@ public class DashboardFragment extends Fragment {
         recView.setDrawingCacheEnabled(true);
         recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-
-
-
-        // Restore the RecyclerView's scroll state if available
-
-
-        // Initialize FirebaseRecyclerOptions and UserAdapter
         initializeRecyclerView();
 
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -133,13 +126,13 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String searchText = charSequence.toString().trim();
+                String searchText = charSequence.toString().toLowerCase().trim();
 
                 // Update your adapter with the new options
                 try {
                     // Create a query based on the entered text
                     Query query = FirebaseDatabase.getInstance().getReference().child("students")
-                            .orderByChild("name")
+                            .orderByChild("lower")
                             .startAt(searchText)
                             .endAt(searchText + "\uf8ff");
 

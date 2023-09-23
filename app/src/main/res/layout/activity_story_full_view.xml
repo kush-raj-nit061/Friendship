@@ -103,9 +103,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/cross"
-                    android:visibility="visible"
-                    android:contentDescription="@string/todo" />
+                    android:visibility="visible" />
 
 
             </RelativeLayout>
@@ -136,6 +136,19 @@
                 android:scaleY="2.6"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/like"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/todo" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="14dp"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:visibility="gone"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/baseline_delete_24"
                 android:layout_alignParentBottom="true"
                 android:contentDescription="@string/todo" />
 

@@ -319,6 +319,8 @@
     <string name="delete">Delete Project</string>
     <string name="skip"><![CDATA[SKIP]]></string>
     <string name="edit_personal_details">Edit Personal details</string>
+    <string name="cool_statuses_and_shiners">Cool Statuses and Shiners :</string>
+    <string name="highest_popularity">Highest Popularity:</string>
 
 
 </resources>

@@ -33,13 +33,14 @@ import java.util.Map;
 import com.test.friendship.R;
 
 public class StoryFullView extends AppCompatActivity {
-    ImageView next,prev,cross,liked;
+    ImageView next,prev,cross,liked,delete;
     ImageView image;
     LottieAnimationView likes;
     CircleImageView profile;
     TextView tvName, tvDate,likesCount;
     DatabaseReference reference;
     DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("StatusLiked");
+    DatabaseReference db= FirebaseDatabase.getInstance().getReference("Status");
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
 
@@ -52,6 +53,7 @@ public class StoryFullView extends AppCompatActivity {
         next = findViewById(R.id.next);
         prev = findViewById(R.id.prev);
         likes = findViewById(R.id.likes);
+        delete = findViewById(R.id.delete);
 
         profile = findViewById(R.id.profile);
         tvDate = findViewById(R.id.date);
@@ -60,14 +62,29 @@ public class StoryFullView extends AppCompatActivity {
         cross = findViewById(R.id.cross);
         liked = findViewById(R.id.liked);
 
+        Intent in = getIntent();
+        String ids = in.getStringExtra("id");
+
+        if(ids.equals(fAuth.getCurrentUser().getUid())){
+            delete.setVisibility(View.VISIBLE);
+        }
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.child(fAuth.getCurrentUser().getUid()).removeValue();
+                dbRef.child(fAuth.getCurrentUser().getUid()).removeValue();
+                finish();
+
+            }
+        });
+
         likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 likes.playAnimation();
                 liked.setVisibility(View.INVISIBLE);
 
-                Intent in = getIntent();
-                String ids = in.getStringExtra("id");
+
 
                 Map<String,Object> map = new HashMap<>();
                 map.put("status","liked");
@@ -91,6 +108,7 @@ public class StoryFullView extends AppCompatActivity {
 
             }
         });
+
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
