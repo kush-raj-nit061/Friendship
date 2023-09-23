@@ -117,42 +117,45 @@ public class DashboardFragment extends Fragment {
         recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         initializeRecyclerView();
-
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // Nothing to do here
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String searchText = charSequence.toString().toLowerCase().trim();
-
-                // Update your adapter with the new options
-                try {
-                    // Create a query based on the entered text
-                    Query query = FirebaseDatabase.getInstance().getReference().child("students")
-                            .orderByChild("lower")
-                            .startAt(searchText)
-                            .endAt(searchText + "\uf8ff");
-
-                    FirebaseRecyclerOptions<UserModel> options = new FirebaseRecyclerOptions.Builder<UserModel>()
-                            .setQuery(query, UserModel.class)
-                            .build();
-
-                    userAdapter.updateOptions(options);
-
-                } catch (Exception e) {
-                    Toast.makeText(getContext(), "Orientation changed", Toast.LENGTH_SHORT).show();
+        try {
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    // Nothing to do here
                 }
 
-            }
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String searchText = charSequence.toString().toLowerCase().trim();
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // Nothing to do here
-            }
-        });
+                    // Update your adapter with the new options
+                    try {
+                        // Create a query based on the entered text
+                        Query query = FirebaseDatabase.getInstance().getReference().child("students")
+                                .orderByChild("lower")
+                                .startAt(searchText)
+                                .endAt(searchText + "\uf8ff");
+
+                        FirebaseRecyclerOptions<UserModel> options = new FirebaseRecyclerOptions.Builder<UserModel>()
+                                .setQuery(query, UserModel.class)
+                                .build();
+
+                        userAdapter.updateOptions(options);
+
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), "Orientation changed", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    // Nothing to do here
+                }
+            });
+
+        }catch (Exception e){}
+
 
         return view;
     }

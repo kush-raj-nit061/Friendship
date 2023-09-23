@@ -131,8 +131,11 @@ public class DetailsActivity1 extends AppCompatActivity {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("2020-2024");
         arrayList.add("2021-2025");
+        arrayList.add("2021-2026");
         arrayList.add("2022-2026");
+        arrayList.add("2022-2027");
         arrayList.add("2023-2027");
+        arrayList.add("2023-2028");
         arrayList.add("M.Tech");
         arrayList.add("P.H.D");
         arrayList.add("Dual Degree");

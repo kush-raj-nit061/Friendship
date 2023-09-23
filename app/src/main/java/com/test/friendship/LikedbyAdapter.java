@@ -84,12 +84,17 @@ public class LikedbyAdapter extends FirebaseRecyclerAdapter<Likedby,LikedbyAdapt
                         if(snapshot.exists()){
                             UserModel model1 = (UserModel) snapshot.getValue(UserModel.class);
 
-                            AppCompatActivity appCompatActivity = unwrap(v.getContext());
-                            appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                                    new UserDescrFragment(model.getUserId(),model1.getName(),model1.getBranch(),model1.getYear()
-                                            ,model1.getShortBio(),model1.getPurl(),model1.getHobbies(),model1.getBirthday()
-                                            ,model1.getQualitylike(),model1.getQualitydislike(),model1.getFoods()
-                                            ,model1.getBooks(),model1.getTravellike())).addToBackStack(null).commit();
+                            try {
+                                AppCompatActivity appCompatActivity = unwrap(v.getContext());
+                                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                                        new UserDescrFragment(model.getUserId(),model1.getName(),model1.getBranch(),model1.getYear()
+                                                ,model1.getShortBio(),model1.getPurl(),model1.getHobbies(),model1.getBirthday()
+                                                ,model1.getQualitylike(),model1.getQualitydislike(),model1.getFoods()
+                                                ,model1.getBooks(),model1.getTravellike())).addToBackStack(null).commit();
+                            }catch (Exception e){
+                            }
+
+
                         }
                     }
 

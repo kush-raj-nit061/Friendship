@@ -92,7 +92,6 @@ public class SignUpActivity extends AppCompatActivity {
         Btn         = findViewById(R.id.buttonSignUp);
         Handler handler = new Handler();
 
-
         handler.postDelayed(new Runnable() {
             public void run() {
 
@@ -136,6 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
         arrayList.add("Mechanical Engineering");
         arrayList.add("Chemical Technology");
         arrayList.add("Integrated M.S.C");
+        arrayList.add("Dual Degree");
         arrayList.add("Others");
 
 

@@ -161,26 +161,26 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
         Map<String,Object> map = new HashMap<>();
 
-        reference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot snapshot1 : snapshot.getChildren()){
-                        String lower = String.valueOf(snapshot1.child("name").getValue()).toLowerCase();
-                        map.put("lower",lower);
-                        reference2.child(snapshot1.getKey()).updateChildren(map);
+        try {
+            reference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                            String lower = String.valueOf(snapshot1.child("name").getValue()).toLowerCase();
+                            map.put("lower",lower);
+                            reference2.child(snapshot1.getKey()).updateChildren(map);
+                        }
                     }
+                }
 
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        }catch (Exception e){}
 
 
 
