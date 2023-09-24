@@ -56,71 +56,76 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         super.onStart();
         if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().isEmailVerified()){
+            try {
+                fStore.collection("users").document(mAuth.getCurrentUser().getUid())
+                        .get().addOnCompleteListener(tasks -> {
+                            if (tasks.isSuccessful()) {
+                                DocumentSnapshot document = tasks.getResult();
+                                if (document.exists()) {
+                                    String detailsGiven = document.getString("detailsGiven");
+                                    FirebaseFirestore fMaintainance = FirebaseFirestore.getInstance();
+                                    try {
+                                        fMaintainance.collection("Friends").document("underMaintainance").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
+                                                DocumentSnapshot maintainance = task2.getResult();
+                                                if(maintainance.exists()){
+                                                    String num = maintainance.getString("maintainance");
 
-            fStore.collection("users").document(mAuth.getCurrentUser().getUid())
-                    .get().addOnCompleteListener(tasks -> {
-                        if (tasks.isSuccessful()) {
-                            DocumentSnapshot document = tasks.getResult();
-                            if (document.exists()) {
-                                String detailsGiven = document.getString("detailsGiven");
-                                FirebaseFirestore fMaintainance = FirebaseFirestore.getInstance();
-                                fMaintainance.collection("Friends").document("underMaintainance").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
-                                        DocumentSnapshot maintainance = task2.getResult();
-                                        if(maintainance.exists()){
-                                            String num = maintainance.getString("maintainance");
-
-                                            if(num.equals("1")){
-                                                Intent in = new Intent(SplashScreenActivity.this, UnderMaintainance.class);
-                                                startActivity(in);
-                                                finish();
-
-                                            }else {
-                                                if(detailsGiven.equals("1")){
-                                                    FirebaseAuth.getInstance().getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            Intent intent
-                                                                    = null;
-                                                            intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-
-
-                                                            Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
-                                                            startActivity(intent);
-                                                            finish();
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(getApplicationContext(),"Check Your network:",Toast.LENGTH_LONG).show();
-                                                        }
-                                                    });
-
-
-
-                                                }else{
-                                                    if(mAuth.getCurrentUser().isEmailVerified()){
-                                                        Intent intent
-                                                                = new Intent(SplashScreenActivity.this,TermsAndCondition.class);
-                                                        startActivity(intent);
+                                                    if(num.equals("1")){
+                                                        Intent in = new Intent(SplashScreenActivity.this, UnderMaintainance.class);
+                                                        startActivity(in);
                                                         finish();
+
+                                                    }else {
+                                                        if(detailsGiven.equals("1")){
+                                                            FirebaseAuth.getInstance().getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+
+
+                                                                    Toast.makeText(getApplicationContext(),"Welcome🙏",Toast.LENGTH_LONG).show();
+                                                                    startActivity(intent);
+                                                                    finish();
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Toast.makeText(getApplicationContext(),"Check Your network:",Toast.LENGTH_LONG).show();
+                                                                }
+                                                            });
+
+
+
+                                                        }else{
+                                                            if(mAuth.getCurrentUser().isEmailVerified()){
+                                                                Intent intent
+                                                                        = new Intent(SplashScreenActivity.this,TermsAndCondition.class);
+                                                                startActivity(intent);
+                                                                finish();
 //                                                                    finish();
 
+                                                            }
+
+                                                        }
+
                                                     }
-
                                                 }
-
                                             }
-                                        }
-                                    }
-                                });
-                            }
-                        }else {
+                                        });
+
+                                    }catch (Exception e){}
+                                }
+                            }else {
                                 Toast.makeText(getApplicationContext(),"Something Wrong!!!",Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
+
+            }catch (Exception e){}
+
+
 
         }else {
             new Handler().postDelayed(new Runnable() {

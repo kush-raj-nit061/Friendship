@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.alimuzaffar.lib.widgets.AnimatedEditText
+                <EditText
                     android:id="@+id/etSearch"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     android:paddingRight="@dimen/normalPadding"
                     android:paddingBottom="@dimen/vertical_search"
                     android:singleLine="true"
-                    android:textColor="@color/blue_active"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/color_hint"
                     android:textSize="14sp" />
 
@@ -122,9 +122,8 @@
                     android:src="@drawable/eyes"
                     android:layout_marginBottom="@dimen/margin_10_dp"
                     android:scaleType="centerCrop"
-                    android:layout_weight="0.15"/>
-
-
+                    android:layout_weight="0.15"
+                    android:contentDescription="@string/todo" />
 
             </LinearLayout>
 

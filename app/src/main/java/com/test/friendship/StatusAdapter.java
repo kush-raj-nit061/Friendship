@@ -70,7 +70,6 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
                         Glide.with(holder.imgprofile.getContext()).load(prof).into(holder.imgprofile);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -158,11 +157,8 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
         CircleImageView imgprofile;
         CircularStatusView cvStatusOut;
 
-
-
         public userAdapterHolder(@NonNull View itemView) {
             super(itemView);
-
             imgprofile = itemView.findViewById(R.id.profile);
             cvStatusOut = itemView.findViewById(R.id.circular_status_view);
 

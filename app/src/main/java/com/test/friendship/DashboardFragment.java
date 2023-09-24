@@ -44,7 +44,7 @@ public class DashboardFragment extends Fragment {
     UserAdapter userAdapter;
 //    SolidGlowAnimation animation_view_complex_view;
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-    AnimatedEditText searchEditText;
+    EditText searchEditText;
     LottieAnimationView progress;
     private Parcelable recyclerViewState;
     LinearLayout linear;
