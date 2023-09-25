@@ -16,6 +16,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#293859</color>
     <color name="colorAccent">#FC896A</color>
+    <color name="silver">#C0C0C0</color>
     <color name="colorSecondary">#EF833E</color>
     <color name="colorGlass">#F2F1ED</color>
     <color name="colorRedLight">#FFF7F5</color>

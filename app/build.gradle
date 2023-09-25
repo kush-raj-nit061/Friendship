@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
     implementation 'com.zyp.cardview:cardview:1.0.1'
     implementation 'com.alimuzaffar.lib:animated-edit-text:2.0.2'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
 
 

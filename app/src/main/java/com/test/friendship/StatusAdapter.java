@@ -43,7 +43,6 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("StatusLiked");
 
-
     public StatusAdapter(@NonNull FirebaseRecyclerOptions<Status> options) {
         super(options);
     }
@@ -60,6 +59,7 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
         i.putExtra("likes",model.getPostlikes());
         i.putExtra("position",String.valueOf(position));
         i.putExtra("itemCount",String.valueOf(getItemCount()));
+        holder.name.setText(model.getName());
 
         try {
             dbRef.child("students").child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,6 +68,9 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
                     if(snapshot.exists()){
                         String prof = (String) snapshot.child("purl").getValue();
                         Glide.with(holder.imgprofile.getContext()).load(prof).into(holder.imgprofile);
+                        Glide.with(holder.imgprofile.getContext()).load(model.getPostUrl()).into(holder.story);
+
+                        holder.cvStatusOut.setPortionsCount(3);
                     }
                 }
                 @Override
@@ -97,7 +100,7 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
             }catch (Exception e){}
 
 
-            holder.imgprofile.setOnClickListener(new View.OnClickListener() {
+            holder.story.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Map<String,Object> map = new HashMap<>();
@@ -128,20 +131,14 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
                     });
 
 
-                    holder.cvStatusOut.setVisibility(View.INVISIBLE);
+                    holder.cvStatusOut.setVisibility(View.VISIBLE);
 
                     holder.imgprofile.getContext().startActivity(i);
                 }
             });
-
-
-
-
         }catch (Exception e){
             Toast.makeText(holder.imgprofile.getContext(), "Something wrong in Status",Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
 
@@ -154,13 +151,16 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<Status,StatusAdapter.
 
     public class userAdapterHolder extends RecyclerView.ViewHolder {
 
-        CircleImageView imgprofile;
+        ImageView imgprofile,story;
         CircularStatusView cvStatusOut;
+        TextView name;
 
         public userAdapterHolder(@NonNull View itemView) {
             super(itemView);
-            imgprofile = itemView.findViewById(R.id.profile);
-            cvStatusOut = itemView.findViewById(R.id.circular_status_view);
+            imgprofile = itemView.findViewById(R.id.profile_image);
+            cvStatusOut = itemView.findViewById(R.id.statusCircle);
+            story = itemView.findViewById(R.id.storyImage);
+            name = itemView.findViewById(R.id.name);
 
         }
     }

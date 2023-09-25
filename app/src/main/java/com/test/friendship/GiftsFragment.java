@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -65,7 +66,7 @@ public class GiftsFragment extends Fragment {
     LinearLayoutManager manager;
     LinearLayoutManager manager2;
     LinearLayoutManager manager3;
-    LottieAnimationView addStatus;
+    ImageView addStatus;
     LottieAnimationView progress;
 
     public GiftsFragment() {
@@ -83,7 +84,7 @@ public class GiftsFragment extends Fragment {
         recFeatured1  = view.findViewById(R.id.recFeatured1);
         recFeatured2  = view.findViewById(R.id.recFeatured2);
         recStatus  = view.findViewById(R.id.recStatus);
-        addStatus = view.findViewById(R.id.animation);
+        addStatus = view.findViewById(R.id.addStoryImage);
         progress = view.findViewById(R.id.progress);
 
         manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
