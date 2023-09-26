@@ -132,6 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
         arrayList.add("Computer Science and Engineering");
         arrayList.add("Electronics and communication Engineering");
         arrayList.add("Civil Engineering");
+        arrayList.add("Architecture");
         arrayList.add("Mechanical Engineering");
         arrayList.add("Chemical Technology");
         arrayList.add("Integrated M.S.C");

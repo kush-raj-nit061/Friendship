@@ -50,6 +50,8 @@ dependencies {
     implementation 'com.zyp.cardview:cardview:1.0.1'
     implementation 'com.alimuzaffar.lib:animated-edit-text:2.0.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+    implementation 'com.github.maityamit:Share_Layout_Android_Library:1.0.0'
 
 
 

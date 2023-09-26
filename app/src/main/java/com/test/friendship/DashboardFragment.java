@@ -1,16 +1,15 @@
 package com.test.friendship;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import com.test.friendship.R;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,38 +17,35 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.alimuzaffar.lib.widgets.AnimatedEditText;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.rolud.solidglowanimation.SolidGlowAnimation;
+
 
 public class DashboardFragment extends Fragment {
 
     RecyclerView recView;
     UserAdapter userAdapter;
+    ImageView filters;
 //    SolidGlowAnimation animation_view_complex_view;
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     EditText searchEditText;
     LottieAnimationView progress;
     private Parcelable recyclerViewState;
-    LinearLayout linear;
-    ImageView eye;
+//    LinearLayout linear;
+//    ImageView eye;
     // Add this variable
+
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -62,51 +58,11 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_dashboard_fragment, container, false);
         recView = view.findViewById(R.id.recPeople);
-//        animation_view_complex_view = view.findViewById(R.id.animation_view_complex_view);
-//        animation_view_complex_view.startAnimation();
         searchEditText = view.findViewById(R.id.etSearch);
         progress = view.findViewById(R.id.progress);
-        eye = view.findViewById(R.id.eyes);
-        linear = view.findViewById(R.id.linear);
+        filters = view.findViewById(R.id.filters);
         progress.setVisibility(View.VISIBLE);
 
-        linear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linear.animate().alpha(1f).setDuration(0);
-
-                linear.animate().alpha(0f).setDuration(1900).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        linear.animate().alpha(0f).setDuration(1800);
-                        linear.setVisibility(View.GONE);
-                        eye.setVisibility(View.GONE);
-
-                    }
-                });
-
-            }
-        });
-
-        eye.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                linear.animate().alpha(1f).setDuration(0);
-
-                linear.animate().alpha(0f).setDuration(1900).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        linear.animate().alpha(0f).setDuration(1800);
-                        linear.setVisibility(View.GONE);
-                        eye.setVisibility(View.GONE);
-
-                    }
-                });
-
-
-            }
-        });
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
@@ -115,6 +71,10 @@ public class DashboardFragment extends Fragment {
         recView.setItemViewCacheSize(20);
         recView.setDrawingCacheEnabled(true);
         recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+
+
+
 
         initializeRecyclerView();
         try {

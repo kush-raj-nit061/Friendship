@@ -291,7 +291,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Compress the image with reduced quality (adjust quality as needed)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos); // Adjust the quality here (50 in this example)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos); // Adjust the quality here (50 in this example)
 
         // Convert the compressed Bitmap to bytes
         byte[] data = baos.toByteArray();

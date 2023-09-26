@@ -159,7 +159,7 @@
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="12dp"/>
 
 
             <TextView
@@ -185,10 +185,9 @@
             android:layout_gravity="end"
             android:scaleType="centerCrop"
             app:lottie_autoPlay="true"
-            android:paddingTop="40dp"
 
             app:lottie_loop="true"
-            app:lottie_speed="0.4"/>
+            app:lottie_speed="0.8"/>
 
 
 

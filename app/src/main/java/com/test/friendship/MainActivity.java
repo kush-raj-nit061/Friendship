@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     String purl;
     private ViewPager viewPager;
     Boolean permission_notif = false;
+    ImageView eyes;
 
 
 
@@ -131,6 +132,23 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvHelp = findViewById(R.id.help);
         share = findViewById(R.id.share);
         cvNotifications = findViewById(R.id.notification);
+        eyes = findViewById(R.id.eyes);
+        eyes.setImageResource(R.drawable.eyeopen);
+
+        eyes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bottomNav.getVisibility() == View.GONE){
+
+                    eyes.setImageResource(R.drawable.eyeopen);
+
+                    bottomNav.setVisibility(View.VISIBLE);}
+                else {
+                    bottomNav.setVisibility(View.GONE);
+                    eyes.setImageResource(R.drawable.eyes);
+                }
+            }
+        });
 
 
 
@@ -369,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         MenuItem item4 = MenuItemBuilder.createFrom(item1, fontItem)
                 .selectedLottieName("notification.json")
                 .unSelectedLottieName("notification.json")
-                .loop(true)
+                .pausedProgress(0.75f)
                 .build();
 
         list = new ArrayList<>(4);

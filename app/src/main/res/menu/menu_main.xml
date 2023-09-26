@@ -3,9 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/report"
+        android:id="@+id/ee"
         android:orderInCategory="100"
-        android:title="@string/report_user"
+        android:title="Electrical"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ece"
+        android:orderInCategory="100"
+        android:title="Electronics"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/cse"
+        android:orderInCategory="100"
+        android:title="CSE"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ce"
+        android:orderInCategory="100"
+        android:title="Civil"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/me"
+        android:orderInCategory="100"
+        android:title="Mechanical"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ae"
+        android:orderInCategory="100"
+        android:title="Architecture"
         app:showAsAction="never" />
 
 </menu>
