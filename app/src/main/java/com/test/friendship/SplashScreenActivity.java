@@ -72,7 +72,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                 if(maintainance.exists()){
                                                     String num = maintainance.getString("maintainance");
 
-                                                    if(num.equals("1")){
+                                                    if(num.equals("0")){
                                                         Intent in = new Intent(SplashScreenActivity.this, UnderMaintainance.class);
                                                         startActivity(in);
                                                         finish();

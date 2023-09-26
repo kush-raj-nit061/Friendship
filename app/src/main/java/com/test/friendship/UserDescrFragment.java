@@ -78,16 +78,18 @@ public class UserDescrFragment extends Fragment {
         TextView branchholder = v.findViewById(R.id.branchholder);
         TextView yearholder = v.findViewById(R.id.yearholder);
         NeumorphButton button = v.findViewById(R.id.button);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout privatebutton = v.findViewById(R.id.privatea);
+        CardView cv = v.findViewById(R.id.cv);
+        LinearLayout privatebutton = v.findViewById(R.id.privatea);
 
 
 
 
-        imagegholder.setOnClickListener(new View.OnClickListener() {
+        cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), FullProfileLoader.class);
                 i.putExtra("purl",purl);
+                privatebutton.setVisibility(View.GONE);
                 startActivity(i);
             }
         });
@@ -225,12 +227,7 @@ public class UserDescrFragment extends Fragment {
         yearholder.setText(year);
         shortBioholder.setText(shortBio);
         Glide.with(getContext()).load(purl).into(imagegholder);
-        imagegholder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                privatebutton.setVisibility(View.VISIBLE);
-            }
-        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
