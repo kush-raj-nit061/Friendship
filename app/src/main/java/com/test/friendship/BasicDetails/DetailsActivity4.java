@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.test.friendship.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,10 +36,11 @@ public class DetailsActivity4 extends AppCompatActivity {
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
     Chip chip1p,chip2p,chip3p,chip4p,chip5p,chip6p;
 
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
+    DatabaseReference Ref = database.getReference("students");
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,10 +49,10 @@ public class DetailsActivity4 extends AppCompatActivity {
         setContentView(R.layout.activity_details4);
         tvPrevious = findViewById(R.id.tvPrevious);
         tvNext = findViewById(R.id.tvNext);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         etQualityDislike = findViewById(R.id.etQualityDislike);
         etQualityLike = findViewById(R.id.etQualityLike);
 
@@ -97,30 +100,30 @@ public class DetailsActivity4 extends AppCompatActivity {
 
 
 
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                frog4.playAnimation();
-                            }
-                        },3000);
-                    }
-                }, 3000);
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                frog4.playAnimation();
+//                            }
+//                        },3000);
+//                    }
+//                }, 3000);
+//            }
+//        }, 3000);
 
 
 
@@ -162,19 +165,60 @@ public class DetailsActivity4 extends AppCompatActivity {
                 strQualityDislike="";
 
 
-
-
-                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fStore.collection("users").document(fAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                String detailsGiven = document.getString("detailsGiven");
+                                if(detailsGiven.equals("1")){
+                                    Ref.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity4.this,DetailsActivity5.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }else {
+                                    myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity4.this,DetailsActivity5.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }
+                        }
+
                     }
                 });
 
 
-                Intent i = new Intent(DetailsActivity4.this,DetailsActivity5.class);
-                startActivity(i);
-                finish();
+
+
+
+
+//                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//
+//                Intent i = new Intent(DetailsActivity4.this,DetailsActivity5.class);
+//                startActivity(i);
+//                finish();
             }
         });
 

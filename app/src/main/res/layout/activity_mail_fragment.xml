@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@id/cover"
             android:layout_width="0dp"
-            android:layout_height="96dp"
+            android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 app:lottie_autoPlay="true"
+                android:visibility="gone"
                 app:lottie_rawRes="@raw/banner"
                 app:lottie_loop="true"
                 app:lottie_speed="1"
@@ -70,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="-40dp"
             android:padding="4dp"
             android:text="@string/_00"
             android:textStyle="bold"
@@ -105,7 +106,7 @@
             android:textColor="@color/black"
             android:padding="4dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="-40dp"
 
             android:text="@string/_00q"
             android:textStyle="bold"
@@ -136,9 +137,7 @@
 
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-
+            android:layout_height="600dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -152,6 +151,7 @@
                 android:layout_height="500dp"
                 android:visibility="visible"
                 app:lottie_autoPlay="true"
+                android:padding="60dp"
                 app:lottie_rawRes="@raw/progress"
                 app:lottie_loop="true"
                 app:lottie_speed="1"
@@ -160,12 +160,10 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="185dp"
+                android:layout_marginBottom="100dp"
                 >
                 <androidx.recyclerview.widget.RecyclerView
-
                     android:background="@color/white"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recConnection"/>

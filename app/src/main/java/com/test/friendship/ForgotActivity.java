@@ -53,7 +53,7 @@ public class ForgotActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(ForgotActivity.this, "issue is "+task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgotActivity.this, "Issue is User email not found", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

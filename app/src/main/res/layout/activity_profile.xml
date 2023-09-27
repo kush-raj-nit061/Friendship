@@ -198,6 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/textColor"
                     android:layout_marginBottom="10dp"
                     android:text="@string/information" />
 
@@ -466,6 +467,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/textColor"
                     android:layout_marginBottom="10dp"
                     android:text="@string/short_details" />
 
@@ -549,6 +551,85 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/qiscus_white"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:id="@+id/llHobbiestv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/todo"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/ic_detail" />
+
+                        <TextView
+                            android:id="@+id/tvHobbies"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:textColor="@color/qiscus_primary_text" />
+                        <ImageView
+                            android:id="@+id/ivEditHobbies"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:contentDescription="@string/todo"
+                            app:srcCompat="@drawable/baseline_edit_24"
+                            android:focusable="true" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/llHobbieset"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:contentDescription="@string/todo"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_detail" />
+
+                        <EditText
+                            android:id="@+id/etHobbies"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:background="@drawable/edittextback"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:autofillHints=""
+                            android:inputType="text"
+                            android:textColor="@color/qiscus_primary_text"
+                            tools:ignore="LabelFor" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
                 <soup.neumorphism.NeumorphButton
                     android:id="@+id/btnSaveChanges"
                     style="@style/Widget.Neumorph.Button"
@@ -562,6 +643,19 @@
                     android:textSize="20sp"
 
 
+                    />
+
+                <soup.neumorphism.NeumorphButton
+                    android:id="@+id/btnExtraDetails"
+                    style="@style/Widget.Neumorph.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="8dp"
+                    android:text="@string/edit_personal_details"
+                    android:textColor="#8246D6"
+                    android:paddingTop="10dp"
+                    android:textSize="20sp"
                     />
 
 

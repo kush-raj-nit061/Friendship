@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
     String purl;
     private ViewPager viewPager;
     Boolean permission_notif = false;
+    ImageView eyes;
 
 
 
@@ -131,6 +132,23 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         cvHelp = findViewById(R.id.help);
         share = findViewById(R.id.share);
         cvNotifications = findViewById(R.id.notification);
+        eyes = findViewById(R.id.eyes);
+        eyes.setImageResource(R.drawable.eyeopen);
+
+        eyes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bottomNav.getVisibility() == View.GONE){
+
+                    eyes.setImageResource(R.drawable.eyeopen);
+
+                    bottomNav.setVisibility(View.VISIBLE);}
+                else {
+                    bottomNav.setVisibility(View.GONE);
+                    eyes.setImageResource(R.drawable.eyes);
+                }
+            }
+        });
 
 
 
@@ -160,9 +178,29 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
 
 
         Map<String,Object> map = new HashMap<>();
-        map.put("connectionId",FirebaseMessaging.getInstance().getToken().toString());
 
-        reference2.child(fAuth.getCurrentUser().getUid()).updateChildren(map);
+        try {
+            reference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                            String lower = String.valueOf(snapshot1.child("name").getValue()).toLowerCase();
+                            map.put("lower",lower);
+                            reference2.child(snapshot1.getKey()).updateChildren(map);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }catch (Exception e){}
+
+
 
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -349,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements ILottieBottomNavC
         MenuItem item4 = MenuItemBuilder.createFrom(item1, fontItem)
                 .selectedLottieName("notification.json")
                 .unSelectedLottieName("notification.json")
-                .loop(true)
+                .pausedProgress(0.75f)
                 .build();
 
         list = new ArrayList<>(4);

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.test.friendship.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,13 +37,14 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     ImageView tvCal;
     EditText etBirthPlace;
     TextView etCal;
-    LottieAnimationView frog1,frog2,frog3;
-    ImageView tvNext,tvPrevious;
+    ImageView tvSkip;
+    TextView skipp;
+//    LottieAnimationView frog1,frog2,frog3;
+    ImageView tvNext;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
+    DatabaseReference Ref = database.getReference("students");
 
 
 
@@ -50,33 +53,51 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details2);
-        tvPrevious = findViewById(R.id.tvprevious);
         tvCal = findViewById(R.id.calender);
         etBirthPlace = findViewById(R.id.etBirthPlace);
         etCal = findViewById(R.id.etCal);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
         tvNext = findViewById(R.id.tvNext);
+        tvSkip = findViewById(R.id.tvSkip);
+        skipp = findViewById(R.id.skipp);
 
-        Handler handler = new Handler();
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog2.setVisibility(View.VISIBLE);
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog2.setVisibility(View.VISIBLE);
-                    }
-                }, 3000);
-
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity2.this,DetailsActivity5.class);
+                startActivity(i);
+                finish();
             }
-        }, 3000);
+        });
+        skipp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity2.this,DetailsActivity5.class);
+                startActivity(i);
+                finish();
+            }
+        });
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,28 +114,49 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
                 users.put("birthday",etCal.getText().toString());
                 users.put("location",etBirthPlace.getText().toString());
 
-
-
-                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fStore.collection("users").document(fAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                String detailsGiven = document.getString("detailsGiven");
+                                if(detailsGiven.equals("1")){
+                                    Ref.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity2.this,DetailsActivity3.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }else {
+                                    myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity2.this,DetailsActivity3.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }
+                        }
+
                     }
                 });
 
-                Intent i = new Intent(DetailsActivity2.this,DetailsActivity3.class);
-                startActivity(i);
-                finish();
+
+
             }
         });
-        tvPrevious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(DetailsActivity2.this,DetailsActivity1.class);
-                startActivity(i);
-                finish();
-            }
-        });
+
 
         tvCal.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.test.friendship.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +35,7 @@ public class DetailsActivity3 extends AppCompatActivity {
 
     Spinner spinner ;
     String foodSelected;
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
     ImageView tvSkip;
     ImageView tvNext,tvPrevious;
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
@@ -43,6 +45,7 @@ public class DetailsActivity3 extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
+    DatabaseReference Ref = database.getReference("students");
 
 
 
@@ -105,11 +108,11 @@ public class DetailsActivity3 extends AppCompatActivity {
 
 
 
-
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         tvSkip = findViewById(R.id.tvSkip);
         tvNext = findViewById(R.id.tvNext);
 
@@ -138,24 +141,24 @@ public class DetailsActivity3 extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayList);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(adapter);
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-                    }
-                }, 3000);
-
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,16 +204,57 @@ public class DetailsActivity3 extends AppCompatActivity {
                 strPlaceTravel ="";
 
 
-
-                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                fStore.collection("users").document(fAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+                                String detailsGiven = document.getString("detailsGiven");
+                                if(detailsGiven.equals("1")){
+                                    Ref.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }else {
+                                    myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                    Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }
+                        }
+
                     }
                 });
-                Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
-                startActivity(i);
-                finish();
+
+
+
+
+
+//                myRef.child(fAuth.getCurrentUser().getUid()).updateChildren(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                Intent i = new Intent(DetailsActivity3.this,DetailsActivity4.class);
+//                startActivity(i);
+//                finish();
             }
         });
 

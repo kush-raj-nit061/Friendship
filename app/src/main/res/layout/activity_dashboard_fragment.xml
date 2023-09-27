@@ -8,111 +8,83 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity">
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00FFFFFF"
+        android:background="#E1E3E6"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linear1"
             android:layout_marginTop="-10dp"
-            android:background="@color/black"
             android:orientation="vertical"
             >
+
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/linear"
-                android:orientation="horizontal"
 
-                android:paddingLeft="@dimen/horizontal_dashboard"
+                android:layout_height="55dp"
 
-                android:paddingRight="@dimen/horizontal_dashboard"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/filters"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    android:src="@drawable/filter"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0.15"
+                    android:contentDescription="@string/todo"
+                    app:tint="@color/black" />
 
-
-                android:weightSum="100">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/search"
-                    android:paddingTop="15dp"
-                    app:lottie_loop="true"
-                    app:lottie_speed="1"
-
-                    android:layout_weight="60"
-                    android:contentDescription="@string/imageAccess" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical"
-                    android:layout_weight="40">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:fontFamily="@font/bariol_bold"
-                        android:text="@string/have_you_found_someone_lets_search"
-                        android:textColor="@color/white"
-                        android:textSize="30sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bariol_bold"
-                        android:layout_marginTop="-8dp"
-                        android:text="@string/let_s_search"
-                        android:textColor="@color/blue_active"
-                        android:textSize="30sp" />
-
-
-                </LinearLayout>
-
+                    android:layout_gravity="center_vertical"
+                    app:animationType="fromRight"
+                    app:animateCursor="true"
+                    app:animateTextClear="true"
+                    android:autofillHints="username"
+                    android:background="@drawable/container_search"
+                    android:drawablePadding="@dimen/drawable_left"
+                    android:fontFamily="@font/bariol_regular"
+                    android:gravity="center_vertical"
+                    android:hint="@string/edt_search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/normalPadding"
+                    android:paddingTop="@dimen/vertical_search"
+                    android:paddingRight="@dimen/normalPadding"
+                    android:paddingBottom="@dimen/vertical_search"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_hint"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/filterss"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/eyes"
+                    android:layout_marginBottom="@dimen/margin_10_dp"
+                    android:visibility="invisible"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="0.15"
+                    android:contentDescription="@string/todo" />
 
 
 
             </LinearLayout>
 
-            <com.alimuzaffar.lib.widgets.AnimatedEditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/horizontal_dashboard"
-                android:layout_marginTop="@dimen/normalPadding"
-                app:animationType="fromRight"
-                app:animateCursor="true"
-                app:animateTextClear="true"
-                android:layout_marginRight="@dimen/horizontal_dashboard"
-                android:autofillHints="username"
-                android:background="@drawable/container_search"
 
 
-                android:drawablePadding="@dimen/drawable_left"
-
-                android:fontFamily="@font/bariol_regular"
-                android:gravity="center_vertical"
-
-
-                android:hint="@string/edt_search"
-                android:imeOptions="actionSearch"
-
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingLeft="@dimen/normalPadding"
-                android:paddingTop="@dimen/vertical_search"
-                android:paddingRight="@dimen/normalPadding"
-                android:paddingBottom="@dimen/vertical_search"
-                android:singleLine="true"
-                android:textColor="@color/blue_active"
-                android:textColorHint="@color/color_hint"
-                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,86 +94,52 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
                     android:background="@null">
 
-                    <LinearLayout
+
+
+
+
+
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="80dp"
-                        android:background="@color/back_courses"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/horizontal_card"
-                        android:minHeight="500dp"
-                        android:background="@color/white"
-                        android:layout_marginBottom="@dimen/horizontal_card"
-                        android:orientation="vertical">
-
-                        <com.rolud.solidglowanimation.SolidGlowAnimation
-                            android:id="@+id/animation_view_complex_view"
-                            android:layout_marginBottom="-30dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layers="5"
-                            app:color1="#464544"
-                            app:color2="#000000"
-                            app:color3="#000000"
-                            app:color4="#000000"
-                            app:color5="#FF8900"
-                            app:duration="4000"
-                            app:scaleMax="1.3"
-                            android:radius="5dp"
-                            >
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/recPeople"/>
-
-
-                        </com.rolud.solidglowanimation.SolidGlowAnimation>
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingTop="60dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="80dp"
-                        android:layout_marginBottom="@dimen/horizontal_card"
+                        android:layout_marginTop="3dp"
+                        android:background="#FFFFFF"
                         android:orientation="vertical">
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/progress"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="200dp"
                             android:visibility="visible"
                             app:lottie_autoPlay="true"
+                            android:padding="@dimen/margin_30_dp"
                             app:lottie_rawRes="@raw/progress"
                             android:paddingTop="15dp"
                             app:lottie_loop="true"
                             app:lottie_speed="1"
-
                             android:layout_weight="60"
                             android:contentDescription="@string/imageAccess" />
+                        <ScrollView
+                            android:id="@+id/ssss"
+                            android:layout_width="match_parent"
+                            android:background="#FFFFFF"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:background="#FFFFFF"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/recPeople"/>
+
+                        </ScrollView>
 
 
+                    </RelativeLayout>
 
-
-
-
-                    </LinearLayout>
 
 
                 </RelativeLayout>
@@ -209,6 +147,6 @@
             </LinearLayout>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
 
 </FrameLayout>

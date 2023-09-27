@@ -55,6 +55,20 @@
                     android:layout_marginStart="@dimen/margin_10_dp"
                     />
 
+                <TextView
+                    android:id="@+id/noOfLikes"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/margin_20_dp"
+                    android:textStyle="bold"
+                    android:text="17"
+                    android:fontFamily="@font/bariol_bold"
+                    android:scaleType="centerCrop"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/margin_10_dp"
+                    />
+
 
 
 

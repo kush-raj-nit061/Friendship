@@ -1,43 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="82dp"
-    android:layout_height="110dp"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:elevation="8dp"
+    android:layout_marginEnd="3dp"
+    app:cardCornerRadius="8dp"
+    android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/storyImage"
+        android:layout_width="120dp"
+        android:layout_height="95dp"
+        android:contentDescription="Story"
+        android:scaleType="fitXY"
+        android:src="@drawable/story"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/profile"
+        android:padding="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintStart_toStartOf="@+id/storyImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.devlomi.circularstatusview.CircularStatusView
+        android:id="@+id/statusCircle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/white_circle_background"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image"
+        app:portion_color="@color/orange"
+        app:portion_spacing="4dp"
+        app:portion_width="2dp"
+        app:portions_count="10" />
+
+
+    <ImageView
+        android:id="@+id/storyType"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/storyImage"
+        app:layout_constraintTop_toTopOf="@+id/storyImage"
+        app:srcCompat="@drawable/live" />
+
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        android:background="@color/white"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="@dimen/padding_50_dp">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_centerInParent="true"
-            android:padding="2dp"
-            app:civ_border_color="#7190EE"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/baloo"
+        android:text="Rohit_V.."
+        android:textColor="#fff"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="@+id/storyImage"
+        app:layout_constraintStart_toStartOf="@+id/storyImage" />
 
 
-            android:id="@+id/profile"
-            />
-        <com.devlomi.circularstatusview.CircularStatusView
-            android:id="@+id/circular_status_view"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_centerInParent="true"
-            app:portion_color="@color/fb_color_pressed"
-            app:portion_spacing="2.3dp"
-            app:portion_width="3dp"
-            app:portions_count="12" />
-
-
-
-    </androidx.cardview.widget.CardView>
-
-
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

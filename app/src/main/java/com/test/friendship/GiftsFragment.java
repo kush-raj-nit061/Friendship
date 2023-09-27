@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -65,7 +66,7 @@ public class GiftsFragment extends Fragment {
     LinearLayoutManager manager;
     LinearLayoutManager manager2;
     LinearLayoutManager manager3;
-    LottieAnimationView addStatus;
+    ImageView addStatus;
     LottieAnimationView progress;
 
     public GiftsFragment() {
@@ -83,7 +84,7 @@ public class GiftsFragment extends Fragment {
         recFeatured1  = view.findViewById(R.id.recFeatured1);
         recFeatured2  = view.findViewById(R.id.recFeatured2);
         recStatus  = view.findViewById(R.id.recStatus);
-        addStatus = view.findViewById(R.id.animation);
+        addStatus = view.findViewById(R.id.addStoryImage);
         progress = view.findViewById(R.id.progress);
 
         manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -163,44 +164,52 @@ public class GiftsFragment extends Fragment {
 
 
         DatabaseReference dbre = FirebaseDatabase.getInstance().getReference("Status");
-        dbre.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long count = snapshot.getChildrenCount();
+        try {
+            dbre.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long count = snapshot.getChildrenCount();
 
-                Query q = dbre.orderByChild("date"); // Assuming "date" is the key in each child containing the timestamp
-                FirebaseRecyclerOptions<Status> options3 =
-                        new FirebaseRecyclerOptions.Builder<Status>()
-                                .setQuery(q, Status.class)
-                                .build();
-                userAdapter3 = new StatusAdapter(options3);
-                recStatus.setAdapter(userAdapter3);
-                userAdapter3.startListening();
-            }
+                    Query q = dbre.orderByChild("date"); // Assuming "date" is the key in each child containing the timestamp
+                    FirebaseRecyclerOptions<Status> options3 =
+                            new FirebaseRecyclerOptions.Builder<Status>()
+                                    .setQuery(q, Status.class)
+                                    .build();
+                    userAdapter3 = new StatusAdapter(options3);
+                    recStatus.setAdapter(userAdapter3);
+                    userAdapter3.startListening();
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
+                }
 
-        });
+            });
 
-        FirebaseRecyclerOptions<FeaturedModel> options =
-                new FirebaseRecyclerOptions.Builder<FeaturedModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Featured"), FeaturedModel.class)
-                        .build();
-        userAdapter=new FeaturedAdapter(options);
-        recFeatured1.setAdapter(userAdapter);
+        }catch (Exception e){}
 
-        userAdapter.startListening();
+        try {
+            FirebaseRecyclerOptions<FeaturedModel> options =
+                    new FirebaseRecyclerOptions.Builder<FeaturedModel>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Featured"), FeaturedModel.class)
+                            .build();
+            userAdapter=new FeaturedAdapter(options);
+            recFeatured1.setAdapter(userAdapter);
 
-        FirebaseRecyclerOptions<FeaturedModel> options2 =
-                new FirebaseRecyclerOptions.Builder<FeaturedModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("CoolFeatured"), FeaturedModel.class)
-                        .build();
-        userAdapter2=new FeaturedAdapter(options2);
-        recFeatured2.setAdapter(userAdapter2);
-        userAdapter2.startListening();
+            userAdapter.startListening();
+
+            FirebaseRecyclerOptions<FeaturedModel> options2 =
+                    new FirebaseRecyclerOptions.Builder<FeaturedModel>()
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("CoolFeatured"), FeaturedModel.class)
+                            .build();
+            userAdapter2=new FeaturedAdapter(options2);
+            recFeatured2.setAdapter(userAdapter2);
+            userAdapter2.startListening();
+
+        }catch (Exception e){}
+
+
 
 
 
@@ -247,7 +256,7 @@ public class GiftsFragment extends Fragment {
 
         // Compress the image with reduced quality (adjust quality as needed)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos); // Adjust the quality here (50 in this example)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 45, baos); // Adjust the quality here (50 in this example)
 
         // Convert the compressed Bitmap to bytes
         byte[] data = baos.toByteArray();

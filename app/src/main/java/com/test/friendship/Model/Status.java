@@ -4,6 +4,16 @@ public class Status {
 
     String date;
 
+    public long getStatusCount() {
+        return statusCount;
+    }
+
+    public void setStatusCount(long statusCount) {
+        this.statusCount = statusCount;
+    }
+
+    long statusCount;
+
     public Status() {
     }
 
@@ -15,13 +25,14 @@ public class Status {
         this.date = date;
     }
 
-    public Status(String date, String purl, String postUrl, String name, String postlikes, String id) {
+    public Status(long statusC,String date, String purl, String postUrl, String name, String postlikes, String id) {
         this.date = date;
         this.purl = purl;
         this.postUrl = postUrl;
         this.name = name;
         this.postlikes = postlikes;
         this.id = id;
+        this.statusCount = statusC;
     }
 
     public String getPurl() {

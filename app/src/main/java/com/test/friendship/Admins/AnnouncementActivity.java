@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class AnnouncementActivity extends AppCompatActivity {
 
@@ -98,6 +99,7 @@ public class AnnouncementActivity extends AppCompatActivity {
                     map.put("eventname",name);
                     map.put("eventtitle",title);
                     map.put("month",month);
+                    map.put("id",FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     if(date.trim().length() == 1){
                         date = "0"+date;
@@ -121,8 +123,18 @@ public class AnnouncementActivity extends AppCompatActivity {
 
 
                     DatabaseReference notifRef = FirebaseDatabase.getInstance().getReference().child("Events");
+                    int length = 12; // Length of the random string
+                    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"; // Characters to choose from
+                    StringBuilder randomString = new StringBuilder();
 
-                    notifRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    Random random = new Random();
+                    for (int i = 0; i < length; i++) {
+                        int index = random.nextInt(characters.length());
+                        char randomChar = characters.charAt(index);
+                        randomString.append(randomChar);
+                    }
+
+                    notifRef.child(randomString.toString()).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(getApplicationContext(),"Notification Added",Toast.LENGTH_SHORT).show();
@@ -164,7 +176,7 @@ public class AnnouncementActivity extends AppCompatActivity {
 
     }
     private void uploadImageToFirebase(Uri imageUri) {
-        final StorageReference fileRef = storageReference.child("Posters/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "profile.jpg");
+        final StorageReference fileRef = storageReference.child("Posters/" + String.valueOf(imageUri) + "profile.jpg");
 
         // Load the image into a Bitmap
         Bitmap bitmap;

@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class DetailsActivity1 extends AppCompatActivity {
 
-    LottieAnimationView frog1,frog2,frog3;
+//    LottieAnimationView frog1,frog2,frog3;
     ImageView tvNext;
     Spinner spinner ;
     String yearSelected;
@@ -45,9 +45,9 @@ public class DetailsActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details1);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
         tvNext = findViewById(R.id.tvNext);
         spinner = findViewById(R.id.spinner);
         etHobbies =findViewById(R.id.etHobbies);
@@ -56,21 +56,21 @@ public class DetailsActivity1 extends AppCompatActivity {
         Handler handler = new Handler();
 
 
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog2.setVisibility(View.VISIBLE);
-                    }
-                }, 3000);
-
-            }
-        }, 3000);
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog2.setVisibility(View.VISIBLE);
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
 
 
@@ -89,8 +89,8 @@ public class DetailsActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(etShortDetails.getText().toString().length()<100){
-                    Toast.makeText(getApplicationContext(),"Add Atleast 30 Words",Toast.LENGTH_SHORT).show();
+                if(etShortDetails.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Write about Yourself",Toast.LENGTH_SHORT).show();
                     return;
                 }if(etHobbies.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"Please Enter Your Hobbies",Toast.LENGTH_SHORT).show();
@@ -131,8 +131,11 @@ public class DetailsActivity1 extends AppCompatActivity {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("2020-2024");
         arrayList.add("2021-2025");
+        arrayList.add("2021-2026");
         arrayList.add("2022-2026");
+        arrayList.add("2022-2027");
         arrayList.add("2023-2027");
+        arrayList.add("2023-2028");
         arrayList.add("M.Tech");
         arrayList.add("P.H.D");
         arrayList.add("Dual Degree");
