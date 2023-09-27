@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class DetailsActivity1 extends AppCompatActivity {
 
-    LottieAnimationView frog1,frog2,frog3;
+//    LottieAnimationView frog1,frog2,frog3;
     ImageView tvNext;
     Spinner spinner ;
     String yearSelected;
@@ -45,9 +45,9 @@ public class DetailsActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details1);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
         tvNext = findViewById(R.id.tvNext);
         spinner = findViewById(R.id.spinner);
         etHobbies =findViewById(R.id.etHobbies);
@@ -56,21 +56,21 @@ public class DetailsActivity1 extends AppCompatActivity {
         Handler handler = new Handler();
 
 
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog2.setVisibility(View.VISIBLE);
-                    }
-                }, 3000);
-
-            }
-        }, 3000);
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog2.setVisibility(View.VISIBLE);
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
 
 

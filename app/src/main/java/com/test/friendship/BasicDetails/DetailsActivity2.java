@@ -39,7 +39,7 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
     TextView etCal;
     ImageView tvSkip;
     TextView skipp;
-    LottieAnimationView frog1,frog2,frog3;
+//    LottieAnimationView frog1,frog2,frog3;
     ImageView tvNext;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -56,31 +56,31 @@ public class DetailsActivity2 extends AppCompatActivity implements DatePickerDia
         tvCal = findViewById(R.id.calender);
         etBirthPlace = findViewById(R.id.etBirthPlace);
         etCal = findViewById(R.id.etCal);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
         tvNext = findViewById(R.id.tvNext);
         tvSkip = findViewById(R.id.tvSkip);
         skipp = findViewById(R.id.skipp);
 
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog2.setVisibility(View.VISIBLE);
-                    }
-                }, 3000);
-
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog2.setVisibility(View.VISIBLE);
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override

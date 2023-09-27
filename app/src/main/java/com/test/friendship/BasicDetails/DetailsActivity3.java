@@ -35,7 +35,7 @@ public class DetailsActivity3 extends AppCompatActivity {
 
     Spinner spinner ;
     String foodSelected;
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
     ImageView tvSkip;
     ImageView tvNext,tvPrevious;
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
@@ -108,11 +108,11 @@ public class DetailsActivity3 extends AppCompatActivity {
 
 
 
-
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         tvSkip = findViewById(R.id.tvSkip);
         tvNext = findViewById(R.id.tvNext);
 
@@ -141,24 +141,24 @@ public class DetailsActivity3 extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,arrayList);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(adapter);
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-                    }
-                }, 3000);
-
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//                    }
+//                }, 3000);
+//
+//            }
+//        }, 3000);
 
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override

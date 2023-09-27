@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private Button b;
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
 
 
 
@@ -79,10 +79,10 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         // taking FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         // initialising all views through id defined above
         fullname       = findViewById(R.id.inputFirstName);
         branch = findViewById(R.id.branch);
@@ -90,29 +90,29 @@ public class SignUpActivity extends AppCompatActivity {
         passwordTextView        = findViewById(R.id.inputPassword);
         inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
         Btn         = findViewById(R.id.buttonSignUp);
-        Handler handler = new Handler();
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                frog4.playAnimation();
-                            }
-                        },3000);
-                    }
-                }, 3000);
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                frog4.playAnimation();
+//                            }
+//                        },3000);
+//                    }
+//                }, 3000);
+//            }
+//        }, 3000);
 
         branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

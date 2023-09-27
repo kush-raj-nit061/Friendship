@@ -106,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="3dp"
-                        android:background="#E1E3E6"
+                        android:background="#FFFFFF"
                         android:orientation="vertical">
 
                         <com.airbnb.lottie.LottieAnimationView
@@ -125,11 +125,13 @@
                         <ScrollView
                             android:id="@+id/ssss"
                             android:layout_width="match_parent"
+                            android:background="#FFFFFF"
                             android:layout_height="wrap_content"
                             >
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:layout_width="match_parent"
+                                android:background="#FFFFFF"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/recPeople"/>
 

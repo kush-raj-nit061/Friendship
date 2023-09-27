@@ -33,7 +33,7 @@ import java.util.Map;
 import com.test.friendship.R;
 
 public class test extends AppCompatActivity {
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
 
 
     private EditText emailTextView, passwordTextView;
@@ -50,34 +50,34 @@ public class test extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tester);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         tvReset = findViewById(R.id.resetPassword);
 
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                frog4.playAnimation();
-                            }
-                        },3000);
-                    }
-                }, 3000);
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                frog4.playAnimation();
+//                            }
+//                        },3000);
+//                    }
+//                }, 3000);
+//            }
+//        }, 3000);
 
 
 

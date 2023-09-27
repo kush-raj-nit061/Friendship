@@ -36,7 +36,7 @@ public class DetailsActivity4 extends AppCompatActivity {
     Chip chip1,chip2,chip3,chip4,chip5,chip6,chip7,chip8,chip9,chip10,chip11;
     Chip chip1p,chip2p,chip3p,chip4p,chip5p,chip6p;
 
-    LottieAnimationView frog1,frog2,frog3,frog4;
+//    LottieAnimationView frog1,frog2,frog3,frog4;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("unregistered");
@@ -49,10 +49,10 @@ public class DetailsActivity4 extends AppCompatActivity {
         setContentView(R.layout.activity_details4);
         tvPrevious = findViewById(R.id.tvPrevious);
         tvNext = findViewById(R.id.tvNext);
-        frog1 = findViewById(R.id.frog1);
-        frog2= findViewById(R.id.frog2);
-        frog3 = findViewById(R.id.frog3);
-        frog4 = findViewById(R.id.frog4);
+//        frog1 = findViewById(R.id.frog1);
+//        frog2= findViewById(R.id.frog2);
+//        frog3 = findViewById(R.id.frog3);
+//        frog4 = findViewById(R.id.frog4);
         etQualityDislike = findViewById(R.id.etQualityDislike);
         etQualityLike = findViewById(R.id.etQualityLike);
 
@@ -100,30 +100,30 @@ public class DetailsActivity4 extends AppCompatActivity {
 
 
 
-        Handler handler = new Handler();
-
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-
-
-                frog2.setVisibility(View.VISIBLE);
-                frog2.playAnimation();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-
-                        frog3.playAnimation();
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                frog4.playAnimation();
-                            }
-                        },3000);
-                    }
-                }, 3000);
-            }
-        }, 3000);
+//        Handler handler = new Handler();
+//
+//
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//
+//
+//                frog2.setVisibility(View.VISIBLE);
+//                frog2.playAnimation();
+//                handler.postDelayed(new Runnable() {
+//                    public void run() {
+//
+//                        frog3.playAnimation();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                frog4.playAnimation();
+//                            }
+//                        },3000);
+//                    }
+//                }, 3000);
+//            }
+//        }, 3000);
 
 
 
